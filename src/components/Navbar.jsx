@@ -1,4 +1,4 @@
-// import Logo from "../assets/logo.png";
+import Logo from "/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
 import { NavLink, Link } from "react-router-dom";
@@ -10,8 +10,9 @@ const Navbar = () => {
           <Link to={"/"}>
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
-              <span className="text-primary">Quran</span>{" "}
-              <span className="text-navlinks">Scholar</span>
+              <img src={Logo} alt="" width={100} />
+              {/* <span className="text-primary">Quran</span>{" "}
+              <span className="text-navlinks">Scholar</span> */}
             </h1>
           </Link>
           <ul className="nav-list max-md:hidden flex gap-4 text-center font-epilogue text-navlinks text-sm uppercase">
