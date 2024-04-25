@@ -75,9 +75,9 @@ input:where([type="checkbox"], [type="radio"]):disabled{
   background : #eee;
 }
 input[type="checkbox"]:checked{
-  background-image : url('checkbox.svg');
+  background-image : url('/checkbox.svg');
 }
 
 input[type="radio"]:checked{
-  background-image : url('radio.svg');
+  background-image : url('/radio.svg');
 }
