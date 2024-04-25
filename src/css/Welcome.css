@@ -1,0 +1,9 @@
+@media (max-width:768px){
+ 
+}
+div.welcome{
+  background-image: url('../assets/images/wave.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
