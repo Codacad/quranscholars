@@ -1,16 +1,16 @@
-import Logo from "/logo.svg";
+import Logo from "/logo2.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar p-px10p max-sm:px-2 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-gray-100 z-10">
+      <div className="navbar p-px10p max-sm:px-2 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
-              <img src={Logo} alt="" width={100} />
+              <img src={Logo} alt="" width={200} height={100} />
               {/* <span className="text-primary">Quran</span>{" "}
               <span className="text-navlinks">Scholar</span> */}
             </h1>
