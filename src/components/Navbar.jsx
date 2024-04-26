@@ -5,7 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div className="navbar p-px10p max-sm:px-2 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
+      <div className="navbar md:p-px10p max-md:px-4 max-md:px-4 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}

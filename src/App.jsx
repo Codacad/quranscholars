@@ -7,6 +7,7 @@ import Contact from "./routes/Contact"
 import Donate from "./routes/Donate"
 import Navbar from "./components/Navbar";
 import Admission from "./routes/Admission";
+import Sidenav from "./components/Sidenav";
 function App() {
   const rotuer = [
     {path:"/", element:<Home />},
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <div className="app">
+        <Sidenav />
         <Navbar />
         <Routes>
           {rotuer.map(route => {

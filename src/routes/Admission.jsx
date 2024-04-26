@@ -68,7 +68,7 @@ const Admission = () => {
       <div className="admission flex flex-col items-center max-md:px-4 my-8 min-h-screen sm:w-[50%] w-[100%] m-auto">
         <div className="header border-b py-4 w-full border-gray-200 mb-4">
           <h1 className="font-bold md:text-4xl text-xl text-primary mb-2">
-            CLASS ADMISSIONS FORM
+            CLASS ADMISSION FORM
           </h1>
           <h3 className="text-md max-sm:text-sm text-gray-400">
             Enter your admission information below

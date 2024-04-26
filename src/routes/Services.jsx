@@ -161,8 +161,9 @@ const Services = () => {
   console.log(services);
   return (
     <>
-      <div className="services p-px10p bg-orange-50 py-8 grid grid-cols-3 gap-6 font-guminert">
-        <div className="service online-courses border-2 border-orange-800 bg-orange-100 p-4 rounded-md ">
+      <div className="services p-px10p bg-orange-50 py-8 grid md:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-6 font-guminert">
+       
+        <div className="service col-span-1 online-courses border-2 border-orange-800 bg-orange-100 p-4 rounded-md ">
           <div className="flex flex-col items-center gap-2 text-center">
             <span>
               <img className="w-24" src={OnlineCourses} alt="" />
