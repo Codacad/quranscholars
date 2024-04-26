@@ -1,11 +1,16 @@
 import Logo from "/logo2.svg";
+import { useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
+import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
+import { useState } from "react";
+import { SidenavContext } from "../context/sidenavContext/SidenavContext";
 const Navbar = () => {
+  const { showSideNav, handleToggleSideNav } = useContext(SidenavContext)
   return (
     <>
-      <div className="navbar md:p-px10p max-md:px-4 max-md:px-4 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
+      <div className="navbar md:p-px10p max-md:px-4 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}
@@ -127,9 +132,14 @@ const Navbar = () => {
               {" "}
               Admission
             </Link>
-            
           </div>
-          <GiHamburgerMenu className="text-xl max-md:block hidden"/>
+          <div className="sidenav-toggle" onClick={handleToggleSideNav}>
+          {!showSideNav ? (
+            <GiHamburgerMenu className="text-xl max-md:block hidden" />
+          ) : (
+            <IoClose className="text-xl max-md:block hidden" />
+          )}
+          </div>
         </nav>
       </div>
     </>
