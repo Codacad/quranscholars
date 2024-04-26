@@ -1,5 +1,3 @@
-import React from "react";
-import {IoClose} from 'react-icons/io5'
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
@@ -7,8 +5,8 @@ const Sidenav = () => {
   const {showSideNav} = useContext(SidenavContext)
   return (
     <>
-      <nav className={`max-md:flex hidden fixed w-full h-full top-12 transition-all duration-300 ease-[cubic-bezier(.5,.67,.78,.68)] bg-[rgba(0,0,0,.6)] z-10 ${showSideNav ? "" : "opacity-0"}`}>
-        <div className={`nav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-500 ease-[cubic-bezier(.5,.67,.78,.68)] bg-red-50 ${showSideNav ? "" : "-right-[300px]"}`}>
+      <nav className={`sidenav max-md:flex hidden fixed w-full h-full top-12 transition-all duration-300 ease-[cubic-bezier(.5,.67,.78,.68)] bg-[rgba(0,0,0,.6)] z-10 ${showSideNav ? "" : "opacity-0"}`}>
+        <div className={`sidenav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-500 ease-[cubic-bezier(.5,.67,.78,.68)] bg-red-50 ${showSideNav ? "" : "-right-[300px]"}`}>
           <div className="buttons flex justify-between py-4 gap-4 font-epilogue text-sm uppercase items-center">
             {/* <Link
               to={"#"}              

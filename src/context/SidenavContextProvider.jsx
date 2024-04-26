@@ -7,7 +7,7 @@ const SidenavContextProvider = ({ children }) => {
   };
   return (
     <div>
-      <SidenavContext.Provider value={{ showSideNav, handleToggleSideNav }}>
+      <SidenavContext.Provider value={{ showSideNav, setShowSideNav, handleToggleSideNav }}>
         {children}
       </SidenavContext.Provider>
     </div>

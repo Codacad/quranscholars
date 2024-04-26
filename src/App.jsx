@@ -1,4 +1,5 @@
 import {Routes, Route} from "react-router-dom"
+import { useContext } from "react";
 import "./App.css";
 import Home from "./routes/Home"
 import Services from './routes/Services'
@@ -8,6 +9,7 @@ import Donate from "./routes/Donate"
 import Navbar from "./components/Navbar";
 import Admission from "./routes/Admission";
 import Sidenav from "./components/Sidenav";
+import { SidenavContext } from "./context/sidenavContext/SidenavContext";
 function App() {
   const rotuer = [
     {path:"/", element:<Home />},
@@ -17,6 +19,14 @@ function App() {
     {path:"/donate", element:<Donate />},
     {path:"/admission", element:<Admission />}
   ]
+
+  const {showSideNav, setShowSideNav} = useContext(SidenavContext)
+  window.addEventListener('click', (e) => {
+    if(e.target.classList.contains("sidenav")){
+      setShowSideNav(!showSideNav)
+    }
+  })
+
   return (
     <>
       <div className="app relative">
