@@ -29,14 +29,6 @@ function App() {
     { path: "/admission", element: <Admission /> },
     { path: "/login", element: <Login /> }
   ];
-
-  const { showSideNav, setShowSideNav } = useContext(SidenavContext);
-  // window.addEventListener("click", (e) => {
-  //   if (!e.target.classList.contains("sidenav")) {
-  //     setShowSideNav(!showSideNav);
-  //   }
-  // });
-
   return (
     <>
       <div className="app relative">
