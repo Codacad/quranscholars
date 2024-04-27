@@ -1,20 +1,34 @@
 import Logo from "/logo2.svg";
+import WhiteBgLogo from "/whitebg-logo.svg";
 import { useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
+import { useLocation } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
 const Navbar = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
+  const location = useLocation();
+  const pathName = location.pathname;
+
   return (
     <>
-      <div className="navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-50">
+      <div
+        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 ${
+          pathName === "/login" ? "bg-primary" : "bg-white"
+        } z-50`}
+      >
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
-              <img src={Logo} alt="" width={200} height={100} />
+              <img
+                src={pathName === "/login" ? WhiteBgLogo : Logo}
+                alt=""
+                width={200}
+                height={100}
+              />
               {/* <span className="text-primary">Quran</span>{" "}
               <span className="text-navlinks">Scholar</span> */}
             </h1>
@@ -25,7 +39,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5
+                  p-5 ${pathName === "/login" ? "text-white" : ""}
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -43,7 +57,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5
+                  p-5 ${pathName === "/login" ? "text-white" : ""}
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -61,7 +75,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5
+                  p-5 ${pathName === "/login" ? "text-white" : ""}
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -79,7 +93,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5
+                  p-5 ${pathName === "/login" ? "text-white" : ""}
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -97,7 +111,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5
+                  p-5 ${pathName === "/login" ? "text-white" : ""}
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -133,7 +147,9 @@ const Navbar = () => {
             </Link>
           </div>
           <button
-            className="sidenav-toggle"
+            className={`sidenav-toggle ${
+              pathName === "/login" ? "text-white" : "gray-red-600"
+            }`}
             onClick={() => handleToggleSideNav()}
           >
             {!showSideNav ? (

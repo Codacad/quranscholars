@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
+
 const Sidenav = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
+
   return (
     <>
       <nav
