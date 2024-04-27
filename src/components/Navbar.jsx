@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div
+      <footer
         className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 ${
           pathName === "/login" ? "bg-primary" : "bg-white"
         } z-50`}
@@ -159,7 +159,7 @@ const Navbar = () => {
             )}
           </button>
         </nav>
-      </div>
+      </footer>
     </>
   );
 };

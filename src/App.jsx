@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./App.css";
 import Home from "./routes/Home";
 import Services from "./routes/Services";
@@ -12,7 +12,14 @@ import Sidenav from "./components/Sidenav";
 import { SidenavContext } from "./context/sidenavContext/SidenavContext";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
+import { useLocation } from "react-router-dom";
 function App() {
+  const pathName = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [pathName])
+ 
   const rotuer = [
     { path: "/", element: <Home /> },
     { path: "/services", element: <Services /> },
