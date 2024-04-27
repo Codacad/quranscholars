@@ -5,13 +5,13 @@ import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 const Login = () => {
   return (
     <>
-      <div className="login min-h-screen md:p-px10p grid grid-cols-2 items-center">
-        <div className="illustration">
+      <div className="login min-h-screen md:p-px10p max-md:p-4 md:grid grid-cols-2 items-center justify-center">
+        <div className="illustration max-sm:hidden">
           <img src={LoginIllustration} alt="" />
         </div>
         <form
           action=""
-          className="w-full flex justify-start flex-col gap-4"
+          className="w-full flex justify-start flex-col gap-4  p-2"
         >
           <div className="form-header flex flex-col gap-4 w-[70%]">
             <h1 className="text-red-800 text-2xl leading-10">Embark on Your Learning Journey: Sign in Below</h1>
