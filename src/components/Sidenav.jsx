@@ -14,7 +14,7 @@ const Sidenav = () => {
               Register
             </Link> */}
             <Link
-              to={"#"}
+              to={"/login"}
               className="rounded-3xl px-2 text-[10px] py-[5px] text-primary bg-red-200 hover:ring-2 ring-primary font-bold hover:border-primary"
             >
               {" "}
