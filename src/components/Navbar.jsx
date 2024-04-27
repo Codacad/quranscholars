@@ -4,14 +4,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
 import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
 const Navbar = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext)
   return (
     <>
-      <div className="navbar md:p-px10p max-md:px-4 py-2 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
-        <nav className="flex justify-between items-center">
+      <div className="navbar md:p-px10p max-md:px-4 py-4 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
+        <nav className="flex justify-between p-2 items-center">
           <Link to={"/"}>
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
@@ -119,7 +118,7 @@ const Navbar = () => {
               Register
             </Link> */}
             <Link
-              to={"#"}
+              to={"/login"}
               className="rounded-3xl px-4 py-2 text-primary bg-red-200 hover:ring-2 ring-primary font-bold hover:border-primary"
             >
               {" "}
