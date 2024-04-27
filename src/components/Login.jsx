@@ -5,7 +5,7 @@ import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 const Login = () => {
   return (
     <>
-      <div className="login min-h-screen md:p-px10p max-md:p-4 md:grid block md:grid-cols-2 items-center justify-center">
+      <div className="login md:min-h-screen md:p-px10p max-md:px-4 max-md:py-8 md:grid block md:grid-cols-2 items-center justify-center">
         <div className="illustration max-sm:hidden">
           <img src={LoginIllustration} alt="" />
         </div>
