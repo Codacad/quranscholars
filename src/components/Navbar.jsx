@@ -11,12 +11,26 @@ const Navbar = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
   const location = useLocation();
   const pathName = location.pathname;
-
+  const handleChangeNavbarBg = () => {
+    if (
+      pathName === "/login" ||
+      pathName === "/admission" ||
+      pathName === "/signup"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   return (
     <>
-      <footer
-        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 ${
-          pathName === "/login" ? "bg-primary" : "bg-white"
+      <div
+        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] shadow-sm sepia-0 ${
+          pathName === "/login" ||
+          pathName === "/admission" ||
+          pathName === "signup"
+            ? "bg-primary"
+            : "bg-white"
         } z-50`}
       >
         <nav className="flex justify-between items-center">
@@ -24,7 +38,13 @@ const Navbar = () => {
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
               <img
-                src={pathName === "/login" ? WhiteBgLogo : Logo}
+                src={
+                  pathName === "/login" ||
+                  pathName === "/admission" ||
+                  pathName === "signup"
+                    ? WhiteBgLogo
+                    : Logo
+                }
                 alt=""
                 width={200}
                 height={100}
@@ -39,7 +59,13 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${pathName === "/login" ? "text-white" : ""}
+                  p-5 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -57,7 +83,13 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${pathName === "/login" ? "text-white" : ""}
+                  p-5 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -75,7 +107,13 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${pathName === "/login" ? "text-white" : ""}
+                  p-5 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -93,7 +131,13 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${pathName === "/login" ? "text-white" : ""}
+                  p-5 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -111,7 +155,13 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${pathName === "/login" ? "text-white" : ""}
+                  p-5 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
                   ${
                     isActive
                       ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
@@ -159,7 +209,7 @@ const Navbar = () => {
             )}
           </button>
         </nav>
-      </footer>
+      </div>
     </>
   );
 };
