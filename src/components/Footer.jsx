@@ -10,9 +10,9 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="footer min-h-[50vh] bg-red-900 p-px10p pt-8">
-        <div className="header flex justify-between items-center">
-          <div className="logo md:w-[400px]">
+      <div className="footer min-h-[50vh] bg-red-900 p-px10p max-lg:p-8 pt-8">
+        <div className="header flex justify-between max-lg:flex-col max-md:gap-4 items-center">
+          <div className="logo md:w-[400px] sm:w-[200px]">
             <Link to={"/"}>
               <img src={WhiteBgLogo} alt="" />
             </Link>
