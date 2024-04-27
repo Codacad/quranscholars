@@ -20,21 +20,20 @@ function App() {
     { path: "/contact", element: <Contact /> },
     { path: "/donate", element: <Donate /> },
     { path: "/admission", element: <Admission /> },
-    { path: "/login", element: <Login /> },
+    { path: "/login", element: <Login /> }
   ];
 
   const { showSideNav, setShowSideNav } = useContext(SidenavContext);
-  window.addEventListener("click", (e) => {
-    if (e.target.classList.contains("sidenav")) {
-      setShowSideNav((prev) => !prev);
-    }
-  });
+  // window.addEventListener("click", (e) => {
+  //   if (!e.target.classList.contains("sidenav")) {
+  //     setShowSideNav(!showSideNav);
+  //   }
+  // });
 
   return (
     <>
       <div className="app relative">
-        <Sidenav />
-        <Navbar />
+               <Navbar />
         <Routes>
           {rotuer.map((route) => {
             return (
@@ -47,6 +46,7 @@ function App() {
           })}
         </Routes>
         <Footer />
+        <Sidenav />
       </div>
     </>
   );

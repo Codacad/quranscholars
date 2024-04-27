@@ -9,7 +9,7 @@ const Navbar = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
   return (
     <>
-      <div className="navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
+      <div className="navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-50">
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}
