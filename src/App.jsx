@@ -26,7 +26,7 @@ function App() {
   const { showSideNav, setShowSideNav } = useContext(SidenavContext);
   window.addEventListener("click", (e) => {
     if (e.target.classList.contains("sidenav")) {
-      setShowSideNav(!showSideNav);
+      setShowSideNav((prev) => !prev);
     }
   });
 

@@ -17,12 +17,12 @@ const Login = () => {
             <h1 className="text-red-800 text-2xl leading-10">Embark on Your Learning Journey: Sign in Below</h1>
             <p>Access Your Account: Islamic Education Platform</p>
           </div>
-          <div className="email group flex border border-gray-400 rounded-lg items-center md:w-[80%] max-md:w-full">
+          <div className="email flex border border-gray-400 rounded-lg items-center md:w-[80%] max-md:w-full">
             <MdOutlineMail size={40} className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800" />
             <input
               type="text"
               placeholder="Enter your Email"
-              className="p-2 w-[100%] rounded-lg outline-none group-focus:ring-2 group-focus:ring-red-800"
+              className="p-2 w-[100%] rounded-lg outline-none"
             />
           </div>
           <div className="email flex border border-gray-400 rounded-lg items-center md:w-[80%] max-md:w-full">

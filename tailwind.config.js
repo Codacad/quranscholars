@@ -31,9 +31,9 @@ export default {
         playpanSans:["'Playpen Sans'", 'sans-serif'],
         poppins:["'Poppins'", 'sans-serif'],
         guminert:["'Guminert'", 'sans-serif'],
-        tommyBlackOutline:["'Tommy'", 'sans-serif'],
-        tommyBlack:["'Tommy Black'", 'sans-serif'],
-        tommyThin:["'Tommy Bold'", 'sans-serif'],
+        // tommyBlackOutline:["'Tommy'", 'sans-serif'],
+        // tommyBlack:["'Tommy Black'", 'sans-serif'],
+        // tommyThin:["'Tommy Bold'", 'sans-serif'],
       },
       padding:{
         p5p :"5%",

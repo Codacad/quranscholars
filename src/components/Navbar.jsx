@@ -6,7 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
 const Navbar = () => {
-  const { showSideNav, handleToggleSideNav } = useContext(SidenavContext)
+  const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
   return (
     <>
       <div className="navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] sepia-0 bg-white z-10">
@@ -132,13 +132,16 @@ const Navbar = () => {
               Admission
             </Link>
           </div>
-          <div className="sidenav-toggle" onClick={handleToggleSideNav}>
-          {!showSideNav ? (
-            <GiHamburgerMenu className="text-xl max-md:block hidden" />
-          ) : (
-            <IoClose className="text-xl max-md:block hidden" />
-          )}
-          </div>
+          <button
+            className="sidenav-toggle"
+            onClick={() => handleToggleSideNav()}
+          >
+            {!showSideNav ? (
+              <GiHamburgerMenu className="text-xl max-md:block hidden" />
+            ) : (
+              <IoClose className="text-xl max-md:block hidden" />
+            )}
+          </button>
         </nav>
       </div>
     </>
