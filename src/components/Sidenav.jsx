@@ -8,12 +8,12 @@ const Sidenav = () => {
   return (
     <>
       <nav
-        className={`sidenav max-md:flex hidden fixed w-full h-full top-12 transition-all duration-200 ease-[cubic-bezier(.5,.67,.78,.68)] bg-[rgba(0,0,0,.6)] ${
+        className={`sidenav max-md:flex hidden fixed w-full h-full top-12 transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955)] bg-[rgba(0,0,0,.6)] ${
           showSideNav ? "opacity-1 visible z-20" : "opacity-0 hidden -z-10"
         }`}
       >
         <div
-          className={`sidenav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-200 ease-[cubic-bezier(.5,.67,.78,.68)] bg-red-50 ${
+          className={`sidenav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955)] bg-red-50 ${
             showSideNav ? "right-0" : "-right-[100%]"
           }`}
         >

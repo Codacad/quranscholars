@@ -13,13 +13,14 @@ import { SidenavContext } from "./context/sidenavContext/SidenavContext";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import { useLocation } from "react-router-dom";
+import Register from "./routes/Register";
 function App() {
-  const pathName = useLocation()
+  const pathName = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0,0)
-  }, [pathName])
- 
+    window.scrollTo(0, 0);
+  }, [pathName]);
+
   const rotuer = [
     { path: "/", element: <Home /> },
     { path: "/services", element: <Services /> },
@@ -27,12 +28,13 @@ function App() {
     { path: "/contact", element: <Contact /> },
     { path: "/donate", element: <Donate /> },
     { path: "/admission", element: <Admission /> },
-    { path: "/login", element: <Login /> }
+    { path: "/login", element: <Login /> },
+    { path: "/register", element: <Register /> },
   ];
   return (
     <>
       <div className="app relative">
-               <Navbar />
+        <Navbar />
         <Routes>
           {rotuer.map((route) => {
             return (
