@@ -13,7 +13,7 @@ const Sidenav = () => {
         }`}
       >
         <div
-          className={`sidenav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955)] bg-red-50 ${
+          className={`sidenav-contents absolute right-0 p-2 w-[300px] h-full transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955)] bg-white ${
             showSideNav ? "right-0" : "-right-[100%]"
           }`}
         >
