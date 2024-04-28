@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import LoginIllustration from "/login.svg";
-
+import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
-
+import { FaLongArrowAltRight } from "react-icons/fa";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,9 +27,11 @@ const Register = () => {
           className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100"
         >
           <div className="form-header flex flex-col gap-4 w-[100%] leading-10 text-center">
-            <h1 className="text-primary text-3xl leading-[3rem] font-bold mb-4">
+          
+            <h1 className="text-primary text-3xl leading-[3rem] font-bold">
               Embark on Your Learning Journey: Register with Us
             </h1>
+            <RiAccountPinCircleFill size={50} className="mb-4 text-primary m-auto"/>
             {/* <p>Access Your Account: Islamic Education Platform</p> */}
           </div>
           <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
@@ -70,17 +72,19 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="submit text-gray-100 bg-primary p-2 w-[100%] max-md:w-full rounded-md"
+            className="submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 w-[100%] max-md:w-full rounded-md"
           >
-            Login
+            <RiAccountPinCircleFill />
+            <span>Register</span>
           </button>
           <p className="flex flex-col items-center gap-4">
             <span>Already Registered with us?</span>{" "}
             <Link
-              className="p-2 w-24 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
+              className="p-2 w-28 flex items-center justify-center transition-all duration-200 ease-linear gap-2 md:hover:gap-3 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
               to={"/login"}
             >
-              Login
+              <span>Login</span>
+              <FaLongArrowAltRight />
             </Link>
           </p>
         </form>

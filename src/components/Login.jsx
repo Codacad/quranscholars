@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import LoginIllustration from "/login.svg";
-
+import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
-
+import { SlLogin } from "react-icons/sl";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,17 +59,21 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="submit text-gray-100 bg-primary p-2 md:w-[80%] max-md:w-full rounded-md"
+            className="submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 md:w-[80%] max-md:w-full rounded-md"
           >
-            Login
+            <SlLogin />
+            <span>
+              
+              Login</span>
           </button>
           <p className="flex flex-col max-sm:items-center gap-4">
             <span>New to Quran Scholars?</span>{" "}
             <Link
-              className="p-2 w-24 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
+              className="p-2 flex items-center transition-all duration-200 ease-linear md:hover:gap-3 justify-center gap-2 w-32 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
               to={"/register"}
             >
-              Register
+             <FaLongArrowAltLeft />
+              <span>Register</span>
             </Link>
           </p>
         </form>

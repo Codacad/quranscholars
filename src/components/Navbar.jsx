@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
 import { SidenavContext } from "../context/sidenavContext/SidenavContext";
+import { CgLogIn } from "react-icons/cg";
 const Navbar = () => {
   const { showSideNav, handleToggleSideNav } = useContext(SidenavContext);
   const location = useLocation();
@@ -183,14 +184,15 @@ const Navbar = () => {
             </Link> */}
             <Link
               to={"/login"}
-              className="rounded-3xl px-4 py-2 text-primary bg-red-200 hover:ring-2 ring-primary font-bold hover:border-primary"
+              className="rounded-3xl flex gap-1 justify-center items-center px-4 py-2 text-primary bg-red-200 hover:ring-2 ring-primary transition-all duration-200 ease-linear hover:border-primary"
             >
               {" "}
-              Log In
+              <span>Log In</span>
+              <CgLogIn />
             </Link>
             <Link
               to={"/admission"}
-              className="bg-primary rounded-3xl px-4 py-2 text-white hover:bg-white border-2 hover:border-primary hover:text-primary"
+              className="bg-primary transition-all duration-200 ease-linear rounded-3xl px-4 py-2 text-white hover:bg-white border-2 hover:border-primary hover:text-primary"
             >
               {" "}
               Admission

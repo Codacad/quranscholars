@@ -9,11 +9,12 @@ import Donate from "./routes/Donate";
 import Navbar from "./components/Navbar";
 import Admission from "./routes/Admission";
 import Sidenav from "./components/Sidenav";
-import { SidenavContext } from "./context/sidenavContext/SidenavContext";
+
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import { useLocation } from "react-router-dom";
 import Register from "./routes/Register";
+
 function App() {
   const pathName = useLocation();
 
