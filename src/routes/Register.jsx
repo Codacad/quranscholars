@@ -18,13 +18,13 @@ const Register = () => {
 
   return (
     <>
-      <div className="register p-16 w-[100%]justify-center items-center">
+      <div className="register lg:p-16 md:p-8 p-4 w-[100%]justify-center items-center">
         {/* <div className="illustration max-sm:hidden">
           <img src={LoginIllustration} alt="" />
         </div> */}
         <form
           onSubmit={(e) => handleRegisterSubmit(e)}
-          className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] max-sm:w-[100%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-2 border-2 border-gray-100"
+          className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100"
         >
           <div className="form-header flex flex-col gap-4 w-[100%] leading-10 text-center">
             <h1 className="text-primary text-3xl leading-[3rem] font-bold mb-4">
