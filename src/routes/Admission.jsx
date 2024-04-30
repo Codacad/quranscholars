@@ -275,7 +275,7 @@ const Admission = () => {
                   value={"Quran with Tajweed"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="quran-with-tajweed">Quran with Tajweed</label>
+                <label htmlFor="quran-with-tajweed" className="w-full">Quran with Tajweed</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -285,7 +285,7 @@ const Admission = () => {
                   value={"Madani Qaida"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="madani-qaida">Madani Qaida</label>
+                <label htmlFor="madani-qaida" className="w-full">Madani Qaida</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -295,7 +295,7 @@ const Admission = () => {
                   value={"Farz Uloom"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="farz-uloom">Farz Uloom</label>
+                <label htmlFor="farz-uloom" className="w-full">Farz Uloom</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -305,7 +305,7 @@ const Admission = () => {
                   className="dadith"
                   id="hadith"
                 />
-                <label htmlFor="hadith">Hadith</label>
+                <label htmlFor="hadith" className="w-full">Hadith</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -315,7 +315,7 @@ const Admission = () => {
                   className="tafseer"
                   id="tafseer"
                 />
-                <label htmlFor="tafseer">Tafseer</label>
+                <label htmlFor="tafseer" className="w-full">Tafseer</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -325,7 +325,7 @@ const Admission = () => {
                   value={"Fiqh (Hanafi)"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="fiqh-hanafi">Fiqh (Hanafi)</label>
+                <label htmlFor="fiqh-hanafi" className="w-full">Fiqh (Hanafi)</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -335,7 +335,7 @@ const Admission = () => {
                   className="urdu"
                   id="urdu"
                 />
-                <label htmlFor="urdu">Urdu</label>
+                <label htmlFor="urdu" className="w-full">Urdu</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -345,7 +345,7 @@ const Admission = () => {
                   value={"Prophet's Stories"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="prophets-stories">{"Prophet's Stories"}</label>
+                <label htmlFor="prophets-stories" className="w-full">{"Prophet's Stories"}</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -355,7 +355,7 @@ const Admission = () => {
                   value={"Masnoon Duayen"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="masnoon-duayen">Masnoon Duayen</label>
+                <label htmlFor="masnoon-duayen" className="w-full">Masnoon Duayen</label>
               </div>
               <div className="input-group flex">
                 <input
@@ -365,7 +365,7 @@ const Admission = () => {
                   value={"Sarf & Nahv"}
                   onChange={handleSelectedCourses}
                 />
-                <label htmlFor="sarf-and-nahv">Sarf & Nahv</label>
+                <label htmlFor="sarf-and-nahv" className="w-full">Sarf & Nahv</label>
               </div>
             </div>
           </div>

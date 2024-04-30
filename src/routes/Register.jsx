@@ -4,18 +4,28 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 const Register = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [createPassword, setCreatePassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [createPasswordType, setCreatePasswordType] = useState(true);
+  const [confirmPasswordType, setConfirmPasswordType] = useState(true);
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    const LoginData = {
+    const registerData = {
       email,
-      password,
+      createPassword,
+      confirmPassword,
     };
-    console.log(LoginData);
+    console.log(registerData);
   };
-
+  const handleChangeCreatePasswordType = () => {
+    setCreatePasswordType((prev) => !prev);
+  };
+  const handleChangeConfirmPasswordType = () => {
+    setConfirmPasswordType((prev) => !prev);
+  };
   return (
     <>
       <div className="register lg:p-16 md:p-8 p-4 w-[100%]justify-center items-center">
@@ -27,11 +37,13 @@ const Register = () => {
           className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100"
         >
           <div className="form-header flex flex-col gap-4 w-[100%] leading-10 text-center">
-          
             <h1 className="text-primary text-3xl leading-[3rem] font-bold">
               Embark on Your Learning Journey: Register with Us
             </h1>
-            <RiAccountPinCircleFill size={50} className="mb-4 text-primary m-auto"/>
+            <RiAccountPinCircleFill
+              size={50}
+              className="mb-4 text-primary m-auto"
+            />
             {/* <p>Access Your Account: Islamic Education Platform</p> */}
           </div>
           <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
@@ -43,32 +55,47 @@ const Register = () => {
               type="email"
               placeholder="Enter your Email"
               className="p-2 w-[100%] rounded-lg outline-none"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
+          <div className="email relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
             <MdOutlineKey
               size={40}
               className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
             />
             <input
-              type="text"
+              type={`${createPasswordType ? "password" : "text"}`}
               placeholder="Create Password"
               className="p-2 w-[100%] rounded-lg outline-none"
-              onChange={(e) => setEmail(e.target.value)}
+              value={createPassword}
+              onChange={(e) => setCreatePassword(e.target.value)}
             />
+            <button
+              onClick={handleChangeCreatePasswordType}
+              className="absolute top-[50%] translate-y-[-50%] right-3 text-primary"
+            >
+              <FaEye />
+            </button>
           </div>
-          <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
+          <div className="email relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
             <MdOutlineKey
               size={40}
               className="py-2 px-1 text-primary bg-gray-200 rounded-bl-lg rounded-tl-lg"
             />
             <input
-              type="text"
+              type={`${confirmPasswordType ? "password" : "text"}`}
               placeholder="Confirm Password"
               className="p-2 w-[100%] rounded-lg outline-none"
-              onChange={(e) => setPassword(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            <button
+              onClick={handleChangeConfirmPasswordType}
+              className="absolute top-[50%] translate-y-[-50%] right-3 text-primary"
+            >
+              <FaEye />
+            </button>
           </div>
           <button
             type="submit"
