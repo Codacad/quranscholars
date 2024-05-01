@@ -8,7 +8,7 @@ const About = () => {
     <>
       <div className="about bg-red-50">
         <div className="about-showcase min-h-screen w-full">
-          <div className="md:px-40 py-8">
+          <div className="md:px-40 md:py-8 p-4">
             <div className="text-content">
               <h1 className="md:text-4xl text-xl text-primary mb-4">
                 <span className="font-bold">Quran Scholars</span>: Illuminating
@@ -30,11 +30,11 @@ const About = () => {
                 Get Started
               </Link>
             </div>
-            <div className="what-we-do my-8 grid grid-cols-2 p-2 bg-red-100 rounded-xl">
+            <div className="what-we-do my-8 grid md:grid-cols-2 p-2 bg-red-100 rounded-xl">
               <div className="img">
                 <img className="rounded-xl" src={ChildWithQuran} alt="" />
               </div>
-              <div className="text-content flex flex-col justify-center px-8 gap-4">
+              <div className="text-content flex flex-col justify-center md:px-8 p-4 gap-4">
                 <div className="tags">
                   <span className="text-gray-500 uppercase">
                     Quran, Hadith, Islamic Studies
