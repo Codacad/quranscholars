@@ -60,7 +60,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${
+                  p-5 transition-all ease-linear duration-150 ${
                     pathName === "/login" ||
                     pathName === "/admission" ||
                     pathName === "signup"
@@ -84,7 +84,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${
+                  p-5 transition-all ease-linear duration-150 ${
                     pathName === "/login" ||
                     pathName === "/admission" ||
                     pathName === "signup"
@@ -108,7 +108,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${
+                  p-5 transition-all ease-linear duration-150 ${
                     pathName === "/login" ||
                     pathName === "/admission" ||
                     pathName === "signup"
@@ -132,7 +132,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${
+                  p-5 transition-all ease-linear duration-150 ${
                     pathName === "/login" ||
                     pathName === "/admission" ||
                     pathName === "signup"
@@ -156,7 +156,7 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 ${
+                  p-5 transition-all ease-linear duration-150 ${
                     pathName === "/login" ||
                     pathName === "/admission" ||
                     pathName === "signup"
@@ -184,7 +184,9 @@ const Navbar = () => {
             </Link> */}
             <Link
               to={"/login"}
-              className={`rounded-3xl flex gap-1 justify-center items-center px-4 py-2 text-primary bg-red-200 hover:ring-2 ring-primary transition-all duration-200 ease-linear hover:border-primary ${pathName === "/login" ? "hidden" : ""}`}
+              className={`rounded-3xl flex gap-1 justify-center items-center px-4 py-2 text-primary bg-red-200 hover:ring-2 ring-primary transition-all duration-200 ease-linear hover:border-primary ${
+                pathName === "/login" ? "hidden" : ""
+              }`}
             >
               {" "}
               <span>Log In</span>
