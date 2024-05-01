@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import { useLocation } from "react-router-dom";
 import Register from "./routes/Register";
+import Courses from "./routes/Courses";
 
 function App() {
   const pathName = useLocation();
@@ -31,6 +32,7 @@ function App() {
     { path: "/admission", element: <Admission /> },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
+    { path: "/courses", element: <Courses /> },
   ];
   return (
     <>

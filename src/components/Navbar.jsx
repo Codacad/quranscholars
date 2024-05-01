@@ -54,7 +54,7 @@ const Navbar = () => {
               <span className="text-navlinks">Scholar</span> */}
             </h1>
           </Link>
-          <ul className="nav-list max-md:hidden flex gap-4 text-center font-epilogue text-navlinks text-sm uppercase">
+          <ul className="nav-list max-md:hidden flex text-center font-epilogue text-navlinks text-sm uppercase">
             <li className="nav-item">
               {" "}
               <NavLink
@@ -122,11 +122,12 @@ const Navbar = () => {
                   }
                   `;
                 }}
-                to={"/about"}
+                to={"/courses"}
               >
-                About
+                Courses
               </NavLink>{" "}
             </li>
+          
             <li className="nav-item">
               {" "}
               <NavLink
@@ -151,7 +152,7 @@ const Navbar = () => {
                 Contact
               </NavLink>{" "}
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               {" "}
               <NavLink
                 className={({ isActive }) => {
@@ -173,6 +174,30 @@ const Navbar = () => {
                 to={"/donate"}
               >
                 Donate
+              </NavLink>{" "}
+            </li> */}
+            <li className="nav-item">
+              {" "}
+              <NavLink
+                className={({ isActive }) => {
+                  return `
+                  p-5 transition-all ease-linear duration-150 ${
+                    pathName === "/login" ||
+                    pathName === "/admission" ||
+                    pathName === "signup"
+                      ? "text-white"
+                      : ""
+                  }
+                  ${
+                    isActive
+                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
+                      : "text-navlinks"
+                  }
+                  `;
+                }}
+                to={"/about"}
+              >
+                About
               </NavLink>{" "}
             </li>
           </ul>
