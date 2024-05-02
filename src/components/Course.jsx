@@ -49,7 +49,7 @@ const Course = ({ course }) => {
           </div>
           <h3 className="md:text-2xl text-xl font-bold text-primary">{course.course_name}</h3>
           <Link
-            t={"#"}
+            to={"#"}
             className="flex w-44 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4 ml-auto"
           >
             <span className="hover:underline text-black text-xl">

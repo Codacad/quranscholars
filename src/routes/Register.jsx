@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [createPassword, setCreatePassword] = useState("");

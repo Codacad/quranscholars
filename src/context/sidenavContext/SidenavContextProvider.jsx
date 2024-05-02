@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SidenavContext } from "./sidenavContext/SidenavContext";
+import { SidenavContext } from "./SidenavContext";
 const SidenavContextProvider = ({ children }) => {
   const [showSideNav, setShowSideNav] = useState(false);
   const handleToggleSideNav = () => {

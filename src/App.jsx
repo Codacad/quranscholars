@@ -33,8 +33,12 @@ function App() {
     { path: "/admission", element: <Admission /> },
     { path: "/login", element: <Login /> },
     { path: "/register", element: <Register /> },
-    { path: "/courses", element: <Courses /> },
+    {
+      path: "/courses",
+      element: <Courses />,
+    },
   ];
+
   return (
     <>
       <div className="app relative">

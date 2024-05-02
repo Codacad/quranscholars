@@ -1,11 +1,13 @@
 import React from "react";
-import { courses } from "../js/courses";
 import CourseImage from "/courses/course-vector.svg";
 import { FaArrowDown } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Course from "../components/Course";
+import { useContext } from "react";
+import { CourseContext } from "../context/courseConext/CourseContext";
 const Courses = () => {
+  const { courses } = useContext(CourseContext);
   return (
     <>
       <div className="courses bg-red-50 md:p-8">
@@ -29,7 +31,7 @@ const Courses = () => {
               strengthen your faith through engaging and comprehensive learning
               experiences.
             </p>
-            <button className="w-16 h-16 transition-all duration-100 ease-linear hover:shadow-[0px_5px_0px_0px_#f87171] hover:border-2 border-red-400 rounded-full flex justify-center items-center bg-primary text-white">
+            <button className="w-16 animate-bounce h-16 transition-all duration-100 ease-linear hover:shadow-[0px_5px_0px_0px_#f87171] hover:border-2 border-red-400 rounded-full flex justify-center items-center bg-primary text-white">
               <FaArrowDown size={30} className="" />
             </button>
           </div>

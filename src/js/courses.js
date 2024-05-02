@@ -1,5 +1,6 @@
 export const courses = [
   {
+    course_id: 1,
     course_name: "Quran with Tajweed",
     instructor: "Maulana Farman Farooqi",
     category: "Quran",
@@ -40,12 +41,13 @@ export const courses = [
     },
   },
   {
+    course_id: 2,
     course_name: "Hadith",
     instructor: "Maulana Farman Farooqi",
     category: "Hadith",
     level: "Intermediate",
     fee: 1200,
-    discount:300,
+    discount: 300,
     duration: "3 Months",
     rating: 4.2,
     reviews: 68,
@@ -78,12 +80,13 @@ export const courses = [
     },
   },
   {
+    course_id: 3,
     course_name: "Hadith",
     instructor: "Maulana Farman Farooqi",
     category: "Hadith",
     level: "Intermediate",
     fee: 1200,
-    discount:300,
+    discount: 300,
     duration: "3 Months",
     rating: 4.2,
     reviews: 68,
