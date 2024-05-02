@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 backdrop-blur-[20px] shadow-sm sepia-0 ${
+        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 ${
           pathName === "/login" ||
           pathName === "/admission" ||
           pathName === "signup"

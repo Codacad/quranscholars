@@ -15,6 +15,7 @@ import Login from "./components/Login";
 import { useLocation } from "react-router-dom";
 import Register from "./routes/Register";
 import Courses from "./routes/Courses";
+import CardButton from "./components/cart/CardButton";
 
 function App() {
   const pathName = useLocation();
@@ -51,6 +52,7 @@ function App() {
         </Routes>
         <Footer />
         <Sidenav />
+        <CardButton />
       </div>
     </>
   );
