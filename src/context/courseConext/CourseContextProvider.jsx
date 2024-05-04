@@ -78,7 +78,7 @@ const CourseContextProvider = ({ children }) => {
           "12 Week Duration",
           "5 Hours of Consultation",
           "2.5 Hours Webinar",
-          "Cheking the task",
+          "Teaching Male to Male & Female to Female"
         ],
       },
     },
@@ -117,7 +117,7 @@ const CourseContextProvider = ({ children }) => {
           "12 Week Duration",
           "5 Hours of Consultation",
           "2.5 Hours Webinar",
-          "Cheking the task",
+          "Teaching Male to Male & Female to Female"
         ],
       },
     },

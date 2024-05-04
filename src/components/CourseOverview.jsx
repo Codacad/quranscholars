@@ -9,6 +9,7 @@ import { MdOutlineWatchLater } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
 import { IoMdCheckmark } from "react-icons/io";
+import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 const CourseOverview = () => {
@@ -21,9 +22,9 @@ const CourseOverview = () => {
     <>
       <div className="course-overview md:p-12">
         <div className="grid md:grid-flow-col bg-gray-100 md:w-[80%] m-auto p-4 rounded-md md:my-4">
-          <div className="text-content lg:p-12 p-4 flex flex-col gap-8">
-            <div className="navigation">
-              <div className="links flex items-center gap-1">
+          <div className="text-content lg:p-12  max-md:order-2 p-4 flex flex-col gap-8">
+            <div className="navigation max-md:hidden">
+              <div className="links flex items-center gap-1 text-sm">
                 <Link className="text-red-900" to={"/"}>
                   Home
                 </Link>
@@ -31,11 +32,11 @@ const CourseOverview = () => {
                 <Link to={"/courses"}>
                   <span className="text-red-900">Courses</span>
                 </Link>
-                <IoIosArrowForward className="text-red-700" />
-                <span className="">{course_overview.course_name}</span>
+                <IoIosArrowForward className="text-red-900" />
+                <span className="text-gray-600">{course_overview.course_name}</span>
               </div>
             </div>
-            <h3 className="md:text-6xl text-2xl font-bold text-primary">
+            <h3 className="md:text-5xl text-2xl font-bold text-primary">
               {course.course_name}
             </h3>
             <div className="flex gap-4 text-sm">
@@ -81,7 +82,7 @@ const CourseOverview = () => {
               </Link>
             </div>
           </div>
-          <div className="image col-span-1 md:w-[400px] rounded-3xl md:relative max-md:mb-4">
+          <div className="image col-span-1 max-md:order-1 md:w-[400px] rounded-3xl md:relative max-md:mb-4">
             <img
               className="h-[100%] w-[100%] top-10 md:absolute border-2 border-red-800 rounded-xl shadow-[10px_10px_0px_#991b1b]"
               src={course_overview.course_image}
@@ -92,23 +93,23 @@ const CourseOverview = () => {
 
         <div className="md:w-[80%] m-auto md:mt-24 md:mb-8 md:grid max-md:flex max-md:flex-col max:md:gap-4 grid-cols-3 gap-8 p-4">
           <div className="what-u-wil-learn col-span-2">
-            <h1 className="text-4xl text-primary">What you will learn</h1>
+            <h1 className="md:text-4xl text-2xl text-primary max-md:mt-4">What you will learn</h1>
             <ul className="mt-6 flex flex-col gap-4">
               {course_overview.what_to_learn.map((wtl, index) => (
                 <li
                   key={index}
-                  className="flex gap-2 items-start font-epilogue"
+                  className="flex max-md:text-sm gap-2 items-start font-epilogue"
                 >
                   <span>
                     {" "}
-                    <IoMdCheckmark className="mt-1 text-primary text-xl" />{" "}
+                    <IoMdCheckbox className="mt-1 text-primary text-xl" />{" "}
                   </span>
                   <span>{wtl}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="course-format rounded-xl col-span-1 p-4 border-2 flex flex-col gap-4 border-primary">
+          <div className="course-format mb-8 rounded-xl col-span-1 p-4 border-2 flex flex-col gap-4 border-primary">
             <h2>
               <FaDesktop className="text-primary text-[100px]" />
             </h2>
@@ -120,7 +121,7 @@ const CourseOverview = () => {
                 <li key={index} className="flex items-start gap-2">
                   <span>
                     {" "}
-                    <IoMdCheckmark className="mt-1" />{" "}
+                    <IoMdCheckbox className="mt-1 text-primary" />{" "}
                   </span>
                   <span>{cf}</span>
                 </li>
