@@ -1,9 +1,132 @@
 import React from "react";
-
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import { CourseContext } from "../context/courseConext/CourseContext";
+import { Link } from "react-router-dom";
+import { LiaRupeeSignSolid } from "react-icons/lia";
+import { SiLevelsdotfyi } from "react-icons/si";
+import { MdOutlineWatchLater } from "react-icons/md";
+import { MdOutlineStarPurple500 } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa";
+import { IoMdCheckmark } from "react-icons/io";
+import { FaDesktop } from "react-icons/fa6";
+import { IoIosArrowForward } from "react-icons/io";
 const CourseOverview = () => {
+  const { courses } = useContext(CourseContext);
+  const { courseName } = useParams();
+
+  const course = courses.find((course) => courseName === course.course_name);
+  const { course_overview } = course;
   return (
     <>
-      <h1>Hello</h1>
+      <div className="course-overview md:p-12">
+        <div className="grid md:grid-flow-col bg-gray-100 md:w-[80%] m-auto p-4 rounded-md md:my-4">
+          <div className="text-content lg:p-12 p-4 flex flex-col gap-8">
+            <div className="navigation">
+              <div className="links flex items-center gap-1">
+                <Link className="text-red-900" to={"/"}>
+                  Home
+                </Link>
+                <IoIosArrowForward className="text-red-900" />
+                <Link to={"/courses"}>
+                  <span className="text-red-900">Courses</span>
+                </Link>
+                <IoIosArrowForward className="text-red-700" />
+                <span className="">{course_overview.course_name}</span>
+              </div>
+            </div>
+            <h3 className="md:text-6xl text-2xl font-bold text-primary">
+              {course.course_name}
+            </h3>
+            <div className="flex gap-4 text-sm">
+              <div className="level flex items-center gap-2">
+                <span>
+                  <SiLevelsdotfyi className="text-primary" />
+                </span>
+                <span>{course_overview.level}</span>
+              </div>
+              <div className="duration flex items-center gap-2">
+                <span>
+                  <MdOutlineWatchLater className="text-primary" />
+                </span>
+                <span>{course_overview.duration}</span>
+              </div>
+              <div className="rating flex items-center gap-2">
+                <span>
+                  <MdOutlineStarPurple500 className="text-primary" />
+                </span>
+                <span>{course.rating}</span>
+              </div>
+            </div>
+            <div className="flex gap-8 items-center">
+              <div className="flex items-end">
+                <span className="flex text-md line-through">
+                  <LiaRupeeSignSolid /> {course_overview.fee}
+                </span>
+                <span className="flex md:text-4xl text-2xl font-bold">
+                  <LiaRupeeSignSolid />{" "}
+                  {course_overview.fee - course_overview.discount}
+                </span>
+              </div>
+              <Link
+                to={"#"}
+                className="flex bg-primary rounded-md p-4 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4"
+              >
+                <span className="hover:underline text-white text-xl">
+                  Buy Course
+                </span>
+                <span className="w-6 h-6 bg-white text-primary flex items-center text-sm rounded-full justify-center">
+                  <FaArrowRight />
+                </span>
+              </Link>
+            </div>
+          </div>
+          <div className="image col-span-1 md:w-[400px] rounded-3xl md:relative max-md:mb-4">
+            <img
+              className="h-[100%] w-[100%] top-10 md:absolute border-2 border-red-800 rounded-xl shadow-[10px_10px_0px_#991b1b]"
+              src={course_overview.course_image}
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div className="md:w-[80%] m-auto md:mt-24 md:mb-8 md:grid max-md:flex max-md:flex-col max:md:gap-4 grid-cols-3 gap-8 p-4">
+          <div className="what-u-wil-learn col-span-2">
+            <h1 className="text-4xl text-primary">What you will learn</h1>
+            <ul className="mt-6 flex flex-col gap-4">
+              {course_overview.what_to_learn.map((wtl, index) => (
+                <li
+                  key={index}
+                  className="flex gap-2 items-start font-epilogue"
+                >
+                  <span>
+                    {" "}
+                    <IoMdCheckmark className="mt-1 text-primary text-xl" />{" "}
+                  </span>
+                  <span>{wtl}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="course-format rounded-xl col-span-1 p-4 border-2 flex flex-col gap-4 border-primary">
+            <h2>
+              <FaDesktop className="text-primary text-[100px]" />
+            </h2>
+            <ul className="flex flex-col gap-4">
+              <h2 className="md:text-2xl text-xl text-primary">Course Format</h2>
+              {course_overview.course_format.map((cf, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span>
+                    {" "}
+                    <IoMdCheckmark className="mt-1" />{" "}
+                  </span>
+                  <span>{cf}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

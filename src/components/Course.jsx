@@ -14,7 +14,7 @@ const Course = ({ course }) => {
         </div>
         <div className="text-content col-span-2 flex mt-4 flex-col gap-4">
           <div className="flex justify-between">
-            <div className="category bg-red-300 text-red-800 w-24 flex justify-center items-center text-sm rounded-md">
+            <div className="category bg-gray-50 border-2 border-primary text-red-800 w-24 flex justify-center items-center text-sm rounded-md">
               <span>{course.category}</span>
             </div>
             <div className="price flex items-end">
@@ -49,7 +49,7 @@ const Course = ({ course }) => {
           </div>
           <h3 className="md:text-2xl text-xl font-bold text-primary">{course.course_name}</h3>
           <Link
-            to={"#"}
+            to={`/courses/${course.course_name}`}
             className="flex w-44 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4 ml-auto"
           >
             <span className="hover:underline text-black text-xl">

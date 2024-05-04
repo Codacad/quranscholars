@@ -27,7 +27,7 @@ const CourseContextProvider = ({ children }) => {
         rating: 4.5,
         reviews: 80,
         students: 150,
-        "what-to_learn": [
+        what_to_learn: [
           "Master the basic principles of tajweed, including proper articulation points (makharij), characteristics of letters (sifat), and rules of recitation.",
           " Improve your Quranic recitation by learning correct pronunciation and application of tajweed rules.",
           "Understand the rules governing elongation (madd) and proper pauses (waqf) during Quranic recitation.",
@@ -39,7 +39,7 @@ const CourseContextProvider = ({ children }) => {
           "24 Week Duration",
           "10 Hours of Consultation",
           "5 Hours Webinar",
-          "Cheking the task",
+          "Teaching Male to Male & Female to Female"
         ],
       },
     },
