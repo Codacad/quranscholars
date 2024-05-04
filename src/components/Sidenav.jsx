@@ -53,6 +53,11 @@ const Sidenav = () => {
                 </Link>
               </li>
               <li>
+                <Link onClick={handleToggleSideNav} to={"/courses"}>
+                  Courses
+                </Link>
+              </li>
+              <li>
                 <Link onClick={handleToggleSideNav} to={"/contact"}>
                   Contact
                 </Link>
