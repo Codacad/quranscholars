@@ -109,7 +109,7 @@ const CourseOverview = () => {
               ))}
             </ul>
           </div>
-          <div className="course-format mb-8 rounded-xl col-span-1 p-4 border-2 flex flex-col gap-4 border-primary">
+          <div className="course-format transition-all duration-200 ease-in-out hover:bg-red-100 shadow-[10px_10px_0px_#991b1b] mb-8 rounded-xl col-span-1 p-4 border-2 flex flex-col gap-4 hover:border-primary">
             <h2>
               <FaDesktop className="text-primary text-[100px]" />
             </h2>

@@ -14,7 +14,7 @@ const Course = ({ course }) => {
         </div>
         <div className="text-content col-span-2 flex mt-4 flex-col gap-4">
           <div className="flex justify-between">
-            <div className="category bg-gray-50 border-2 border-primary text-red-800 w-24 flex justify-center items-center text-sm rounded-md">
+            <div className="category bg-gray-50 px-2 border-2 border-primary text-red-800 flex justify-center items-center text-sm rounded-md">
               <span>{course.category}</span>
             </div>
             <div className="price flex items-end">
