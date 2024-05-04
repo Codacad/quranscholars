@@ -66,7 +66,7 @@ const CourseContextProvider = ({ children }) => {
         duration: "3 Months",
         course_image: "/courses/hadith.svg",
         rating: 4.2,
-        "what-to_learn": [
+        what_to_learn: [
           "Understand the significance, sources, and classification of Hadith literature.",
           "Explore key Hadith collections and their compilers, such as Sahih Bukhari, Sahih Muslim, and others.",
           "Learn about the principles and methodologies used to authenticate Hadith narrations.",
@@ -105,7 +105,7 @@ const CourseContextProvider = ({ children }) => {
         duration: "3 Months",
         course_image: "/courses/hadith.svg",
         rating: 4.2,
-        "what-to_learn": [
+        what_to_learn: [
           "Understand the significance, sources, and classification of Hadith literature.",
           "Explore key Hadith collections and their compilers, such as Sahih Bukhari, Sahih Muslim, and others.",
           "Learn about the principles and methodologies used to authenticate Hadith narrations.",

@@ -72,7 +72,7 @@ const CourseOverview = () => {
                 to={"#"}
                 className="flex bg-primary rounded-md p-4 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4"
               >
-                <span className="hover:underline text-white text-xl">
+                <span className="hover:underline text-white md:text-xl text-sm">
                   Buy Course
                 </span>
                 <span className="w-6 h-6 bg-white text-primary flex items-center text-sm rounded-full justify-center">
@@ -113,7 +113,9 @@ const CourseOverview = () => {
               <FaDesktop className="text-primary text-[100px]" />
             </h2>
             <ul className="flex flex-col gap-4">
-              <h2 className="md:text-2xl text-xl text-primary">Course Format</h2>
+              <h2 className="md:text-2xl text-xl text-primary">
+                Course Format
+              </h2>
               {course_overview.course_format.map((cf, index) => (
                 <li key={index} className="flex items-start gap-2">
                   <span>
