@@ -70,12 +70,12 @@ const CourseOverview = () => {
               </div>
               <Link
                 to={"#"}
-                className="flex bg-primary rounded-md p-4 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4"
+                className="flex items-center bg-primary rounded-md px-4 py-3 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4"
               >
                 <span className="hover:underline text-white md:text-xl text-sm">
                   Buy Course
                 </span>
-                <span className="w-6 h-6 bg-white text-primary flex items-center text-sm rounded-full justify-center">
+                <span className="md:w-6 md:h-6 w-3 h-3  bg-white text-primary flex items-center md:text-sm text-[10px] rounded-full justify-center">
                   <FaArrowRight />
                 </span>
               </Link>
