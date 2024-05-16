@@ -5,7 +5,7 @@ import "../css/Welcome.css";
 const Welcome = () => {
   return (
     <>
-      <div className="welcome md:bg-orange-300 bg-white grid grid-cols-2 max-md:grid-cols-1 justify-center items-center md:pt-[10%] md:pl-[10%] md:pr-[10%] md:pb-[5%] p-4 gap-4">
+      <div className="welcome md:bg-red-50 bg-white grid grid-cols-2 max-md:grid-cols-1 justify-center items-center md:pt-[10%] md:pl-[10%] md:pr-[10%] md:pb-[5%] p-4 gap-4">
         <div className="img w-full md:order-2">
           <img src={WelcomeImgTeaching} alt="" className="w-full" />
         </div>

@@ -1,25 +1,64 @@
 import React, { useState } from "react";
 import LoginIllustration from "/login.svg";
+import { FaUserEdit } from "react-icons/fa";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-
+import { GiConfirmed } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
+import { MdClose } from "react-icons/md";
 const Register = () => {
+  const navigate = useNavigate();
+  const [disabledRegiterBtn, setDisabledRegiterBtn] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false)
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [createPassword, setCreatePassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [createPasswordType, setCreatePasswordType] = useState(true);
   const [confirmPasswordType, setConfirmPasswordType] = useState(true);
+  const [registerationMessage, setRegisterationMessage] = useState();
+  const [messageClasses, setMessageClasses] = useState(
+    "bg-red-50 text-red-500"
+  );
+  const [alertClasses, setAlertClasses] = useState(
+    "block scale-0 h-0 overflow-hidden m-auto"
+  );
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     const registerData = {
+      fullName,
       email,
       createPassword,
       confirmPassword,
     };
-    console.log(registerData);
+    const registerAPIUrl = import.meta.env.VITE_REGISTER;
+    console.log(registerAPIUrl);
+    const response = await fetch(registerAPIUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(registerData),
+    });
+    const data = await response.json();
+    console.log(data.message);
+    setRegisterationMessage(data.message);
+    setAlertClasses("block scale-1 h-auto overflow-hidden m-auto");
+    if (data.success) {
+      setFullName(""), setEmail("");
+      setCreatePassword(""), setConfirmPassword("");
+      setDisabledRegiterBtn(true);
+      setShowSpinner(true)
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+      setMessageClasses("bg-green-50 text-green-500");
+    } else {
+      setMessageClasses("bg-red-50 text-red-500");
+    }
   };
   const handleChangeCreatePasswordType = () => {
     setCreatePasswordType((prev) => !prev);
@@ -43,9 +82,39 @@ const Register = () => {
             </h1>
             <RiAccountPinCircleFill
               size={50}
-              className="mb-4 text-primary m-auto"
+              className="mb-0 text-primary m-auto"
             />
             {/* <p>Access Your Account: Islamic Education Platform</p> */}
+          </div>
+          <div
+            className={`${alertClasses} transition-all duration-200 ease-in-out w-full`}
+          >
+            <span
+              className={`flex w-full ${messageClasses} p-2 rounded-lg items-center text-sm transition-all duration-200 ease-in-out`}
+            >
+              <span className={`${showSpinner ? "flex" : "hidden"} justify-center items-center mr-4`}>
+                <span
+                  className={`animate-spin transition-all duration-200 rounded-full h-4 w-4 border-t-2 border-green-500`}
+                ></span>
+              </span>
+              <span>{registerationMessage}</span>
+              <span className="ml-auto">
+                <MdClose className="ml-auto" size={15} />
+              </span>
+            </span>
+          </div>
+          <div className="fullname flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
+            <FaUserEdit
+              size={40}
+              className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
+            />
+            <input
+              type="text"
+              placeholder="Enter your Full Name"
+              className="p-2 w-[100%] rounded-lg outline-none"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
           </div>
           <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
             <MdOutlineMail
@@ -60,7 +129,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="email relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
+          <div className="create-password relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
             <MdOutlineKey
               size={40}
               className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
@@ -79,8 +148,8 @@ const Register = () => {
               <FaEye />
             </button>
           </div>
-          <div className="email relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
-            <MdOutlineKey
+          <div className="confirm-password relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
+            <GiConfirmed
               size={40}
               className="py-2 px-1 text-primary bg-gray-200 rounded-bl-lg rounded-tl-lg"
             />
@@ -100,7 +169,10 @@ const Register = () => {
           </div>
           <button
             type="submit"
-            className="submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 w-[100%] max-md:w-full rounded-md"
+            disabled={disabledRegiterBtn}
+            className={`${
+              disabledRegiterBtn ? "opacity-25" : "opacity-100"
+            } submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 w-[100%] max-md:w-full rounded-md`}
           >
             <RiAccountPinCircleFill />
             <span>Register</span>

@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 import Course from "../components/Course";
 import { useContext } from "react";
 import { CourseContext } from "../context/courseConext/CourseContext";
+import { useSelector } from "react-redux";
 const Courses = () => {
-  const { courses } = useContext(CourseContext);
+  // const { courses } = useContext(CourseContext);
+  const courses = useSelector((state) => state.course.courses)
   return (
     <>
       <div className="courses bg-red-50 md:p-8">

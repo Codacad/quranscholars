@@ -1,7 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
-import { CourseContext } from "../context/courseConext/CourseContext";
 import { Link } from "react-router-dom";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import { SiLevelsdotfyi } from "react-icons/si";
@@ -12,8 +10,9 @@ import { IoMdCheckmark } from "react-icons/io";
 import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
+import {useSelector} from "react-redux"
 const CourseOverview = () => {
-  const { courses } = useContext(CourseContext);
+  const courses = useSelector((state) => state.course.courses)
   const { courseName } = useParams();
 
   const course = courses.find((course) => courseName === course.course_name);

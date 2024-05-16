@@ -11,7 +11,7 @@ import Admission from "./routes/Admission";
 import Sidenav from "./components/Sidenav";
 import CourseOverview from "./components/CourseOverview";
 import Footer from "./components/Footer";
-import Login from "./components/Login";
+import Login from "./routes/Login";
 import { useLocation } from "react-router-dom";
 import Register from "./routes/Register";
 import Courses from "./routes/Courses";

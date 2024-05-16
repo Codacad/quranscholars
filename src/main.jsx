@@ -5,15 +5,16 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import SidenavContextProvider from "./context/sidenavContext/SidenavContextProvider.jsx";
 import CourseContextProvider from "./context/courseConext/CourseContextProvider.jsx";
-
+import {Provider} from "react-redux";
+import { store } from "./state/store.js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <CourseContextProvider>
+      <Provider store={store}>
         <SidenavContextProvider>
           <App />
         </SidenavContextProvider>
-      </CourseContextProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

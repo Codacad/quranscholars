@@ -26,30 +26,15 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 ${
-          pathName === "/login" ||
-          pathName === "/admission" ||
-          pathName === "signup"
-            ? "bg-primary"
-            : "bg-white"
-        } z-50`}
+        className={`navbar p-px10p py-2 max-md:px-4 sticky top-0 
+            bg-primary
+        z-50`}
       >
         <nav className="flex justify-between items-center">
           <Link to={"/"}>
             {" "}
             <h1 className="uppercase md:text-2xl text-xl font-bold">
-              <img
-                src={
-                  pathName === "/login" ||
-                  pathName === "/admission" ||
-                  pathName === "signup"
-                    ? WhiteBgLogo
-                    : Logo
-                }
-                alt=""
-                width={200}
-                height={100}
-              />
+              <img src={WhiteBgLogo} alt="" width={200} height={100} />
               {/* <span className="text-primary">Quran</span>{" "}
               <span className="text-navlinks">Scholar</span> */}
             </h1>
@@ -60,17 +45,11 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 transition-all ease-linear duration-150 ${
-                    pathName === "/login" ||
-                    pathName === "/admission" ||
-                    pathName === "signup"
-                      ? "text-white"
-                      : ""
-                  }
+                  p-5 transition-all ease-linear duration-150 "text-white"
                   ${
                     isActive
-                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
-                      : "text-navlinks"
+                      ? "text-white relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-white after:-bottom-0"
+                      : "text-white"
                   }
                   `;
                 }}
@@ -84,17 +63,11 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 transition-all ease-linear duration-150 ${
-                    pathName === "/login" ||
-                    pathName === "/admission" ||
-                    pathName === "signup"
-                      ? "text-white"
-                      : ""
-                  }
+                  p-5 transition-all ease-linear duration-150 "text-white"                  
                   ${
                     isActive
-                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
-                      : "text-navlinks"
+                      ? "text-white relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-white after:-bottom-0"
+                      : "text-white"
                   }
                   `;
                 }}
@@ -108,17 +81,11 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 transition-all ease-linear duration-150 ${
-                    pathName === "/login" ||
-                    pathName === "/admission" ||
-                    pathName === "signup"
-                      ? "text-white"
-                      : ""
-                  }
+                  p-5 transition-all ease-linear duration-150 "text-white"
                   ${
                     isActive
-                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
-                      : "text-navlinks"
+                      ? "text-white relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-white after:-bottom-0"
+                      : "text-white"
                   }
                   `;
                 }}
@@ -127,23 +94,17 @@ const Navbar = () => {
                 Courses
               </NavLink>{" "}
             </li>
-          
+
             <li className="nav-item">
               {" "}
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 transition-all ease-linear duration-150 ${
-                    pathName === "/login" ||
-                    pathName === "/admission" ||
-                    pathName === "signup"
-                      ? "text-white"
-                      : ""
-                  }
+                  p-5 transition-all ease-linear duration-150 text-white
                   ${
                     isActive
-                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
-                      : "text-navlinks"
+                      ? "text-white relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-white after:-bottom-0"
+                      : "text-white"
                   }
                   `;
                 }}
@@ -181,17 +142,11 @@ const Navbar = () => {
               <NavLink
                 className={({ isActive }) => {
                   return `
-                  p-5 transition-all ease-linear duration-150 ${
-                    pathName === "/login" ||
-                    pathName === "/admission" ||
-                    pathName === "signup"
-                      ? "text-white"
-                      : ""
-                  }
+                  p-5 transition-all ease-linear duration-150 text-white
                   ${
                     isActive
-                      ? "text-primary relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-primary after:-bottom-0"
-                      : "text-navlinks"
+                      ? "text-white relative font-bold after:contents-[''] after:absolute after:w-full after:h-[3px] after:block after:rounded-sm after:bg-white after:-bottom-0"
+                      : "text-white"
                   }
                   `;
                 }}
