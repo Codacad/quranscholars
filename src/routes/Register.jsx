@@ -12,7 +12,7 @@ import { MdClose } from "react-icons/md";
 const Register = () => {
   const navigate = useNavigate();
   const [disabledRegiterBtn, setDisabledRegiterBtn] = useState(false);
-  const [showSpinner, setShowSpinner] = useState(false)
+  const [showSpinner, setShowSpinner] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [createPassword, setCreatePassword] = useState("");
@@ -34,8 +34,10 @@ const Register = () => {
       createPassword,
       confirmPassword,
     };
-    const registerAPIUrl = import.meta.env.VITE_REGISTER;
-    console.log(registerAPIUrl);
+    const registerAPIUrl =
+      import.meta.env.ENV === "development"
+        ? import.meta.env.VITE_REGISTER
+        : import.meta.env.VITE_PROD_REGISTER;
     const response = await fetch(registerAPIUrl, {
       method: "POST",
       headers: {
@@ -51,7 +53,7 @@ const Register = () => {
       setFullName(""), setEmail("");
       setCreatePassword(""), setConfirmPassword("");
       setDisabledRegiterBtn(true);
-      setShowSpinner(true)
+      setShowSpinner(true);
       setTimeout(() => {
         navigate("/login");
       }, 2000);
@@ -92,7 +94,11 @@ const Register = () => {
             <span
               className={`flex w-full ${messageClasses} p-2 rounded-lg items-center text-sm transition-all duration-200 ease-in-out`}
             >
-              <span className={`${showSpinner ? "flex" : "hidden"} justify-center items-center mr-4`}>
+              <span
+                className={`${
+                  showSpinner ? "flex" : "hidden"
+                } justify-center items-center mr-4`}
+              >
                 <span
                   className={`animate-spin transition-all duration-200 rounded-full h-4 w-4 border-t-2 border-green-500`}
                 ></span>

@@ -8,7 +8,7 @@ export const AuthProvder = ({ children }) => {
     const checkAuth = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/users/protect",
+          import.meta.env.ENV === 'development' ? import.meta.env.VITE_PROTECTED : import.meta.env.VITE_PROD_PROTECTED,
           { withCredentials: true }
         );
         console.log(response.data.message)

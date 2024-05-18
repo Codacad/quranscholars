@@ -19,9 +19,14 @@ const Login = () => {
       password,
     };
     try {
-      const response = await axios.post(import.meta.env.VITE_LOGIN, LoginData, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        import.meta.env.ENV === "development"
+          ? import.meta.env.VITE_LOGIN
+          : import.meta.env.VITE_PROD_LOGIN, LoginData,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.message === "Login Success") {
         setAuth(true);
         navigate("/admission");
@@ -34,9 +39,8 @@ const Login = () => {
   useEffect(() => {
     if (auth) {
       navigate("/admission");
-      }
-      
-  }, [auth, navigate])
+    }
+  }, [auth, navigate]);
   return (
     <>
       <div className="login md:min-h-screen md:p-px10p max-md:px-4 max-md:py-8 md:grid block md:grid-cols-2 items-center justify-center">
