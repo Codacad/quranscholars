@@ -13,9 +13,14 @@ const Contact = () => {
   // const [submitMessageTimeOut, setSubmitMessageTimeOut] = useState(5000);
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    const contactData = { firstName, lastName, email, message };
+    const contactMessageData = { firstName, lastName, email, message };
 
-    return setSubmitMessage(true);
+    const response = await fetch("")
+
+
+    setSubmitMessage(true);
+
+
   };
 
   const handleCloseSubmitMessage = () => {

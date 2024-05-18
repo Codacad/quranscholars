@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import LoginIllustration from "/login.svg";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 import { SlLogin } from "react-icons/sl";
+import { AuthContext } from "../context/authContext/authContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const LoginData = {
@@ -14,20 +19,24 @@ const Login = () => {
       password,
     };
     try {
-      const response = await fetch(import.meta.env.VITE_LOGIN, {
-        method:"POST",
-        headers: {
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify(LoginData)
-      })
-      const data = await response.json();
-      console.log(data)
+      const response = await axios.post(import.meta.env.VITE_LOGIN, LoginData, {
+        withCredentials: true,
+      });
+      if (response.data.message === "Login Success") {
+        setAuth(true);
+        navigate("/admission");
+      }
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   };
 
+  useEffect(() => {
+    if (auth) {
+      navigate("/admission");
+      }
+      
+  }, [auth, navigate])
   return (
     <>
       <div className="login md:min-h-screen md:p-px10p max-md:px-4 max-md:py-8 md:grid block md:grid-cols-2 items-center justify-center">
@@ -74,9 +83,7 @@ const Login = () => {
             className="submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 md:w-[80%] max-md:w-full rounded-md"
           >
             <SlLogin />
-            <span>
-              
-              Login</span>
+            <span>Login</span>
           </button>
           <p className="flex flex-col max-sm:items-center gap-4">
             <span>New to Quran Scholars?</span>{" "}
@@ -84,7 +91,7 @@ const Login = () => {
               className="p-2 flex items-center transition-all duration-200 ease-linear md:hover:gap-3 justify-center gap-2 w-32 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
               to={"/register"}
             >
-             <FaLongArrowAltLeft />
+              <FaLongArrowAltLeft />
               <span>Register</span>
             </Link>
           </p>

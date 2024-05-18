@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../css/Admission.css";
 import { FaSpinner } from 'react-icons/fa';
+import { AuthContext } from "../context/authContext/authContext";
 const Admission = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +18,8 @@ const Admission = () => {
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
-
+  const {auth, setAuth} = useContext(AuthContext)
+  console.log(auth)
   const handleCheckPermanentAddress = async () => {
     setPermanentAddressCheck((pre) => !pre);
     if (permanentAddressCheck) {
@@ -62,7 +64,6 @@ const Admission = () => {
       );
     }
   };
-
   return (
     <>
       <div className="admission flex flex-col items-center max-md:px-4 my-8 min-h-screen sm:w-[50%] w-[100%] m-auto">
