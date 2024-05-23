@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(import.meta.env.VITE_PROD_LOGIN)
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const LoginData = {
