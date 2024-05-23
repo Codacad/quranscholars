@@ -21,9 +21,9 @@ const Login = () => {
     };
     try {
       const response = await axios.post(
-        import.meta.env.VITE_ENV === "development"
-          ? import.meta.env.VITE_LOGIN
-          : import.meta.env.VITE_PROD_LOGIN,
+        import.meta.env.VITE_ENV !== "development"
+          ? import.meta.env.VITE_PROD_LOGIN
+          : import.meta.env.VITE_LOGIN,
         LoginData,
         {
           withCredentials: true,
