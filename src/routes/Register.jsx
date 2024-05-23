@@ -34,11 +34,8 @@ const Register = () => {
       createPassword,
       confirmPassword,
     };
-    const registerAPIUrl =
-      import.meta.env.ENV === "development"
-        ? import.meta.env.VITE_REGISTER
-        : import.meta.env.VITE_PROD_REGISTER;
-    const response = await fetch(registerAPIUrl, {
+
+    const response = await fetch(import.meta.env.VITE_REGISTER, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

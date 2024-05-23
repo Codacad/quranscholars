@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { auth, setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(import.meta.env.VITE_PROD_LOGIN)
+  console.log(import.meta.env.VITE_LOGIN)
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const LoginData = {
@@ -20,15 +20,9 @@ const Login = () => {
       password,
     };
     try {
-      const response = await axios.post(
-        import.meta.env.VITE_ENV !== "development"
-          ? import.meta.env.VITE_PROD_LOGIN
-          : import.meta.env.VITE_LOGIN,
-        LoginData,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(import.meta.env.VITE_LOGIN, LoginData, {
+        withCredentials: true,
+      });
       if (response.data.message === "Login Success") {
         setAuth(true);
         navigate("/admission");
