@@ -20,9 +20,10 @@ const Login = () => {
     };
     try {
       const response = await axios.post(
-        import.meta.env.ENV === "development"
+        import.meta.env.VITE_ENV === "development"
           ? import.meta.env.VITE_LOGIN
-          : import.meta.env.VITE_PROD_LOGIN, LoginData,
+          : import.meta.env.VITE_PROD_LOGIN,
+        LoginData,
         {
           withCredentials: true,
         }
