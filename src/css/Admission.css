@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+
+* {
+  font-family: "Sora", sans-serif;
+}
+
+div.input-group input[type="text"],
+div.input-group input[type="email"],
+div.input-group input[type="date"],
+div.input-group input[type="time"],
+div.input-group input[type="tel"] {
+  border: 1px solid #d1d5db;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #64748b;
+  transition: all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+div.input-group input[type="text"]:hover,
+div.input-group input[type="email"]:hover,
+div.input-group input[type="date"]:hover,
+div.input-group input[type="time"]:hover,
+div.input-group input[type="tel"]:hover {
+  box-shadow: 0px 0px 0px 2px #991b1b21;
+  transition: all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+div.input-group input[type="text"]:focus,
+div.input-group input[type="email"]:focus,
+div.input-group input[type="date"]:focus,
+div.input-group input[type="time"]:focus,
+div.input-group input[type="tel"]:focus {
+  box-shadow: 0px 0px 0px 1px #991b1b;
+  transition: all 200ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+div.input-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #475569;
+}
+
+div.courses {
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+}
+div.courses div.input-group {
+  display: flex;
+  align-items: center;
+}
+
+div.input-groups label {
+  margin-top: 4px;
+  margin-left: 10px;
+}
+
+input:where([type="checkbox"], [type="radio"]) {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin: calc(0.75em - 11px) 0.25rem 0 0;
+  vertical-align: top;
+  border: 1px solid #991b1b;
+  border-radius: 4px;
+  background: #fff no-repeat center center;
+}
+input[type="radio"]{
+  border-radius : 50%;
+}
+
+input:where([type="checkbox"], [type="radio"]):where(:active:not(:disabled), :focus){
+  border-color : #991b1b;
+  outline      : none;
+}
+input:where([type="checkbox"], [type="radio"]):disabled{
+  background : #eee;
+}
+input[type="checkbox"]:checked{
+  background-image : url('/checkbox.svg');
+}
+
+input[type="radio"]:checked{
+  background-image : url('/radio.svg');
+}
