@@ -2,11 +2,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const authApi = createApi({
   // reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://www.quranscholar.in" }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (builer) => ({
     registerUser: builer.mutation({
       query: (user) => ({
-        url: "/api/users/register",
+        url: "users/register",
         method: "POST",
         body: user,
         credentials: "include",
