@@ -5,7 +5,7 @@ const authApi = createApi({
   endpoints: (builer) => ({
     registerUser: builer.mutation({
       query: (user) => ({
-        url: "users/register",
+        url: "/api/users/register",
         method: "POST",
         body: user,
         credentials: "include",
