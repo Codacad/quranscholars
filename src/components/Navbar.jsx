@@ -4,10 +4,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import "../css/Navbar.css";
 import { IoClose } from "react-icons/io5";
 import { NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { CgLogIn } from "react-icons/cg";
 const Navbar = () => {
-  const { user } = useSelector((state) => state.auth);
+ 
 
   return (
     <>
@@ -141,9 +140,7 @@ const Navbar = () => {
               Admission
             </Link>
           </div>
-          <div className={`${user ? "block" : "hidden"}`}>
-            {user ? <span>{user.fullName}</span> : ""}
-          </div>
+         
           <button className="md:hidden block">
             <GiHamburgerMenu className="text-xl"/>
           </button>

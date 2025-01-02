@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import ContactUs from "/contact-us.svg";
 import { MdClose } from "react-icons/md";
 import { FaAddressBook, FaPhone } from "react-icons/fa";
@@ -10,13 +10,12 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [submitMessage, setSubmitMessage] = useState(false);
-  // const [submitMessageTimeOut, setSubmitMessageTimeOut] = useState(5000);
+  
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     const contactMessageData = { firstName, lastName, email, message };
 
     const response = await fetch("")
-
 
     setSubmitMessage(true);
 

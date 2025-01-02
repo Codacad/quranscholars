@@ -5,45 +5,18 @@ import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useRegisterUserMutation } from "../state/userApis/authApis";
-import { useDispatch } from "react-redux";
-import { register } from "../state/slices/authSlice";
-import Spinner from "../components/Spinner";
+
+
 const Register = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [registerUser, { isLoading, isSuccess, isError, error }] =
-    useRegisterUserMutation();
-  const handleRegisterSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data, error } = await registerUser({ fullName, email, password });
-      if (error) {
-        console.log(error.data.message);
-      } else {
-        const user = localStorage.setItem("user", JSON.stringify(data.user));
-        dispatch(register(user));
-        navigate("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
+
   return (
     <>
-      {/* <Spinner /> */}
-      {isLoading ? (
-        <Spinner />
-      ) : (
         <div className="register lg:p-16 md:p-8 p-4 w-[100%]justify-center items-center">
-          <form
-            onSubmit={(e) => handleRegisterSubmit(e)}
-            className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100"
-          >
+          <form className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100">
             <div className="form-header flex flex-col gap-4 w-[100%] leading-10 text-center">
               <h1 className="text-primary text-3xl leading-[3rem] font-bold">
                 Embark on Your Learning Journey: Register with Us
@@ -115,8 +88,7 @@ const Register = () => {
               </Link>
             </p>
           </form>
-        </div>
-      )}
+        </div>kl
     </>
   );
 };

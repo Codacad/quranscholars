@@ -15,8 +15,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./state/store.js";
-import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +33,7 @@ const router = createBrowserRouter([
       { path: "donate", element: <Donate /> },
       {
         path: "admission",
-        element: <ProtectedRoutes element={<Admission />} />,
+        element: <Admission />,
       },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },

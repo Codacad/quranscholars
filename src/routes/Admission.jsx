@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import "../css/Admission.css";
 import { FaSpinner } from "react-icons/fa";
 const Admission = () => {
