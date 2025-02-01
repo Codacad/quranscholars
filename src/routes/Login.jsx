@@ -4,79 +4,86 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlinePassword } from "react-icons/md";
 import { SlLogin } from "react-icons/sl";
-
-
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-   
+    // Your login logic here
+    // Example: navigate('/dashboard'); after successful login
   };
-  
+
   return (
     <>
-      <div className="login md:min-h-screen md:p-px10p max-md:px-4 max-md:py-8 md:grid block md:grid-cols-2 items-center justify-center">
-        <div className="illustration max-sm:hidden">
-          <img src={LoginIllustration} alt="" />
-        </div>
-        <form
-          onSubmit={(e) => handleLoginSubmit(e)}
-          action=""
-          className="w-full flex justify-start flex-col max-sm:items-center gap-4  p-2"
-        >
-          <div className="form-header flex flex-col gap-4 w-[100%] leading-10 max-sm:text-center">
-            <h1 className="text-primary text-3xl leading-10 font-bold">
-              Embark on Your Learning Journey: Sign in Below
-            </h1>
-            <p>Access Your Account: Islamic Education Platform</p>
+      <div className="login bg-neutral-100 min-h-screen flex items-center justify-center p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-screen-xl">
+          {/* Left Section: Illustration */}
+          <div className="illustration hidden md:block">
+            <img src={LoginIllustration} alt="Login illustration" className="w-full h-auto object-cover" />
           </div>
-          <div className="email flex border border-gray-400 rounded-lg items-center md:w-[80%] max-md:w-full">
-            <MdOutlineMail
-              size={40}
-              className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
-            />
-            <input
-              type="email"
-              placeholder="Enter your Email"
-              className="p-2 w-[100%] rounded-lg outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="email flex border border-gray-400 rounded-lg items-center md:w-[80%] max-md:w-full">
-            <MdOutlinePassword
-              size={40}
-              className="py-2 px-1 text-primary bg-gray-200 rounded-bl-lg rounded-tl-lg"
-            />
-            <input
-              type="password"
-              placeholder="Enter your Password"
-              className="p-2 w-[100%] rounded-lg outline-none"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 md:w-[80%] max-md:w-full rounded-md"
+
+          {/* Right Section: Form */}
+          <form
+            onSubmit={handleLoginSubmit}
+            className="w-full  p-8 bg-white rounded-xl border border-gray-300 flex flex-col gap-6 justify-center items-center mx-auto"
           >
-            <SlLogin />
-            <span>Login</span>
-          </button>
-          <p className="flex flex-col max-sm:items-center gap-4">
-            <span>New to Quran Scholars?</span>{" "}
-            <Link
-              className="p-2 flex items-center transition-all duration-200 ease-linear md:hover:gap-3 justify-center gap-2 w-32 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
-              to={"/register"}
+            <div className="form-header text-center mb-6">
+              <h1 className="text-red-600 text-3xl font-semibold leading-tight mb-2">
+                Embark on Your Learning Journey: Sign in Below
+              </h1>
+              <p className="text-gray-600">Access Your Account: Islamic Education Platform</p>
+            </div>
+
+            {/* Email Input */}
+            <div className="email flex border border-gray-300 rounded-lg items-center w-full mb-4">
+             
+              <input
+                type="email"
+                placeholder="Enter your Email"
+                className="p-3 w-full outline-none rounded-md focus:ring-2 focus:ring-primary"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            {/* Password Input */}
+            <div className="password flex border border-gray-300 rounded-lg items-center w-full mb-6">
+              
+              <input
+                type="password"
+                placeholder="Enter your Password"
+                className="p-3 w-full outline-none rounded-md focus:ring-2 focus:ring-primary"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="submit bg-red-600 text-white p-3 w-full rounded-lg hover:opacity-95 transition duration-200 ease-in-out flex items-center justify-center gap-2"
             >
-              <FaLongArrowAltLeft />
-              <span>Register</span>
-            </Link>
-          </p>
-        </form>
+              <SlLogin />
+              <span>Login</span>
+            </button>
+
+            {/* Register Link */}
+            <p className="text-center mt-4 text-sm text-gray-600">
+              <span>New to Quran Scholars?</span>
+              <Link
+                className="ml-2 inline-flex items-center gap-2 text-red-600 hover:text-red-700 transition-all duration-200 ease-linear"
+                to="/register"
+              >
+                <FaLongArrowAltLeft />
+                <span>Register</span>
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
     </>
   );

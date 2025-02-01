@@ -2,21 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Convergence&family=Epilogue:wght@500;700&family=Montserrat:wght@400;600;700&family=Playpen+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap');
-
-@font-face {
-  font-family: "Guminert";
-  src: url('../public/fonts/guminert.ttf');
-}
-@font-face {
-  font-family: "Tommy";
-  src: url('../public/fonts/tommy/MADE\ TOMMY\ Black\ Outline_PERSONAL\ USE.otf');
-}
-@font-face {
-  font-family: "Tommy Black";
-  src: url('../public/fonts/tommy/MADE\ TOMMY\ Black_PERSONAL\ USE.otf');
-}
-@font-face {
-  font-family: "Tommy Thin";
-  src: url('../public/fonts/tommy/MADE\ TOMMY\ Thin_PERSONAL\ USE.otf');
+.grotesk {
+  font-family: "Host Grotesk", serif;
 }

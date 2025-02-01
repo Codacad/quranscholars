@@ -24,17 +24,7 @@ export default {
         navlinks:"#6e7070",
         footerHeadings:"#575252"
       },
-      fontFamily: {
-        convergence:["'Convergence'", 'sans-serif'],
-        epilogue:["'Epilogue'", 'sans-serif'],
-        montserrat:["'Montserrat'", 'sans-serif'],
-        playpanSans:["'Playpen Sans'", 'sans-serif'],
-        poppins:["'Poppins'", 'sans-serif'],
-        guminert:["'Guminert'", 'sans-serif'],
-        // tommyBlackOutline:["'Tommy'", 'sans-serif'],
-        // tommyBlack:["'Tommy Black'", 'sans-serif'],
-        // tommyThin:["'Tommy Bold'", 'sans-serif'],
-      },
+     
       padding:{
         p5p :"5%",
         px5p :"0 5%",

@@ -1,94 +1,86 @@
 import { useState } from "react";
-import { FaUserEdit } from "react-icons/fa";
+import { FaUserEdit, FaEye, FaLongArrowAltRight } from "react-icons/fa";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
 import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   return (
     <>
-        <div className="register lg:p-16 md:p-8 p-4 w-[100%]justify-center items-center">
-          <form className="lg:w-[500px] shadow-xl rounded-md md:w-[70%] m-auto flex justify-start flex-col max-sm:items-center gap-4 sm:p-4 p-4 border-2 border-gray-100">
-            <div className="form-header flex flex-col gap-4 w-[100%] leading-10 text-center">
-              <h1 className="text-primary text-3xl leading-[3rem] font-bold">
-                Embark on Your Learning Journey: Register with Us
-              </h1>
-              <RiAccountPinCircleFill
-                size={50}
-                className="mb-0 text-primary m-auto"
-              />
-              {/* <p>Access Your Account: Islamic Education Platform</p> */}
-            </div>
-            <div className="fullname flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
-              <FaUserEdit
-                size={40}
-                className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
-              />
-              <input
-                type="text"
-                placeholder="Enter your Full Name"
-                className="p-2 w-[100%] rounded-lg outline-none"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-            </div>
-            <div className="email flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
-              <MdOutlineMail
-                size={40}
-                className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
-              />
-              <input
-                type="email"
-                placeholder="Enter your Email"
-                className="p-2 w-[100%] rounded-lg outline-none"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="create-password relative flex border border-gray-400 rounded-lg items-center w-[100%] max-md:w-full">
-              <MdOutlineKey
-                size={40}
-                className="py-2 px-1 bg-gray-200 rounded-bl-lg rounded-tl-lg text-red-800"
-              />
-              <input
-                type="text"
-                placeholder="Create Password"
-                className="p-2 w-[100%] rounded-lg outline-none"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button className="absolute top-[50%] translate-y-[-50%] right-3 text-primary">
-                <FaEye />
-              </button>
-            </div>
+      <div className="register flex justify-center items-center bg-red-50 p-8">
+        <form className="lg:w-[500px] md:w-[80%] sm:w-[90%] p-6 bg-white shadow-lg rounded-md border-2 border-red-200">
+          <div className="form-header text-center mb-6">
+            <h1 className="text-3xl font-bold text-red-600 leading-tight">
+              Embark on Your Learning Journey: Register with Us
+            </h1>
+            <RiAccountPinCircleFill size={50} className="text-red-600 mx-auto mt-2" />
+          </div>
 
-            <button
-              type="submit"
-              className={`submit flex items-center justify-center gap-2 text-gray-100 bg-primary p-2 w-[100%] max-md:w-full rounded-md`}
-            >
-              <RiAccountPinCircleFill />
-              <span>Register</span>
+          {/* Full Name Input */}
+          <div className="fullname flex border border-red-300 rounded-md items-center w-full mb-4">
+            
+            <input
+              type="text"
+              placeholder="Enter your Full Name"
+              className="p-2 w-full outline-none focus:ring-2 rounded-md ring-red-600"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
+
+          {/* Email Input */}
+          <div className="email flex border border-red-300 rounded-lg items-center w-full mb-4">
+          
+            <input
+              type="email"
+              placeholder="Enter your Email"
+              className="p-2 w-full focus:ring-2 rounded-md ring-red-600 outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          {/* Password Input */}
+          <div className="create-password relative flex border border-red-300 rounded-lg items-center w-full mb-6">
+          
+            <input
+              type="password"
+              placeholder="Create Password"
+              className="p-2 w-full focus:ring-2 rounded-md ring-red-600 outline-none"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="absolute top-[50%] translate-y-[-50%] right-3 text-red-500">
+              <FaEye />
             </button>
-            <p className="flex flex-col items-center gap-4">
-              <span>Already Registered with us?</span>{" "}
-              <Link
-                className="p-2 w-28 flex items-center justify-center transition-all duration-200 ease-linear gap-2 md:hover:gap-3 text-center hover:ring-red-800 hover:ring-2 bg-red-300 text-red-800 rounded-md"
-                to={"/login"}
-              >
-                <span>Login</span>
-                <FaLongArrowAltRight />
-              </Link>
-            </p>
-          </form>
-        </div>kl
+          </div>
+
+          {/* Register Button */}
+          <button
+            type="submit"
+            className="w-full bg-red-600 hover:bg-red-700 text-white p-2 rounded-md transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4"
+          >
+            <RiAccountPinCircleFill />
+            <span>Register</span>
+          </button>
+
+          {/* Already Registered Link */}
+          <p className="text-center">
+            <span>Already Registered?</span>
+            <Link
+              className="ml-2 inline-flex items-center gap-2 text-red-600 hover:text-red-700 transition-all duration-200 ease-linear"
+              to="/login"
+            >
+              <span>Login</span>
+              <FaLongArrowAltRight />
+            </Link>
+          </p>
+        </form>
+      </div>
     </>
   );
 };
