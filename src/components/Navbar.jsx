@@ -13,9 +13,9 @@ import { MdOutlineRoundaboutRight } from "react-icons/md";
 import { useRef } from "react";
 const Navbar = () => {
   const [showSideNav, setShowSideNav] = useState(false);
-  const mobileMenuRef = useRef()
+  const mobileMenuRef = useRef();
   const handleToggleSideNav = () => {
-    mobileMenuRef.current.classList.toggle('active')
+    mobileMenuRef.current.classList.toggle("active");
   };
   return (
     <div className="navbar relative bg-white text-gray-900 py-4 px-6 md:px-16">
@@ -104,14 +104,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <>
-        <nav ref={mobileMenuRef} className={`mobile-menu active fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}>
+        <nav
+          ref={mobileMenuRef}
+          className={`mobile-menu fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
+        >
           <div className="header flex justify-end p-4">
-            <IoMdClose onClick={handleToggleSideNav} className="text-4xl text-white cursor-pointer hover:opacity-60 transition-all" />
+            <IoMdClose
+              onClick={handleToggleSideNav}
+              className="text-4xl text-white cursor-pointer hover:opacity-60 transition-all"
+            />
           </div>
           <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
             <li className="flex w-full">
               <NavLink
-              onClick={handleToggleSideNav}
+                onClick={handleToggleSideNav}
                 to={"/"}
                 className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 activeClassName="text-red-700`}
@@ -122,7 +128,7 @@ const Navbar = () => {
             </li>
             <li className="flex w-full">
               <NavLink
-              onClick={handleToggleSideNav}
+                onClick={handleToggleSideNav}
                 to={"/services"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 activeClassName="text-red-700"
@@ -133,7 +139,7 @@ const Navbar = () => {
             </li>
             <li className="flex w-full">
               <NavLink
-              onClick={handleToggleSideNav}
+                onClick={handleToggleSideNav}
                 to={"/courses"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 activeClassName="text-red-700"
@@ -144,7 +150,7 @@ const Navbar = () => {
             </li>
             <li className="flex w-full">
               <NavLink
-              onClick={handleToggleSideNav}
+                onClick={handleToggleSideNav}
                 to={"/contact"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 activeClassName="text-red-700"
@@ -155,7 +161,7 @@ const Navbar = () => {
             </li>
             <li className="flex w-full">
               <NavLink
-              onClick={handleToggleSideNav}
+                onClick={handleToggleSideNav}
                 to={"/about"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 activeClassName="text-red-700"
