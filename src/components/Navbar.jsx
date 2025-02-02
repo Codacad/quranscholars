@@ -119,8 +119,7 @@ const Navbar = () => {
               <NavLink
                 onClick={handleToggleSideNav}
                 to={"/"}
-                className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-                activeClassName="text-red-700`}
+                className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600`}
               >
                 <IoHomeOutline />
                 <span>Home</span>
@@ -171,7 +170,10 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
-          <div className="buttons"></div>
+          <div className="buttons text-center flex flex-col gap-4 px-6 mt-4">
+            <Link onClick={handleToggleSideNav} to={'/login'} className="text-white underline font-bold">Login</Link>
+            <Link onClick={handleToggleSideNav} to={'register'} className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2">Register</Link>
+          </div>
         </nav>
       </>
     </div>
