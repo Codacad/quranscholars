@@ -1,16 +1,30 @@
 import Logo from "/logo2.svg";
+import Quranscholar from "/quranscholar100x70.svg";
+import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, Link } from "react-router-dom";
 import { CgLogIn } from "react-icons/cg";
-
+import { IoMdClose } from "react-icons/io";
+import { IoHomeOutline } from "react-icons/io5";
+import { FaServicestack } from "react-icons/fa6";
+import { MdSubject } from "react-icons/md";
+import { MdOutlineConnectWithoutContact } from "react-icons/md";
+import { MdOutlineRoundaboutRight } from "react-icons/md";
+import { useRef } from "react";
 const Navbar = () => {
+  const [showSideNav, setShowSideNav] = useState(false);
+  const mobileMenuRef = useRef()
+  const handleToggleSideNav = () => {
+    mobileMenuRef.current.classList.toggle('active')
+  };
   return (
-    <div className="navbar bg-white text-gray-900 py-4 px-6 md:px-16">
+    <div className="navbar relative bg-white text-gray-900 py-4 px-6 md:px-16">
       <nav className="flex justify-between items-center">
-        
         {/* Logo Section */}
-        <Link to={"/"} className="flex items-center space-x-2">
-          <img src={Logo} alt="Logo" className="w-48" />
+        <Link to={"/"} className="flex items-center text-2xl font-bold">
+          <span className="bg-red-600 text-white">QURAN</span>
+          <span className="text-red-600">SCHOLAR</span>
+          {/* <img src={Quranscholar} alt="Logo" className="" /> */}
         </Link>
 
         {/* Desktop Menu */}
@@ -64,8 +78,8 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex gap-6 font-semibold items-center">
-          <Link to={'/register'} className="text-red-600 underline">
-          Register
+          <Link to={"/register"} className="text-red-600 underline">
+            Register
           </Link>
           <Link
             to={"/login"}
@@ -83,10 +97,77 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden block text-xl text-red-800">
-          <GiHamburgerMenu />
+        <button className="md:hidden block text-2xl text-red-800">
+          <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
       </nav>
+
+      {/* Mobile Menu */}
+      <>
+        <nav ref={mobileMenuRef} className={`mobile-menu active fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}>
+          <div className="header flex justify-end p-4">
+            <IoMdClose onClick={handleToggleSideNav} className="text-4xl text-white cursor-pointer hover:opacity-60 transition-all" />
+          </div>
+          <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
+            <li className="flex w-full">
+              <NavLink
+              onClick={handleToggleSideNav}
+                to={"/"}
+                className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                activeClassName="text-red-700`}
+              >
+                <IoHomeOutline />
+                <span>Home</span>
+              </NavLink>
+            </li>
+            <li className="flex w-full">
+              <NavLink
+              onClick={handleToggleSideNav}
+                to={"/services"}
+                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                activeClassName="text-red-700"
+              >
+                <FaServicestack />
+                <span>Services</span>
+              </NavLink>
+            </li>
+            <li className="flex w-full">
+              <NavLink
+              onClick={handleToggleSideNav}
+                to={"/courses"}
+                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                activeClassName="text-red-700"
+              >
+                <MdSubject />
+                <span>Courses</span>
+              </NavLink>
+            </li>
+            <li className="flex w-full">
+              <NavLink
+              onClick={handleToggleSideNav}
+                to={"/contact"}
+                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                activeClassName="text-red-700"
+              >
+                <MdOutlineConnectWithoutContact />
+                <span>Contact</span>
+              </NavLink>
+            </li>
+            <li className="flex w-full">
+              <NavLink
+              onClick={handleToggleSideNav}
+                to={"/about"}
+                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                activeClassName="text-red-700"
+              >
+                <MdOutlineRoundaboutRight />
+                <span>About</span>
+              </NavLink>
+            </li>
+          </ul>
+          <div className="buttons"></div>
+        </nav>
+      </>
     </div>
   );
 };

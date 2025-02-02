@@ -11,8 +11,8 @@ const Register = () => {
 
   return (
     <>
-      <div className="register flex justify-center items-center bg-red-50 p-8">
-        <form className="lg:w-[500px] md:w-[80%] sm:w-[90%] p-6 bg-white shadow-lg rounded-md border-2 border-red-200">
+      <div className="register flex justify-center items-center bg-gray-50 p-8">
+        <form className="lg:w-[500px] md:w-[80%] sm:w-[90%] p-6 bg-white rounded-md border-2 border-red-200">
           <div className="form-header text-center mb-6">
             <h1 className="text-3xl font-bold text-red-600 leading-tight">
               Embark on Your Learning Journey: Register with Us

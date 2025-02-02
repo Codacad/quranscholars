@@ -6,11 +6,11 @@ import { IoMdCheckmark } from "react-icons/io";
 const About = () => {
   return (
     <>
-      <div className="about bg-red-50">
+      <div className="about bg-gray-50 md:py-16">
         <div className="about-showcase min-h-screen w-full">
           <div className="md:px-40 md:py-8 p-4">
             <div className="text-content">
-              <h1 className="md:text-4xl text-xl text-primary mb-4">
+              <h1 className="md:text-4xl text-xl text-red-600 mb-4">
                 <span className="font-bold">Quran Scholars</span>: Illuminating
                 Hearts with Islamic Knowledge
               </h1>
@@ -25,7 +25,7 @@ const About = () => {
               </p>
               <Link
                 to={"#"}
-                className="block w-40 bg-primary text-center p-4 rounded-md mt-4 text-white text-md font-bold"
+                className="block w-40 bg-red-600 text-center p-4 rounded-md mt-4 text-white text-md font-bold"
               >
                 Get Started
               </Link>
@@ -40,31 +40,31 @@ const About = () => {
                     Quran, Hadith, Islamic Studies
                   </span>
                 </div>
-                <h1 className="text-4xl text-primary">What we do</h1>
+                <h1 className="text-4xl text-red-600">What we do</h1>
                 <p className="text-gray-700">
                   At Quran Scholars, we focus on these core services to support
                   your journey of spiritual growth and Islamic education:
                 </p>
                 <div className="we-do flex flex-col gap-4">
-                  <div className="quran flex items-center text-red-900 gap-2">
+                  <div className="quran flex items-center text-red-700 gap-2">
                     <span>
                       <IoMdCheckmark size={20} />
                     </span>
                     <span>Quranic Studies</span>
                   </div>
-                  <div className="hadith quran flex items-center text-red-900 gap-2">
+                  <div className="hadith quran flex items-center text-red-700 gap-2">
                     <span>
                       <IoMdCheckmark size={20} />
                     </span>
                     <span>Hadith Studies</span>
                   </div>
-                  <div className="islamic-studies quran flex items-center text-red-900 gap-2">
+                  <div className="islamic-studies quran flex items-center text-red-700 gap-2">
                     <span>
                       <IoMdCheckmark size={20} />
                     </span>
                     <span>Islamic Studies</span>
                   </div>
-                  <div className="islamic-educational-resources quran flex items-center text-red-900 gap-2">
+                  <div className="islamic-educational-resources quran flex items-center text-red-700 gap-2">
                     <span>
                       <IoMdCheckmark size={20} />
                     </span>
@@ -72,7 +72,7 @@ const About = () => {
                   </div>
                   <Link
                     to={"#"}
-                    className="p-4 text-center text-white rounded-xl mt-8 bg-primary text-md text-bold w-48"
+                    className="p-4 text-center text-white rounded-xl mt-8 bg-red-600 text-md text-bold w-48"
                   >
                     Free Consultation
                   </Link>

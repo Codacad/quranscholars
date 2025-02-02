@@ -31,7 +31,7 @@ const Contact = () => {
       <div
         className={`alert fixed top-8 ${
           submitMessage ? "left-2" : "-left-96"
-        }  z-50 p-4 gap-4 transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955] rounded-md shadow-2xl bg-red-200 text-primary flex items-center`}
+        }  z-50 p-4 gap-4 transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955] rounded-md shadow-2xl bg-red-200 text-red-600 flex items-center`}
       >
         <span className="message text-sm">Something went wrote...</span>
         <button
@@ -45,10 +45,10 @@ const Contact = () => {
 
         {/* <span className="timeline w-full p-1 bg-red-500"></span> */}
       </div>
-      <div className="contact md:p-px10p md:min-h-screen p-4 grid md:grid-cols-2 justify-center items-center">
+      <div className="contact md:p-16 md:min-h-screen p-4 grid md:grid-cols-2 justify-center items-center">
         <div className="contact-form max-md:order-2 max-md:px-4 py-8">
           <div className="header flex flex-col gap-2 mb-8 max-md:items-center max-md:text-center">
-            <h1 className="md:text-4xl text-2xl text-bold text-primary max-md:mb-4">
+            <h1 className="md:text-4xl text-2xl text-bold text-red-600 max-md:mb-4">
               Get in Touch with us
             </h1>
             <p className="text-gray-400">
@@ -65,7 +65,7 @@ const Contact = () => {
             <div className="form-group relative">
               <input
                 type="text"
-                className="firstname py-2 w-full border-b-2 placeholder:text-primary placeholder:opacity-70 border-red-800 outline-none"
+                className="firstname py-2 w-full border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none"
                 id="firstname"
                 placeholder="First Name"
                 value={firstName}
@@ -76,7 +76,7 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Last Name"
-                className="lastname py-2 w-full border-b-2 placeholder:text-primary placeholder:opacity-70 border-red-800 outline-none"
+                className="lastname py-2 w-full border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none"
                 id="lastname"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -86,7 +86,7 @@ const Contact = () => {
               <input
                 type="email"
                 placeholder="Email"
-                className="email py-2 border-b-2 outline-none placeholder:text-primary placeholder:opacity-70 border-red-800 w-full"
+                className="email py-2 border-b-2 outline-none placeholder:text-red-600 placeholder:opacity-70 border-red-600 w-full"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -97,19 +97,19 @@ const Contact = () => {
                 placeholder="Message"
                 rows={5}
                 cols={20}
-                className="message py-2 border-b-2 placeholder:text-primary placeholder:opacity-70 border-red-800 outline-none w-full"
+                className="message py-2 border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none w-full"
                 id="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
             </div>
             <div className="button flex">
-              <button className="border-none p-2 bg-primary text-white w-24 rounded-md">
+              <button className="border-none p-2 bg-red-600 text-white w-24 rounded-md">
                 Submit
               </button>
             </div>
           </form>
-          <div className="contact-address my-8 p-4 bg-red-50 rounded-sm text-red-800 flex flex-col gap-4">
+          <div className="contact-address my-8 p-4 bg-red-50 rounded-sm text-red-600 flex flex-col gap-4">
             <div className="address flex gap-3 items-start">
               <span>
                 <FaAddressBook size={20} />
