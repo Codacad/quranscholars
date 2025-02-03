@@ -16,6 +16,8 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./state/store.js";
 import PrivacyPolicy from "./routes/PrivacyPolicy.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import NotLoggedIn from "./components/NotLoggedIn.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,9 +36,20 @@ const router = createBrowserRouter([
       { path: "donate", element: <Donate /> },
       {
         path: "admission",
-        element: <Admission />,
+        element: (
+          <ProtectedRoute>
+            <Admission />
+          </ProtectedRoute>
+        ),
       },
-      { path: "login", element: <Login /> },
+      {
+        path: "login",
+        element: (
+          <NotLoggedIn>
+            <Login />
+          </NotLoggedIn>
+        ),
+      },
       { path: "register", element: <Register /> },
       {
         path: "courses",

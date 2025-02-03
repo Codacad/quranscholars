@@ -8,7 +8,7 @@ import { SlLogin } from "react-icons/sl";
 import { MdErrorOutline } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-
+import { setUser } from "../state/slices/useSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState();
   const navigate = useNavigate();
   const [login] = useLoginMutation();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +31,8 @@ const Login = () => {
       if (response.data) {
         setSuccess(response.data.message);
         setError("");
+        dispatch(setUser(response.data));
+        localStorage.setItem("user", JSON.stringify(response.data));
       }
       if (response.error) {
         setError(response.error.data.message);
