@@ -105,7 +105,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="w-16 flex justify-center text-3xl text-red-600">
+        <button className="w-16 flex justify-end text-3xl text-red-600">
           <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
       </nav>

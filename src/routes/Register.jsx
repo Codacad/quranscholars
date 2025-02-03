@@ -50,10 +50,7 @@ const Register = () => {
             <h1 className="text-3xl font-bold text-red-600 leading-tight">
               Embark on Your Learning Journey: Register with Us
             </h1>
-            <RiAccountPinCircleFill
-              size={50}
-              className="text-red-600 mx-auto mt-2"
-            />
+           
           </div>
 
           {error && (
@@ -81,7 +78,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="Enter your Full Name"
-              className="p-2 w-full outline-none focus:ring-2 rounded-md ring-red-600"
+              className="p-3 w-full outline-none rounded-md focus:ring-2 focus:ring-red-600"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
             />
@@ -92,7 +89,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="Enter your Email"
-              className="p-2 w-full focus:ring-2 rounded-md ring-red-600 outline-none"
+              className="p-3 w-full outline-none rounded-md focus:ring-2 focus:ring-red-600"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -103,7 +100,7 @@ const Register = () => {
             <input
               type="password"
               placeholder="Create Password"
-              className="p-2 w-full focus:ring-2 rounded-md ring-red-600 outline-none"
+              className="p-3 w-full outline-none rounded-md focus:ring-2 focus:ring-red-600"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
