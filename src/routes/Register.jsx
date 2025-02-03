@@ -24,9 +24,9 @@ const Register = () => {
       if (response.data) {
         setSuccess("Registration successful, you are being redirected...");
         setError("")
-        // setTimeout(() => {
-        //   navigate("/login");
-        // }, 2000);
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
       if (response.error) {
         setError(response.error.data.message);
