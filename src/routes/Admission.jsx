@@ -5,27 +5,27 @@ const Admission = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [contactNumber, setContactNumber] = useState("");
-  const [parentsContactNumber, setParentsContactNumber] = useState("");
+  // const [parentsContactNumber, setParentsContactNumber] = useState("");
   const [dob, setDob] = useState("");
-  const [classTime, setClassTime] = useState("07:00");
-  const [currentAddress, setCurrentAddress] = useState("");
-  const [permanentAddressCheck, setPermanentAddressCheck] = useState(false);
-  const [permanentAddress, setPermanentAddress] = useState("");
+  // const [classTime, setClassTime] = useState("07:00");
+  const [address, setAddress] = useState("");
+  // const [permanentAddressCheck, setPermanentAddressCheck] = useState(false);
+  // const [permanentAddress, setPermanentAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const handleCheckPermanentAddress = async () => {
-    setPermanentAddressCheck((pre) => !pre);
-    if (permanentAddressCheck) {
-      setPermanentAddress("");
-    } else {
-      setPermanentAddress(currentAddress);
-    }
-    console.log(permanentAddressCheck);
-  };
+  // const handleCheckPermanentAddress = async () => {
+  //   setPermanentAddressCheck((pre) => !pre);
+  //   if (permanentAddressCheck) {
+  //     setPermanentAddress("");
+  //   } else {
+  //     setPermanentAddress(currentAddress);
+  //   }
+  //   console.log(permanentAddressCheck);
+  // };
 
   const handleAdmissionSubmit = async (e) => {
     e.preventDefault();
@@ -33,11 +33,8 @@ const Admission = () => {
       fullName,
       email,
       contactNumber,
-      parentsContactNumber,
       dob,
-      classTime,
-      currentAddress,
-      permanentAddress,
+      address,
       zipCode,
       city,
       state,
@@ -51,8 +48,6 @@ const Admission = () => {
 
   const handleSelectedCourses = async (e) => {
     const { value, checked } = e.target;
-    console.log(value, checked);
-
     if (checked) {
       setSelectedCourses((preCourse) => [...preCourse, value]);
     } else {
@@ -65,7 +60,7 @@ const Admission = () => {
     <>
       <div className="admission flex flex-col items-center max-md:px-4 my-8 min-h-screen sm:w-[50%] w-[100%] m-auto">
         <div className="header border-b py-4 w-full border-gray-200 mb-4">
-          <h1 className="font-bold md:text-4xl text-xl text-primary mb-2">
+          <h1 className="font-bold md:text-4xl text-xl text-red-600 mb-2">
             CLASS ADMISSION FORM
           </h1>
           <h3 className="text-md max-sm:text-sm text-gray-400">
@@ -113,7 +108,7 @@ const Admission = () => {
               id="phone-number"
             />
           </div>
-          <div className="input-group flex flex-col justify-end">
+          {/* <div className="input-group flex flex-col justify-end">
             <label htmlFor="parents-phone-number">
               Parents Contact Number<sup className="text-red-500">*</sup>
             </label>
@@ -124,7 +119,7 @@ const Admission = () => {
               className="parents-phone-number"
               id="parents-phone-number"
             />
-          </div>
+          </div> */}
           <div className="input-group relative flex flex-col max-md:grid-cols-1">
             <label htmlFor="dob">
               DOB<sup className="text-red-500">*</sup>
@@ -137,7 +132,7 @@ const Admission = () => {
               id="dob"
             />
           </div>
-          <div className="input-group flex flex-col max-md:grid-cols-1">
+          {/* <div className="input-group flex flex-col max-md:grid-cols-1">
             <label htmlFor="class-time">
               Choose your preferable class time
             </label>
@@ -148,20 +143,20 @@ const Admission = () => {
               value={classTime}
               onChange={(e) => setClassTime(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="input-group flex flex-col col-span-2">
             <label htmlFor="current-address">
-              Current Address<sup className="text-red-500">*</sup>
+              Address<sup className="text-red-500">*</sup>
             </label>
             <input
               type="text"
-              id="current-address"
-              className="current-address"
-              value={currentAddress}
-              onChange={(e) => setCurrentAddress(e.target.value)}
+              id="address"
+              className="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
-          <div className="input-group select-address flex col-span-2 leading-6">
+          {/* <div className="input-group select-address flex col-span-2 leading-6">
             <input
               type="checkbox"
               id="check-address"
@@ -182,7 +177,7 @@ const Admission = () => {
               value={permanentAddress}
               onChange={(e) => setPermanentAddress(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="city-state-country grid grid-cols-2 max-sm:flex flex-col gap-4 col-span-2">
             <div className="input-group flex flex-col">
               <label htmlFor="zipcode">Zip Code</label>
@@ -219,7 +214,9 @@ const Admission = () => {
               />
             </div>
             <div className="input-group flex flex-col">
-              <label htmlFor="country">Country</label>
+              <label htmlFor="country">
+                Country<sup className="text-red-500">*</sup>
+              </label>
               <input
                 type="text"
                 value={country}
@@ -390,7 +387,7 @@ const Admission = () => {
           <div className="action flex justify-end w-[100%] col-span-2 p-4">
             <button
               onClick={handleAdmissionSubmit}
-              className="submit-addmission flex items-center justify-center gap-4 w-36 p-3 rounded-md bg-primary text-white"
+              className="submit-addmission flex items-center justify-center gap-4 w-36 p-3 rounded-md bg-red-600 text-white"
             >
               <FaSpinner className="transition-transform animate-spin" />
               Submit

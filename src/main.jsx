@@ -15,6 +15,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./state/store.js";
+import PrivacyPolicy from "./routes/PrivacyPolicy.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
         element: <Courses />,
       },
       { path: "courses/:courseName", element: <CourseOverview /> },
+      { path: "/privacy", element: <PrivacyPolicy /> },
     ],
   },
 ]);

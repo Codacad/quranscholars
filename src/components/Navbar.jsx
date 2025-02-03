@@ -12,14 +12,13 @@ import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { MdOutlineRoundaboutRight } from "react-icons/md";
 import { useRef } from "react";
 const Navbar = () => {
-  const [showSideNav, setShowSideNav] = useState(false);
   const mobileMenuRef = useRef();
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
   };
   return (
-    <div className="navbar relative bg-white text-gray-900 py-4 px-6 md:px-16">
-      <nav className="flex justify-between items-center">
+    <div className="navbar relative bg-white text-gray-900 p-4 md:px-8">
+      <nav className="flex items-center">
         {/* Logo Section */}
         <Link to={"/"} className="flex items-center text-2xl font-bold">
           <span className="bg-red-600 text-white">QURAN</span>
@@ -28,12 +27,11 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-lg font-semibold">
+        <ul className="hidden md:flex items-center ml-8 gap-8 text-md font-semibold">
           <li>
             <NavLink
               to={"/"}
               className="text-red-600 transition-all duration-200 hover:text-red-700"
-              activeClassName="text-red-700"
             >
               Home
             </NavLink>
@@ -42,7 +40,6 @@ const Navbar = () => {
             <NavLink
               to={"/services"}
               className="text-red-600 transition-all duration-200 hover:text-red-700"
-              activeClassName="text-red-700"
             >
               Services
             </NavLink>
@@ -51,16 +48,22 @@ const Navbar = () => {
             <NavLink
               to={"/courses"}
               className="text-red-600 transition-all duration-200 hover:text-red-700"
-              activeClassName="text-red-700"
             >
               Courses
             </NavLink>
           </li>
           <li>
             <NavLink
+              to={"/blogs"}
+              className="text-red-600 transition-all duration-200 hover:text-red-700"
+            >
+              Blogs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to={"/contact"}
               className="text-red-600 transition-all duration-200 hover:text-red-700"
-              activeClassName="text-red-700"
             >
               Contact
             </NavLink>
@@ -69,7 +72,6 @@ const Navbar = () => {
             <NavLink
               to={"/about"}
               className="text-red-600 transition-all duration-200 hover:text-red-700"
-              activeClassName="text-red-700"
             >
               About
             </NavLink>
@@ -77,9 +79,15 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex gap-6 font-semibold items-center">
+        <div className="hidden ml-auto md:flex gap-6 font-semibold items-center justify-end">
           <Link to={"/register"} className="text-red-600 underline">
             Register
+          </Link>
+          <Link
+            to={"/admission"}
+            className="text-red-600 ring-2 ring-red-600 p-[6px] hover:bg-red-600 hover:text-white rounded-md"
+          >
+            Admission
           </Link>
           <Link
             to={"/login"}
@@ -97,7 +105,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden block text-2xl text-red-800">
+        <button className="w-16 flex justify-center text-3xl text-red-600">
           <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
       </nav>
@@ -130,7 +138,6 @@ const Navbar = () => {
                 onClick={handleToggleSideNav}
                 to={"/services"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-                activeClassName="text-red-700"
               >
                 <FaServicestack />
                 <span>Services</span>
@@ -141,7 +148,6 @@ const Navbar = () => {
                 onClick={handleToggleSideNav}
                 to={"/courses"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-                activeClassName="text-red-700"
               >
                 <MdSubject />
                 <span>Courses</span>
@@ -152,7 +158,6 @@ const Navbar = () => {
                 onClick={handleToggleSideNav}
                 to={"/contact"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-                activeClassName="text-red-700"
               >
                 <MdOutlineConnectWithoutContact />
                 <span>Contact</span>
@@ -163,7 +168,6 @@ const Navbar = () => {
                 onClick={handleToggleSideNav}
                 to={"/about"}
                 className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-                activeClassName="text-red-700"
               >
                 <MdOutlineRoundaboutRight />
                 <span>About</span>
@@ -171,8 +175,20 @@ const Navbar = () => {
             </li>
           </ul>
           <div className="buttons text-center flex flex-col gap-4 px-6 mt-4">
-            <Link onClick={handleToggleSideNav} to={'/login'} className="text-white underline font-bold">Login</Link>
-            <Link onClick={handleToggleSideNav} to={'register'} className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2">Register</Link>
+            <Link
+              onClick={handleToggleSideNav}
+              to={"/login"}
+              className="text-white underline font-bold"
+            >
+              Login
+            </Link>
+            <Link
+              onClick={handleToggleSideNav}
+              to={"register"}
+              className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2"
+            >
+              Register
+            </Link>
           </div>
         </nav>
       </>

@@ -1,5 +1,6 @@
 import HeroImage from "../assets/images/hero.svg";
 import SeekingKnowledge from "../components/SeekingKnowledge";
+import Teachers from "../components/Teachers";
 import Testimonials from "../components/Testimonial";
 import Welcome from "../components/Welcome";
 import "../css/Home.css";
@@ -49,6 +50,7 @@ const Home = () => {
 
       <Welcome />
       <SeekingKnowledge />
+      <Teachers />
       <Testimonials />
     </>
   );
