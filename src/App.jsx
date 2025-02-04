@@ -14,8 +14,7 @@ function App() {
   }, [pathName]);
 
   
-  
-  
+  console.log(user)
   return (
     <>
       <div className="app relative grotesk">
