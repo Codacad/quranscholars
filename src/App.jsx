@@ -13,7 +13,9 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathName]);
 
-  console.log(user)
+  
+  
+  
   return (
     <>
       <div className="app relative grotesk">

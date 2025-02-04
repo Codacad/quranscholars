@@ -34,10 +34,7 @@ const Login = () => {
         dispatch(setUser(response.data));
         localStorage.setItem(
           "user",
-          JSON.stringify({
-            ...response.data,
-            // expiresIn: Date.now() + 60 * 1000,
-          })
+          JSON.stringify(response.data)
         );
       }
       if (response.error) {
