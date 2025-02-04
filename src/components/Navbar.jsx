@@ -22,10 +22,11 @@ const Navbar = () => {
   const mobileMenuRef = useRef();
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
   const handleLogout = async (e) => {
     e.preventDefault();
     setIsloading(true);
@@ -36,7 +37,6 @@ const Navbar = () => {
         setIsloading(false);
         dispatch(setUser(null));
         navigate("/login");
-        handleToggleSideNav()
       }
     } catch (error) {
       console.log(error.message);
