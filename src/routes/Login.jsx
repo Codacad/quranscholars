@@ -32,7 +32,13 @@ const Login = () => {
         setSuccess(response.data.message);
         setError("");
         dispatch(setUser(response.data));
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            ...response.data,
+            // expiresIn: Date.now() + 60 * 1000,
+          })
+        );
       }
       if (response.error) {
         setError(response.error.data.message);
@@ -42,7 +48,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       setIsLoading(false);
-      setError("Server Error");
+      setError("");
       setSuccess("");
     }
   };

@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,7 +13,7 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathName]);
 
-  console.log(user);
+  console.log(user)
   return (
     <>
       <div className="app relative grotesk">

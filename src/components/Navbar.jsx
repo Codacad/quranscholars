@@ -24,6 +24,7 @@ const Navbar = () => {
   const [isLoading, setIsloading] = useState(false);
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
+    handleLogout()
   };
 
   const handleLogout = async (e) => {
@@ -37,7 +38,6 @@ const Navbar = () => {
         dispatch(setUser(null));
         navigate("/login");
       }
-      console.log(response);
     } catch (error) {
       console.log(error.message);
       setIsloading(false);
@@ -165,10 +165,19 @@ const Navbar = () => {
           ref={mobileMenuRef}
           className={`mobile-menu fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
         >
-          <div className="header flex justify-end p-4">
+          <div className="header flex justify-between p-4">
+            {user && (
+              <NavLink
+                onClick={handleToggleSideNav}
+                className="flex items-center gap-2 text-red-600 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
+              >
+                <IoIosLogOut />
+                <span>Logout</span>
+              </NavLink>
+            )}
             <IoMdClose
               onClick={handleToggleSideNav}
-              className="text-4xl text-white cursor-pointer hover:opacity-60 transition-all"
+              className="text-4xl ml-auto text-white cursor-pointer hover:opacity-60 transition-all"
             />
           </div>
           <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
