@@ -1,14 +1,17 @@
 import { useState } from "react";
 import "../css/Admission.css";
-import { FaSpinner } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { MdErrorOutline } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
 import {
   useGetAdmissionsQuery,
   useJoinMutation,
 } from "../state/userApis/admissionApis";
+import { useNavigate } from "react-router-dom";
 const Admission = () => {
   const { user } = useSelector((state) => state.user);
   const [join] = useJoinMutation();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState();
@@ -43,8 +46,9 @@ const Admission = () => {
       const response = await join(admissionData);
       console.log(response);
       if (response.data) {
-        setSuccess("Admission Successful");
+        setSuccess(`Admission Successful, redirecting.....`);
         setError("");
+        navigate("/");
       }
       if (response.error) {
         setError(response.error.data.message);
@@ -352,6 +356,28 @@ const Admission = () => {
               </div>
             </div>
           </div>
+          {error && (
+            <div className="col-span-2">
+              <p className="flex w-full gap-2 items-center justify-center text-red-600 p-2 bg-red-100 rounded-sm text-sm mb-6">
+                <span>
+                  <MdErrorOutline />
+                </span>
+                {error.split(",")[0]}
+              </p>
+            </div>
+          )}
+          {success && (
+            <div className="w-full col-span-2">
+              <p className="flex p-2 gap-2 items-center justify-center text-green-600 rounded-sm bg-green-100 text-sm mb-2">
+                <span>
+                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 shadow-sm">
+                    <TiTick className="text-md" />
+                  </span>
+                </span>
+                {success}
+              </p>
+            </div>
+          )}
           <div className="action flex justify-end w-[100%] col-span-2 p-4">
             <button
               onClick={handleAdmissionSubmit}
