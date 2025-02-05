@@ -1,32 +1,28 @@
 import { useState } from "react";
 import "../css/Admission.css";
 import { FaSpinner } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  useGetAdmissionsQuery,
+  useJoinMutation,
+} from "../state/userApis/admissionApis";
 const Admission = () => {
+  const { user } = useSelector((state) => state.user);
+  const [join] = useJoinMutation();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState();
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(user.email);
   const [contactNumber, setContactNumber] = useState("");
-  // const [parentsContactNumber, setParentsContactNumber] = useState("");
   const [dob, setDob] = useState("");
-  // const [classTime, setClassTime] = useState("07:00");
   const [address, setAddress] = useState("");
-  // const [permanentAddressCheck, setPermanentAddressCheck] = useState(false);
-  // const [permanentAddress, setPermanentAddress] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [gender, setGender] = useState("");
   const [selectedCourses, setSelectedCourses] = useState([]);
-  // const handleCheckPermanentAddress = async () => {
-  //   setPermanentAddressCheck((pre) => !pre);
-  //   if (permanentAddressCheck) {
-  //     setPermanentAddress("");
-  //   } else {
-  //     setPermanentAddress(currentAddress);
-  //   }
-  //   console.log(permanentAddressCheck);
-  // };
-
   const handleAdmissionSubmit = async (e) => {
     e.preventDefault();
     const admissionData = {
@@ -42,8 +38,25 @@ const Admission = () => {
       gender,
       selectedCourses,
     };
+    setIsLoading(true);
+    try {
+      const response = await join(admissionData);
+      console.log(response);
+      if (response.data) {
+        setSuccess("Admission Successful");
+        setError("");
+      }
+      if (response.error) {
+        setError(response.error.data.message);
+        setSuccess("");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
 
-    console.log(admissionData);
+    // console.log(admissionData);
   };
 
   const handleSelectedCourses = async (e) => {
@@ -90,6 +103,7 @@ const Admission = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="email"
               id="email"
+              readOnly
             />
           </div>
           <div className="input-group flex flex-col">
@@ -108,18 +122,6 @@ const Admission = () => {
               id="phone-number"
             />
           </div>
-          {/* <div className="input-group flex flex-col justify-end">
-            <label htmlFor="parents-phone-number">
-              Parents Contact Number<sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="tel"
-              value={parentsContactNumber}
-              onChange={(e) => setParentsContactNumber(e.target.value)}
-              className="parents-phone-number"
-              id="parents-phone-number"
-            />
-          </div> */}
           <div className="input-group relative flex flex-col max-md:grid-cols-1">
             <label htmlFor="dob">
               DOB<sup className="text-red-500">*</sup>
@@ -132,18 +134,6 @@ const Admission = () => {
               id="dob"
             />
           </div>
-          {/* <div className="input-group flex flex-col max-md:grid-cols-1">
-            <label htmlFor="class-time">
-              Choose your preferable class time
-            </label>
-            <input
-              type="time"
-              id="class-time"
-              className="class-time"
-              value={classTime}
-              onChange={(e) => setClassTime(e.target.value)}
-            />
-          </div> */}
           <div className="input-group flex flex-col col-span-2">
             <label htmlFor="current-address">
               Address<sup className="text-red-500">*</sup>
@@ -156,28 +146,6 @@ const Admission = () => {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
-          {/* <div className="input-group select-address flex col-span-2 leading-6">
-            <input
-              type="checkbox"
-              id="check-address"
-              className="check-address mr-2"
-              checked={permanentAddressCheck}
-              onChange={() => handleCheckPermanentAddress()}
-            />
-            <label htmlFor="check-address">
-              Is your permanent address same ad current address?
-            </label>
-          </div>
-          <div className="input-group flex flex-col col-span-2">
-            <label htmlFor="permanent-address">Permanent Address</label>
-            <input
-              type="text"
-              id="permanent-address"
-              className="permanent-address"
-              value={permanentAddress}
-              onChange={(e) => setPermanentAddress(e.target.value)}
-            />
-          </div> */}
           <div className="city-state-country grid grid-cols-2 max-sm:flex flex-col gap-4 col-span-2">
             <div className="input-group flex flex-col">
               <label htmlFor="zipcode">Zip Code</label>
@@ -387,10 +355,18 @@ const Admission = () => {
           <div className="action flex justify-end w-[100%] col-span-2 p-4">
             <button
               onClick={handleAdmissionSubmit}
-              className="submit-addmission flex items-center justify-center gap-4 w-36 p-3 rounded-md bg-red-600 text-white"
+              className={`${
+                isLoading ? "opacity-20" : "opacity-100"
+              } submit-addmission flex items-center justify-center gap-4 w-36 p-3 rounded-md bg-red-600 text-white`}
             >
-              <FaSpinner className="transition-transform animate-spin" />
-              Submit
+              {isLoading ? (
+                <span className="flex justify-center items-center gap-2">
+                  <span className="spinner"></span>
+                  <span>Loading...</span>
+                </span>
+              ) : (
+                <span>Submit</span>
+              )}
             </button>
           </div>
         </form>

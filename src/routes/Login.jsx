@@ -32,16 +32,15 @@ const Login = () => {
         setSuccess(response.data.message);
         setError("");
         dispatch(setUser(response.data));
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response.data)
-        );
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/admission");
+        setIsLoading(false);
       }
       if (response.error) {
         setError(response.error.data.message);
         setSuccess("");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       setIsLoading(false);

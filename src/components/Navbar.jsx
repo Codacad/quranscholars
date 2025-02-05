@@ -20,13 +20,24 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const mobileMenuRef = useRef();
+  const mobileMenuWrapperRef = useRef();
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
   };
+
+  // if (mobileMenuRef.current) {
+  //   if (!isMobileMenuOpen) {
+  //     document.querySelector("body").style.overflow = "hidden";
+  //   } else {
+  //     mobileMenuRef.current.classList.remove("active");
+  //     document.querySelector("body").style.overflow = "auto";
+  //   }
+  // }
+
   const handleLogout = async (e) => {
     e.preventDefault();
     setIsloading(true);
@@ -37,6 +48,9 @@ const Navbar = () => {
         setIsloading(false);
         dispatch(setUser(null));
         navigate("/login");
+        if (mobileMenuRef.current) {
+          mobileMenuRef.current.classList.remove("active");
+        }
       }
     } catch (error) {
       console.log(error.message);
@@ -161,108 +175,111 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <>
-        <nav
-          ref={mobileMenuRef}
-          className={`mobile-menu fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
-        >
-          <div className="header flex justify-between p-4">
-            {user && (
-              <NavLink
-                onClick={handleLogout}
-                className="flex items-center gap-2 text-red-600 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
-              >
-                <IoIosLogOut />
-                <span>Logout</span>
-              </NavLink>
-            )}
-            <IoMdClose
-              onClick={handleToggleSideNav}
-              className="text-4xl ml-auto text-white cursor-pointer hover:opacity-60 transition-all"
-            />
-          </div>
-          <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
-            <li className="flex w-full">
-              <NavLink
+        <div ref={mobileMenuWrapperRef}>
+          <nav
+            ref={mobileMenuRef}
+            className={`mobile-menu fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
+          >
+            <div className="header flex justify-between p-4">
+            
+              <IoMdClose
                 onClick={handleToggleSideNav}
-                to={"/"}
-                className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600`}
-              >
-                <IoHomeOutline />
-                <span>Home</span>
-              </NavLink>
-            </li>
-            <li className="flex w-full">
-              <NavLink
-                onClick={handleToggleSideNav}
-                to={"/services"}
-                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-              >
-                <FaServicestack />
-                <span>Services</span>
-              </NavLink>
-            </li>
-            <li className="flex w-full">
-              <NavLink
-                onClick={handleToggleSideNav}
-                to={"/courses"}
-                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-              >
-                <MdSubject />
-                <span>Courses</span>
-              </NavLink>
-            </li>
-            <li className="flex w-full">
-              <NavLink
-                onClick={handleToggleSideNav}
-                to={"/contact"}
-                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-              >
-                <MdOutlineConnectWithoutContact />
-                <span>Contact</span>
-              </NavLink>
-            </li>
-            <li className="flex w-full">
-              <NavLink
-                onClick={handleToggleSideNav}
-                to={"/about"}
-                className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
-              >
-                <MdOutlineRoundaboutRight />
-                <span>About</span>
-              </NavLink>
-            </li>
-          </ul>
-          <div className="buttons text-center flex flex-col gap-4 px-6 mt-4">
-            {!user && (
-              <>
-                <Link
+                className="text-4xl ml-auto text-white cursor-pointer hover:opacity-60 transition-all"
+              />
+            </div>
+            <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
+              <li className="flex w-full">
+                <NavLink
                   onClick={handleToggleSideNav}
-                  to={"/login"}
-                  className="text-white underline font-bold"
+                  to={"/"}
+                  className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600`}
                 >
-                  Login
-                </Link>
-                <Link
+                  <IoHomeOutline />
+                  <span>Home</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
                   onClick={handleToggleSideNav}
-                  to={"register"}
-                  className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2"
+                  to={"/services"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
                 >
-                  Register
-                </Link>
-              </>
-            )}
+                  <FaServicestack />
+                  <span>Services</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
+                  onClick={handleToggleSideNav}
+                  to={"/courses"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                >
+                  <MdSubject />
+                  <span>Courses</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
+                  onClick={handleToggleSideNav}
+                  to={"/contact"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                >
+                  <MdOutlineConnectWithoutContact />
+                  <span>Contact</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
+                  onClick={handleToggleSideNav}
+                  to={"/about"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                >
+                  <MdOutlineRoundaboutRight />
+                  <span>About</span>
+                </NavLink>
+              </li>
+            </ul>
+            <div className="buttons text-center flex flex-col gap-4 px-6 mt-4">
+              {!user && (
+                <>
+                  <Link
+                    onClick={handleToggleSideNav}
+                    to={"/login"}
+                    className="text-white underline font-bold"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    onClick={handleToggleSideNav}
+                    to={"register"}
+                    className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
 
-            {user && (
-              <Link
-                to={"/admission"}
-                onClick={handleToggleSideNav}
-                className="text-white ring-2 ring-white p-[6px] hover:bg-white hover:text-red-600 rounded-md"
-              >
-                Join
-              </Link>
-            )}
-          </div>
-        </nav>
+              {user && (
+                <Link
+                  to={"/admission"}
+                  onClick={handleToggleSideNav}
+                  className="text-white ring-2 ring-white p-[6px] hover:bg-white hover:text-red-600 rounded-md"
+                >
+                  Join
+                </Link>
+              )}
+                {user && (
+                <NavLink
+                  onClick={handleLogout}
+                  className="flex items-center justify-center w-full gap-2 text-red-600 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
+                >
+                  <IoIosLogOut />
+                  <span>Logout</span>
+                </NavLink>
+              )}
+            </div>
+          </nav>
+        </div>
       </>
     </div>
   );
