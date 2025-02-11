@@ -1,5 +1,7 @@
-import Logo from "/logo2.svg";
+import Logo from "/blog_logo.svg";
+import { useEffect } from "react";
 import Quranscholar from "/quranscholar100x70.svg";
+import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, Link, useNavigate } from "react-router-dom";
@@ -21,22 +23,17 @@ const Navbar = () => {
   const [logout] = useLogoutMutation();
   const mobileMenuRef = useRef();
   const mobileMenuWrapperRef = useRef();
+  const userProfileDropdownRef = useRef();
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
-    setIsMobileMenuOpen((prev) => !prev);
   };
 
-  // if (mobileMenuRef.current) {
-  //   if (!isMobileMenuOpen) {
-  //     document.querySelector("body").style.overflow = "hidden";
-  //   } else {
-  //     mobileMenuRef.current.classList.remove("active");
-  //     document.querySelector("body").style.overflow = "auto";
-  //   }
-  // }
+  const handleUserProfileDropdownToggle = () => {
+    userProfileDropdownRef.current.classList.toggle("dropdown-active");
+    console.log("User Profile");
+  };
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -144,10 +141,39 @@ const Navbar = () => {
             </Link>
           )}
           {user && (
-            <div className="flex items-center">
-              <button onClick={handleLogout} className="text-red-600 text-2xl">
-                <IoIosLogOut />
+            <div className="flex items-center relative">
+              <button
+                onClick={handleUserProfileDropdownToggle}
+                className="flex text-red-600 gap-2 items-center rounded-sm hover:bg-red-100 p-2"
+              >
+                <FaUserCircle className="cursor-pointer" size={25} />
+                <span>{user && user.fullname}</span>
               </button>
+
+              <div
+                ref={userProfileDropdownRef}
+                className={`dropdown-menu rounded-md -left-[50px] top-12 bg-white shadow-md text-gray-500 text-sm min-w-[250px] absolute`}
+              >
+                <div className="flex flex-col px-4 pt-4 pb-2">
+                <Link to={"/dashboard"} className="p-2 hover:bg-red-50 hover:text-red-600">
+                    <span className="">Dashboard</span>
+                  </Link>
+                  <Link to={"/profile"} className="p-2 hover:bg-red-50 hover:text-red-600">
+                    <span className="">Profile</span>
+                  </Link>
+                  <Link className="p-2 hover:bg-red-50 hover:text-red-600">
+                    Join Quran Scholar
+                  </Link>
+                  <hr className="my-2" />
+                  <button
+                    onClick={handleLogout}
+                    className="p-2 hover:bg-red-50 hover:text-red-600 flex justify-center items-center gap-2"
+                  >
+                    <IoIosLogOut />
+                    <Link className="">Logout</Link>
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           {!user && (
@@ -178,10 +204,18 @@ const Navbar = () => {
         <div ref={mobileMenuWrapperRef}>
           <nav
             ref={mobileMenuRef}
-            className={`mobile-menu fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
+            className={`mobile-menu shadow-lg fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
           >
             <div className="header flex justify-between p-4">
-            
+              {user && (
+                <button
+                  // onClick={handleUserProfileDropdownToggle}
+                  className="flex text-gray-100 gap-2 items-center rounded-sm hover:bg-[rgba(0,0,0,.2)] p-2"
+                >
+                  <FaUserCircle className="cursor-pointer" size={25} />
+                  <span>{user && user.fullname}</span>
+                </button>
+              )}
               <IoMdClose
                 onClick={handleToggleSideNav}
                 className="text-4xl ml-auto text-white cursor-pointer hover:opacity-60 transition-all"
@@ -265,10 +299,10 @@ const Navbar = () => {
                   onClick={handleToggleSideNav}
                   className="text-white ring-2 ring-white p-[6px] hover:bg-white hover:text-red-600 rounded-md"
                 >
-                  Join
+                  Join Quran Scholar
                 </Link>
               )}
-                {user && (
+              {user && (
                 <NavLink
                   onClick={handleLogout}
                   className="flex items-center justify-center w-full gap-2 text-red-600 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
@@ -278,6 +312,10 @@ const Navbar = () => {
                 </NavLink>
               )}
             </div>
+
+            {/* <div className="flex mt-8 p-8">
+              <Link className="text-gray-100 underline" to={'/howitworks'}>How It works</Link>
+            </div> */}
           </nav>
         </div>
       </>

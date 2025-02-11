@@ -3,6 +3,7 @@ import AboutIllustration from "/woman_ill_2.svg";
 import { Link } from "react-router-dom";
 import ChildWithQuran from "/child-with-quran.svg";
 import { IoMdCheckmark } from "react-icons/io";
+import MissionAbout from "../components/MissionAbout";
 const About = () => {
   return (
     <>
@@ -81,6 +82,7 @@ const About = () => {
             </div>
           </div>
         </div>
+        <MissionAbout />
       </div>
     </>
   );

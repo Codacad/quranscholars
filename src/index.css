@@ -24,7 +24,6 @@
 .active {
   right: 0;
 }
-
 .spinner-wrapper {
   position: absolute;
   left: 0;
@@ -55,4 +54,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Dropdown */
+.dropdown-menu {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0ms ease-in-out;
+}
+
+.dropdown-active {
+  transform: scaleY(1);
 }

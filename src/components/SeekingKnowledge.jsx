@@ -38,7 +38,7 @@ const SeekingKnowledge = () => {
       </div>
 
       {/* Read More Section */}
-      <SeekingKnowledgeReadMore readMoreToggle={readMoreToggle} setReadMoreToggle={setReadMoreToggle} />
+      {/* <SeekingKnowledgeReadMore readMoreToggle={readMoreToggle} setReadMoreToggle={setReadMoreToggle} /> */}
     </div>
   )
 }

@@ -18,6 +18,9 @@ import { store } from "./state/store.js";
 import PrivacyPolicy from "./routes/PrivacyPolicy.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import NotLoggedIn from "./components/NotLoggedIn.jsx";
+import HowItWorks from "./routes/HowItWork.jsx";
+import Profile from "./routes/Profile.jsx";
+import StudentInfo from "./routes/StudentInfo.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +60,15 @@ const router = createBrowserRouter([
       },
       { path: "courses/:courseName", element: <CourseOverview /> },
       { path: "/privacy", element: <PrivacyPolicy /> },
+      {
+        path: "/dashboard",
+        element: (
+          <ProtectedRoute>
+            <StudentInfo />
+          </ProtectedRoute>
+        ),
+      },
+      // { path: "/howitworks", element: <HowItWorks /> },
     ],
   },
 ]);
