@@ -60,6 +60,7 @@ const router = createBrowserRouter([
       },
       { path: "courses/:courseName", element: <CourseOverview /> },
       { path: "/privacy", element: <PrivacyPolicy /> },
+      { path: "/profile", element:<ProtectedRoute><Profile /></ProtectedRoute> },
       {
         path: "/dashboard",
         element: (

@@ -1,132 +1,114 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faCheck } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faUpload,
+  faEdit,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 const ProfilePage = () => {
-  const [userDetails, setUserDetails] = useState({
-    fullName: "Mohd Rizwan",
-    email: "iamrizwan40@gmail.com",
-    contactNumber: "8979074004",
-    dob: "1996-08-01",
-    address: "Faridnagar, Thakurdwara, Moradabad",
-    zipCode: "244601",
-    city: "Moradabad",
-    state: "Uttar Pradesh",
-    country: "India",
-    gender: "female",
-    selectedCourses: ["Quran Basics", "Hadith Studies", "Islamic History"],
-  });
+  const { user } = useSelector((state) => state.user);
+  const [profileImage, setProfileImage] = useState(
+    user?.image || "/default-avatar.png"
+  );
 
-  const handleEdit = (field) => {
-    // setEditableFields(prev => ({ ...prev, [field]: !prev[field] }));
-  };
-
-  const handleSave = (field) => {
-    // setEditableFields(prev => ({ ...prev, [field]: false }));
-    // Add PATCH request logic here
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+    }
   };
 
   return (
-    <>
-      <div className="profile md:w-[70%] mx-auto p-4 md:py-12">
-        <div className="profile-header flex justify-between items-center border-b-2 pb-4">
-          <div>
-            <h1 className="profile-title text-xl text-red-600">Account</h1>
-            <p className="text-sm text-gray-400">
-              Real time acount information, can be updated
-            </p>
+    <div className=" bg-gray-50 mx-auto p-6 space-y-6">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white  p-6 rounded-lg">
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+                alt="Profile"
+                className="w-24 h-24 rounded-full"
+              />
+              <label className="absolute bottom-1 right-1 bg-red-600 text-white w-8 h-8 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer">
+                <FontAwesomeIcon icon={faUpload} size="lg" />
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleImageUpload}
+                />
+              </label>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold">
+                {user?.fullname || "User Name"}
+              </h2>
+              <p className="text-gray-600">{user?.email}</p>
+              <p className="text-sm text-red-600 font-semibold">{user?.role}</p>
+            </div>
           </div>
-          <button className="profile-edit-btn">Logout</button>
         </div>
 
-        <div className="flex col-span-1 items-center gap-4 w-full md:my-12 my-8">
-          <img
-            className="w-24 h-24"
-            src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
-            alt="Picture"
-          />
-          <div className="name-email">
-            <h3 className="text-lg font-bold">{userDetails.fullName}</h3>
-            <p className="text-gray-400">{userDetails.email}</p>
-          </div>
-          <div className="edit-profile-picture ml-auto">
-            <button className="bg-gray-100 shadow-sm text-gray-700 px-4 py-2 rounded-md">
-              Edit Profile Picture
-            </button>
+        <div className="bg-gray-100 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold">Personal Information</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label className="block font-medium">Full Name</label>
+              <input
+                type="text"
+                value={user?.fullname}
+                disabled
+                className="w-full p-2 border rounded bg-gray-50"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Email</label>
+              <input
+                type="email"
+                value={user?.email}
+                disabled
+                className="w-full p-2 border rounded bg-gray-50"
+              />
+            </div>
+            <div>
+              <label className="block font-medium">Role</label>
+              <input
+                type="text"
+                value={user?.role}
+                disabled
+                className="w-full p-2 border rounded bg-gray-50"
+              />
+            </div>
           </div>
         </div>
 
-        <div className="profile-details grid md:grid-cols-20 gap-8">
-          {Object.entries(userDetails).map(([key, value]) => (
-            <>
-              <div className="grid gap-4 w-full" key={key}>
-                <div className="details w-full gap-4 flex items-end">
-                  <div className="flex flex-col w-full gap-2 relative">
-                    {key === "selectedCourses" ? (
-                      <label htmlFor={key}>YOUR COURSES</label>
-                    ) : key === "zipCode" ? (
-                      <label htmlFor={key}>POSTAL CODE</label>
-                    ) : key === "contactNumber" ? (
-                      <label htmlFor={key}>CONTACT NUMBER</label>
-                    ) : (
-                      <label htmlFor={key}>{key.toUpperCase()}</label>
-                    )}
-                    {key !== "selectedCourses" && (
-                      <>
-                        <input
-                          type="text"
-                          name={key}
-                          value={value}
-                          readOnly
-                          id=""
-                          className={`bg-gray-100 border-2 w-full rounded-xl border-gray-100 p-2 px-2 outline-none`}
-                        />
-                        <button
-                          title={`Edit ${
-                            key === "selectedCourses"
-                              ? "Selected Courses"
-                              : key === "fullName"
-                              ? "Full Name"
-                              : key === "zipCode"
-                              ? "Postal Code"
-                              : key === "contactNumber"
-                              ? "Contact Number"
-                              : key
-                          }`}
-                          className="absolute text-gray-400 right-2 bottom-[6px] profile-edit-btn w-6 h-8 rounded-md"
-                          onClick={() => handleEdit(key)}
-                        >
-                          <FontAwesomeIcon icon={faPencil} />
-                        </button>
-                      </>
-                    )}
-                  </div>
+        <div className="bg-gray-100 p-6 rounded-lg">
+          <h3 className="text-lg font-semibold">
+            Islamic Education Subscription
+          </h3>
+          <p className="text-gray-600 mt-2">
+            You are enrolled in the{" "}
+            <strong className="text-red-600">Premium Plan</strong>.
+          </p>
+          <p className="text-gray-600">
+            Access to Quran & Hadith lessons, Fiqh, and Tafsir.
+          </p>
+          <button className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+            Upgrade Plan
+          </button>
+        </div>
 
-                  {/* <button
-                      className="profile-save-btn"
-                      onClick={() => handleSave(key)}
-                    >
-                      <FontAwesomeIcon icon={faCheck} />
-                    </button> */}
-                </div>
-                {key === "selectedCourses" && (
-                  <div className="flex flex-wrap gap-2">
-                    {value.map((course) => (
-                      <div
-                        key={course}
-                        className="bg-red-100 text-red-600 p-2 px-4 rounded-md"
-                      >
-                        {course}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
-          ))}
+        <div className="flex justify-between mt-4">
+          <button className="flex items-center gap-2 px-4 py-2 border rounded bg-gray-100 hover:bg-gray-50">
+            <FontAwesomeIcon icon={faEdit} /> Edit Profile
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded">
+            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
