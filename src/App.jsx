@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet } from "react-router-dom";
-import { useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -7,10 +7,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CardButton from "./components/cart/CardButton";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./state/slices/useSlice";
+// import Spinner from "./components/Spinner";
 function App() {
   const { user } = useSelector((state) => state.user);
   const pathName = useLocation();
-
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathName]);
@@ -42,6 +43,9 @@ function App() {
     };
   };
   useSessionTimeout(user);
+
+
+ 
   return (
     <>
       <div className="app relative grotesk">

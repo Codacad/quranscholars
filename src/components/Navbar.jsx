@@ -5,11 +5,11 @@ import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { CgLogIn } from "react-icons/cg";
+import { CgLogIn, CgProfile } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
 import { IoHomeOutline, IoLogOut } from "react-icons/io5";
 import { FaServicestack } from "react-icons/fa6";
-import { MdSubject } from "react-icons/md";
+import { MdDashboard, MdSubject } from "react-icons/md";
 import { MdOutlineConnectWithoutContact } from "react-icons/md";
 import { MdOutlineRoundaboutRight } from "react-icons/md";
 import { useRef } from "react";
@@ -17,22 +17,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../state/userApis/userAuthApis";
 import { setUser } from "../state/slices/useSlice";
 import { IoIosLogOut } from "react-icons/io";
+import useClickOutside from "../hooks/useClickOutside";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const mobileMenuRef = useRef();
+  const mobileMenuButtonRef = useRef();
   const mobileMenuWrapperRef = useRef();
   const userProfileDropdownRef = useRef();
+  const dropwdownButtonRef = useRef();
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
   const handleToggleSideNav = () => {
     mobileMenuRef.current.classList.toggle("active");
   };
-
+  useClickOutside(mobileMenuRef, mobileMenuButtonRef, "active");
+  useClickOutside(
+    userProfileDropdownRef,
+    dropwdownButtonRef,
+    "dropdown-active"
+  );
   const handleUserProfileDropdownToggle = () => {
     userProfileDropdownRef.current.classList.toggle("dropdown-active");
-    console.log("User Profile");
   };
 
   const handleLogout = async (e) => {
@@ -47,6 +54,9 @@ const Navbar = () => {
         navigate("/login");
         if (mobileMenuRef.current) {
           mobileMenuRef.current.classList.remove("active");
+        }
+        if (userProfileDropdownRef.current) {
+          userProfileDropdownRef.current.classList.remove("dropdown-active");
         }
       }
     } catch (error) {
@@ -132,18 +142,19 @@ const Navbar = () => {
               Register
             </Link>
           )}
-          {user && (
+          {/* {user && (
             <Link
               to={"/admission"}
               className="text-red-600 ring-2 w-20 text-center ring-red-600 p-[6px] hover:bg-red-600 hover:text-white rounded-md"
             >
               Join
             </Link>
-          )}
+          )} */}
           {user && (
             <div className="flex items-center relative">
               <button
                 onClick={handleUserProfileDropdownToggle}
+                ref={dropwdownButtonRef}
                 className="flex text-red-600 gap-2 items-center rounded-sm hover:bg-red-100 p-2"
               >
                 <FaUserCircle className="cursor-pointer" size={25} />
@@ -155,13 +166,24 @@ const Navbar = () => {
                 className={`dropdown-menu rounded-md -left-[50px] top-12 bg-white shadow-md text-gray-500 text-sm min-w-[250px] absolute`}
               >
                 <div className="flex flex-col px-4 pt-4 pb-2">
-                <Link to={"/dashboard"} className="p-2 hover:bg-red-50 hover:text-red-600">
+                  <Link
+                    onClick={handleUserProfileDropdownToggle}
+                    to={"/dashboard"}
+                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                  >
                     <span className="">Dashboard</span>
                   </Link>
-                  <Link to={"/profile"} className="p-2 hover:bg-red-50 hover:text-red-600">
+                  <Link
+                    onClick={handleUserProfileDropdownToggle}
+                    to={"/profile"}
+                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                  >
                     <span className="">Profile</span>
                   </Link>
-                  <Link className="p-2 hover:bg-red-50 hover:text-red-600">
+                  <Link
+                    onClick={handleUserProfileDropdownToggle}
+                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                  >
                     Join Quran Scholar
                   </Link>
                   <hr className="my-2" />
@@ -194,7 +216,10 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="w-16 flex justify-end text-3xl text-red-600">
+        <button
+          ref={mobileMenuButtonRef}
+          className="w-16 flex justify-end text-3xl text-red-600"
+        >
           <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
       </nav>
@@ -221,7 +246,7 @@ const Navbar = () => {
                 className="text-4xl ml-auto text-white cursor-pointer hover:opacity-60 transition-all"
               />
             </div>
-            <ul className="text-lg font-semibold mt-4 flex flex-col gap-4 p-4">
+            <ul className="text-md font-semibold mt-4 flex flex-col gap-4 p-4">
               <li className="flex w-full">
                 <NavLink
                   onClick={handleToggleSideNav}
@@ -230,6 +255,26 @@ const Navbar = () => {
                 >
                   <IoHomeOutline />
                   <span>Home</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
+                  onClick={handleToggleSideNav}
+                  to={"/dashboard"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                >
+                  <MdDashboard />
+                  <span>Dashboard</span>
+                </NavLink>
+              </li>
+              <li className="flex w-full">
+                <NavLink
+                  onClick={handleToggleSideNav}
+                  to={"/profile"}
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                >
+                  <CgProfile />
+                  <span>Profile</span>
                 </NavLink>
               </li>
               <li className="flex w-full">

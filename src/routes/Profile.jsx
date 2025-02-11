@@ -4,6 +4,8 @@ import {
   faUpload,
   faEdit,
   faSignOutAlt,
+  faDeleteLeft,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 const ProfilePage = () => {
@@ -104,7 +106,7 @@ const ProfilePage = () => {
             <FontAwesomeIcon icon={faEdit} /> Edit Profile
           </button>
           <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded">
-            <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+            <FontAwesomeIcon icon={faTrash} /> Delete Profile
           </button>
         </div>
       </div>
