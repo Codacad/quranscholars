@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  useGetAdmissionsQuery,
+  useUpdateMutation,
+} from "../state/userApis/admissionApis";
+import { useSelector } from "react-redux";
 const StudentInfo = () => {
+  const [update] = useUpdateMutation();
+  const { data: studentDetails } = useGetAdmissionsQuery();
+  const { user } = useSelector((state) => state.user);
   const [userDetails, setUserDetails] = useState({
     fullName: "Mohd Rizwan",
     email: "iamrizwan40@gmail.com",
@@ -38,13 +45,23 @@ const StudentInfo = () => {
     setUserDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSave = (field) => {
-    // setEditableFields(prev => ({ ...prev, [field]: false }));
+  const handleSave = async (field, value) => {
     // Add PATCH request logic here
 
     if (userDetails[field] === "") {
       setError(`cannot be empty`);
       return;
+    }
+    console.log(field, value);
+    try {
+      const response = await update({
+        id: user._id,
+        [field]: value,
+      });
+      console.log(response);
+      setEditableFields((prev) => ({ ...prev, [field]: false }));
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -71,8 +88,8 @@ const StudentInfo = () => {
 
           <div className="profile-details mt-8 grid md:grid-cols-20 gap-8">
             {Object.entries(userDetails).map(([key, value]) => (
-              <>
-                <div className="grid gap-4 w-full" key={key}>
+              <div className="" key={key}>
+                <div className="grid gap-4 w-full">
                   <div className="details w-full gap-4 flex items-end">
                     <div className="flex flex-col w-full gap-2 relative">
                       {key === "selectedCourses" ? (
@@ -119,7 +136,7 @@ const StudentInfo = () => {
                             <div className="absolute flex items-center justify-center gap-4 text-gray-400 right-2 bottom-[6px] profile-edit-btn w-20 h-8 rounded-md">
                               <button
                                 className="profile-save-btn text-xl flex items-center justify-center gap-1"
-                                onClick={() => handleSave(key)}
+                                onClick={() => handleSave(key, value)}
                               >
                                 <FontAwesomeIcon icon={faCheck} />
                               </button>
@@ -148,11 +165,10 @@ const StudentInfo = () => {
                     </div>
                   )}
                   {value === "" && error && (
-                  <p className="text-red-500">{error}</p>
-                )}
+                    <p className="text-red-500">{error}</p>
+                  )}
                 </div>
-                
-              </>
+              </div>
             ))}
           </div>
         </div>

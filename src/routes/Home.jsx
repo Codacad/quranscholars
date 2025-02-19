@@ -20,13 +20,13 @@ const Home = () => {
             </h3>
 
             {/* Main Heading */}
-            <h1 className="text-3xl font-bold text-red-600 leading-[1.6em]">
+            <h1 className="md:text-5xl text-3xl font-bold text-red-600 leading-[1.6em]">
               Dive into Interactive Halal Learning for All Ages, Guided by Quran
               and Hadith.
             </h1>
 
             {/* Description */}
-            <p className="text-red-700">
+            <p className="text-red-700 text-2xl">
               ہر عمر کے گروہ کے لئے ڈھالا گیا، تقویٰ، دائمی تعلیم، اور روحانی
               بڑھائی، قرآن اور حدیث کی روشنی میں۔
             </p>
@@ -39,11 +39,7 @@ const Home = () => {
 
           {/* Image Section */}
           <div className="image px-8">
-            <img
-              src={HeroImage}
-              alt="Hero"
-              className="w-full rounded-lg"
-            />
+            <img src={HeroImage} alt="Hero" className="w-full rounded-lg" />
           </div>
         </div>
       </div>

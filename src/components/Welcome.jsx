@@ -7,10 +7,13 @@ const Welcome = () => {
   return (
     <>
       <div className="welcome bg-white md:bg-red-50 grid md:grid-cols-2 max-md:grid-cols-1 justify-center items-center md:pt-16 md:px-16 py-8 px-4 gap-8">
-        
         {/* Image Section */}
         <div className="img w-full md:order-2 flex justify-center">
-          <img src={WelcomeImgTeaching} alt="Teaching" className="w-full max-w-md rounded-lg" />
+          <img
+            src={WelcomeImgTeaching}
+            alt="Teaching"
+            className="w-full max-w-md rounded-lg"
+          />
         </div>
 
         {/* Text Section */}
@@ -19,7 +22,10 @@ const Welcome = () => {
             Welcome to our Quran Scholar Website
           </h1>
           <p className="text-paragraph md:text-xl text-base font-medium leading-7">
-            Dear brothers and sisters, we are glad to see you on our religious website. Here, you will find everything you need to bring peace to your soul. Our online project was created for Muslims and is supported by thousands of people all over the world.
+            Dear brothers and sisters, we are glad to see you on our religious
+            website. Here, you will find everything you need to bring peace to
+            your soul. Our online project was created for Muslims and is
+            supported by thousands of people all over the world.
           </p>
 
           <Link
