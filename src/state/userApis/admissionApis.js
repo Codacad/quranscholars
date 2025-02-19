@@ -6,9 +6,11 @@ const admissionApis = createApi({
     baseUrl: import.meta.env.VITE_API_URL || "http://localhost:3000",
     credentials: "include",
   }),
+  tagTypes: ["Admission"],
   endpoints: (builder) => ({
     getAdmissions: builder.query({
       query: () => "api/admissions",
+      providesTags: ["Admission"],
     }),
     join: builder.mutation({
       query: (data) => ({
@@ -16,10 +18,20 @@ const admissionApis = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Admission"],
+    }),
+    update: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `api/admission/update/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Admission"],
     }),
   }),
 });
 
-export const { useGetAdmissionsQuery, useJoinMutation } = admissionApis;
+export const { useGetAdmissionsQuery, useJoinMutation, useUpdateMutation } =
+  admissionApis;
 
 export default admissionApis;
