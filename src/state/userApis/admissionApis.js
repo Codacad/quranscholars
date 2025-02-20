@@ -21,8 +21,8 @@ const admissionApis = createApi({
       invalidatesTags: ["Admission"],
     }),
     update: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `api/admission/update/${id}`,
+      query: (data) => ({
+        url: "api/admission/update",
         method: "PATCH",
         body: data,
       }),

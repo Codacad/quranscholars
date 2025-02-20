@@ -45,9 +45,8 @@ const StudentInfo = () => {
     setUserDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  console.log(studentDetails);
   const handleSave = async (field, value) => {
-    // Add PATCH request logic here
-
     if (userDetails[field] === "") {
       setError(`cannot be empty`);
       return;
@@ -55,7 +54,6 @@ const StudentInfo = () => {
     console.log(field, value);
     try {
       const response = await update({
-        id: user._id,
         [field]: value,
       });
       console.log(response);
@@ -87,7 +85,7 @@ const StudentInfo = () => {
           </div>
 
           <div className="profile-details mt-8 grid md:grid-cols-20 gap-8">
-            {Object.entries(userDetails).map(([key, value]) => (
+            {Object.entries(userDetails[0]).map(([key, value]) => (
               <div className="" key={key}>
                 <div className="grid gap-4 w-full">
                   <div className="details w-full gap-4 flex items-end">
