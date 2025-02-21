@@ -1,74 +1,17 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
-import {
-  useGetAdmissionsQuery,
-  useUpdateMutation,
-} from "../state/userApis/admissionApis";
-import { useSelector } from "react-redux";
+import { useEditStudentDetails } from "../hooks/user_info/useEditStudentDetails";
 const StudentInfo = () => {
-  const [update] = useUpdateMutation();
-  const { data: studentDetails } = useGetAdmissionsQuery();
-  const { user } = useSelector((state) => state.user);
-  const [userDetails, setUserDetails] = useState({
-    fullName: "Mohd Rizwan",
-    email: "iamrizwan40@gmail.com",
-    contactNumber: "8979074004",
-    dob: "1996-08-01",
-    address: "Faridnagar, Thakurdwara, Moradabad",
-    zipCode: "244601",
-    city: "Moradabad",
-    state: "Uttar Pradesh",
-    country: "India",
-    gender: "female",
-    selectedCourses: ["Quran Basics", "Hadith Studies", "Islamic History"],
-  });
-  const [editableFields, setEditableFields] = useState({
-    fullName: false,
-    email: false,
-    contactNumber: false,
-    dob: false,
-    address: false,
-    zipCode: false,
-    city: false,
-    state: false,
-    country: false,
-    gender: false,
-    selectedCourses: false,
-  });
-  const [error, setError] = useState(false);
-  const handleEdit = (field) => {
-    setEditableFields((prev) => ({ ...prev, [field]: !prev[field] }));
-  };
-
-  const handleChange = (e) => {
-    setUserDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSave = async (field, value) => {
-    // Add PATCH request logic here
-
-    if (userDetails[field] === "") {
-      setError(`cannot be empty`);
-      return;
-    }
-    console.log(field, value);
-    try {
-      const response = await update({
-        id: user._id,
-        [field]: value,
-      });
-      console.log(response);
-      setEditableFields((prev) => ({ ...prev, [field]: false }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleCancel = (field) => {
-    setEditableFields((prev) => ({ ...prev, [field]: false }));
-    setUserDetails((prev) => ({ ...prev, [field]: userDetails[field] }));
-  };
+  const {
+    userDetails,
+    editableFields,
+    handleEdit,
+    handleChange,
+    studentDetails,
+    handleCancel,
+    handleSave,
+    error,
+  } = useEditStudentDetails();
 
   return (
     <>
@@ -106,7 +49,7 @@ const StudentInfo = () => {
                           <input
                             type="text"
                             name={key}
-                            value={value}
+                            value={key == "dob" ? value.split("T")[0] : value}
                             readOnly={!editableFields[key]}
                             id=""
                             onChange={handleChange}
@@ -127,7 +70,9 @@ const StudentInfo = () => {
                                   ? "Contact Number"
                                   : key
                               }`}
-                              className="absolute text-gray-400 text-xl right-4 bottom-[6px] profile-edit-btn w-6 h-8 rounded-md"
+                              className={`absolute ${
+                                key === "email" ? "hidden" : ""
+                              } text-gray-400 text-xl right-4 bottom-[6px] profile-edit-btn w-6 h-8 rounded-md`}
                               onClick={() => handleEdit(key)}
                             >
                               <FontAwesomeIcon icon={faPencil} />
