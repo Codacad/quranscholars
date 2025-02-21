@@ -30,7 +30,7 @@ const StudentInfo = () => {
           </div>
 
           <div className="profile-details mt-8 grid md:grid-cols-20 gap-8">
-            {Object.entries(userDetails[0]).map(([key, value]) => (
+            {Object.entries(userDetails).map(([key, value]) => (
               <div className="" key={key}>
                 <div className="grid gap-4 w-full">
                   <div className="details w-full gap-4 flex items-end">
