@@ -4,7 +4,33 @@ import Teachers from "../components/Teachers";
 import Testimonials from "../components/Testimonial";
 import Welcome from "../components/Welcome";
 import "../css/Home.css";
+import { Link } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
+import GridBackground from "../p5_sketches/GridBackground";
 const Home = () => {
+  const gridWrapperRef = useRef();
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (gridWrapperRef.current) {
+      setWidth(gridWrapperRef.current.offsetWidth);
+      setHeight(gridWrapperRef.current.offsetHeight);
+    }
+    const handleResizeWidth = () => {
+      if (gridWrapperRef.current) {
+        setWidth(gridWrapperRef.current.offsetWidth);
+        setHeight(gridWrapperRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener("resize", handleResizeWidth);
+
+    return () => {
+      window.removeEventListener("resize", handleResizeWidth);
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -32,14 +58,17 @@ const Home = () => {
             </p>
 
             {/* Call-to-Action Button */}
-            <button className="w-32 bg-red-600 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all">
+            <Link
+              to={"/register"}
+              className="w-32 bg-red-600 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Image Section */}
-          <div className="image px-8">
-            <img src={HeroImage} alt="Hero" className="w-full rounded-lg" />
+          <div ref={gridWrapperRef} className="image">
+            <GridBackground dimensions={{ width, height }} />
           </div>
         </div>
       </div>

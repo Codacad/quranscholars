@@ -5,7 +5,7 @@ import {
 } from "../../state/userApis/admissionApis";
 
 export const useEditStudentDetails = () => {
-  const { data, refetch } = useGetAdmissionsQuery(undefined, {
+  const { data, refetch, isLoading } = useGetAdmissionsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const [update] = useUpdateMutation();
@@ -94,5 +94,6 @@ export const useEditStudentDetails = () => {
     handleCancel,
     studentDetails,
     error,
+    isLoading,
   };
 };

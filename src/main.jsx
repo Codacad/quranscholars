@@ -53,7 +53,14 @@ const router = createBrowserRouter([
           </NotLoggedIn>
         ),
       },
-      { path: "register", element: <Register /> },
+      {
+        path: "register",
+        element: (
+          <NotLoggedIn>
+            <Register />
+          </NotLoggedIn>
+        ),
+      },
       {
         path: "courses",
         element: <Courses />,
