@@ -5,7 +5,12 @@ import {
 } from "../../state/userApis/admissionApis";
 
 export const useEditStudentDetails = () => {
-  const { data, refetch, isLoading } = useGetAdmissionsQuery(undefined, {
+  const [saveLoading, setSaveLoading] = useState(false);
+  const {
+    data,
+    refetch,
+    isLoading: admissionDetailsLoading,
+  } = useGetAdmissionsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const [update] = useUpdateMutation();
@@ -56,18 +61,22 @@ export const useEditStudentDetails = () => {
   // Handle save
   const handleSave = useCallback(
     async (field, value) => {
+      setSaveLoading(true);
       if (!value) {
         setError(`${field} cannot be empty`);
         return;
       }
+
       try {
         const response = await update({ [field]: value });
         console.log("Update successful:", response);
         setEditableFields((prev) => ({ ...prev, [field]: false }));
         refetch();
+        setSaveLoading(false);
       } catch (error) {
         console.error("Update error:", error);
         setError("Failed to update. Please try again.");
+        setSaveLoading(false);
       }
     },
     [update, refetch]
@@ -94,6 +103,7 @@ export const useEditStudentDetails = () => {
     handleCancel,
     studentDetails,
     error,
-    isLoading,
+    admissionDetailsLoading,
+    saveLoading,
   };
 };

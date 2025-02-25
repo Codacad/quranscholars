@@ -29,10 +29,10 @@ const Welcome = () => {
           </p>
 
           <Link
-            to="#"
-            className="bg-red-600 hover:bg-red-700 transition-all p-3 rounded-full text-white text-center w-40 my-6 md:w-48 shadow-lg transform hover:scale-105"
+            to="/about"
+            className="bg-red-600 hover:bg-red-700 transition-all px-4 py-2 rounded-full text-white text-center w-32 my-6 shadow-sm"
           >
-            Get Started
+            Learn More
           </Link>
         </div>
       </div>

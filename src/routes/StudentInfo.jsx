@@ -11,12 +11,13 @@ const StudentInfo = () => {
     handleCancel,
     handleSave,
     error,
-    isLoading,
+    admissionDetailsLoading,
+    saveLoading,
   } = useEditStudentDetails();
 
   return (
     <>
-      {isLoading ? (
+      {admissionDetailsLoading ? (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
         </div>
@@ -58,10 +59,11 @@ const StudentInfo = () => {
                               readOnly={!editableFields[key]}
                               id=""
                               onChange={handleChange}
+                              autoFocus
                               className={`${
                                 !editableFields[key]
                                   ? "bg-gray-100"
-                                  : "bg-white"
+                                  : "bg-white border-2 border-red-600"
                               } border-2 w-full text-gray-500 rounded-xl border-gray-100 p-2 px-4 outline-none`}
                             />
                             {!editableFields[key] ? (
@@ -86,12 +88,16 @@ const StudentInfo = () => {
                               </button>
                             ) : (
                               <div className="absolute flex items-center justify-center gap-4 text-gray-400 right-2 bottom-[6px] profile-edit-btn w-20 h-8 rounded-md">
-                                <button
-                                  className="profile-save-btn text-xl flex items-center justify-center gap-1"
-                                  onClick={() => handleSave(key, value)}
-                                >
-                                  <FontAwesomeIcon icon={faCheck} />
-                                </button>
+                                {saveLoading ? (
+                                  <div className="spinner"></div>
+                                ) : (
+                                  <button
+                                    className="profile-save-btn text-xl flex items-center justify-center gap-1"
+                                    onClick={() => handleSave(key, value)}
+                                  >
+                                    <FontAwesomeIcon icon={faCheck} />
+                                  </button>
+                                )}
                                 <button
                                   onClick={() => handleCancel(key)}
                                   className="flex text-xl items-center justify-center gap-1"

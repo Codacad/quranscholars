@@ -21,6 +21,7 @@ import NotLoggedIn from "./components/NotLoggedIn.jsx";
 import HowItWorks from "./routes/HowItWork.jsx";
 import Profile from "./routes/Profile.jsx";
 import StudentInfo from "./routes/StudentInfo.jsx";
+import TestPage from "./routes/TestPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      // { path: "/howitworks", element: <HowItWorks /> },
+      { path: "/test", element: <TestPage /> },
     ],
   },
 ]);

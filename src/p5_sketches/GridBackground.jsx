@@ -29,6 +29,7 @@ const GridBackground = ({ dimensions }) => {
         // rect
         for (let i = 0; i <= 15; i++) {
           p.noStroke();
+          p.rectMode(p.CENTER);
           p.fill("#fecaca");
           p.rect(p.random(width), p.random(height), 100, 100);
         }

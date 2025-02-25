@@ -33,10 +33,7 @@ const Home = () => {
 
   return (
     <>
-      <div
-        id="main"
-        className="home bg-gray-50 md:p-10 flex md:min-h-[100vh] py-8 items-center"
-      >
+      <div id="main" className="home bg-gray-50 md:p-10 flex py-8 items-center">
         <div className="home-contents grid grid-cols-2 max-md:grid-cols-1 max-md:gap-8">
           {/* Text Section */}
           <div className="text flex flex-col md:gap-6 max-md:items-center max-md:text-center gap-4 justify-center px-4">
@@ -60,7 +57,7 @@ const Home = () => {
             {/* Call-to-Action Button */}
             <Link
               to={"/register"}
-              className="w-32 bg-red-600 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
+              className="w-32 text-center bg-red-600 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
             >
               Get Started
             </Link>
