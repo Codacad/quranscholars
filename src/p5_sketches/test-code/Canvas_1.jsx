@@ -7,22 +7,22 @@ const Canvas_1 = ({ dimensions }) => {
     const sketch = (p) => {
       p.setup = () => {
         p.createCanvas(width, height).parent(canvas_1Ref.current);
-        p.background("rgba(0,0,0,.02)");
-        p.noLoop();
+        // p.noLoop();
       };
       p.draw = () => {
+        p.background("#eee");
         for (let i = 0; i <= width; i += 50) {
-          p.stroke("#eee");
+          p.stroke("#ddd");
           p.line(p.random(100), i + 50, width - p.random(100), i + 50);
         }
-
         for (let i = 0; i <= 100; i++) {
+          p.noLoop();
           p.fill(p.random(255), p.random(255), p.random(255), 20);
           p.noStroke();
-          p.ellipse(
+          p.circle(
             p.random(width),
             p.random(height),
-            p.random(200),
+            p.random(100),
             p.random(200)
           );
         }

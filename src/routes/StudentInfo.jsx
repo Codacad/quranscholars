@@ -18,7 +18,7 @@ const StudentInfo = () => {
   return (
     <>
       {admissionDetailsLoading ? (
-        <div className="spinner-wrapper">
+        <div className="non-position-spinner-wrapper">
           <div className="spinner"></div>
         </div>
       ) : (
