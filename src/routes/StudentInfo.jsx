@@ -1,25 +1,41 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useEditStudentDetails } from "../hooks/user_info/useEditStudentDetails";
+import { Link } from "react-router-dom";
 const StudentInfo = () => {
   const {
     userDetails,
     editableFields,
     handleEdit,
     handleChange,
-    studentDetails,
     handleCancel,
     handleSave,
     error,
     admissionDetailsLoading,
     saveLoading,
   } = useEditStudentDetails();
-
+  const keys = Object.keys(userDetails).length;
   return (
     <>
       {admissionDetailsLoading ? (
         <div className="non-position-spinner-wrapper">
           <div className="spinner"></div>
+        </div>
+      ) : keys === 0 ? (
+        <div className="w-full p-8 bg-red-100 flex justify-center items-center min-h-[80vh]">
+          <div className="md:w-[70%] text-center flex flex-col gap-4">
+            <h2 className="text-red-600 text-4xl">Join us right now</h2>
+            <p className="text-2xl text-red-400">
+              Our online Islamic learning platform is here to help you. You can
+              submit your details to get you admission for you beatiful jounry
+            </p>
+            <Link
+              to={"/admission"}
+              className="p-2 rounded-md w-16 bg-red-600 mx-auto text-white"
+            >
+              Join
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="bg-gray-50 transition-all">
