@@ -2,95 +2,140 @@ import React from "react";
 
 const EducationalResources = () => {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Educational Resources</h1>
-      <p className="mb-4 text-lg leading-relaxed">
-        At Quran Scholar, we believe that access to quality educational
-        materials is a cornerstone of effective learning. Our{" "}
-        <strong>Educational Resources</strong> service is dedicated to providing
-        students and learners of all ages with a rich collection of carefully
-        curated and authentic Islamic study materials.
-      </p>
+    <div className="bg-white text-gray-900 font-sans">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        {/* Page Header */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-red-900 mb-4">
+            Educational Resources
+          </h1>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Empowering minds through access to authentic Islamic knowledge. Dive into our comprehensive library of carefully curated resources designed for every learner, from beginner to advanced.
+          </p>
+        </header>
 
-      <p className="mb-4 text-lg leading-relaxed">
-        Whether you are a beginner just starting your journey into Quranic
-        studies or an advanced student seeking deeper knowledge, our resources
-        are designed to cater to every level. From classical texts to
-        contemporary interpretations, our library encompasses a wide variety of
-        formats, including downloadable PDFs, audio lectures, video tutorials,
-        and interactive tools.
-      </p>
+        {/* Introduction */}
+        <section className="mb-14">
+          <h2 className="text-2xl font-semibold text-red-800 mb-3">
+            A Cornerstone for Islamic Learning
+          </h2>
+          <p className="text-gray-700 mb-4">
+            At Quran Scholar, we believe that structured and reliable access to
+            quality materials is essential for building lasting knowledge. Our{" "}
+            <strong>Educational Resources</strong> service provides learners of
+            all levels — students, teachers, parents, and researchers — with
+            materials rooted in Qur’an, Sunnah, and scholarly tradition.
+          </p>
+          <p className="text-gray-700">
+            Whether you're learning Arabic, diving into Hadith sciences, or
+            exploring classical Fiqh, our growing library supports your
+            spiritual and intellectual journey with depth and clarity.
+          </p>
+        </section>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">
-        Diverse Study Materials
-      </h2>
-      <p className="mb-4 text-lg leading-relaxed">
-        Our collection includes but is not limited to:
-      </p>
-      <ul className="list-disc list-inside mb-6 space-y-2">
-        <li>Quranic Tafseer (exegesis) by renowned scholars</li>
-        <li>Hadith collections with authentic chains of narration</li>
-        <li>Arabic grammar and vocabulary guides</li>
-        <li>Islamic jurisprudence (Fiqh) manuals and case studies</li>
-        <li>
-          Interactive quizzes and practice exercises to reinforce learning
-        </li>
-        <li>Audio recitations to improve Tajweed and pronunciation</li>
-      </ul>
+        {/* Materials Offered */}
+        <section className="mb-14 bg-red-50 p-6 rounded shadow-inner">
+          <h2 className="text-2xl font-semibold text-red-900 mb-4">
+            What's in Our Library?
+          </h2>
+          <ul className="list-disc list-inside text-gray-800 space-y-2">
+            <li>
+              📘 <strong>Qur’anic Tafseer:</strong> Classical and contemporary exegesis from authentic scholars.
+            </li>
+            <li>
+              📖 <strong>Hadith Collections:</strong> Verified narrations with commentary and classifications.
+            </li>
+            <li>
+              📜 <strong>Arabic Grammar:</strong> Easy-to-follow guides for non-native speakers.
+            </li>
+            <li>
+              ⚖️ <strong>Islamic Fiqh:</strong> Case studies and practical applications for all madhahib.
+            </li>
+            <li>
+              🎧 <strong>Audio & Video:</strong> Tajweed recitations, lecture series, and visual explainers.
+            </li>
+            <li>
+              🧠 <strong>Interactive Tools:</strong> Flashcards, quizzes, and revision checklists.
+            </li>
+          </ul>
+        </section>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">
-        How We Support Your Learning
-      </h2>
-      <p className="mb-4 text-lg leading-relaxed">
-        We understand that everyone learns differently. That's why our resources
-        are accessible in multiple languages including English, Urdu, and
-        Arabic, allowing you to study comfortably and with better comprehension.
-        Our materials are updated regularly to include the latest scholarly
-        research and pedagogical methods.
-      </p>
+        {/* Learning Support */}
+        <section className="mb-14">
+          <h2 className="text-2xl font-semibold text-red-800 mb-3">
+            Multilingual & Multimedia Support
+          </h2>
+          <p className="text-gray-700 mb-4">
+            Understanding that learners come from diverse backgrounds, our
+            resources are available in English, Urdu, and Arabic. Whether
+            you're looking for beginner guides or in-depth scholarly work, you’ll find tools tailored to your language and learning style.
+          </p>
+          <p className="text-gray-700">
+            We use visuals, diagrams, voiceovers, and lesson summaries to
+            enhance comprehension — making even the most complex topics easy to grasp.
+          </p>
+        </section>
 
-      <p className="mb-4 text-lg leading-relaxed">
-        Additionally, we encourage interactive engagement by incorporating
-        multimedia resources. These tools enable learners to practice, review,
-        and test their knowledge, making learning not only effective but also
-        enjoyable.
-      </p>
+        {/* Who Can Benefit */}
+        <section className="mb-14 bg-red-100 p-6 rounded">
+          <h2 className="text-2xl font-semibold text-red-900 mb-4">
+            Who Are These Resources For?
+          </h2>
+          <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <li>
+              🧒 <strong>Students:</strong> Supplement their coursework with in-depth learning.
+            </li>
+            <li>
+              👨‍🏫 <strong>Teachers:</strong> Use authentic references to prepare engaging lessons.
+            </li>
+            <li>
+              👨‍👩‍👧‍👦 <strong>Parents:</strong> Guide their children with reliable Islamic content at home.
+            </li>
+            <li>
+              🧕 <strong>Seekers of Knowledge:</strong> Anyone eager to explore Islam in a structured, authentic way.
+            </li>
+          </ul>
+        </section>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Who Can Benefit?</h2>
-      <p className="mb-4 text-lg leading-relaxed">
-        Our Educational Resources service is perfect for:
-      </p>
-      <ul className="list-disc list-inside mb-6 space-y-2">
-        <li>
-          Students enrolled in our online courses seeking supplementary
-          materials
-        </li>
-        <li>
-          Teachers looking for reliable, authentic content to support their
-          lessons
-        </li>
-        <li>
-          Parents wanting to provide their children with quality Islamic
-          education at home
-        </li>
-        <li>
-          Researchers and scholars requiring access to verified texts and
-          commentaries
-        </li>
-      </ul>
+        {/* Quote */}
+        <section className="mb-14 text-center">
+          <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
+            “Whoever follows a path in the pursuit of knowledge, Allah will make a path to Paradise easy for him.” — Prophet Muhammad ﷺ
+          </blockquote>
+        </section>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Join Our Community</h2>
-      <p className="mb-4 text-lg leading-relaxed">
-        We invite you to explore our growing repository of educational resources
-        and become part of a vibrant learning community. Our aim is to empower
-        you with the tools needed to deepen your understanding of Islam, enhance
-        your spiritual growth, and share this knowledge with others.
-      </p>
+        {/* Community Engagement */}
+        <section className="mb-14">
+          <h2 className="text-2xl font-semibold text-red-800 mb-3">
+            More Than a Library — A Learning Movement
+          </h2>
+          <p className="text-gray-700 mb-4">
+            We don't just provide materials — we foster a vibrant learning
+            community. Students engage in discussions, exchange notes, and
+            support one another through study circles and virtual meetups.
+          </p>
+          <p className="text-gray-700">
+            New content is added monthly, including updated tafsir modules,
+            printable workbooks, and recommended reading guides curated by
+            scholars. You’ll never feel alone in your pursuit of knowledge.
+          </p>
+        </section>
 
-      <p className="mb-8 text-lg leading-relaxed">
-        Dive into the wealth of knowledge available and enrich your Islamic
-        studies journey today with Quran Scholar’s Educational Resources.
-      </p>
+        {/* CTA */}
+        <section className="text-center">
+          <h2 className="text-2xl font-semibold text-red-800 mb-4">
+            Start Exploring Now
+          </h2>
+          <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+            Join thousands of learners worldwide accessing the Quran Scholar
+            resource center. Transform your study habits with tools built on
+            trust, clarity, and a passion for learning.
+          </p>
+          <button className="bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded transition duration-300">
+            Browse Educational Resources
+          </button>
+        </section>
+      </div>
     </div>
   );
 };
