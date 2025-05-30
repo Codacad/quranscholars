@@ -47,9 +47,11 @@ const Course = ({ course }) => {
               <span>{course.rating}</span>
             </div>
           </div>
-          <h3 className="md:text-2xl text-xl font-bold text-red-600">{course.course_name}</h3>
+          <h3 className="md:text-2xl text-xl font-bold text-red-600">
+            {course.course_name}
+          </h3>
           <Link
-            to={`/courses/${course.course_name}`}
+            to={`/services/courses/${course.course_name}`}
             className="flex w-44 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4 ml-auto"
           >
             <span className="hover:underline text-red-500 text-xl">

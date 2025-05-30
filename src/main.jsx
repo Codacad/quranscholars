@@ -22,6 +22,16 @@ import HowItWorks from "./routes/HowItWork.jsx";
 import Profile from "./routes/Profile.jsx";
 import StudentInfo from "./routes/StudentInfo.jsx";
 import TestPage from "./routes/TestPage.jsx";
+import InteractiveLesson from "./routes/services/InteractiveLesson.jsx";
+import ServicesList from "./routes/ServicesList.jsx";
+import EducationalResources from "./routes/services/EducationalResources.jsx";
+import SpiritualDevelopment from "./routes/services/SpiritualDevelopment.jsx";
+import CommunityEngagements from "./routes/services/CommunityEngagements.jsx";
+import PersonalGuidance from "./routes/services/PersonalGuidance.jsx";
+import LanguageSupport from "./routes/services/LanguageSupport.jsx";
+import FamilyFocused from "./routes/services/FamilyFocused.jsx";
+import IslamicEvents from "./routes/services/IslamicEvents.jsx";
+import YouthPrograms from "./routes/services/YouthPrograms.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +44,50 @@ const router = createBrowserRouter([
       {
         path: "services",
         element: <Services />,
+        children: [
+          { index: true, element: <ServicesList /> },
+          {
+            path: "courses",
+            element: <Courses />,
+          },
+          { path: "courses/:courseName", element: <CourseOverview /> },
+          {
+            path: "interactive-lesson",
+            element: <InteractiveLesson />,
+          },
+          {
+            path: "educational-resources",
+            element: <EducationalResources />,
+          },
+          {
+            path: "spiritual-development",
+            element: <SpiritualDevelopment />,
+          },
+          {
+            path: "community-engagements",
+            element: <CommunityEngagements />,
+          },
+          {
+            path: "personal-guidance",
+            element: <PersonalGuidance />,
+          },
+          {
+            path: "language-support",
+            element: <LanguageSupport />,
+          },
+          {
+            path: "family-focused-services",
+            element: <FamilyFocused />,
+          },
+           {
+            path: "islamic-events",
+            element: <IslamicEvents />,
+          },
+           {
+            path: "youth-programs",
+            element: <YouthPrograms />,
+          },
+        ],
       },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
@@ -62,11 +116,7 @@ const router = createBrowserRouter([
           </NotLoggedIn>
         ),
       },
-      {
-        path: "courses",
-        element: <Courses />,
-      },
-      { path: "courses/:courseName", element: <CourseOverview /> },
+
       { path: "/privacy", element: <PrivacyPolicy /> },
       {
         path: "/profile",
