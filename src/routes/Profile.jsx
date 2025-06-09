@@ -11,16 +11,38 @@ import { useSelector } from "react-redux";
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.user);
   const [profileImage, setProfileImage] = useState(
-    user?.image || "/default-avatar.png"
+    user.profilePicture?.filename ||
+      "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
   );
-
-  const handleImageUpload = (e) => {
+  const [typeError, setTypeError] = useState(null);
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const [isImageSelected, setIsImageSelected] = useState(false);
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) {
+      setTypeError("Please select a file");
+      setProfileImage(
+        "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+      );
+      return;
+    }
+    if (!allowedTypes.includes(file.type)) {
+      setTypeError(`${file.type} is not a valid image type`);
+      setProfileImage(
+        "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+      );
+      return;
+    }
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      setIsImageSelected(true);
+      setTypeError(null);
     }
+
+    console.log(file);
   };
+  const handleImageUpload = (e) => {};
 
   return (
     <div className=" bg-gray-50 mx-auto p-6 space-y-6">
@@ -29,16 +51,24 @@ const ProfilePage = () => {
           <div className="flex items-center space-x-4">
             <div className="relative">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
+                src={profileImage}
                 alt="Profile"
-                className="w-24 h-24 rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
-              <label className="absolute bottom-1 right-1 bg-red-600 text-white w-8 h-8 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer">
-                <FontAwesomeIcon icon={faUpload} size="lg" />
+              <label
+                className={`absolute bottom-1 right-1 bg-red-600 text-white w-8 h-8 text-sm ${
+                  isImageSelected ? "hidden" : "flex"
+                } items-center justify-center p-1 rounded-full cursor-pointer`}
+              >
+                <FontAwesomeIcon
+                  className={isImageSelected ? "hidden" : "block"}
+                  icon={faUpload}
+                  size="lg"
+                />
                 <input
                   type="file"
                   className="hidden"
-                  onChange={handleImageUpload}
+                  onChange={handleImageChange}
                 />
               </label>
             </div>
@@ -50,8 +80,15 @@ const ProfilePage = () => {
               <p className="text-sm text-red-600 font-semibold">{user?.role}</p>
             </div>
           </div>
+          <button
+            className={`bg-red-900 ${
+              isImageSelected ? "block" : "hidden"
+            } w-16 text-white p-1 mt-4 rounded-sm shadow-sm`}
+          >
+            Save
+          </button>
+          <span className="mt-4 text-red-500">{typeError}</span>
         </div>
-
         <div className="bg-gray-100 p-6 rounded-lg">
           <h3 className="text-lg font-semibold">Personal Information</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
