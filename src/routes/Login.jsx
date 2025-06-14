@@ -8,7 +8,7 @@ import { SlLogin } from "react-icons/sl";
 import { MdErrorOutline } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../state/slices/useSlice";
+import { setUser } from "../state/slices/userSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

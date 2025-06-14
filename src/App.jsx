@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import CardButton from "./components/cart/CardButton";
 import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "./state/slices/useSlice";
+import { setUser } from "./state/slices/userSlice";
 // import Spinner from "./components/Spinner";
 function App() {
   const { user } = useSelector((state) => state.user);

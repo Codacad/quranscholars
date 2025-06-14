@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/Admission.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { MdErrorOutline } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import {

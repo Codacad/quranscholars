@@ -15,7 +15,7 @@ import { MdOutlineRoundaboutRight } from "react-icons/md";
 import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../state/userApis/userAuthApis";
-import { setUser } from "../state/slices/useSlice";
+import { setUser } from "../state/slices/userSlice";
 import { IoIosLogOut } from "react-icons/io";
 import useClickOutside from "../hooks/useClickOutside";
 const Navbar = () => {
