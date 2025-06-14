@@ -91,15 +91,14 @@ const ProfilePage = () => {
               <img
                 src={(data && data.url) || profileImage}
                 alt="Profile"
-                className="w-24 h-24 rounded-full object-cover"
+                className="md:w-24 md:h-24 w-16 h-16 rounded-full object-cover"
               />
               <label
-                className={`absolute bottom-1 right-1 bg-red-600 text-white w-8 h-8 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer`}
+                className={`absolute bottom-1 right-1 bg-red-600 text-white md:w-8 md:h-8 w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer`}
               >
                 <FontAwesomeIcon
-                  // className={isImageSelected ? "hidden" : "block"}
                   icon={faUpload}
-                  size="lg"
+                  className="max-md:w-2 max-md:h-2"
                 />
                 <input
                   type="file"
