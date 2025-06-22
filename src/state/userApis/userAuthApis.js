@@ -28,10 +28,17 @@ const userAuthApi = createApi({
         method: "POST",
       }),
     }),
+    deleteProfile: builder.mutation({
+      query: (body) => ({
+        url: "api/auth/delete_profile",
+        method: 'POST',
+        body: body
+      })
+    })
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useLogoutMutation } =
+export const { useRegisterMutation, useLoginMutation, useLogoutMutation, useDeleteProfileMutation } =
   userAuthApi;
 
 export default userAuthApi;

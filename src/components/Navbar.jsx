@@ -18,8 +18,14 @@ import { useLogoutMutation } from "../state/userApis/userAuthApis";
 import { setUser } from "../state/slices/userSlice";
 import { IoIosLogOut } from "react-icons/io";
 import useClickOutside from "../hooks/useClickOutside";
+import { useGetProfilePicutreUrlQuery } from "../state/userApis/fileUploadApis";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
+  const {
+    data,
+    isLoading: isImageLoadding,
+    error: imageLoadingError,
+  } = useGetProfilePicutreUrlQuery();
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const mobileMenuRef = useRef();
@@ -66,7 +72,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-white text-gray-900 p-4 md:px-8">
+    <div className="navbar bg-red-900 p-4 md:px-8">
       {isLoading && (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
@@ -78,8 +84,8 @@ const Navbar = () => {
           to={"/"}
           className="flex items-center text-xl md:text-2xl font-bold"
         >
-          <span className="bg-red-600 text-white">QURAN</span>
-          <span className="text-red-600">SCHOLAR</span>
+          <span className="bg-gray-50 text-red-900">QURAN</span>
+          <span className="text-gray-50">SCHOLAR</span>
           {/* <img src={Quranscholar} alt="Logo" className="" /> */}
         </Link>
 
@@ -88,7 +94,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               Home
             </NavLink>
@@ -96,7 +102,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/services"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               Services
             </NavLink>
@@ -104,7 +110,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/courses"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               Courses
             </NavLink>
@@ -112,7 +118,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/blogs"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               Blogs
             </NavLink>
@@ -120,7 +126,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/contact"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               Contact
             </NavLink>
@@ -128,7 +134,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/about"}
-              className="text-red-600 transition-all duration-200 hover:text-red-700"
+              className="text-gray-50 transition-all duration-200 hover:text-red-700"
             >
               About
             </NavLink>
@@ -138,26 +144,23 @@ const Navbar = () => {
         {/* Desktop Buttons */}
         <div className="hidden ml-auto md:flex gap-6 font-semibold items-center justify-end">
           {!user && (
-            <Link to={"/register"} className="text-red-600 underline">
+            <Link to={"/register"} className="text-gray-50 underline">
               Register
             </Link>
           )}
-          {/* {user && (
-            <Link
-              to={"/admission"}
-              className="text-red-600 ring-2 w-20 text-center ring-red-600 p-[6px] hover:bg-red-600 hover:text-white rounded-md"
-            >
-              Join
-            </Link>
-          )} */}
           {user && (
             <div className="flex items-center relative">
               <button
                 onClick={handleUserProfileDropdownToggle}
                 ref={dropwdownButtonRef}
-                className="flex text-red-600 gap-2 items-center rounded-sm hover:bg-red-100 p-2"
+                className="flex text-gray-50 gap-2 items-center rounded-sm hover:bg-[rgba(0,0,0,.2)] p-2"
               >
-                <FaUserCircle className="cursor-pointer" size={25} />
+                {/* <FaUserCircle className="cursor-pointer" size={25} /> */}
+                <img
+                  className="rounded-full w-6 h-6"
+                  src={data && data.url}
+                  alt=""
+                />
                 <span>{user && user.fullname}</span>
               </button>
 
@@ -169,27 +172,27 @@ const Navbar = () => {
                   <Link
                     onClick={handleUserProfileDropdownToggle}
                     to={"/dashboard"}
-                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                    className="p-2 hover:bg-red-50 hover:text-red-900"
                   >
                     <span className="">Dashboard</span>
                   </Link>
                   <Link
                     onClick={handleUserProfileDropdownToggle}
                     to={"/profile"}
-                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                    className="p-2 hover:bg-red-50 hover:text-red-900"
                   >
                     <span className="">Profile</span>
                   </Link>
                   <Link
                     onClick={handleUserProfileDropdownToggle}
-                    className="p-2 hover:bg-red-50 hover:text-red-600"
+                    className="p-2 hover:bg-red-50 hover:text-red-900"
                   >
                     Join Quran Scholar
                   </Link>
                   <hr className="my-2" />
                   <button
                     onClick={handleLogout}
-                    className="p-2 hover:bg-red-50 hover:text-red-600 flex justify-center items-center gap-2"
+                    className="p-2 hover:bg-red-50 hover:text-red-900 flex justify-center items-center gap-2"
                   >
                     <IoIosLogOut />
                     <Link className="">Logout</Link>
@@ -201,7 +204,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to={"/login"}
-              className="flex items-center space-x-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-all duration-200 ease-in-out"
+              className="flex items-center space-x-2 px-4 py-2 bg-red-900 hover:bg-red-700 text-white rounded-md transition-all duration-200 ease-in-out"
             >
               <span>Log In</span>
               <CgLogIn />
@@ -209,7 +212,7 @@ const Navbar = () => {
           )}
           {/* <Link
             to={"/admission"}
-            className="bg-red-500 hover:bg-red-600 text-white rounded-md px-6 py-2 transition-all duration-200 ease-in-out border-2 border-transparent hover:border-red-600"
+            className="bg-red-500 hover:bg-red-900 text-white rounded-md px-6 py-2 transition-all duration-200 ease-in-out border-2 border-transparent hover:border-red-900"
           >
             Admission
           </Link> */}
@@ -218,7 +221,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           ref={mobileMenuButtonRef}
-          className="w-16 flex justify-end text-3xl text-red-600"
+          className="w-16 flex justify-end text-3xl text-gray-50"
         >
           <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
@@ -229,7 +232,7 @@ const Navbar = () => {
         <div ref={mobileMenuWrapperRef}>
           <nav
             ref={mobileMenuRef}
-            className={`mobile-menu shadow-lg fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-600`}
+            className={`mobile-menu shadow-lg fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-red-900`}
           >
             <div className="header flex justify-between p-4">
               {user && (
@@ -237,7 +240,11 @@ const Navbar = () => {
                   // onClick={handleUserProfileDropdownToggle}
                   className="flex text-gray-100 gap-2 items-center rounded-sm hover:bg-[rgba(0,0,0,.2)] p-2"
                 >
-                  <FaUserCircle className="cursor-pointer" size={25} />
+                  <img
+                    className="rounded-full w-6 h-6"
+                    src={data && data.url}
+                    alt=""
+                  />
                   <span>{user && user.fullname}</span>
                 </button>
               )}
@@ -251,7 +258,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/"}
-                  className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600`}
+                  className={`text-gray-100 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900`}
                 >
                   <IoHomeOutline />
                   <span>Home</span>
@@ -261,7 +268,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/dashboard"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <MdDashboard />
                   <span>Dashboard</span>
@@ -271,7 +278,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/profile"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <CgProfile />
                   <span>Profile</span>
@@ -281,7 +288,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/services"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <FaServicestack />
                   <span>Services</span>
@@ -291,7 +298,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/courses"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <MdSubject />
                   <span>Courses</span>
@@ -301,7 +308,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/contact"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <MdOutlineConnectWithoutContact />
                   <span>Contact</span>
@@ -311,7 +318,7 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleToggleSideNav}
                   to={"/about"}
-                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-600"
+                  className="flex items-center gap-4 text-gray-100 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900"
                 >
                   <MdOutlineRoundaboutRight />
                   <span>About</span>
@@ -331,7 +338,7 @@ const Navbar = () => {
                   <Link
                     onClick={handleToggleSideNav}
                     to={"register"}
-                    className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-600 rounded-md font-semibold p-2"
+                    className="bg-white hover:bg-[rgba(255,255,255,.9)] text-red-900 rounded-md font-semibold p-2"
                   >
                     Register
                   </Link>
@@ -342,7 +349,7 @@ const Navbar = () => {
                 <Link
                   to={"/admission"}
                   onClick={handleToggleSideNav}
-                  className="text-white ring-2 ring-white p-[6px] hover:bg-white hover:text-red-600 rounded-md"
+                  className="text-white ring-2 ring-white p-[6px] hover:bg-white hover:text-red-900 rounded-md"
                 >
                   Join Quran Scholar
                 </Link>
@@ -350,7 +357,7 @@ const Navbar = () => {
               {user && (
                 <NavLink
                   onClick={handleLogout}
-                  className="flex items-center justify-center w-full gap-2 text-red-600 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
+                  className="flex items-center justify-center w-full gap-2 text-red-900 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
                 >
                   <IoIosLogOut />
                   <span>Logout</span>

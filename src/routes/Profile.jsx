@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import gsap from "gsap";
 import {
   useUploadProfilePictureMutation,
   useGetProfilePicutreUrlQuery,
@@ -7,13 +8,14 @@ import {
 import {
   faUpload,
   faEdit,
-  faSignOutAlt,
-  faDeleteLeft,
   faTrash,
+  faSave,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import InlineSpinner from "../components/InlineSpinner";
+import ProfileDeleteModal from "../components/Modals/ProfileDeleteModal";
 const ProfilePage = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const {
     data,
     isLoading: isImageLoading,
@@ -31,6 +33,12 @@ const ProfilePage = () => {
   const [saveButtonHide, setSaveButtonHide] = useState(true);
   const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
   const [isImageSelected, setIsImageSelected] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    fullname: user?.fullname,
+    email: user?.email,
+  });
+  // HandleImageChange
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) {
@@ -59,6 +67,8 @@ const ProfilePage = () => {
       setFile(selectedFile);
     }
   };
+
+  // Handle Image Upload
   const handleImageUpload = async (e) => {
     e.preventDefault();
     if (!file) {
@@ -76,14 +86,54 @@ const ProfilePage = () => {
     }
   };
 
-  // Hhandle cancel Upload
+  // Hhandle cancel image Upload
   const handelCancelUpload = () => {
-    setSaveButtonHide(true)
-    setIsImageSelected(false)
-    // setFile(null)
-  }
+    setSaveButtonHide(true);
+    setIsImageSelected(false);
+  };
+  const handleProfileEditChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleProfileEdit = () => {
+    console.log(userDetails);
+  };
+
+  const modalRef = useRef();
+  const handleModalToggle = (toggle) => {
+    setModalVisible(toggle);
+  };
+  useEffect(() => {
+    if (modalVisible && modalRef.current) {
+      gsap.fromTo(
+        modalRef.current,
+        {
+          opacity: 0,
+        },
+        { opacity: 1, duration: .2 }
+      );
+    }
+  }, [modalVisible]);
+  const handleClose = () => {
+    if (modalRef.current) {
+      gsap.to(modalRef.current, {
+        opacity: 0,
+        duration: .2,
+        onComplete: () => setModalVisible(false),
+      });
+    } else {
+      setModalVisible(false);
+    }
+  };
   return (
-    <div className=" bg-gray-50 mx-auto p-6 space-y-6">
+    <div className="bg-gray-50 mx-auto p-6 space-y-6">
+      {/* Profile Delete Modal */}
+      {modalVisible && (
+        <ProfileDeleteModal ref={modalRef} onClose={handleClose} />
+      )}
       <div className="max-w-3xl mx-auto">
         <div className="bg-white  p-6 rounded-lg">
           <div className="flex items-center space-x-4">
@@ -94,7 +144,7 @@ const ProfilePage = () => {
                 className="md:w-24 md:h-24 w-16 h-16 rounded-full object-cover"
               />
               <label
-                className={`absolute bottom-1 right-1 bg-red-600 text-white md:w-8 md:h-8 w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer`}
+                className={`absolute bottom-1 right-1 bg-red-900 text-white md:w-8 md:h-8 w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer`}
               >
                 <FontAwesomeIcon
                   icon={faUpload}
@@ -108,11 +158,11 @@ const ProfilePage = () => {
               </label>
             </div>
             <div>
-              <h2 className="text-2xl font-bold">
+              <h2 className="md:text-2xl text-xl font-bold">
                 {user?.fullname || "User Name"}
               </h2>
               <p className="text-gray-600">{user?.email}</p>
-              <p className="text-sm text-red-600 font-semibold">{user?.role}</p>
+              <p className="text-sm text-red-900 font-semibold">{user?.role}</p>
             </div>
           </div>
           <div className="upload-actions flex items-center gap-2">
@@ -133,8 +183,10 @@ const ProfilePage = () => {
               )}
             </button>
             <button
-            onClick={handelCancelUpload}
-              className={`${isImageSelected && !saveButtonHide ? "block" : "hidden"} bg-gray-200 px-2 hover:opacity-80 py-1 mt-4 rounded-sm shadow-sm text-red-900`}
+              onClick={handelCancelUpload}
+              className={`${
+                isImageSelected && !saveButtonHide ? "block" : "hidden"
+              } bg-gray-200 px-2 hover:opacity-80 py-1 mt-4 rounded-sm shadow-sm text-red-900`}
             >
               Cancel Upload
             </button>
@@ -147,18 +199,30 @@ const ProfilePage = () => {
               <label className="block font-medium">Full Name</label>
               <input
                 type="text"
-                value={user?.fullname}
-                disabled
-                className="w-full p-2 border rounded bg-gray-50"
+                value={userDetails?.fullname}
+                name="fullname"
+                disabled={editMode ? false : true}
+                className={`w-full p-2 border rounded ${
+                  editMode
+                    ? "bg-yellow-50 border-amber-500 focus:ring-amber-400 text-gray-800"
+                    : "bg-gray-50"
+                }`}
+                onChange={handleProfileEditChange}
               />
             </div>
             <div>
               <label className="block font-medium">Email</label>
               <input
                 type="email"
-                value={user?.email}
-                disabled
-                className="w-full p-2 border rounded bg-gray-50"
+                value={userDetails.email}
+                name="email"
+                disabled={editMode ? false : true}
+                className={`w-full p-2 border rounded ${
+                  editMode
+                    ? "bg-yellow-50 border-amber-500 focus:ring-amber-400 text-gray-800"
+                    : "bg-gray-50"
+                }`}
+                onChange={handleProfileEditChange}
               />
             </div>
             <div>
@@ -167,7 +231,7 @@ const ProfilePage = () => {
                 type="text"
                 value={user?.role}
                 disabled
-                className="w-full p-2 border rounded bg-gray-50"
+                className={`w-full p-2 border rounded bg-gray-50`}
               />
             </div>
           </div>
@@ -179,21 +243,48 @@ const ProfilePage = () => {
           </h3>
           <p className="text-gray-600 mt-2">
             You are enrolled in the{" "}
-            <strong className="text-red-600">Premium Plan</strong>.
+            <strong className="text-red-900">Premium Plan</strong>.
           </p>
           <p className="text-gray-600">
             Access to Quran & Hadith lessons, Fiqh, and Tafsir.
           </p>
-          <button className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+          <button className="mt-4 p-2 bg-red-900 text-white rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 font-semibold transition">
             Upgrade Plan
           </button>
         </div>
 
         <div className="flex justify-between mt-4">
-          <button className="flex items-center gap-2 px-4 py-2 border rounded bg-gray-100 hover:bg-gray-50">
-            <FontAwesomeIcon icon={faEdit} /> Edit Profile
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded">
+          <div className="edit-actions">
+            {editMode ? (
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setEditMode(true)}
+                  className="flex items-center gap-2 px-4 py-2 border bg-red-900 text-white rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+                >
+                  <FontAwesomeIcon icon={faSave} /> Save
+                </button>
+                <button
+                  onClick={() => setEditMode(false)}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200 transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <div className="enable-edit-mode">
+                <button
+                  onClick={() => setEditMode(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition"
+                >
+                  <FontAwesomeIcon icon={faEdit} /> Edit Profile
+                </button>
+              </div>
+            )}
+          </div>
+          <button
+            className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+            onClick={() => handleModalToggle(true)}
+          >
             <FontAwesomeIcon icon={faTrash} /> Delete Profile
           </button>
         </div>
