@@ -19,16 +19,16 @@ const CourseOverview = () => {
   const { course_overview } = course;
   return (
     <>
-      <div className="course-overview bg-gray-50 md:p-12">
-        <div className="grid md:grid-flow-col bg-gray-100 md:w-[80%] m-auto p-4 rounded-md md:my-4">
-          <div className="text-content lg:p-12  max-md:order-2 p-4 flex flex-col gap-8">
+      <div className="course-overview bg-gray-50">
+        <div className="grid md:grid-flow-col bg-gray-100 m-auto p-4 rounded-md md:my-4">
+          <div className="text-content max-md:order-2 p-4 flex flex-col gap-8">
             <div className="navigation max-md:hidden">
               <div className="links flex items-center gap-1 text-sm">
                 <Link className="text-red-800" to={"/"}>
                   Home
                 </Link>
                 <IoIosArrowForward className="text-red-800" />
-                <Link to={"/courses"}>
+                <Link to={"/services/courses"}>
                   <span className="text-red-800">Courses</span>
                 </Link>
                 <IoIosArrowForward className="text-red-800" />

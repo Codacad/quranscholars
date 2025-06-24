@@ -2,7 +2,7 @@ import React from "react";
 
 const LanguageSupport = () => {
   return (
-    <div className="bg-white py-10 px-6 lg:px-20">
+    <div className="bg-white px-6 pb-4 lg:pb-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-12">

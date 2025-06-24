@@ -11,7 +11,6 @@ import { setUser } from "./state/slices/userSlice";
 function App() {
   const { user } = useSelector((state) => state.user);
   const pathName = useLocation();
- 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathName]);
@@ -22,17 +21,14 @@ function App() {
 
     useEffect(() => {
       if (!user?.expires) return; // Ensure expires is present
-
       const remainingTime = user.expires - Date.now();
       if (remainingTime <= 0) {
         handleSessionExpire();
         return;
       }
-
       const timeoutId = setTimeout(() => {
         handleSessionExpire();
       }, remainingTime);
-
       return () => clearTimeout(timeoutId); // Cleanup to prevent memory leaks
     }, [user, navigate, dispatch]);
 
@@ -42,10 +38,7 @@ function App() {
       navigate("/");
     };
   };
-  useSessionTimeout(user);
-
-
- 
+  useSessionTimeout(user); 
   return (
     <>
       <div className="app relative grotesk">

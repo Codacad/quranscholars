@@ -2,8 +2,8 @@ import React from "react";
 
 const IslamicEvents = () => {
   return (
-    <div className="bg-white text-gray-800">
-      <div className="max-w-6xl mx-auto px-6 py-14">
+    <div className="bg-white text-gray-800 pb-4 lg:pb-8">
+      <div className="mx-auto px-6">
         {/* Title */}
         <div className="border-l-4 border-red-800 pl-6 mb-12">
           <h1 className="text-4xl font-bold text-red-900 mb-2">

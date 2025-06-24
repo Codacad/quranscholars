@@ -2,8 +2,8 @@ import React from "react";
 
 const EducationalResources = () => {
   return (
-    <div className="bg-white text-gray-900 font-sans">
-      <div className="max-w-6xl mx-auto px-6 py-16">
+    <div className="bg-white text-gray-900 font-sans lg:pb-8 pb-4">
+      <div className="mx-auto px-6">
         {/* Page Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold text-red-900 mb-4">

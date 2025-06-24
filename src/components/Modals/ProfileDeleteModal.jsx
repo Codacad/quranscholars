@@ -22,14 +22,12 @@ const ProfileDeleteModal = forwardRef(({ onClose }, ref) => {
     try {
       const response = await deleteProfile({ password });
       if (response.data) {
-          await logout();
+        navigate("/", {state:{message:response.data?.message}});
+        await logout();
         localStorage.removeItem("user");
         dispatch(setUser(null));
-        // setTimeout(() => {
-        //   navigate("/");
-        // }, 3000);
+        setSuccess(response.data?.message);
         setError("");
-        setSuccess(response.data.message);
       }
       if (response.error) {
         setError(response.error?.data.message);

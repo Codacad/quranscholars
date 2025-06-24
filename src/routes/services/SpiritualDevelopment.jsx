@@ -1,7 +1,7 @@
 import React from "react";
 const SpiritualDevelopment = () => {
   return (
-    <div className="bg-gradient-to-b md:w-[90%] mx-auto from-white to-gray-100 py-10 px-6 lg:px-16">
+    <div className="bg-gradient-to-b mx-auto from-white to-gray-100 px-6 pb-4 lg:pb-8">
       <div className="max-w-5xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold text-red-800 mb-4">
           Spiritual Development

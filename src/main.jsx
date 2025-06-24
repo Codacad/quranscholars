@@ -32,6 +32,7 @@ import LanguageSupport from "./routes/services/LanguageSupport.jsx";
 import FamilyFocused from "./routes/services/FamilyFocused.jsx";
 import IslamicEvents from "./routes/services/IslamicEvents.jsx";
 import YouthPrograms from "./routes/services/YouthPrograms.jsx";
+import AccountDeleted from "./routes/AccountDeleted.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,10 +40,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path:"courses",
+        path: "courses",
         element: <Courses />,
       },
       {
@@ -83,11 +85,11 @@ const router = createBrowserRouter([
             path: "family-focused-services",
             element: <FamilyFocused />,
           },
-           {
+          {
             path: "islamic-events",
             element: <IslamicEvents />,
           },
-           {
+          {
             path: "youth-programs",
             element: <YouthPrograms />,
           },
@@ -96,6 +98,10 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
       { path: "donate", element: <Donate /> },
+      {
+        path: "account-deleted",
+        elemen: <AccountDeleted />,
+      },
       {
         path: "admission",
         element: (

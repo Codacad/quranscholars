@@ -39,7 +39,7 @@ const Courses = () => {
           </div>
         </div>
 
-        <div className="course-listing md:px-16 lg:w-[80%] m-auto grid lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 p-4">
+        <div className="course-listing m-auto grid lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-4 py-4">
           {courses.map((course, index) => (
             <Course key={index} course={course} />
           ))}

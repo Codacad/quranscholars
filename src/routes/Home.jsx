@@ -7,11 +7,14 @@ import "../css/Home.css";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import GridBackground from "../p5_sketches/GridBackground";
+import { useLocation } from "react-router-dom";
 const Home = () => {
   const gridWrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-
+  const location = useLocation();
+  const message = location.state?.message;
+  console.log(message);
   useEffect(() => {
     if (gridWrapperRef.current) {
       setWidth(gridWrapperRef.current.offsetWidth);

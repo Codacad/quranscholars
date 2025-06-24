@@ -2,8 +2,8 @@ import React from "react";
 
 const PersonalGuidance = () => {
   return (
-    <div className="bg-white py-10 px-6 lg:px-20">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-white px-6 pb-4 lg:pb-8">
+      <div className="mx-auto">
         {/* Title & Intro */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-red-900 mb-4">

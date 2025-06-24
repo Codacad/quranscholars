@@ -57,7 +57,7 @@ const Navbar = () => {
         localStorage.removeItem("user");
         setIsloading(false);
         dispatch(setUser(null));
-        navigate("/login");
+        navigate("/");
         if (mobileMenuRef.current) {
           mobileMenuRef.current.classList.remove("active");
         }
@@ -204,7 +204,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to={"/login"}
-              className="flex items-center space-x-2 px-4 py-2 bg-red-900 hover:bg-red-700 text-white rounded-md transition-all duration-200 ease-in-out"
+              className="flex bg-gradient-to-r from-red-500 via-red-400 to-red-700 hover:opacity-80 items-center space-x-2 px-4 py-2 text-white rounded-md transition-all duration-200 ease-in-out"
             >
               <span>Log In</span>
               <CgLogIn />
