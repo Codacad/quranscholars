@@ -61,7 +61,7 @@ const Testimonials = () => {
                 <FaQuoteLeft size={30} />
               </div>
 
-              <p className="testimonial-quote text-gray-700 text-lg italic">
+              <p className="testimonial-quote text-gray-700 text-lg">
                 {testimonial.quote}
               </p>
 

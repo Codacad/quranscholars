@@ -204,7 +204,7 @@ const Navbar = () => {
           {!user && (
             <Link
               to={"/login"}
-              className="flex bg-gradient-to-r from-red-500 via-red-400 to-red-700 hover:opacity-80 items-center space-x-2 px-4 py-2 text-white rounded-md transition-all duration-200 ease-in-out"
+              className="flex bg-gradient-to-tl from-red-200 via-white to-red-100 hover:opacity-80 items-center space-x-2 px-4 py-2 text-red-900 rounded-md transition-all duration-200 ease-in-out"
             >
               <span>Log In</span>
               <CgLogIn />

@@ -22,7 +22,7 @@ const ServiceSideNavigation = () => {
             </li>
             <li className="flex">
               <NavLink
-                to={"/services/interactive-lesson"}
+                to={"/services/interactive-lessons"}
                 className={({ isActive }) =>
                   isActive
                     ? "p-2 bg-red-900 w-full text-gray-50 rounded-md"
@@ -58,7 +58,7 @@ const ServiceSideNavigation = () => {
             </li>
             <li className="flex">
               <NavLink
-                to={"/services/community-engagements"}
+                to={"/services/community-engagement"}
                 className={({ isActive }) =>
                   isActive
                     ? "p-2 bg-red-900 text-gray-50 rounded-md"

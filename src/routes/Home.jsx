@@ -10,6 +10,7 @@ import GridBackground from "../p5_sketches/GridBackground";
 import { useLocation } from "react-router-dom";
 import BlogSection from "../components/BlogSection";
 import FAQSection from "../components/FAQSection";
+import ServicesSection from "../components/ServicesSectioin";
 const Home = () => {
   const gridWrapperRef = useRef();
   const [width, setWidth] = useState(0);
@@ -76,6 +77,7 @@ const Home = () => {
 
       <DiscoverIslam />
       <SeekingKnowledge />
+      <ServicesSection />
       <Teachers />
       <Testimonials />
       <BlogSection />

@@ -33,6 +33,8 @@ import FamilyFocused from "./routes/services/FamilyFocused.jsx";
 import IslamicEvents from "./routes/services/IslamicEvents.jsx";
 import YouthPrograms from "./routes/services/YouthPrograms.jsx";
 import AccountDeleted from "./routes/AccountDeleted.jsx";
+import Blogs from "./routes/blogs/Blogs.jsx";
+import BlogDetail from "./components/blogs/BlogDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
           },
           { path: "courses/:courseName", element: <CourseOverview /> },
           {
-            path: "interactive-lesson",
+            path: "interactive-lessons",
             element: <InteractiveLesson />,
           },
           {
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
             element: <SpiritualDevelopment />,
           },
           {
-            path: "community-engagements",
+            path: "community-engagement",
             element: <CommunityEngagements />,
           },
           {
@@ -95,6 +97,12 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "blogs",
+        element: <Blogs />,
+        // children: [],
+      },
+      { path: "blogs/:slug", element: <BlogDetail /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
       { path: "donate", element: <Donate /> },
