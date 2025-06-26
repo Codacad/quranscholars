@@ -1,7 +1,27 @@
-import React from "react";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import gsap from "gsap";
 const InteractiveLesson = () => {
+  const serviceContentRef = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (serviceContentRef.current) {
+      gsap.fromTo(
+        serviceContentRef.current,
+        {
+          opacity: 1,
+          y: -30,
+          duration: 0.5,
+        },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+    }
+  }, [location.pathname]);
   return (
-    <div className="bg-white text-gray-900 font-sans pb-4 lg:pb-8">
+    <div
+      ref={serviceContentRef}
+      className="bg-white text-gray-900 font-sans pb-4 lg:pb-8"
+    >
       <div className="mx-auto px-6">
         {/* Page Header */}
         <header className="text-center mb-12">
@@ -21,8 +41,8 @@ const InteractiveLesson = () => {
             Why Choose Interactive Lessons?
           </h2>
           <p className="text-gray-700 mb-2">
-            Traditional lectures often leave students as passive listeners.
-            Our approach invites learners to engage with the material actively,
+            Traditional lectures often leave students as passive listeners. Our
+            approach invites learners to engage with the material actively,
             allowing concepts to truly resonate. Through direct communication,
             quizzes, group activities, and multimedia tools, students retain
             more and feel more connected to their Islamic learning.
@@ -82,7 +102,9 @@ const InteractiveLesson = () => {
               <li>Boost in confidence to speak about Islam</li>
               <li>Skill development in communication and leadership</li>
               <li>Flexible learning experience that adjusts to you</li>
-              <li>Motivation through interactive competition (badges, scores)</li>
+              <li>
+                Motivation through interactive competition (badges, scores)
+              </li>
               <li>Barakah of learning together in a virtual jama’ah</li>
             </ul>
           </div>
@@ -99,10 +121,18 @@ const InteractiveLesson = () => {
             adapts to you. We serve:
           </p>
           <ul className="list-disc list-inside mt-2 text-gray-700 space-y-1">
-            <li>Young learners and teenagers new to structured Islamic study</li>
-            <li>Adults returning to their faith and looking to re-learn basics</li>
-            <li>Intermediate and advanced students seeking deeper tafsir and fiqh</li>
-            <li>Non-native Urdu/Arabic speakers preferring English-led sessions</li>
+            <li>
+              Young learners and teenagers new to structured Islamic study
+            </li>
+            <li>
+              Adults returning to their faith and looking to re-learn basics
+            </li>
+            <li>
+              Intermediate and advanced students seeking deeper tafsir and fiqh
+            </li>
+            <li>
+              Non-native Urdu/Arabic speakers preferring English-led sessions
+            </li>
           </ul>
         </section>
 
@@ -126,7 +156,8 @@ const InteractiveLesson = () => {
         {/* Quote or Highlight */}
         <section className="mb-14 text-center bg-red-50 p-6 rounded shadow">
           <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
-            “Tell me and I forget, teach me and I may remember, involve me and I learn.” – Islamic learning thrives through involvement.
+            “Tell me and I forget, teach me and I may remember, involve me and I
+            learn.” – Islamic learning thrives through involvement.
           </blockquote>
         </section>
 

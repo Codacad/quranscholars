@@ -28,7 +28,7 @@ const Testimonials = () => {
   return (
     <section className="testimonials bg-gray-50 py-16 px-6">
       <div className="container md:w-[80%] mx-auto text-center">
-        <h2 className="text-red-600 text-4xl font-semibold mb-8">
+        <h2 className="text-red-900 text-4xl font-semibold mb-8">
           What Our Students Say
         </h2>
         <p className="text-lg mb-12 text-gray-700">
@@ -50,14 +50,14 @@ const Testimonials = () => {
                   className="w-16 h-16 rounded-full object-cover mr-4"
                 />
                 <div>
-                  <h4 className="font-semibold text-xl text-red-600">
+                  <h4 className="font-semibold text-xl text-red-900">
                     {testimonial.name}
                   </h4>
                   <p className="text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
 
-              <div className="quote-icon mb-4 text-red-600">
+              <div className="quote-icon mb-4 text-red-900">
                 <FaQuoteLeft size={30} />
               </div>
 
@@ -65,7 +65,7 @@ const Testimonials = () => {
                 {testimonial.quote}
               </p>
 
-              <div className="quote-icon mt-4 text-red-600">
+              <div className="quote-icon mt-4 text-red-900">
                 <FaQuoteRight size={30} />
               </div>
             </div>

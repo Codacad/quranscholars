@@ -1,8 +1,27 @@
-import React from "react";
-
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import gsap from "gsap";
 const EducationalResources = () => {
+  const serviceContentRef = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (serviceContentRef.current) {
+      gsap.fromTo(
+        serviceContentRef.current,
+        {
+          opacity: 1,
+          y: -30,
+          duration: 0.5,
+        },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+    }
+  }, [location.pathname]);
   return (
-    <div className="bg-white text-gray-900 font-sans lg:pb-8 pb-4">
+    <div
+      ref={serviceContentRef}
+      className="bg-white text-gray-900 font-sans lg:pb-8 pb-4"
+    >
       <div className="mx-auto px-6">
         {/* Page Header */}
         <header className="text-center mb-12">
@@ -10,7 +29,9 @@ const EducationalResources = () => {
             Educational Resources
           </h1>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Empowering minds through access to authentic Islamic knowledge. Dive into our comprehensive library of carefully curated resources designed for every learner, from beginner to advanced.
+            Empowering minds through access to authentic Islamic knowledge. Dive
+            into our comprehensive library of carefully curated resources
+            designed for every learner, from beginner to advanced.
           </p>
         </header>
 
@@ -40,22 +61,28 @@ const EducationalResources = () => {
           </h2>
           <ul className="list-disc list-inside text-gray-800 space-y-2">
             <li>
-              📘 <strong>Qur’anic Tafseer:</strong> Classical and contemporary exegesis from authentic scholars.
+              📘 <strong>Qur’anic Tafseer:</strong> Classical and contemporary
+              exegesis from authentic scholars.
             </li>
             <li>
-              📖 <strong>Hadith Collections:</strong> Verified narrations with commentary and classifications.
+              📖 <strong>Hadith Collections:</strong> Verified narrations with
+              commentary and classifications.
             </li>
             <li>
-              📜 <strong>Arabic Grammar:</strong> Easy-to-follow guides for non-native speakers.
+              📜 <strong>Arabic Grammar:</strong> Easy-to-follow guides for
+              non-native speakers.
             </li>
             <li>
-              ⚖️ <strong>Islamic Fiqh:</strong> Case studies and practical applications for all madhahib.
+              ⚖️ <strong>Islamic Fiqh:</strong> Case studies and practical
+              applications for all madhahib.
             </li>
             <li>
-              🎧 <strong>Audio & Video:</strong> Tajweed recitations, lecture series, and visual explainers.
+              🎧 <strong>Audio & Video:</strong> Tajweed recitations, lecture
+              series, and visual explainers.
             </li>
             <li>
-              🧠 <strong>Interactive Tools:</strong> Flashcards, quizzes, and revision checklists.
+              🧠 <strong>Interactive Tools:</strong> Flashcards, quizzes, and
+              revision checklists.
             </li>
           </ul>
         </section>
@@ -67,12 +94,14 @@ const EducationalResources = () => {
           </h2>
           <p className="text-gray-700 mb-4">
             Understanding that learners come from diverse backgrounds, our
-            resources are available in English, Urdu, and Arabic. Whether
-            you're looking for beginner guides or in-depth scholarly work, you’ll find tools tailored to your language and learning style.
+            resources are available in English, Urdu, and Arabic. Whether you're
+            looking for beginner guides or in-depth scholarly work, you’ll find
+            tools tailored to your language and learning style.
           </p>
           <p className="text-gray-700">
             We use visuals, diagrams, voiceovers, and lesson summaries to
-            enhance comprehension — making even the most complex topics easy to grasp.
+            enhance comprehension — making even the most complex topics easy to
+            grasp.
           </p>
         </section>
 
@@ -83,16 +112,20 @@ const EducationalResources = () => {
           </h2>
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             <li>
-              🧒 <strong>Students:</strong> Supplement their coursework with in-depth learning.
+              🧒 <strong>Students:</strong> Supplement their coursework with
+              in-depth learning.
             </li>
             <li>
-              👨‍🏫 <strong>Teachers:</strong> Use authentic references to prepare engaging lessons.
+              👨‍🏫 <strong>Teachers:</strong> Use authentic references to prepare
+              engaging lessons.
             </li>
             <li>
-              👨‍👩‍👧‍👦 <strong>Parents:</strong> Guide their children with reliable Islamic content at home.
+              👨‍👩‍👧‍👦 <strong>Parents:</strong> Guide their children with reliable
+              Islamic content at home.
             </li>
             <li>
-              🧕 <strong>Seekers of Knowledge:</strong> Anyone eager to explore Islam in a structured, authentic way.
+              🧕 <strong>Seekers of Knowledge:</strong> Anyone eager to explore
+              Islam in a structured, authentic way.
             </li>
           </ul>
         </section>
@@ -100,7 +133,8 @@ const EducationalResources = () => {
         {/* Quote */}
         <section className="mb-14 text-center">
           <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
-            “Whoever follows a path in the pursuit of knowledge, Allah will make a path to Paradise easy for him.” — Prophet Muhammad ﷺ
+            “Whoever follows a path in the pursuit of knowledge, Allah will make
+            a path to Paradise easy for him.” — Prophet Muhammad ﷺ
           </blockquote>
         </section>
 

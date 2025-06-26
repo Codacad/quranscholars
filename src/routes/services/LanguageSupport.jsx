@@ -1,8 +1,24 @@
-import React from "react";
-
+import {useEffect, useRef} from "react";
+import gsap from "gsap";
+import { useLocation } from "react-router-dom";
 const LanguageSupport = () => {
+  const serviceContentRef = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (serviceContentRef.current) {
+      gsap.fromTo(
+        serviceContentRef.current,
+        {
+          opacity: 1,
+          y: -30,
+          duration: 0.5,
+        },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+    }
+  }, [location.pathname]);
   return (
-    <div className="bg-white px-6 pb-4 lg:pb-8">
+    <div ref={serviceContentRef} className="bg-white px-6 pb-4 lg:pb-8">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-12">

@@ -1,15 +1,32 @@
-import React from "react";
 import CourseImage from "/courses/course-vector.svg";
 import { FaArrowDown } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Course from "../components/Course";
 import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useLocation } from "react-router-dom";
 const Courses = () => {
   const courses = useSelector((state) => state.course.courses);
+  const serviceContentRef = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (serviceContentRef.current) {
+      gsap.fromTo(
+        serviceContentRef.current,
+        {
+          opacity: 1,
+          y: -30,
+          duration: 0.5,
+        },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+    }
+  }, [location.pathname]);
   return (
     <>
-      <div className="courses bg-gray-50 md:p-8">
+      <div ref={serviceContentRef} className="courses bg-gray-50 md:p-8">
         <div className="course-list-showcase rounded-xl md:order-2 p-4 bg-red-50 md:flex gap-4 items-center">
           <div className="text-content md:p-16 flex flex-col gap-6">
             <div className="navigation">

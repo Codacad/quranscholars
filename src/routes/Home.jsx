@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import GridBackground from "../p5_sketches/GridBackground";
 import { useLocation } from "react-router-dom";
+import BlogSection from "../components/BlogSection";
+import FAQSection from "../components/FAQSection";
 const Home = () => {
   const gridWrapperRef = useRef();
   const [width, setWidth] = useState(0);
@@ -41,16 +43,15 @@ const Home = () => {
           {/* Text Section */}
           <div className="text flex flex-col md:gap-6 max-md:items-center max-md:text-center gap-4 justify-center px-4">
             {/* Journey Title */}
-            <h3 className="text-red-600 bg-red-200 w-64 rounded-3xl text-center font-bold p-2 text-sm">
+            <h3 className="text-red-900 bg-red-200 w-64 rounded-3xl text-center font-bold p-2 text-sm">
               Embark on a Journey of Faith
             </h3>
 
             {/* Main Heading */}
-            <h1 className="md:text-5xl text-3xl font-bold text-red-600 leading-[1.6em]">
+            <h1 className="md:text-5xl text-3xl font-bold text-red-900 leading-[1.6em]">
               Dive into Interactive Halal Learning for All Ages, Guided by Quran
               and Hadith.
             </h1>
-
             {/* Description */}
             <p className="text-red-700 text-2xl">
               ہر عمر کے گروہ کے لئے ڈھالا گیا، تقویٰ، دائمی تعلیم، اور روحانی
@@ -60,7 +61,7 @@ const Home = () => {
             {/* Call-to-Action Button */}
             <Link
               to={"/register"}
-              className="w-32 text-center bg-red-600 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
+              className="w-32 text-center bg-red-900 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
             >
               Get Started
             </Link>
@@ -77,6 +78,8 @@ const Home = () => {
       <SeekingKnowledge />
       <Teachers />
       <Testimonials />
+      <BlogSection />
+      <FAQSection />
     </>
   );
 };

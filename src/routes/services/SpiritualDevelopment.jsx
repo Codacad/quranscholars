@@ -1,7 +1,27 @@
-import React from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useLocation } from "react-router-dom";
 const SpiritualDevelopment = () => {
+  const serviceContentRef = useRef();
+  const location = useLocation();
+  useEffect(() => {
+    if (serviceContentRef.current) {
+      gsap.fromTo(
+        serviceContentRef.current,
+        {
+          opacity: 1,
+          y: -30,
+          duration: 0.5,
+        },
+        { opacity: 1, y: 0, duration: 0.5 }
+      );
+    }
+  }, [location.pathname]);
   return (
-    <div className="bg-gradient-to-b mx-auto from-white to-gray-100 px-6 pb-4 lg:pb-8">
+    <div
+      ref={serviceContentRef}
+      className="bg-gradient-to-b mx-auto from-white to-gray-100 px-6 pb-4 lg:pb-8"
+    >
       <div className="max-w-5xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold text-red-800 mb-4">
           Spiritual Development

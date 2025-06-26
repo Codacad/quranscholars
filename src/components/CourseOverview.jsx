@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { LiaRupeeSignSolid } from "react-icons/lia";
@@ -10,13 +10,46 @@ import { IoMdCheckmark } from "react-icons/io";
 import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux";
+import { useCoursePaymentMutation } from "../state/userApis/paymentApi";
 const CourseOverview = () => {
-  const courses = useSelector((state) => state.course.courses)
+  const courses = useSelector((state) => state.course.courses);
+  const { user } = useSelector((state) => state.user);
   const { courseName } = useParams();
-
   const course = courses.find((course) => courseName === course.course_name);
   const { course_overview } = course;
+  const [coursePayment, { isLoading, isError, isSuccess }] =
+    useCoursePaymentMutation();
+  const handleCoursePayment = async () => {
+    const amount = course_overview.fee - course_overview.discount;
+    try {
+      const response = await coursePayment({ amount });
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_TEST_KEY,
+        amount: amount * 100,
+        currency: "INR",
+        name: "Quran Scholar",
+        description: "Buy Course",
+        order_id: response.data?.orderId,
+        handler: (response) => {
+          alert("Payment Successful!");
+          console.log(response);
+        },
+        prefill: {
+          name: user && user.fullname,
+          email: user && user.email,
+        },
+        theme: {
+          color: "#991b1b",
+        },
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="course-overview bg-gray-50">
@@ -32,7 +65,9 @@ const CourseOverview = () => {
                   <span className="text-red-800">Courses</span>
                 </Link>
                 <IoIosArrowForward className="text-red-800" />
-                <span className="text-red-600">{course_overview.course_name}</span>
+                <span className="text-red-600">
+                  {course_overview.course_name}
+                </span>
               </div>
             </div>
             <h3 className="md:text-5xl text-2xl font-bold text-red-600">
@@ -70,6 +105,7 @@ const CourseOverview = () => {
               </div>
               <Link
                 to={"#"}
+                onClick={() => handleCoursePayment()}
                 className="flex items-center bg-red-600 rounded-md px-4 py-3 gap-2 transition-all duration-100 ease-linear hover:gap-3 my-4"
               >
                 <span className="hover:underline text-white md:text-xl text-sm">
@@ -92,7 +128,9 @@ const CourseOverview = () => {
 
         <div className="md:w-[80%] m-auto md:mt-24 md:mb-8 md:grid max-md:flex max-md:flex-col max:md:gap-4 grid-cols-3 gap-8 p-4">
           <div className="what-u-wil-learn col-span-2">
-            <h1 className="md:text-4xl text-2xl text-red-600 max-md:mt-4">What you will learn</h1>
+            <h1 className="md:text-4xl text-2xl text-red-600 max-md:mt-4">
+              What you will learn
+            </h1>
             <ul className="mt-6 flex flex-col gap-4">
               {course_overview.what_to_learn.map((wtl, index) => (
                 <li
