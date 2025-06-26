@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import Steps from "../..//assets/images/blog/steps.jpg"; // use relevant featured image
+import Steps from "../../assets/images/blog/steps.jpg"; // use relevant featured image
 // Import other images if needed
 
 const blogData = {
