@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import Steps from "../../assets/images/blog/steps.jpg"; // use relevant featured image
+// import Steps from "../../assets/images/blog/steps.jpg"; // use relevant featured image
 // Import other images if needed
 
 const blogData = {
@@ -7,7 +7,7 @@ const blogData = {
     title: "5 Simple Steps to Start Learning the Quran",
     author: "Admin",
     date: "June 1, 2025",
-    image: Steps,
+    // image: Steps,
     content: `<p>Begin your Quranic journey with intention (niyyah)...</p>
     <h2>1. Renew Your Intention</h2>
     <p>...</p>
