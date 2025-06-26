@@ -34,7 +34,7 @@ import IslamicEvents from "./routes/services/IslamicEvents.jsx";
 import YouthPrograms from "./routes/services/YouthPrograms.jsx";
 import AccountDeleted from "./routes/AccountDeleted.jsx";
 import Blogs from "./routes/blogs/Blogs.jsx";
-import BlogDetail from "./components/blogs/BlogDetails.jsx";
+// import BlogDetail from "./components/blogs/BlogDetails.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
