@@ -7,7 +7,7 @@ import PillarsOfIslam from "../../assets/images/blog/pillars-of-islam.webp";
 import VirtueOfKnowledge from "../../assets/images/blog/virtue-of-knowledge.jpg";
 import HifzTips from "../../assets/images/blog/hifz-tips.jpg";
 import KhushuSalah from "../../assets/images/blog/khushu-salah.jpg";
-import AllahNames from "../../assets/images/blog/names-of-allah.webp";
+import AllahNames from "../../assets/images/blog/names-of-Allah.webp";
 import OnlineClass from "../../assets/images/blog/online-class.jpeg";
 const blogPosts = [
   {
