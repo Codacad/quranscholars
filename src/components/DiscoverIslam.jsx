@@ -3,7 +3,7 @@ import WelcomeImgTeaching from "../assets/images/teaching.svg";
 import WelcomeImgPhone from "../assets/images/phone-inhand.png";
 import "../css/Welcome.css";
 
-const Welcome = () => {
+const DiscoverIslam = () => {
   return (
     <>
       <div className="welcome bg-white grid md:grid-cols-2 max-md:grid-cols-1 justify-center items-center md:pt-16 md:px-16 py-8 px-4 gap-8">
@@ -30,7 +30,7 @@ const Welcome = () => {
             of the way.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base md:text-lg font-medium">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base md:text-lg font-medium text-left">
             <div className="flex items-start gap-3">
               <span className="text-red-900 text-xl">📖</span>
               <span>Structured Quran Courses with Tajweed & Tafsir</span>
@@ -75,4 +75,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default DiscoverIslam;

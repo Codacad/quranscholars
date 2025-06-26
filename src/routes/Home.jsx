@@ -2,7 +2,7 @@ import HeroImage from "../assets/images/hero.svg";
 import SeekingKnowledge from "../components/SeekingKnowledge";
 import Teachers from "../components/Teachers";
 import Testimonials from "../components/Testimonial";
-import Welcome from "../components/Welcome";
+import DiscoverIslam from "../components/DiscoverIslam";
 import "../css/Home.css";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
@@ -74,7 +74,7 @@ const Home = () => {
         </div>
       </div>
 
-      <Welcome />
+      <DiscoverIslam />
       <SeekingKnowledge />
       <Teachers />
       <Testimonials />
