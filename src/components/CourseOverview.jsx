@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { LiaRupeeSignSolid } from "react-icons/lia";
@@ -6,49 +6,49 @@ import { SiLevelsdotfyi } from "react-icons/si";
 import { MdOutlineWatchLater } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
-import { IoMdCheckmark } from "react-icons/io";
+// import { IoMdCheckmark } from "react-icons/io";
 import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { useCoursePaymentMutation } from "../state/userApis/paymentApi";
+// import { useCoursePaymentMutation } from "../state/userApis/paymentApi";
 const CourseOverview = () => {
   const courses = useSelector((state) => state.course.courses);
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
   const { courseName } = useParams();
   const course = courses.find((course) => courseName === course.course_name);
   const { course_overview } = course;
-  const [coursePayment, { isLoading, isError, isSuccess }] =
-    useCoursePaymentMutation();
+  // const [coursePayment, { isLoading, isError, isSuccess }] =
+  //   useCoursePaymentMutation();
   const handleCoursePayment = async () => {
-    const amount = course_overview.fee - course_overview.discount;
-    try {
-      const response = await coursePayment({ amount });
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_TEST_KEY,
-        amount: amount * 100,
-        currency: "INR",
-        name: "Quran Scholar",
-        description: "Buy Course",
-        order_id: response.data?.orderId,
-        handler: (response) => {
-          alert("Payment Successful!");
-          console.log(response);
-        },
-        prefill: {
-          name: user && user.fullname,
-          email: user && user.email,
-        },
-        theme: {
-          color: "#991b1b",
-        },
-      };
-      const razor = new window.Razorpay(options);
-      razor.open();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+    // const amount = course_overview.fee - course_overview.discount;
+    // try {
+    //   const response = await coursePayment({ amount });
+    //   const options = {
+    //     key: import.meta.env.VITE_RAZORPAY_TEST_KEY,
+    //     amount: amount * 100,
+    //     currency: "INR",
+    //     name: "Quran Scholar",
+    //     description: "Buy Course",
+    //     order_id: response.data?.orderId,
+    //     handler: (response) => {
+    //       alert("Payment Successful!");
+    //       console.log(response);
+    //     },
+    //     prefill: {
+    //       name: user && user.fullname,
+    //       email: user && user.email,
+    //     },
+    //     theme: {
+    //       color: "#991b1b",
+    //     },
+    //   };
+    //   const razor = new window.Razorpay(options);
+    //   razor.open();
+    //   console.log(response);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <>
