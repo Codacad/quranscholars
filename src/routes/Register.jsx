@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { FaUserEdit, FaEye, FaLongArrowAltRight } from "react-icons/fa";
+import { FaEye, FaLongArrowAltRight } from "react-icons/fa";
 import { RiAccountPinCircleFill } from "react-icons/ri";
-import { MdOutlineMail, MdOutlineKey } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { useRegisterMutation } from "../state/userApis/userAuthApis";
 import { MdErrorOutline } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
@@ -23,18 +21,18 @@ const Register = () => {
       const response = await register({ fullname, email, password });
       if (response.data) {
         setSuccess("Registration successful, you are being redirected...");
-        setError("")
+        setError("");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
       if (response.error) {
         setError(response.error.data.message);
-        setSuccess("")
+        setSuccess("");
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       setIsLoading(false);
     }
   };
@@ -50,7 +48,6 @@ const Register = () => {
             <h1 className="text-3xl font-bold text-red-600 leading-tight">
               Embark on Your Learning Journey: Register with Us
             </h1>
-           
           </div>
 
           {error && (
@@ -67,7 +64,9 @@ const Register = () => {
             <div>
               <p className="flex p-2 gap-2 items-center justify-center text-green-600 rounded-sm bg-green-100 text-sm mb-2">
                 <span>
-                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 shadow-sm"><TiTick className="text-md" /></span>
+                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 shadow-sm">
+                    <TiTick className="text-md" />
+                  </span>
                 </span>
                 {success}
               </p>

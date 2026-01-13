@@ -4,6 +4,7 @@ import Quranscholar from "/quranscholar100x70.svg";
 import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { CgLogIn, CgProfile } from "react-icons/cg";
 import { IoMdClose } from "react-icons/io";
@@ -72,7 +73,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-red-900 p-4 md:px-8">
+    <div className="navbar p-4 md:px-8">
       {isLoading && (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
@@ -85,7 +86,7 @@ const Navbar = () => {
           className="flex items-center text-xl md:text-2xl font-bold"
         >
           <span className="bg-gray-50 text-red-900">QURAN</span>
-          <span className="text-gray-50">SCHOLAR</span>
+          <span className="text-red-900">SCHOLAR</span>
           {/* <img src={Quranscholar} alt="Logo" className="" /> */}
         </Link>
 
@@ -94,7 +95,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               Home
             </NavLink>
@@ -102,7 +103,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/services"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               Services
             </NavLink>
@@ -110,7 +111,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/courses"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               Courses
             </NavLink>
@@ -118,7 +119,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/blogs"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               Blogs
             </NavLink>
@@ -126,7 +127,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/contact"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               Contact
             </NavLink>
@@ -134,7 +135,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"/about"}
-              className="text-gray-50 transition-all duration-200 hover:text-red-700"
+              className="text-gray-600 transition-all duration-200 hover:text-red-700"
             >
               About
             </NavLink>
@@ -144,7 +145,7 @@ const Navbar = () => {
         {/* Desktop Buttons */}
         <div className="hidden ml-auto md:flex gap-6 font-semibold items-center justify-end">
           {!user && (
-            <Link to={"/register"} className="text-gray-50 underline">
+            <Link to={"/register"} className="text-gray-500 underline">
               Register
             </Link>
           )}
@@ -204,9 +205,9 @@ const Navbar = () => {
           {!user && (
             <Link
               to={"/login"}
-              className="flex bg-gradient-to-tl from-red-200 via-white to-red-100 hover:opacity-80 items-center space-x-2 px-4 py-2 text-red-900 rounded-md transition-all duration-200 ease-in-out"
+              className="flex bg-red-700 hover:opacity-80 items-center px-4 py-2 text-gray-50 rounded-md transition-all duration-200 ease-in-out"
             >
-              <span>Log In</span>
+              <span className="">Log In</span>
               <CgLogIn />
             </Link>
           )}
@@ -221,9 +222,9 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           ref={mobileMenuButtonRef}
-          className="w-16 flex justify-end text-3xl text-gray-50"
+          className="w-10 flex justify-end text-2xl text-gray-600"
         >
-          <GiHamburgerMenu className="" onClick={handleToggleSideNav} />
+          <RxHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
       </nav>
 
