@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Fonts */
+  .font-sm-400 {
+    @apply text-sm font-[400];
+  }
+  .font-md-400 {
+    @apply text-md font-[400];
+  }
+
+  /* Navbar */
+  .navbar {
+    @apply p-4 md:px-8;
+  }
+  .navbar-list {
+    @apply text-gray-600 transition-all duration-200 hover:text-red-700 font-sm-400;
+  }
+
+  /* Mobile Menu */
+  .sidebar {
+  }
+  .sidebar-list {
+    @apply text-gray-600 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900 font-sm-400;
+  }
+}
+
 .grotesk {
   font-family: "Host Grotesk", serif;
 }

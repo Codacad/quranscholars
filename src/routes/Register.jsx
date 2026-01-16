@@ -45,7 +45,7 @@ const Register = () => {
           className="lg:w-[500px] md:w-[80%] sm:w-[90%] p-6 bg-white rounded-md border-2 border-red-200"
         >
           <div className="form-header text-center mb-6">
-            <h1 className="text-3xl font-bold text-red-600 leading-tight">
+            <h1 className="text-3xl font-bold text-secondary leading-tight">
               Embark on Your Learning Journey: Register with Us
             </h1>
           </div>

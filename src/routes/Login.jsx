@@ -1,5 +1,4 @@
-import { useState } from "react";
-import LoginIllustration from "/login.svg";
+import { useCallback, useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "../state/userApis/userAuthApis";
@@ -42,10 +41,11 @@ const Login = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setError("");
       setSuccess("");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,7 +58,7 @@ const Login = () => {
             className="md:w-[500px] w-full p-8 mx-auto bg-gray-50 rounded-xl flex flex-col gap-6 justify-center items-center"
           >
             <div className="form-header text-center mb-6">
-              <h1 className="text-red-600 text-2xl md:text-3xl font-semibold leading-tight mb-2">
+              <h1 className="text-secondary text-2xl md:text-3xl font-semibold leading-tight mb-2">
                 Embark on Your Learning Journey: Sign in Below
               </h1>
               <p className="text-gray-600">
