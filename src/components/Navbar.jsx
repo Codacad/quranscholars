@@ -1,4 +1,4 @@
-import Logo from "/blog_logo.svg";
+import Logo from "/images/logo.png";
 import { useEffect } from "react";
 import Quranscholar from "/quranscholar100x70.svg";
 import { useState } from "react";
@@ -84,9 +84,9 @@ const Navbar = () => {
           to={"/"}
           className="text-primary flex items-center text-xl md:text-2xl font-bold"
         >
-          <span className="">QURAN</span>
-          <span className="">SCHOLAR</span>
-          {/* <img src={Quranscholar} alt="Logo" className="" /> */}
+          {/* <span className="">QURAN</span>
+          <span className="">SCHOLAR</span> */}
+          <img src={Logo} alt="Logo" className="h-[50px] md:h-full" />
         </Link>
 
         {/* Desktop Menu */}

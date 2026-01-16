@@ -1,5 +1,5 @@
-import { Routes, Route, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,30 +18,26 @@ function App() {
   const useSessionTimeout = (user) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     useEffect(() => {
-      if (!user?.expires) return; // Ensure expires is present
+      if (!user?.expires || typeof user.expires !== "number") return; // Ensure expires is present
+      const handleSessionExpire = () => {
+        localStorage.removeItem("user");
+        dispatch(setUser(null));
+        navigate("/", { replace: true });
+      };
       const remainingTime = user.expires - Date.now();
       if (remainingTime <= 0) {
         handleSessionExpire();
         return;
       }
-      const timeoutId = setTimeout(() => {
-        handleSessionExpire();
-      }, remainingTime);
+      const timeoutId = setTimeout(handleSessionExpire, remainingTime);
       return () => clearTimeout(timeoutId); // Cleanup to prevent memory leaks
     }, [user, navigate, dispatch]);
-
-    const handleSessionExpire = () => {
-      localStorage.removeItem("user");
-      dispatch(setUser(null));
-      navigate("/");
-    };
   };
-  useSessionTimeout(user); 
+  useSessionTimeout(user);
   return (
     <>
-      <div className="app relative grotesk">
+      <div className="app relative">
         <Navbar />
         <Outlet />
         <Footer />

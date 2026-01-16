@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .grotesk {
+  font-family: "Host Grotesk", serif;
+} */
+.montserrat {
+  font-family: "Montserrat", serif;
+}
+
 @layer components {
   /* Fonts */
+  .app {
+    @apply montserrat;
+  }
   .font-sm-400 {
     @apply text-sm font-[400];
   }
@@ -25,10 +35,6 @@
   .sidebar-list {
     @apply text-gray-600 flex items-center gap-4 w-full p-2 rounded-sm transition-all duration-200 hover:opacity-80 hover:bg-gray-100 hover:text-red-900 font-sm-400;
   }
-}
-
-.grotesk {
-  font-family: "Host Grotesk", serif;
 }
 
 .mobile-menu-wrapper {
