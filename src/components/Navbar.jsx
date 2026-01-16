@@ -1,4 +1,4 @@
-import Logo from "/images/logo.png";
+import Logo from "/images/Logo.svg";
 import { useEffect } from "react";
 import Quranscholar from "/quranscholar100x70.svg";
 import { useState } from "react";

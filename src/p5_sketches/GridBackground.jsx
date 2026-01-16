@@ -3,7 +3,6 @@ import p5 from "p5";
 const GridBackground = ({ dimensions }) => {
   const elemRef = useRef();
   const { width, height } = dimensions;
-  console.log(width, height);
   useEffect(() => {
     const grid = (p) => {
       p.setup = () => {
@@ -31,7 +30,7 @@ const GridBackground = ({ dimensions }) => {
           p.noStroke();
           p.rectMode(p.CENTER);
           p.fill("#fecaca");
-          p.rect(p.random(width), p.random(height), 100, 100);
+          p.rect(p.random(width), p.random(height), 100);
         }
       };
     };

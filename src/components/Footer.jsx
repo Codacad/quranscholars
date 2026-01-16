@@ -1,5 +1,5 @@
 import React from "react";
-import WhiteBgLogo from "/whitebg-logo.svg";
+import Logo from "/images/Logo.svg";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -10,9 +10,7 @@ const Footer = () => {
         {/* Logo & About */}
         <div>
           <Link to="/" className="inline-block text-3xl">
-            {/* <img src="/logo-white.png" alt="Logo" className="h-12" /> */}
-            <span className="bg-red-600 text-white">QURAN</span>
-            <span className="text-red-600">SCHOLAR</span>
+            <img src={Logo} alt="Logo" className="" />
           </Link>
           <p className="mt-4 text-gray-600 text-sm">
             Elevating your experience with quality service and innovation.
