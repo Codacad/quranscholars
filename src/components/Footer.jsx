@@ -80,7 +80,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="border-t border-gray-300 mt-8 pt-6 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Quranscholar. All rights reserved.
+        (c) {new Date().getFullYear()} Quranscholar. All rights reserved.
       </div>
     </footer>
   );

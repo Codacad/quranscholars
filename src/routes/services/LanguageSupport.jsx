@@ -38,10 +38,10 @@ const LanguageSupport = () => {
           {/* Arabic */}
           <div className="bg-red-50 border-l-4 border-red-800 p-6 rounded shadow-sm">
             <h2 className="text-2xl font-semibold text-red-800 mb-2">
-              📘 Arabic Language
+              [book] Arabic Language
             </h2>
             <p className="text-gray-700">
-              Master Modern Standard Arabic and Qur’anic Arabic through
+              Master Modern Standard Arabic and Qur'anic Arabic through
               structured lessons focused on grammar, vocabulary, and
               pronunciation. Our programs are tailored for beginners and
               intermediate learners to understand Qur'anic texts, Hadith, and
@@ -52,7 +52,7 @@ const LanguageSupport = () => {
           {/* Urdu */}
           <div className="bg-red-50 border-l-4 border-red-800 p-6 rounded shadow-sm">
             <h2 className="text-2xl font-semibold text-red-800 mb-2">
-              📗 Urdu Support
+              [book] Urdu Support
             </h2>
             <p className="text-gray-700">
               For students more comfortable in Urdu, we offer dedicated
@@ -65,7 +65,7 @@ const LanguageSupport = () => {
           {/* English */}
           <div className="bg-red-50 border-l-4 border-red-800 p-6 rounded shadow-sm">
             <h2 className="text-2xl font-semibold text-red-800 mb-2">
-              📕 English Learning
+              [book] English Learning
             </h2>
             <p className="text-gray-700">
               English-speaking students can access Islamic teachings in
@@ -82,7 +82,7 @@ const LanguageSupport = () => {
             Why Language Support Matters
           </h2>
           <ul className="list-disc pl-6 space-y-3 text-gray-700">
-            <li>Understand Qur’an without relying on translations</li>
+            <li>Understand Qur'an without relying on translations</li>
             <li>Build deeper connection with classical Islamic literature</li>
             <li>Participate in discussions with clarity and confidence</li>
             <li>Communicate Islamic knowledge effectively to others</li>

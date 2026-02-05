@@ -1,30 +1,31 @@
-import { useState } from "react";
+﻿import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
     question: "What do I need to start learning?",
     answer:
-      "All you need is a stable internet connection, a quiet environment, and a device (phone, tablet, or laptop). No prior knowledge of Arabic is necessary for beginners.",
+      "A stable internet connection, a quiet space, and a phone, tablet, or laptop. No Arabic background is required for beginners.",
   },
   {
     question: "Are classes live or recorded?",
     answer:
-      "Our classes are conducted live to ensure real-time interaction, personalized guidance, and spiritual connection. However, some courses may offer recorded sessions for review.",
+      "Primarily live for real-time Q&A and mentorship. Selected sessions are recorded for review.",
   },
   {
     question: "Can I choose a male or female tutor?",
     answer:
-      "Yes, we respect your preferences. Sisters can choose qualified female teachers for better comfort and understanding, especially for kids and new learners.",
+      "Yes. Sisters can select qualified female instructors; youth are matched with age-appropriate teachers.",
   },
   {
     question: "How are payments handled?",
     answer:
-      "Payments are simple and secure. We accept various methods including online transfers. You can pay monthly and cancel anytime with prior notice.",
+      "Secure online payments, monthly billing, and simple cancellation with prior notice.",
   },
   {
     question: "Do you offer trial classes?",
     answer:
-      "Absolutely. We encourage students to book a free trial class to experience our teaching method and interact with our instructors before enrollment.",
+      "Absolutely—book a free trial to experience the teaching style before enrolling.",
   },
 ];
 
@@ -36,37 +37,71 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="bg-white py-16 px-4 md:px-20">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-red-900 text-center mb-12 uppercase tracking-wide">
-          Frequently Asked Questions
-        </h2>
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.12),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.12),transparent_30%)]" />
+      <div className="relative max-w-5xl mx-auto space-y-10">
+        <div className="text-center space-y-3">
+          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+            Common Questions
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+            FAQ
+          </h2>
+          <p className="text-gray-700 text-lg max-w-3xl mx-auto">
+            Quick answers about classes, tutors, payments, and trials.
+          </p>
+        </div>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border border-red-200 rounded-xl overflow-hidden shadow-sm"
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center px-6 py-4 bg-red-50 hover:bg-red-100 transition duration-200 text-left"
+        <div className="space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: index * 0.05 }}
+                className="rounded-2xl border border-red-100 bg-white/85 backdrop-blur shadow-sm overflow-hidden"
               >
-                <span className="font-semibold text-red-900 text-lg">
-                  {faq.question}
-                </span>
-                <span className="text-red-900 text-2xl">
-                  {openIndex === index ? "−" : "+"}
-                </span>
-              </button>
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full flex justify-between items-center px-6 py-4 text-left group"
+                >
+                  <div className="space-y-1">
+                    <p className="text-lg font-semibold text-slate-900">
+                      {faq.question}
+                    </p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-red-800">
+                      {isOpen ? "Tap to close" : "Tap to expand"}
+                    </p>
+                  </div>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                    className="h-10 w-10 rounded-full border border-red-200 text-red-900 flex items-center justify-center text-xl font-bold group-hover:border-red-400"
+                  >
+                    +
+                  </motion.span>
+                </button>
 
-              {openIndex === index && (
-                <div className="px-6 py-5 text-base leading-relaxed text-gray-700 bg-white">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="px-6 pb-5 text-base leading-relaxed text-gray-700"
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

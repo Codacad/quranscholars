@@ -1,6 +1,7 @@
-import Steps from '../assets/images/blog/steps.jpg'
-import Tajweed from '../assets/images/blog/tajweed.jpg'
-import Sunnah from '../assets/images/blog/sunnah.jpg'
+import { Link } from "react-router-dom";
+import Steps from "../assets/images/blog/steps.jpg";
+import Tajweed from "../assets/images/blog/tajweed.jpg";
+import Sunnah from "../assets/images/blog/sunnah.jpg";
 const blogPosts = [
   {
     title: "5 Simple Steps to Start Learning the Quran",
@@ -12,14 +13,14 @@ const blogPosts = [
   {
     title: "Importance of Tajweed in Daily Recitation",
     description:
-      "Discover why Tajweed isn’t just for scholars. Learn how correct pronunciation transforms your connection with the Quran and enhances your spiritual presence.",
+      "Discover why Tajweed isn't just for scholars. Learn how correct pronunciation transforms your connection with the Quran and enhances your spiritual presence.",
     image: Tajweed,
     link: "/blog/tajweed-importance",
   },
   {
     title: "Daily Sunnahs to Revive in Your Routine",
     description:
-      "Incorporate powerful Sunnahs into your day from waking up to sleeping and bring the teachings of Prophet Muhammad ﷺ into every moment.",
+      "Incorporate powerful Sunnahs into your day from waking up to sleeping and bring the teachings of Prophet Muhammad  into every moment.",
     image: Sunnah,
     link: "/blog/daily-sunnahs",
   },
@@ -27,38 +28,78 @@ const blogPosts = [
 
 const BlogSection = () => {
   return (
-    <section className="bg-red-50 py-16 px-4 md:px-20">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-red-900 text-center mb-12 uppercase tracking-wide">
-          Islamic Resources & Blog
-        </h2>
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(248,113,113,0.12),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.12),transparent_30%)]" />
+      <div className="relative max-w-6xl mx-auto space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+              Islamic Resources & Blog
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+              Latest reflections, how-tos, and Sunnah spotlights.
+            </h2>
+            <p className="text-gray-700 text-lg max-w-2xl">
+              Dive into concise guides, tajwid tips, family-friendly sunnahs,
+              and seerah stories curated by our teachers.
+            </p>
+          </div>
+          <Link
+            to="/blogs"
+            className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-6 py-3 font-semibold shadow-md hover:bg-red-700 transition w-44 justify-center"
+          >
+            See all blogs
+            <span className="text-base">↗</span>
+          </Link>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
-            <div
+            <article
               key={index}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="group relative rounded-3xl border border-white/50 bg-white shadow-lg overflow-hidden transition-transform duration-200 hover:-translate-y-2 hover:shadow-xl"
             >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6 flex flex-col gap-4">
-                <h3 className="text-xl font-bold text-red-900">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-100/60 via-white to-amber-100/50" />
+              <div className="relative">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-800 shadow-sm">
+                  Featured
+                </div>
+              </div>
+              <div className="relative p-6 space-y-3 flex flex-col h-full">
+                <h3 className="text-lg font-bold text-slate-900 leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-gray-700 text-base leading-relaxed">
+                <p className="text-gray-700 text-sm leading-6 flex-1">
                   {post.description}
                 </p>
-                <a
-                  href={post.link}
-                  className="text-red-900 font-semibold hover:underline mt-auto"
-                >
-                  Read More →
-                </a>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <Link
+                    to={post.link}
+                    className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-red-700 transition"
+                  >
+                    Read blog
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                      ↗
+                    </span>
+                  </Link>
+                  <Link
+                    to="/blogs"
+                    className="inline-flex items-center gap-2 text-red-900 font-semibold hover:text-red-700 text-sm"
+                  >
+                    View all
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+                      ↗
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

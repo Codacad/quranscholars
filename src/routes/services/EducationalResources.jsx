@@ -44,8 +44,8 @@ const EducationalResources = () => {
             At Quran Scholar, we believe that structured and reliable access to
             quality materials is essential for building lasting knowledge. Our{" "}
             <strong>Educational Resources</strong> service provides learners of
-            all levels — students, teachers, parents, and researchers — with
-            materials rooted in Qur’an, Sunnah, and scholarly tradition.
+            all levels - students, teachers, parents, and researchers - with
+            materials rooted in Qur'an, Sunnah, and scholarly tradition.
           </p>
           <p className="text-gray-700">
             Whether you're learning Arabic, diving into Hadith sciences, or
@@ -57,23 +57,23 @@ const EducationalResources = () => {
         {/* Materials Offered */}
         <section className="mb-14 bg-red-50 p-6 rounded shadow-inner">
           <h2 className="text-2xl font-semibold text-red-900 mb-4">
-            What's in Our Library?
+            What's in Our Library
           </h2>
           <ul className="list-disc list-inside text-gray-800 space-y-2">
             <li>
-              📘 <strong>Qur’anic Tafseer:</strong> Classical and contemporary
+              [book] <strong>Qur'anic Tafseer:</strong> Classical and contemporary
               exegesis from authentic scholars.
             </li>
             <li>
-              📖 <strong>Hadith Collections:</strong> Verified narrations with
+              [book] <strong>Hadith Collections:</strong> Verified narrations with
               commentary and classifications.
             </li>
             <li>
-              📜 <strong>Arabic Grammar:</strong> Easy-to-follow guides for
+              [scroll] <strong>Arabic Grammar:</strong> Easy-to-follow guides for
               non-native speakers.
             </li>
             <li>
-              ⚖️ <strong>Islamic Fiqh:</strong> Case studies and practical
+              Scales: <strong>Islamic Fiqh:</strong> Case studies and practical
               applications for all madhahib.
             </li>
             <li>
@@ -95,12 +95,12 @@ const EducationalResources = () => {
           <p className="text-gray-700 mb-4">
             Understanding that learners come from diverse backgrounds, our
             resources are available in English, Urdu, and Arabic. Whether you're
-            looking for beginner guides or in-depth scholarly work, you’ll find
+            looking for beginner guides or in-depth scholarly work, you'll find
             tools tailored to your language and learning style.
           </p>
           <p className="text-gray-700">
             We use visuals, diagrams, voiceovers, and lesson summaries to
-            enhance comprehension — making even the most complex topics easy to
+            enhance comprehension - making even the most complex topics easy to
             grasp.
           </p>
         </section>
@@ -108,7 +108,7 @@ const EducationalResources = () => {
         {/* Who Can Benefit */}
         <section className="mb-14 bg-red-100 p-6 rounded">
           <h2 className="text-2xl font-semibold text-red-900 mb-4">
-            Who Are These Resources For?
+            Who Are These Resources For
           </h2>
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             <li>
@@ -124,7 +124,7 @@ const EducationalResources = () => {
               Islamic content at home.
             </li>
             <li>
-              🧕 <strong>Seekers of Knowledge:</strong> Anyone eager to explore
+              [sister] <strong>Seekers of Knowledge:</strong> Anyone eager to explore
               Islam in a structured, authentic way.
             </li>
           </ul>
@@ -133,25 +133,25 @@ const EducationalResources = () => {
         {/* Quote */}
         <section className="mb-14 text-center">
           <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
-            “Whoever follows a path in the pursuit of knowledge, Allah will make
-            a path to Paradise easy for him.” — Prophet Muhammad ﷺ
+            "Whoever follows a path in the pursuit of knowledge, Allah will make
+            a path to Paradise easy for him." - Prophet Muhammad 
           </blockquote>
         </section>
 
         {/* Community Engagement */}
         <section className="mb-14">
           <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            More Than a Library — A Learning Movement
+            More Than a Library - A Learning Movement
           </h2>
           <p className="text-gray-700 mb-4">
-            We don't just provide materials — we foster a vibrant learning
+            We don't just provide materials - we foster a vibrant learning
             community. Students engage in discussions, exchange notes, and
             support one another through study circles and virtual meetups.
           </p>
           <p className="text-gray-700">
             New content is added monthly, including updated tafsir modules,
             printable workbooks, and recommended reading guides curated by
-            scholars. You’ll never feel alone in your pursuit of knowledge.
+            scholars. You'll never feel alone in your pursuit of knowledge.
           </p>
         </section>
 

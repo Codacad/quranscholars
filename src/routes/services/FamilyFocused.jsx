@@ -42,9 +42,9 @@ const FamilyFocused = () => {
             Parenting with Purpose
           </h2>
           <p className="text-gray-700 mb-4">
-            Raising righteous children in today’s complex world can be
+            Raising righteous children in today's complex world can be
             overwhelming. Our "Parenting with Purpose" workshops equip parents
-            with tools and wisdom derived from the Qur’an and Sunnah. Topics
+            with tools and wisdom derived from the Qur'an and Sunnah. Topics
             include nurturing self-discipline through love, teaching adab
             (manners) through example, and establishing prophetic routines at
             home.
@@ -59,7 +59,7 @@ const FamilyFocused = () => {
           </p>
           <p className="text-gray-700">
             Our certified counselors and Islamic educators are passionate about
-            bridging the gap between tradition and today’s parenting struggles,
+            bridging the gap between tradition and today's parenting struggles,
             ensuring that every home becomes a place of peace, growth, and
             barakah.
           </p>
@@ -68,11 +68,11 @@ const FamilyFocused = () => {
         {/* Section 2 */}
         <div className="mb-16">
           <h2 className="text-2xl font-semibold text-red-800 mb-4">
-            Family Qur’an & Story Sessions
+            Family Qur'an & Story Sessions
           </h2>
           <p className="text-gray-700 mb-4">
             Turn your family time into spiritually uplifting moments. Our weekly
-            online sessions invite parents and children to explore the Qur’an
+            online sessions invite parents and children to explore the Qur'an
             together through age-appropriate tafsir, reflections on the stories
             of the Prophets, and shared journaling activities that promote
             bonding and mindfulness.
@@ -84,17 +84,17 @@ const FamilyFocused = () => {
             compassion rooted in the Deen.
           </p>
           <p className="text-gray-700">
-            These sessions serve as an anchor in busy family lives — a time to
+            These sessions serve as an anchor in busy family lives - a time to
             slow down, connect, and grow together as one unit in the light of
-            the Qur’an.
+            the Qur'an.
           </p>
         </div>
 
         {/* Quote */}
         <div className="bg-red-50 p-8 rounded-lg shadow-inner mb-16">
           <blockquote className="text-xl italic text-red-900 font-medium max-w-4xl mx-auto text-center">
-            “The best of you are those who are best to their families.” —
-            Prophet Muhammad ﷺ
+            "The best of you are those who are best to their families." -
+            Prophet Muhammad 
           </blockquote>
         </div>
 
@@ -104,7 +104,7 @@ const FamilyFocused = () => {
             Support for Every Stage of Family Life
           </h2>
           <p className="text-gray-700 mb-4">
-            Every family goes through different seasons — from the early years
+            Every family goes through different seasons - from the early years
             of nurturing to the challenges of adolescence and beyond. Our
             services are designed to meet you at every stage, with topics such
             as:

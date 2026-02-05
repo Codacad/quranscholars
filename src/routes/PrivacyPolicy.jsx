@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
                 ].map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-center before:content-['•'] before:text-red-600 before:mr-2"
+                    className="flex items-center before:content-['*'] before:text-red-600 before:mr-2"
                   >
                     {item}
                   </li>
@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
                 ].map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-center before:content-['•'] before:text-red-600 before:mr-2"
+                    className="flex items-center before:content-['*'] before:text-red-600 before:mr-2"
                   >
                     {item}
                   </li>
@@ -94,7 +94,7 @@ const PrivacyPolicy = () => {
             ].map((item, index) => (
               <li
                 key={index}
-                className="flex items-start before:content-['•'] before:text-red-600 before:mr-2"
+                className="flex items-start before:content-['*'] before:text-red-600 before:mr-2"
               >
                 {item}
               </li>
@@ -118,7 +118,7 @@ const PrivacyPolicy = () => {
                   key={index}
                   className="p-4 bg-[#f0eee6] rounded-lg flex items-center"
                 >
-                  <span className="text-red-600 mr-2">•</span>
+                  <span className="text-red-600 mr-2">*</span>
                   {item}
                 </div>
               ))}
@@ -140,7 +140,7 @@ const PrivacyPolicy = () => {
                 key={index}
                 className="flex items-center p-3 bg-[#f8f5f0] rounded"
               >
-                <span className="text-red-600 mr-2">•</span>
+                <span className="text-red-600 mr-2">*</span>
                 {item}
               </div>
             ))}
@@ -159,7 +159,7 @@ const PrivacyPolicy = () => {
             ].map((item, index) => (
               <li
                 key={index}
-                className="flex items-center before:content-['•'] before:text-red-600 before:mr-2"
+                className="flex items-center before:content-['*'] before:text-red-600 before:mr-2"
               >
                 {item}
               </li>
@@ -183,7 +183,7 @@ const PrivacyPolicy = () => {
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center before:content-['•'] before:text-red-600 before:mr-2"
+                  className="flex items-center before:content-['*'] before:text-red-600 before:mr-2"
                 >
                   {item}
                 </li>

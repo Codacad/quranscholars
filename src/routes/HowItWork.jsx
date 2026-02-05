@@ -53,7 +53,7 @@ export default function HowItWorks() {
 
       <section className="bg-gray-100 py-16 px-4">
         <div className="container md:w-[80%] mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Why Choose Us?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Why Choose Us</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg">
               <h3 className="text-xl font-bold text-red-600 mb-4">Qualified Teachers</h3>
@@ -73,7 +73,7 @@ export default function HowItWorks() {
 
   
       <section className="container mx-auto py-16 px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Ready to Start Your Learning Journey?</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Ready to Start Your Learning Journey</h2>
         <Link to={'/register'} className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors">
           Get Started Now
         </Link>
@@ -84,15 +84,15 @@ export default function HowItWorks() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Frequently Asked Questions</h2>
           <div className="space-y-6 max-w-3xl mx-auto">
             <div className="border-b pb-4">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">What are the technical requirements?</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">What are the technical requirements</h3>
               <p className="text-gray-600">You just need a stable internet connection, Zoom installed, and a webcam.</p>
             </div>
             <div className="border-b pb-4">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Can I choose my teacher?</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Can I choose my teacher</h3>
               <p className="text-gray-600">Yes, we'll match you with suitable teachers based on your needs and preferences.</p>
             </div>
             <div className="pb-4">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">What payment methods do you accept?</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">What payment methods do you accept</h3>
               <p className="text-gray-600">We accept all major credit cards and PayPal. We also offer scholarships.</p>
             </div>
           </div>

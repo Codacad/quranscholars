@@ -39,10 +39,10 @@ const PersonalGuidance = () => {
               Tailored Spiritual Support
             </h2>
             <p className="text-gray-700">
-              Every Muslim’s path is unique, and sometimes we need personal
+              Every Muslim's path is unique, and sometimes we need personal
               attention to truly understand and grow. Our qualified instructors
               and scholars offer private sessions designed to address your
-              individual concerns — whether it's Qur'an recitation improvement,
+              individual concerns - whether it's Qur'an recitation improvement,
               understanding fiqh issues, or seeking help during a crisis of
               faith.
             </p>
@@ -63,7 +63,7 @@ const PersonalGuidance = () => {
             </h2>
             <p className="text-gray-700">
               Need help with time management, Islamic studies, or motivation to
-              keep going? Our mentors help build study plans, improve focus, and
+              keep going Our mentors help build study plans, improve focus, and
               stay consistent with learning and prayer. We also offer support
               for teens dealing with pressure and confusion in their Islamic
               identity.
@@ -73,7 +73,7 @@ const PersonalGuidance = () => {
           {/* Right Column: Visual Section */}
           <div className="bg-red-50 rounded-lg shadow-lg p-6 space-y-6">
             <h3 className="text-xl font-semibold text-red-900">
-              Who is it for?
+              Who is it for
             </h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>

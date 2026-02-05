@@ -56,7 +56,7 @@ const CommunityEngagements = () => {
               </h3>
               <p className="text-gray-700">
                 Weekly online Halqas and moderated discussions on Islamic
-                topics, current issues, and spiritual growth — promoting
+                topics, current issues, and spiritual growth - promoting
                 knowledge sharing and unity.
               </p>
             </div>
@@ -70,7 +70,7 @@ const CommunityEngagements = () => {
               </h3>
               <p className="text-gray-700">
                 Special sessions for parents and children, online family
-                meetups, and Qur’an competitions — encouraging shared learning
+                meetups, and Qur'an competitions - encouraging shared learning
                 in a warm, faith-based atmosphere.
               </p>
             </div>
@@ -99,11 +99,11 @@ const CommunityEngagements = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white p-4 rounded shadow">
               <p className="text-gray-700 italic">
-                "Joining the Qur’an Scholar sessions brought us closer as a
+                "Joining the Qur'an Scholar sessions brought us closer as a
                 family. My kids look forward to the weekly family quizzes!"
               </p>
               <p className="mt-2 font-semibold text-red-800">
-                – Fatima B., Parent
+                - Fatima B., Parent
               </p>
             </div>
             <div className="bg-white p-4 rounded shadow">
@@ -112,7 +112,7 @@ const CommunityEngagements = () => {
                 confidence in speaking about Islam and serving others."
               </p>
               <p className="mt-2 font-semibold text-red-800">
-                – Sameer R., Student
+                - Sameer R., Student
               </p>
             </div>
           </div>

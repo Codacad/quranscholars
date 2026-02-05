@@ -1,75 +1,123 @@
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+﻿import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+const testimonials = [
+  {
+    name: "Ahmed Al-Mansoori",
+    role: "Student of Quranic Studies",
+    quote:
+      "This platform brought me closer to the Qur'an. The live feedback and structured tajwīd labs are spiritually uplifting.",
+  },
+  {
+    name: "Fatimah Al-Zahra",
+    role: "Islamic Scholar",
+    quote:
+      "As a teacher, I appreciate the clear scaffolding and authentic sources. Even beginners feel welcomed and guided.",
+  },
+  {
+    name: "Imam Khalid Bin Zayed",
+    role: "Community Imam",
+    quote:
+      "I recommend it to my congregation resources that strengthen connection to Allah and love for the Prophet (peace be upon him).",
+  },
+  {
+    name: "Layla Hussain",
+    role: "Parent & Revert",
+    quote:
+      "Family-friendly tracks, female instructors, and reflection prompts made it easy for our household to learn together.",
+  },
+];
+
+const TestimonialCard = ({ testimonial, index }) => (
+  <div className="relative h-full rounded-3xl border border-white/15 bg-white/80 backdrop-blur shadow-xl overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-br from-red-100/60 via-white to-amber-100/50 opacity-80" />
+    <div className="relative p-6 space-y-4 h-full flex flex-col">
+      <div className="flex items-center gap-4">
+        <img
+          src={`https://i.pravatar.cc/150?img=${index + 10}`}
+          alt={`${testimonial.name} avatar`}
+          className="h-14 w-14 rounded-2xl object-cover border border-white/50 shadow-sm"
+        />
+        <div>
+          <p className="text-lg font-bold text-slate-900">{testimonial.name}</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-red-800">
+            {testimonial.role}
+          </p>
+        </div>
+      </div>
+
+      <div className="text-red-900">
+        <FaQuoteLeft size={24} />
+      </div>
+
+      <p className="text-slate-700 text-base leading-7 flex-1">
+        {testimonial.quote}
+      </p>
+
+      <div className="text-red-900 self-end">
+        <FaQuoteRight size={24} />
+      </div>
+    </div>
+  </div>
+);
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Ahmed Al-Mansoori",
-      role: "Student of Quranic Studies",
-      quote:
-        "This platform has brought me closer to understanding the Quran and its teachings. The resources are comprehensive and spiritually uplifting.",
-      image: "/path/to/avatar1.jpg",
-    },
-    {
-      name: "Fatimah Al-Zahra",
-      role: "Islamic Scholar",
-      quote:
-        "As a teacher of Islamic studies, I highly recommend this platform. The lectures and materials are well-structured and easy to follow, even for beginners.",
-      image: "/path/to/avatar2.jpg",
-    },
-    {
-      name: "Imam Khalid Bin Zayed",
-      role: "Religious Leader",
-      quote:
-        "I have been recommending this platform to my congregation. It offers valuable knowledge and helps strengthen one's connection with Allah and the Prophet (PBUH).",
-      image: "/path/to/avatar3.jpg",
-    },
-  ];
-
   return (
-    <section className="testimonials bg-gray-50 py-16 px-6">
-      <div className="container md:w-[80%] mx-auto text-center">
-        <h2 className="text-red-900 text-4xl font-semibold mb-8">
-          What Our Students Say
-        </h2>
-        <p className="text-lg mb-12 text-gray-700">
-          Hear from our learners who have gained valuable Islamic knowledge and
-          spiritual insights through our platform.
-        </p>
+    <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(248,113,113,0.12),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.12),transparent_30%)]" />
+      <div className="relative max-w-6xl mx-auto space-y-8">
+        <div className="text-center space-y-3">
+          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+            Voices from our learners
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900">
+            Testimonials
+          </h2>
+          <p className="text-gray-700 text-lg max-w-3xl mx-auto">
+            Real stories from students, parents, and imams who study, teach, and
+            serve with us.
+          </p>
+        </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="testimonial-card bg-white rounded-lg p-6 text-left transition-all duration-300 ease-in-out hover:shadow-xl"
-            >
-              <div className="flex items-center mb-4">
-                <img
-                  src={`https://i.pravatar.cc/150?img=${index + 1}}`}
-                  alt={`${testimonial.name} avatar`}
-                  className="w-16 h-16 rounded-full object-cover mr-4"
-                />
-                <div>
-                  <h4 className="font-semibold text-xl text-red-900">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-gray-600">{testimonial.role}</p>
-                </div>
-              </div>
-
-              <div className="quote-icon mb-4 text-red-900">
-                <FaQuoteLeft size={30} />
-              </div>
-
-              <p className="testimonial-quote text-gray-700 text-lg">
-                {testimonial.quote}
-              </p>
-
-              <div className="quote-icon mt-4 text-red-900">
-                <FaQuoteRight size={30} />
-              </div>
-            </div>
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            900: { slidesPerView: 2 },
+            1280: { slidesPerView: 3 },
+          }}
+          navigation={{ nextEl: ".testi-next", prevEl: ".testi-prev" }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          className="pb-14"
+        >
+          {testimonials.map((testimonial, idx) => (
+            <SwiperSlide key={idx}>
+              <TestimonialCard testimonial={testimonial} index={idx} />
+            </SwiperSlide>
           ))}
+        </Swiper>
+
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 md:px-4">
+          <button
+            className="testi-prev pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white shadow-lg flex items-center justify-center hover:bg-red-700 transition"
+            aria-label="Previous testimonial"
+          >
+            ‹
+          </button>
+          <button
+            className="testi-next pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white shadow-lg flex items-center justify-center hover:bg-red-700 transition"
+            aria-label="Next testimonial"
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>

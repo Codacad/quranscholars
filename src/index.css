@@ -23,7 +23,7 @@
 
   /* Navbar */
   .navbar {
-    @apply p-4 md:px-8;
+    @apply px-4 py-2 md:px-8;
   }
   .navbar-list {
     @apply text-gray-600 transition-all duration-200 hover:text-red-700 font-sm-400;

@@ -134,7 +134,7 @@ const Login = () => {
 
             {/* Register Link */}
             <p className="text-center text-sm text-gray-600">
-              <span>New to Quran Scholars?</span>
+              <span>New to Quran Scholars</span>
               <Link
                 className="ml-2 inline-flex items-center gap-2 text-red-600 hover:text-red-800 transition-all duration-200 ease-linear"
                 to="/register"
@@ -145,7 +145,7 @@ const Login = () => {
             </p>
             <p>
               <Link className="text-red-400 hover:text-red-700" to={"#"}>
-                Forgot Password?
+                Forgot Password
               </Link>
             </p>
           </form>

@@ -13,7 +13,7 @@ const blogPosts = [
   {
     title: "5 Simple Steps to Start Learning the Quran",
     description:
-      "Start your Quranic journey with practical steps to build consistency, connection, and comprehension — even as a beginner.",
+      "Start your Quranic journey with practical steps to build consistency, connection, and comprehension - even as a beginner.",
     image: Steps,
     link: "/blog/quran-learning",
     category: "Quran Learning",
@@ -31,14 +31,14 @@ const blogPosts = [
   {
     title: "Daily Sunnahs to Revive in Your Routine",
     description:
-      "Discover practical daily Sunnahs of the Prophet ﷺ you can bring into your life for blessings and barakah.",
+      "Discover practical daily Sunnahs of the Prophet  you can bring into your life for blessings and barakah.",
     image: Sunnah,
     link: "/blog/daily-sunnahs",
     category: "Sunnah & Lifestyle",
     tags: ["Sunnah", "Daily Life", "Habits"],
   },
   {
-    title: "Raising Righteous Children in Today’s World",
+    title: "Raising Righteous Children in Today's World",
     description:
       "Explore key Islamic parenting principles to help raise confident, faith-based children in modern society.",
     image: RighteousKids,
@@ -49,7 +49,7 @@ const blogPosts = [
   {
     title: "Virtues of Seeking Knowledge in Islam",
     description:
-      "Uncover the significance of ‘Ilm in Islam and how every Muslim is commanded to seek beneficial knowledge.",
+      "Uncover the significance of 'Ilm in Islam and how every Muslim is commanded to seek beneficial knowledge.",
     image: VirtueOfKnowledge,
     link: "/blog/virtue-of-knowledge",
     category: "Islamic Values",
@@ -76,7 +76,7 @@ const blogPosts = [
   {
     title: "Understanding the Pillars of Islam",
     description:
-      "An overview of the five pillars that shape the Muslim’s relationship with Allah and the community.",
+      "An overview of the five pillars that shape the Muslim's relationship with Allah and the community.",
     image: PillarsOfIslam,
     link: "/blog/pillars-of-islam",
     category: "Aqidah & Basics",
@@ -100,62 +100,62 @@ const blogPosts = [
     category: "Aqidah & Theology",
     tags: ["Asmaul Husna", "Aqidah", "Faith"],
   },
-]
+];
 
 const Blogs = () => {
   return (
-   <section className="bg-gradient-to-br from-red-100 via-white to-red-50 py-16 px-4 md:px-20 min-h-screen">
-  <div className="max-w-7xl mx-auto">
-    <h1 className="text-4xl font-extrabold text-red-900 text-center mb-4 uppercase tracking-wide">
-      Islamic Blog & Articles
-    </h1>
-    <p className="text-center text-red-800 text-lg max-w-2xl mx-auto mb-12">
-      Read our reflections, tips, and insights rooted in Quran, Sunnah, and
-      classical Islamic wisdom written to nurture your mind, soul, and family.
-    </p>
+    <section className="bg-gradient-to-br from-red-100 via-white to-red-50 py-16 px-4 md:px-20 min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-extrabold text-red-900 text-center mb-4 uppercase tracking-wide">
+          Islamic Blog & Articles
+        </h1>
+        <p className="text-center text-red-800 text-lg max-w-2xl mx-auto mb-12">
+          Read our reflections, tips, and insights rooted in Quran, Sunnah, and
+          classical Islamic wisdom written to nurture your mind, soul, and
+          family.
+        </p>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {blogPosts.map((post, index) => (
-        <div
-          key={index}
-          className="bg-gradient-to-tl from-red-200 via-white to-red-100 border border-red-100 shadow-md rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col"
-        >
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-48 object-cover"
-          />
-          <div className="p-6 flex flex-col gap-4 flex-grow text-red-900">
-            <span className="bg-red-300 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full w-fit">
-              {post.category}
-            </span>
-            <h2 className="text-xl font-bold">{post.title}</h2>
-            <p className="text-red-800 text-base leading-relaxed">
-              {post.description}
-            </p>
-            <div className="flex flex-wrap gap-2 mt-auto">
-              {post.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="bg-white text-red-800 border border-red-300 text-xs px-2 py-1 rounded-full"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
-            <Link
-              to={post.title}
-              className="text-red-900 font-semibold hover:underline mt-2"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-tl from-red-200 via-white to-red-100 border border-red-100 shadow-md rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col"
             >
-              Read More →
-            </Link>
-          </div>
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6 flex flex-col gap-4 flex-grow text-red-900">
+                <span className="bg-red-300 text-white text-xs font-semibold uppercase px-3 py-1 rounded-full w-fit">
+                  {post.category}
+                </span>
+                <h2 className="text-xl font-bold">{post.title}</h2>
+                <p className="text-red-800 text-base leading-relaxed">
+                  {post.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {post.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="bg-white text-red-800 border border-red-300 text-xs px-2 py-1 rounded-full"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  to={post.title}
+                  className="text-red-900 font-semibold hover:underline mt-2"
+                >
+                  Read More →
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
+      </div>
+    </section>
   );
 };
 

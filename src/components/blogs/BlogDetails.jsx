@@ -12,7 +12,7 @@
 //     <h2>1. Renew Your Intention</h2>
 //     <p>...</p>
 //     <blockquote class="italic text-red-900 border-l-4 border-red-700 pl-4 my-6">
-//       “The seeking of knowledge is obligatory…” — Prophet ﷺ
+//       "The seeking of knowledge is obligatory..." - Prophet 
 //     </blockquote>
 //     <h2>2. Start with Small Portions</h2><p>...</p>
 //     <!-- add more paragraphs -->
@@ -33,7 +33,7 @@
 //       <div className="max-w-4xl mx-auto">
 //         {/* Back Link */}
 //         <Link to="/blogs" className="text-red-900 font-medium hover:underline">
-//           ← Back to Articles
+//           <- Back to Articles
 //         </Link>
 
 //         {/* Title & Meta */}
@@ -41,7 +41,7 @@
 //           {post.title}
 //         </h1>
 //         <p className="text-gray-600 italic mb-6">
-//           By {post.author} • {post.date}
+//           By {post.author} * {post.date}
 //         </p>
 
 //         {/* Featured Image */}
@@ -74,7 +74,7 @@
 //               <h3 className="text-xl font-semibold text-red-900 mb-4">
 //                 About the Author
 //               </h3>
-//               <p className="text-gray-700">Admin • Lead Instructor</p>
+//               <p className="text-gray-700">Admin * Lead Instructor</p>
 //             </div>
 
 //             <div className="bg-white border border-red-100 shadow-sm rounded-xl p-6">

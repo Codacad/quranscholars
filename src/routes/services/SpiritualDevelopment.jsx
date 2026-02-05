@@ -35,19 +35,19 @@ const SpiritualDevelopment = () => {
       {/* Quote Section */}
       <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-10">
         <blockquote className="italic text-red-800 text-xl">
-          “Verily, in the remembrance of Allah do hearts find rest.” – Surah
-          Ar-Ra’d (13:28)
+          "Verily, in the remembrance of Allah do hearts find rest." - Surah
+          Ar-Ra'd (13:28)
         </blockquote>
       </div>
 
       {/* Content Sections */}
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4 text-red-700">
-          What Is Spiritual Development in Islam?
+          What Is Spiritual Development in Islam
         </h2>
         <p className="text-gray-700 leading-relaxed">
-          Spiritual development (Tazkiyah) is an essential part of a Muslim’s
-          journey. It involves purifying the heart, strengthening one’s
+          Spiritual development (Tazkiyah) is an essential part of a Muslim's
+          journey. It involves purifying the heart, strengthening one's
           relationship with Allah, and striving to live a life aligned with
           Islamic teachings. At Quran Scholar, our programs guide students
           through this journey with care, knowledge, and sincerity.
@@ -76,7 +76,7 @@ const SpiritualDevelopment = () => {
             </h3>
             <p className="text-gray-700">
               Topics include sincerity (Ikhlas), patience (Sabr), gratitude
-              (Shukr), and other traits of the heart — taught through both
+              (Shukr), and other traits of the heart - taught through both
               classical and modern perspectives.
             </p>
           </div>
@@ -92,7 +92,7 @@ const SpiritualDevelopment = () => {
           <div className="bg-red-50 p-6 shadow-sm rounded-lg">
             <h3 className="text-xl font-bold mb-2">Practical Application</h3>
             <p className="text-gray-700">
-              We integrate teachings into daily life — such as mindfulness in
+              We integrate teachings into daily life - such as mindfulness in
               prayer, charity, fasting, and ethical behavior in social life.
             </p>
           </div>
@@ -105,7 +105,7 @@ const SpiritualDevelopment = () => {
           Why Spiritual Growth Matters
         </h2>
         <p className="text-gray-700 leading-relaxed mb-4">
-          Spiritual growth is more than just knowledge — it’s about transforming
+          Spiritual growth is more than just knowledge - it's about transforming
           your heart, habits, and purpose in life. A spiritually aware believer
           is more resilient, compassionate, and conscious of their actions in
           this world and the Hereafter.
@@ -115,7 +115,7 @@ const SpiritualDevelopment = () => {
           <li>Strengthens focus in Salah and ibadah</li>
           <li>Encourages ethical and moral behavior</li>
           <li>Builds consistency in worship and reflection</li>
-          <li>Develops love for Allah and the Prophet ﷺ</li>
+          <li>Develops love for Allah and the Prophet </li>
         </ul>
       </section>
 

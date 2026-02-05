@@ -30,7 +30,7 @@ const InteractiveLesson = () => {
           </h1>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Deepen your Islamic learning journey through active participation,
-            discussion, and exploration — not just lectures. Discover how our
+            discussion, and exploration - not just lectures. Discover how our
             interactive teaching approach transforms understanding into action.
           </p>
         </header>
@@ -38,7 +38,7 @@ const InteractiveLesson = () => {
         {/* Why Interactive */}
         <section className="mb-14">
           <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            Why Choose Interactive Lessons?
+            Why Choose Interactive Lessons
           </h2>
           <p className="text-gray-700 mb-2">
             Traditional lectures often leave students as passive listeners. Our
@@ -49,7 +49,7 @@ const InteractiveLesson = () => {
           </p>
           <p className="text-gray-700">
             We believe in learning through doing. Whether it's a live Q&A,
-            discussion on a verse, or peer collaboration — you're never just
+            discussion on a verse, or peer collaboration - you're never just
             sitting back; you're part of the process.
           </p>
         </section>
@@ -57,7 +57,7 @@ const InteractiveLesson = () => {
         {/* Key Features */}
         <section className="mb-14 bg-red-50 p-6 rounded shadow-inner">
           <h2 className="text-2xl font-semibold text-red-900 mb-4">
-            What Makes Our Lessons Interactive?
+            What Makes Our Lessons Interactive
           </h2>
           <ul className="list-disc list-inside space-y-3 text-gray-800">
             <li>
@@ -71,7 +71,7 @@ const InteractiveLesson = () => {
             </li>
             <li>
               <strong>Instructor Feedback:</strong> Personalized responses to
-              students’ questions help clear doubts and deepen understanding.
+              students' questions help clear doubts and deepen understanding.
             </li>
             <li>
               <strong>Peer Discussion Rooms:</strong> Small breakout groups
@@ -105,7 +105,7 @@ const InteractiveLesson = () => {
               <li>
                 Motivation through interactive competition (badges, scores)
               </li>
-              <li>Barakah of learning together in a virtual jama’ah</li>
+              <li>Barakah of learning together in a virtual jama'ah</li>
             </ul>
           </div>
         </section>
@@ -113,7 +113,7 @@ const InteractiveLesson = () => {
         {/* Who Can Join */}
         <section className="mb-14 bg-red-100 p-6 rounded">
           <h2 className="text-2xl font-semibold text-red-900 mb-3">
-            Who Can Benefit from This?
+            Who Can Benefit from This
           </h2>
           <p className="text-gray-700">
             Everyone. Whether you're a school-aged student, a working
@@ -139,7 +139,7 @@ const InteractiveLesson = () => {
         {/* How To Join */}
         <section className="mb-14">
           <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            How Do You Participate?
+            How Do You Participate
           </h2>
           <p className="text-gray-700 mb-2">
             Enrolling is easy. Choose your desired course on our platform, and
@@ -156,19 +156,19 @@ const InteractiveLesson = () => {
         {/* Quote or Highlight */}
         <section className="mb-14 text-center bg-red-50 p-6 rounded shadow">
           <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
-            “Tell me and I forget, teach me and I may remember, involve me and I
-            learn.” – Islamic learning thrives through involvement.
+            "Tell me and I forget, teach me and I may remember, involve me and I
+            learn." - Islamic learning thrives through involvement.
           </blockquote>
         </section>
 
         {/* Call to Action */}
         <section className="text-center">
           <h2 className="text-2xl font-semibold text-red-800 mb-4">
-            Ready to Learn Differently?
+            Ready to Learn Differently
           </h2>
           <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
             Step into a learning experience that puts you at the center. Ask,
-            explore, challenge, and grow. Join Quran Scholar’s interactive
+            explore, challenge, and grow. Join Quran Scholar's interactive
             sessions and transform the way you study your Deen.
           </p>
           <button className="bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded transition duration-300">

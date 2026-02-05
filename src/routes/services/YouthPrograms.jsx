@@ -29,7 +29,7 @@ const YouthPrograms = () => {
             Empowering the next generation through knowledge, faith, and
             leadership. Our youth programs aim to cultivate strong Muslim
             identities, build resilience, and prepare youth to live Islam
-            confidently in today’s world.
+            confidently in today's world.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ const YouthPrograms = () => {
             Relevant and Real Conversations
           </h2>
           <p className="text-gray-700 mb-3">
-            Youth today face unique struggles—mental health, peer pressure,
+            Youth today face unique struggles-mental health, peer pressure,
             online distractions, and questions around faith. We address these
             issues head-on, using Islamic guidance and open conversations to
             create a safe space for learning and growth.
@@ -111,8 +111,8 @@ const YouthPrograms = () => {
         {/* Quote Block */}
         <div className="bg-red-50 p-6 rounded text-center shadow-md">
           <blockquote className="text-xl italic text-red-900 font-medium max-w-3xl mx-auto">
-            “Take benefit of five before five: your youth before your old age…”
-            — Prophet Muhammad ﷺ
+            "Take benefit of five before five: your youth before your old age..."
+            - Prophet Muhammad 
           </blockquote>
         </div>
 

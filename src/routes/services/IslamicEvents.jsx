@@ -39,7 +39,7 @@ const IslamicEvents = () => {
             knowledge, and build strong bonds within our community. From Ramadan
             programs and Eid gatherings to Seerah nights and youth spiritual
             camps, each event is tailored to bring people together in
-            remembrance of Allah ﷻ and the teachings of His Messenger ﷺ.
+            remembrance of Allah ﷻ and the teachings of His Messenger .
           </p>
         </div>
 
@@ -52,13 +52,13 @@ const IslamicEvents = () => {
             </h2>
             <p className="text-gray-700 mb-2">
               The month of mercy is the heart of our community activities. We
-              organize nightly Taraweeh prayers, Qur’an reflections, community
+              organize nightly Taraweeh prayers, Qur'an reflections, community
               Iftars, and special talks to help families and individuals make
               the most of this blessed time.
             </p>
             <p className="text-gray-700">
               Each night brings a new reminder and a renewed chance to connect
-              with the Qur’an and our Creator. Our Ramadan programs are
+              with the Qur'an and our Creator. Our Ramadan programs are
               inclusive and welcoming, offering both on-site and virtual
               options.
             </p>
@@ -70,7 +70,7 @@ const IslamicEvents = () => {
               Eid Celebrations
             </h2>
             <p className="text-gray-700 mb-2">
-              Eid is not just a celebration — it's a spiritual milestone. We
+              Eid is not just a celebration - it's a spiritual milestone. We
               organize joyous and vibrant gatherings with communal prayers,
               festive meals, games for children, cultural performances, and
               giveaways, all in an Islamic environment.
@@ -87,14 +87,14 @@ const IslamicEvents = () => {
               Seerah Nights & Story Circles
             </h2>
             <p className="text-gray-700 mb-2">
-              Explore the life of the Prophet Muhammad ﷺ in an engaging,
+              Explore the life of the Prophet Muhammad  in an engaging,
               interactive format. Our Seerah nights involve storytelling, group
               discussion, reflections, and sometimes dramatized narration of key
-              moments from the Prophet’s life.
+              moments from the Prophet's life.
             </p>
             <p className="text-gray-700">
               These sessions are designed to bring timeless lessons to life and
-              inspire love for the Messenger ﷺ across all age groups.
+              inspire love for the Messenger  across all age groups.
             </p>
           </div>
 
@@ -110,7 +110,7 @@ const IslamicEvents = () => {
               challenges, and team-building exercises.
             </p>
             <p className="text-gray-700">
-              The goal? To build confidence, strengthen faith, and help them
+              The goal To build confidence, strengthen faith, and help them
               develop a positive Islamic identity in the real world.
             </p>
           </div>
@@ -122,7 +122,7 @@ const IslamicEvents = () => {
             Why These Events Matter
           </h2>
           <p className="text-gray-800 max-w-3xl mx-auto">
-            Events are more than just gatherings — they are touchpoints for the
+            Events are more than just gatherings - they are touchpoints for the
             heart, opportunities to revive the sunnah, and safe spaces where
             Muslims feel seen and supported. In a world of isolation and
             distractions, these moments ground us, remind us of our purpose, and

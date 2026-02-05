@@ -131,7 +131,7 @@ const Register = () => {
 
           {/* Already Registered Link */}
           <p className="text-center">
-            <span>Already Registered?</span>
+            <span>Already Registered</span>
             <Link
               className="ml-2 inline-flex items-center gap-2 text-red-600 hover:text-red-700 transition-all duration-200 ease-linear"
               to="/login"
