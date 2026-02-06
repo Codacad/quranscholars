@@ -59,6 +59,7 @@ const FAQSection = () => {
             return (
               <motion.div
                 key={index}
+                layout
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: index * 0.05 }}
@@ -72,9 +73,9 @@ const FAQSection = () => {
                     <p className="text-lg font-semibold text-slate-900">
                       {faq.question}
                     </p>
-                    <p className="text-xs uppercase tracking-[0.18em] text-red-800">
+                    {/* <p className="text-xs uppercase tracking-[0.18em] text-red-800">
                       {isOpen ? "Tap to close" : "Tap to expand"}
-                    </p>
+                    </p> */}
                   </div>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
@@ -89,13 +90,26 @@ const FAQSection = () => {
                   {isOpen && (
                     <motion.div
                       key="content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="px-6 pb-5 text-base leading-relaxed text-gray-700"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { height: "auto", opacity: 1 },
+                        collapsed: { height: 0, opacity: 0 },
+                      }}
+                      transition={{
+                        duration: 0.35,
+                        ease: [0.25, 0.8, 0.25, 1],
+                      }}
+                      className="overflow-hidden"
                     >
-                      {faq.answer}
+                      <motion.p
+                        variants={{ open: { y: 0 }, collapsed: { y: -8 } }}
+                        transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+                        className="px-6 pb-5 text-base leading-relaxed text-gray-700"
+                      >
+                        {faq.answer}
+                      </motion.p>
                     </motion.div>
                   )}
                 </AnimatePresence>

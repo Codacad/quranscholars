@@ -7,10 +7,10 @@ const SeekingKnowledge = () => {
   const [readMore, setReadMore] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-rose-950 text-slate-50 py-16 md:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-rose-950 text-slate-50 py-16 md:py-24 md:px-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(251,191,36,0.16),transparent_30%),radial-gradient(circle_at_60%_80%,rgba(14,165,233,0.14),transparent_36%)]" />
-      <div className="relative w-full px-4 md:px-8 space-y-12">
-        <div className="grid lg:grid-cols-2 gap-10 items-start w-full">
+      <div className="relative flex justify-center w-full px-4 md:px-8 space-y-12">
+        <div className="grid lg:grid-cols-2 gap-10 items-start max-w-6xl">
           {/* Left: Narrative + CTAs */}
           <div className="space-y-6 w-full">
             <div className="inline-flex items-center gap-3 rounded-full bg-red-700/25 text-red-100 px-4 py-2 text-sm font-semibold shadow-sm">

@@ -164,5 +164,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <App />
       </RouterProvider>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

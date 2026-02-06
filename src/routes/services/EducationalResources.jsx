@@ -1,6 +1,56 @@
-import { useEffect, useRef } from "react";
+﻿import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
+import {
+  FiBookOpen,
+  FiDownload,
+  FiGlobe,
+  FiFileText,
+  FiFilm,
+  FiLayers,
+  FiArrowRight,
+} from "react-icons/fi";
+import { motion } from "framer-motion";
+
+const resourceSections = [
+  {
+    title: "Qur'an & Tafsir",
+    desc: "Classical and contemporary exegesis, thematic charts, and memorization planners.",
+    icon: FiBookOpen,
+    badge: "PDF + Slides",
+  },
+  {
+    title: "Hadith & Seerah",
+    desc: "Curated narrations with commentary, Seerah timelines, and quick-reference cards.",
+    icon: FiFileText,
+    badge: "Guides",
+  },
+  {
+    title: "Fiqh & Practical Rulings",
+    desc: "Case studies, madhhab comparisons, and step-by-step worship checklists.",
+    icon: FiLayers,
+    badge: "Checklists",
+  },
+  {
+    title: "Arabic & Tajweed",
+    desc: "Grammar primers, morphology drills, tajweed rule sheets, and recitation trackers.",
+    icon: FiGlobe,
+    badge: "Workbooks",
+  },
+  {
+    title: "Media Library",
+    desc: "Short explainer videos, audio recitations, and annotated slides for visual learners.",
+    icon: FiFilm,
+    badge: "Audio/Video",
+  },
+  {
+    title: "Templates & Tools",
+    desc: "Flashcards, spaced-repetition decks, reflection journals, and syllabus templates.",
+    icon: FiDownload,
+    badge: "Templates",
+  },
+];
+
 const EducationalResources = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -8,167 +58,182 @@ const EducationalResources = () => {
     if (serviceContentRef.current) {
       gsap.fromTo(
         serviceContentRef.current,
-        {
-          opacity: 1,
-          y: -30,
-          duration: 0.5,
-        },
-        { opacity: 1, y: 0, duration: 0.5 }
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
       );
     }
   }, [location.pathname]);
+
   return (
     <div
       ref={serviceContentRef}
-      className="bg-white text-gray-900 font-sans lg:pb-8 pb-4"
+      className="text-gray-900 font-sans pb-10 lg:pb-14"
     >
-      <div className="mx-auto px-6">
-        {/* Page Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-red-900 mb-4">
-            Educational Resources
-          </h1>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Empowering minds through access to authentic Islamic knowledge. Dive
-            into our comprehensive library of carefully curated resources
-            designed for every learner, from beginner to advanced.
-          </p>
-        </header>
+      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-6xl space-y-10">
+        <motion.header
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white/90 backdrop-blur shadow-lg p-8 md:p-10"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.14),transparent_32%),radial-gradient(circle_at_84%_0%,rgba(251,191,36,0.16),transparent_34%)] pointer-events-none" />
+          <div className="relative grid md:grid-cols-[1.15fr_0.85fr] gap-6 items-center">
+            <div className="space-y-4">
+              <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
+                Library Hub
+              </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                Educational Resources
+              </h1>
+              <p className="text-lg text-slate-700 max-w-2xl">
+                A curated vault of PDFs, workbooks, media, and ready-to-use
+                templates—built to keep your learning authentic, organized, and
+                actionable.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <span className="rounded-full bg-red-100 text-red-800 border border-red-200 px-3 py-1 text-xs font-semibold">
+                  350+ assets
+                </span>
+                <span className="rounded-full bg-amber-100 text-amber-900 border border-amber-200 px-3 py-1 text-xs font-semibold">
+                  New drops monthly
+                </span>
+              </div>
+            </div>
+            <div className="relative rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6 shadow-xl">
+              <p className="text-xs uppercase tracking-[0.18em] text-white/70">
+                Download stats
+              </p>
+              <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+                <div>
+                  <p className="text-3xl font-bold">42k</p>
+                  <p className="text-xs text-white/80">downloads</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold">18</p>
+                  <p className="text-xs text-white/80">languages</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold">4.9</p>
+                  <p className="text-xs text-white/80">rating</p>
+                </div>
+              </div>
+              <div className="mt-4 h-2 rounded-full bg-white/25">
+                <div className="h-full w-[72%] rounded-full bg-white" />
+              </div>
+              <p className="mt-2 text-sm text-white/90">
+                72% of learners save 3+ hours weekly using ready-made syllabi.
+              </p>
+            </div>
+          </div>
+        </motion.header>
 
-        {/* Introduction */}
-        <section className="mb-14">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            A Cornerstone for Islamic Learning
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45 }}
+          className="space-y-3"
+        >
+          <h2 className="text-2xl font-bold text-slate-900">
+            Library highlights
           </h2>
-          <p className="text-gray-700 mb-4">
-            At Quran Scholar, we believe that structured and reliable access to
-            quality materials is essential for building lasting knowledge. Our{" "}
-            <strong>Educational Resources</strong> service provides learners of
-            all levels - students, teachers, parents, and researchers - with
-            materials rooted in Qur'an, Sunnah, and scholarly tradition.
-          </p>
-          <p className="text-gray-700">
-            Whether you're learning Arabic, diving into Hadith sciences, or
-            exploring classical Fiqh, our growing library supports your
-            spiritual and intellectual journey with depth and clarity.
-          </p>
-        </section>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {resourceSections.map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl border border-red-100 bg-white/90 shadow-sm p-4 hover:-translate-y-1 hover:shadow-md transition"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-700">
+                    <item.icon />
+                  </span>
+                  <span className="text-xs px-3 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-100 font-semibold">
+                    {item.badge}
+                  </span>
+                </div>
+                <p className="font-bold text-slate-900">{item.title}</p>
+                <p className="text-sm text-slate-700 mt-1">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
 
-        {/* Materials Offered */}
-        <section className="mb-14 bg-red-50 p-6 rounded shadow-inner">
-          <h2 className="text-2xl font-semibold text-red-900 mb-4">
-            What's in Our Library
-          </h2>
-          <ul className="list-disc list-inside text-gray-800 space-y-2">
-            <li>
-              [book] <strong>Qur'anic Tafseer:</strong> Classical and contemporary
-              exegesis from authentic scholars.
-            </li>
-            <li>
-              [book] <strong>Hadith Collections:</strong> Verified narrations with
-              commentary and classifications.
-            </li>
-            <li>
-              [scroll] <strong>Arabic Grammar:</strong> Easy-to-follow guides for
-              non-native speakers.
-            </li>
-            <li>
-              Scales: <strong>Islamic Fiqh:</strong> Case studies and practical
-              applications for all madhahib.
-            </li>
-            <li>
-              🎧 <strong>Audio & Video:</strong> Tajweed recitations, lecture
-              series, and visual explainers.
-            </li>
-            <li>
-              🧠 <strong>Interactive Tools:</strong> Flashcards, quizzes, and
-              revision checklists.
-            </li>
-          </ul>
-        </section>
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45 }}
+          className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6"
+        >
+          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 shadow-sm space-y-3">
+            <h3 className="text-xl font-bold text-slate-900">
+              Multilingual & multimedia
+            </h3>
+            <p className="text-slate-700">
+              English, Urdu, and Arabic resources with audio overlays, diagrams,
+              and concise lesson summaries to make complex topics stick.
+            </p>
+            <p className="text-slate-700">
+              Prefer to listen? Stream recitations and bite-sized explainers
+              while following synced notes.
+            </p>
+          </div>
+          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 shadow-sm space-y-3">
+            <h3 className="text-xl font-bold text-slate-900">Who it serves</h3>
+            <ul className="space-y-2 text-slate-800">
+              <li>• Students: supplement courses with ready references.</li>
+              <li>
+                • Teachers: pull authentic citations and classroom visuals.
+              </li>
+              <li>• Parents: share age-appropriate summaries at home.</li>
+              <li>• Seekers: structured paths without information overload.</li>
+            </ul>
+          </div>
+        </motion.section>
 
-        {/* Learning Support */}
-        <section className="mb-14">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            Multilingual & Multimedia Support
-          </h2>
-          <p className="text-gray-700 mb-4">
-            Understanding that learners come from diverse backgrounds, our
-            resources are available in English, Urdu, and Arabic. Whether you're
-            looking for beginner guides or in-depth scholarly work, you'll find
-            tools tailored to your language and learning style.
-          </p>
-          <p className="text-gray-700">
-            We use visuals, diagrams, voiceovers, and lesson summaries to
-            enhance comprehension - making even the most complex topics easy to
-            grasp.
-          </p>
-        </section>
-
-        {/* Who Can Benefit */}
-        <section className="mb-14 bg-red-100 p-6 rounded">
-          <h2 className="text-2xl font-semibold text-red-900 mb-4">
-            Who Are These Resources For
-          </h2>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            <li>
-              🧒 <strong>Students:</strong> Supplement their coursework with
-              in-depth learning.
-            </li>
-            <li>
-              👨‍🏫 <strong>Teachers:</strong> Use authentic references to prepare
-              engaging lessons.
-            </li>
-            <li>
-              👨‍👩‍👧‍👦 <strong>Parents:</strong> Guide their children with reliable
-              Islamic content at home.
-            </li>
-            <li>
-              [sister] <strong>Seekers of Knowledge:</strong> Anyone eager to explore
-              Islam in a structured, authentic way.
-            </li>
-          </ul>
-        </section>
-
-        {/* Quote */}
-        <section className="mb-14 text-center">
-          <blockquote className="italic text-xl text-red-900 font-medium max-w-3xl mx-auto">
-            "Whoever follows a path in the pursuit of knowledge, Allah will make
-            a path to Paradise easy for him." - Prophet Muhammad 
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45 }}
+          className="rounded-3xl bg-white/90 border border-red-100 shadow-lg p-8 text-center"
+        >
+          <blockquote className="italic text-xl text-slate-900 font-semibold max-w-3xl mx-auto">
+            “Whoever follows a path in pursuit of knowledge, Allah will make a
+            path to Paradise easy for them.”
           </blockquote>
-        </section>
+        </motion.section>
 
-        {/* Community Engagement */}
-        <section className="mb-14">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            More Than a Library - A Learning Movement
-          </h2>
-          <p className="text-gray-700 mb-4">
-            We don't just provide materials - we foster a vibrant learning
-            community. Students engage in discussions, exchange notes, and
-            support one another through study circles and virtual meetups.
-          </p>
-          <p className="text-gray-700">
-            New content is added monthly, including updated tafsir modules,
-            printable workbooks, and recommended reading guides curated by
-            scholars. You'll never feel alone in your pursuit of knowledge.
-          </p>
-        </section>
-
-        {/* CTA */}
-        <section className="text-center">
-          <h2 className="text-2xl font-semibold text-red-800 mb-4">
-            Start Exploring Now
-          </h2>
-          <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-            Join thousands of learners worldwide accessing the Quran Scholar
-            resource center. Transform your study habits with tools built on
-            trust, clarity, and a passion for learning.
-          </p>
-          <button className="bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded transition duration-300">
-            Browse Educational Resources
-          </button>
-        </section>
+        <motion.section
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.45 }}
+          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 shadow-xl"
+        >
+          <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
+                Start exploring now
+              </h2>
+              <p className="text-sm md:text-base text-white/90 max-w-2xl">
+                Download syllabi, guided notes, and media packs. Save favorites,
+                track progress, and get notified when new drops land.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 justify-start md:justify-end">
+              <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-5 py-3 shadow-md hover:-translate-y-0.5 transition">
+                Browse Resources
+                <span className="h-8 w-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
+                  <FiArrowRight />
+                </span>
+              </button>
+              <button className="inline-flex items-center gap-2 rounded-full border border-white/70 text-white font-semibold px-5 py-3 hover:bg-white/10 transition">
+                Download Sample PDF
+              </button>
+            </div>
+          </div>
+        </motion.section>
       </div>
     </div>
   );
