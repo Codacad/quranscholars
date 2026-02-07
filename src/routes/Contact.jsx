@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import ContactUs from "/contact-us.svg";
 import { MdClose } from "react-icons/md";
 import { FaAddressBook, FaPhone } from "react-icons/fa";
@@ -10,16 +10,14 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [submitMessage, setSubmitMessage] = useState(false);
-  
+
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     const contactMessageData = { firstName, lastName, email, message };
 
-    const response = await fetch("")
+    const response = await fetch("");
 
     setSubmitMessage(true);
-
-
   };
 
   const handleCloseSubmitMessage = () => {
@@ -28,123 +26,147 @@ const Contact = () => {
 
   return (
     <>
+      {/* Floating Alert */}
       <div
-        className={`alert fixed top-8 ${
-          submitMessage ? "left-2" : "-left-96"
-        }  z-50 p-4 gap-4 transition-all duration-300 ease-[cubic-bezier(0.455, 0.03, 0.515, 0.955] rounded-md shadow-2xl bg-red-200 text-red-600 flex items-center`}
+        className={`fixed top-8 ${
+          submitMessage ? "left-4" : "-left-[420px]"
+        } z-50 flex items-center gap-4 rounded-xl bg-red-100 text-red-700 p-4 shadow-2xl transition-all duration-300`}
       >
-        <span className="message text-sm">Something went wrote...</span>
+        <span className="text-sm font-medium">
+          Something went wrong. Please try again.
+        </span>
         <button
-          onClick={() => handleCloseSubmitMessage()}
-          className="w-6 h-6 hover:bg-[rgba(0,0,0,.1)] flex justify-center items-center rounded-full"
+          onClick={handleCloseSubmitMessage}
+          className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-red-200 transition"
         >
-          <span>
-            <MdClose className="ml-auto" size={15} />
-          </span>
+          <MdClose size={16} />
         </button>
-
-        {/* <span className="timeline w-full p-1 bg-red-500"></span> */}
       </div>
-      <div className="contact md:p-16 md:min-h-screen p-4 grid md:grid-cols-2 justify-center items-center">
-        <div className="contact-form max-md:order-2 max-md:px-4 py-8">
-          <div className="header flex flex-col gap-2 mb-8 max-md:items-center max-md:text-center">
-            <h1 className="md:text-4xl text-2xl text-bold text-red-600 max-md:mb-4">
-              Get in Touch with us
-            </h1>
-            <p className="text-gray-400">
-              Our team is here to assist you. Please fill out the form below
-              with your inquiries, feedback, or any questions related to our
-              Islamic education platform. We value your input and look forward
-              to hearing from you.
+
+      {/* Page Wrapper */}
+      <div className="relative min-h-screen bg-gradient-to-br from-amber-50 via-white to-rose-50 p-6 md:p-16 overflow-hidden">
+        {/* Decorative Blurs */}
+        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-red-100 blur-3xl opacity-60" />
+        <div className="pointer-events-none absolute right-0 top-24 h-80 w-80 rounded-full bg-amber-100 blur-3xl opacity-70" />
+
+        <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+          {/* Left – Content */}
+          <div className="space-y-6">
+            <p className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100 w-fit">
+              🕌 Contact Quran Scholars
             </p>
-          </div>
-          <form
-            onSubmit={(e) => handleContactSubmit(e)}
-            className="grid grid-cols-2 md:gap-12 gap-4"
-          >
-            <div className="form-group relative">
-              <input
-                type="text"
-                className="firstname py-2 w-full border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none"
-                id="firstname"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="lastname py-2 w-full border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none"
-                id="lastname"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div className="form-group col-span-2">
-              <input
-                type="email"
-                placeholder="Email"
-                className="email py-2 border-b-2 outline-none placeholder:text-red-600 placeholder:opacity-70 border-red-600 w-full"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group col-span-2">
-              <textarea
-                placeholder="Message"
-                rows={5}
-                cols={20}
-                className="message py-2 border-b-2 placeholder:text-red-600 placeholder:opacity-70 border-red-600 outline-none w-full"
-                id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-            </div>
-            <div className="button flex">
-              <button className="border-none p-2 bg-red-600 text-white w-24 rounded-md">
-                Submit
-              </button>
-            </div>
-          </form>
-          <div className="contact-address my-8 p-4 bg-red-50 rounded-sm text-red-600 flex flex-col gap-4">
-            <div className="address flex gap-3 items-start">
-              <span>
-                <FaAddressBook size={20} />
-              </span>
-              <span>
-                244601, Faridnagar, Thakurdwara, Moradabd, Uttar Pradesh,
-                (India)
-              </span>
-            </div>
-            <div className="contact-number flex gap-3 items-start">
-              <span>
+
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+              We’re Here to Support Your Islamic Learning Journey
+            </h1>
+
+            <p className="text-slate-600 leading-relaxed">
+              Whether you have questions about Quran classes, Tajweed programs,
+              one-to-one sessions, or technical support — our team is always
+              happy to help. Reach out and we’ll respond with care and clarity,
+              In shaa Allah.
+            </p>
+
+            {/* Info Cards */}
+            <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div className="rounded-xl bg-white/80 backdrop-blur border border-red-100 p-4 flex gap-3 text-red-700">
+                <FaAddressBook size={22} />
+                <span className="text-sm leading-relaxed">
+                  244601, Faridnagar, Thakurdwara, Moradabad, Uttar Pradesh,
+                  India
+                </span>
+              </div>
+
+              <div className="rounded-xl bg-white/80 backdrop-blur border border-red-100 p-4 flex gap-3 text-red-700">
                 <FaPhone size={20} />
-              </span>
-              <Link
-                to={"Tel:+918057121113"}
-                className="transition-all duration-200 ease-in-out hover:text-red-900"
-              >
-                +91 8057121113
-              </Link>
-            </div>
-            <div className="email flex gap-3 items-start">
-              <span>
+                <Link
+                  to="tel:+918057121113"
+                  className="text-sm font-medium hover:text-red-900 transition"
+                >
+                  +91 80571 21113
+                </Link>
+              </div>
+
+              <div className="rounded-xl bg-white/80 backdrop-blur border border-red-100 p-4 flex gap-3 text-red-700 sm:col-span-2">
                 <MdEmail size={20} />
-              </span>
-              <Link
-                to={"mailto:farman@quranscholar.in"}
-                className="transition-all duration-200 ease-in-out hover:text-red-900 hover:opacity-80"
-              >
-                farman@quranscholar.in
-              </Link>
+                <Link
+                  to="mailto:farman@quranscholar.in"
+                  className="text-sm font-medium hover:text-red-900 transition"
+                >
+                  farman@quranscholar.in
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="img flex justify-center max-md:order-1 max-md:mb-8">
-          <img src={ContactUs} alt="" className="w-[100%]" />
+
+          {/* Right – Form */}
+          <div className="bg-white/90 backdrop-blur rounded-2xl border border-red-100 shadow-[0_20px_70px_-28px_rgba(220,38,38,0.45)] p-6 md:p-8">
+            <form
+              onSubmit={handleContactSubmit}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+            >
+              <div>
+                <label className="text-sm font-semibold text-slate-700 mb-1 block">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full rounded-xl border border-red-100 bg-slate-50/60 p-3 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition"
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-semibold text-slate-700 mb-1 block">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Your last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full rounded-xl border border-red-100 bg-slate-50/60 p-3 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-sm font-semibold text-slate-700 mb-1 block">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-xl border border-red-100 bg-slate-50/60 p-3 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-sm font-semibold text-slate-700 mb-1 block">
+                  Message
+                </label>
+                <textarea
+                  rows={5}
+                  placeholder="Tell us how we can help you…"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="w-full rounded-xl border border-red-100 bg-slate-50/60 p-3 outline-none focus:border-red-300 focus:ring-2 focus:ring-red-100 transition resize-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <button
+                  type="submit"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl font-semibold transition-all duration-200 shadow-md"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>

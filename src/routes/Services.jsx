@@ -13,7 +13,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="rounded-3xl border border-red-100 bg-white/90 backdrop-blur shadow-[0_20px_60px_-28px_rgba(220,38,38,0.35)] px-6 md:px-10 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+            className="rounded-3xl border border-red-100 bg-white/90 backdrop-blur px-6 md:px-10 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
             <div>
               <p className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
@@ -23,7 +23,8 @@ const Services = () => {
                 Services & Programs
               </h1>
               <p className="mt-2 text-slate-600 max-w-2xl">
-                Explore courses, mentorship, resources, and community programs—all in one organized hub.
+                Explore courses, mentorship, resources, and community
+                programs—all in one organized hub.
               </p>
             </div>
             <div className="flex gap-3">
@@ -55,7 +56,7 @@ const Services = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
-                className="rounded-3xl bg-white/95 backdrop-blur border border-red-100 shadow-[0_18px_55px_-24px_rgba(15,23,42,0.35)] p-6 md:p-9"
+                className="rounded-3xl bg-white/95 backdrop-blur border border-red-100 p-6"
               >
                 <Outlet />
               </motion.div>

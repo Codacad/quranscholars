@@ -42,7 +42,7 @@ const Navbar = () => {
   useClickOutside(
     userProfileDropdownRef,
     dropwdownButtonRef,
-    "dropdown-active"
+    "dropdown-active",
   );
   const handleUserProfileDropdownToggle = () => {
     userProfileDropdownRef.current.classList.toggle("dropdown-active");
@@ -69,6 +69,24 @@ const Navbar = () => {
       console.log(error.message);
       setIsloading(false);
     }
+  };
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      y: -10,
+      scale: 0.96,
+      pointerEvents: "none",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      pointerEvents: "auto",
+      transition: {
+        duration: 0.2,
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -134,7 +152,7 @@ const Navbar = () => {
             </Link>
           )}
           {user && (
-            <div className="flex items-center relative">
+            <div className="flex items-center relative z-20">
               <button
                 onClick={handleUserProfileDropdownToggle}
                 ref={dropwdownButtonRef}

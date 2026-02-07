@@ -62,13 +62,11 @@ const ServiceSideNavigation = ({ condensed = false }) => {
   return (
     <div
       className={`navigation-wrapper ${
-        condensed
-          ? "sticky top-3 z-30"
-          : "sticky top-10"
+        condensed ? "sticky top-3 z-30" : "sticky top-10"
       }`}
     >
       <nav
-        className={`rounded-2xl border border-red-100 bg-white/90 backdrop-blur shadow-md ${
+        className={`rounded-2xl border border-red-100 bg-white/90 backdrop-blur ${
           condensed
             ? "p-3 overflow-x-auto flex gap-2 items-center hide-scrollbar"
             : "p-4"
@@ -107,7 +105,9 @@ const ServiceSideNavigation = ({ condensed = false }) => {
                         isActive ? "bg-white/15" : "bg-red-50"
                       }`}
                     >
-                      <Icon className={isActive ? "text-white" : "text-red-700"} />
+                      <Icon
+                        className={isActive ? "text-white" : "text-red-700"}
+                      />
                     </span>
                     <span>{label}</span>
                   </motion.div>

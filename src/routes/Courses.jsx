@@ -88,7 +88,7 @@ const Courses = () => {
         ref={serviceContentRef}
         className="courses bg-gradient-to-br from-amber-50 via-white to-rose-50 min-h-screen md:p-8"
       >
-        <div className="relative overflow-hidden rounded-2xl border border-red-100 bg-white shadow-sm">
+        <div className="relative overflow-hidden rounded-2xl border border-red-100 bg-white">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.12),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.14),transparent_30%)] pointer-events-none" />
           <div className="relative grid md:grid-cols-2 gap-6 p-6 md:p-12 items-center">
             <div className="space-y-4">
@@ -150,7 +150,9 @@ const Courses = () => {
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-3">
                     <div>
-                      <p className="text-3xl font-bold">{sortedCourses.length}</p>
+                      <p className="text-3xl font-bold">
+                        {sortedCourses.length}
+                      </p>
                       <p className="text-xs text-white/80">Active courses</p>
                     </div>
                     <div>
