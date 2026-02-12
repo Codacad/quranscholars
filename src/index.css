@@ -1,9 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .montserrat {
   font-family: "Montserrat", serif;
+}
+
+.font-arabic-script {
+  font-family: "Amiri Quran", "Amiri", "Noto Naskh Arabic", serif;
+}
+
+.font-urdu-script {
+  font-family: "Noto Nastaliq Urdu", "Noto Nastaliq Urdu Draft", serif;
 }
 
 @layer base {
