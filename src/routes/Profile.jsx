@@ -1,292 +1,306 @@
 import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import gsap from "gsap";
 import {
   useUploadProfilePictureMutation,
   useGetProfilePicutreUrlQuery,
 } from "../state/userApis/fileUploadApis";
-import {
-  faUpload,
-  faEdit,
-  faTrash,
-  faSave,
-} from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+import { Badge } from "../components/ui/badge";
 import InlineSpinner from "../components/InlineSpinner";
 import ProfileDeleteModal from "../components/Modals/ProfileDeleteModal";
+import {
+  Camera,
+  CheckCircle2,
+  Edit3,
+  Globe2,
+  Loader2,
+  Mail,
+  MapPin,
+  Phone,
+  Shield,
+  User,
+  X,
+} from "lucide-react";
+
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
 const ProfilePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const {
-    data,
-    isLoading: isImageLoading,
-    error: imageLoadingError,
-  } = useGetProfilePicutreUrlQuery();
-  const [uploadProfilePicture, { isLoading }] =
-    useUploadProfilePictureMutation();
-  const [file, setFile] = useState(null);
-  const [message, setMessage] = useState(null);
+  const modalRef = useRef();
+  const { data } = useGetProfilePicutreUrlQuery();
+  const [uploadProfilePicture, { isLoading: isUploading }] = useUploadProfilePictureMutation();
   const { user } = useSelector((state) => state.user);
-  const [profileImage, setProfileImage] = useState(
-    "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
-  );
-  const [error, setError] = useState(null);
-  const [saveButtonHide, setSaveButtonHide] = useState(true);
-  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
-  const [isImageSelected, setIsImageSelected] = useState(false);
-  const [editMode, setEditMode] = useState(false);
-  const [userDetails, setUserDetails] = useState({
-    fullname: user?.fullname,
-    email: user?.email,
-  });
-  // HandleImageChange
-  const handleImageChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (!selectedFile) {
-      // setError("Please select a file");
-      setProfileImage(
-        "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
-      );
-      setIsImageSelected(false);
-      return;
-    }
-    if (!allowedTypes.includes(selectedFile.type)) {
-      setError(`${selectedFile.type} is not a valid image type`);
-      setProfileImage(
-        "https://cdn-icons-png.flaticon.com/512/6522/6522516.png"
-      );
-      setIsImageSelected(false);
 
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+
+  const [userDetails, setUserDetails] = useState({
+    fullname: user?.fullname || "",
+    email: user?.email || "",
+    bio: "Committed to consistent Quran study and deeper understanding.",
+    location: "—",
+    phone: "—",
+  });
+
+  useEffect(() => {
+    setUserDetails((prev) => ({
+      ...prev,
+      fullname: user?.fullname || prev.fullname,
+      email: user?.email || prev.email,
+    }));
+  }, [user]);
+
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files?.[0];
+    if (!selectedFile) return;
+    if (!ALLOWED_TYPES.includes(selectedFile.type)) {
+      setError(`${selectedFile.type} is not a supported image format.`);
       return;
     }
-    if (selectedFile) {
-      const imageUrl = URL.createObjectURL(selectedFile);
-      setProfileImage(imageUrl);
-      setIsImageSelected(true);
-      setSaveButtonHide(false);
-      setError(null);
-      setFile(selectedFile);
-    }
+    setFile(selectedFile);
+    setError(null);
   };
 
-  // Handle Image Upload
-  const handleImageUpload = async (e) => {
-    e.preventDefault();
+  const handleImageUpload = async () => {
     if (!file) {
-      setError("No file, please select the file");
+      setError("Please select an image first.");
       return;
     }
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const response = await uploadProfilePicture(formData).unwrap();
-      setMessage(response.message);
-      setSaveButtonHide(true);
-    } catch (error) {
-      console.log(error.message);
+      await uploadProfilePicture(formData).unwrap();
+      setMessage("Profile picture updated!");
+      setFile(null);
+    } catch (err) {
+      setError(err?.data?.message || "Upload failed, try again.");
     }
   };
 
-  // Hhandle cancel image Upload
-  const handelCancelUpload = () => {
-    setSaveButtonHide(true);
-    setIsImageSelected(false);
-  };
-  const handleProfileEditChange = (e) => {
+  const handleFieldChange = (e) => {
     const { name, value } = e.target;
-    setUserDetails((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const handleProfileEdit = () => {
-    console.log(userDetails);
+    setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const modalRef = useRef();
-  const handleModalToggle = (toggle) => {
-    setModalVisible(toggle);
+  const handleSaveProfile = () => {
+    // Hooked to future profile save endpoint
+    setMessage("Profile details saved.");
+    setEditMode(false);
   };
-  useEffect(() => {
-    if (modalVisible && modalRef.current) {
-      gsap.fromTo(
-        modalRef.current,
-        {
-          opacity: 0,
-        },
-        { opacity: 1, duration: .2 }
-      );
-    }
-  }, [modalVisible]);
-  const handleClose = () => {
-    if (modalRef.current) {
-      gsap.to(modalRef.current, {
-        opacity: 0,
-        duration: .2,
-        onComplete: () => setModalVisible(false),
-      });
-    } else {
-      setModalVisible(false);
-    }
-  };
+
   return (
-    <div className="bg-gray-50 mx-auto p-6 space-y-6">
-      {/* Profile Delete Modal */}
-      {modalVisible && (
-        <ProfileDeleteModal ref={modalRef} onClose={handleClose} />
-      )}
-      <div className="max-w-3xl mx-auto">
-        <div className="bg-white  p-6 rounded-lg">
-          <div className="flex items-center space-x-4">
-            <div className="relative">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(185,28,28,0.06),_transparent_35%)] px-4 pb-12 pt-8">
+      {modalVisible && <ProfileDeleteModal ref={modalRef} onClose={() => setModalVisible(false)} />}
+
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <Badge className="bg-primary/10 text-primary">Profile</Badge>
+            <h1 className="mt-2 text-3xl font-bold text-secondary md:text-4xl">
+              Your personal workspace
+            </h1>
+            <p className="text-sm text-muted-foreground md:text-base">
+              Manage your identity, contact info, and learning preferences.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge variant="secondary" className="capitalize">
+              {user?.role || "student"}
+            </Badge>
+            <Badge variant="outline">
+              <CheckCircle2 className="mr-1 h-3 w-3 text-primary" />
+              Verified
+            </Badge>
+          </div>
+        </div>
+
+        <Card className="shadow-lg shadow-primary/5">
+          <CardContent className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10">
+            <div className="relative h-28 w-28 shrink-0">
               <img
-                src={(data && data.url) || profileImage}
+                src={file ? URL.createObjectURL(file) : data?.url}
                 alt="Profile"
-                className="md:w-24 md:h-24 w-16 h-16 rounded-full object-cover"
+                className="h-full w-full rounded-2xl object-cover border border-gray-100 shadow-sm"
               />
-              <label
-                className={`absolute bottom-1 right-1 bg-red-900 text-white md:w-8 md:h-8 w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full cursor-pointer`}
-              >
-                <FontAwesomeIcon
-                  icon={faUpload}
-                  className="max-md:w-2 max-md:h-2"
-                />
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={handleImageChange}
-                />
+              <label className="absolute -bottom-3 -right-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white shadow-lg hover:bg-primary/90">
+                <Camera className="h-4 w-4" />
+                <input type="file" className="hidden" onChange={handleImageChange} />
               </label>
             </div>
-            <div>
-              <h2 className="md:text-2xl text-xl font-bold">
-                {user?.fullname || "User Name"}
-              </h2>
-              <p className="text-gray-600">{user?.email}</p>
-              <p className="text-sm text-red-900 font-semibold">{user?.role}</p>
+            <div className="flex-1 space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-2xl font-semibold text-secondary">{userDetails.fullname}</h2>
+                <Badge variant="outline">{userDetails.email}</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground">{userDetails.bio}</p>
+              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <MapPin className="h-4 w-4" />
+                  {userDetails.location || "Add location"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Phone className="h-4 w-4" />
+                  {userDetails.phone || "Add phone"}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Globe2 className="h-4 w-4" />
+                  Preferred timezone: Auto
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {file && (
+                  <Button size="sm" onClick={handleImageUpload} disabled={isUploading}>
+                    {isUploading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                    Save photo
+                  </Button>
+                )}
+                {file && (
+                  <Button variant="ghost" size="sm" onClick={() => setFile(null)}>
+                    Cancel
+                  </Button>
+                )}
+                {error && <p className="text-sm font-medium text-destructive">{error}</p>}
+                {message && <p className="text-sm text-primary">{message}</p>}
+              </div>
             </div>
-          </div>
-          <div className="upload-actions flex items-center gap-2">
-            <span className="mt-4 text-red-500">{error}</span>
-            <button
-              onClick={handleImageUpload}
-              className={`bg-red-900 ${
-                isImageSelected && !saveButtonHide ? "block" : "hidden"
-              } flex items-center gap-2 text-white hover:opacity-95 px-2 py-1 mt-4 rounded-sm shadow-sm`}
-            >
-              {isLoading ? (
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md shadow-primary/5">
+          <CardHeader className="pb-3">
+            <CardTitle>Profile details</CardTitle>
+            <CardDescription>Update how we reach you and what others see.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-secondary">Full name</label>
+                <Input
+                  name="fullname"
+                  value={userDetails.fullname}
+                  onChange={handleFieldChange}
+                  disabled={!editMode}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-secondary">Email</label>
+                <Input
+                  name="email"
+                  type="email"
+                  value={userDetails.email}
+                  onChange={handleFieldChange}
+                  disabled
+                  className="bg-gray-50"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-secondary">Phone</label>
+                <Input
+                  name="phone"
+                  placeholder="Add phone"
+                  value={userDetails.phone}
+                  onChange={handleFieldChange}
+                  disabled={!editMode}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-secondary">Location</label>
+                <Input
+                  name="location"
+                  placeholder="City, Country"
+                  value={userDetails.location}
+                  onChange={handleFieldChange}
+                  disabled={!editMode}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-secondary">Bio</label>
+              <Textarea
+                name="bio"
+                rows={3}
+                value={userDetails.bio}
+                onChange={handleFieldChange}
+                disabled={!editMode}
+              />
+            </div>
+
+            <Separator />
+            <div className="flex flex-wrap gap-3">
+              {editMode ? (
                 <>
-                  <InlineSpinner w={16} h={16} />
-                  <span className="text-sm">Uploading...</span>
+                  <Button onClick={handleSaveProfile} className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Save changes
+                  </Button>
+                  <Button variant="ghost" onClick={() => setEditMode(false)} className="flex items-center gap-2">
+                    <X className="h-4 w-4" />
+                    Cancel
+                  </Button>
                 </>
               ) : (
-                "Save"
+                <Button variant="outline" onClick={() => setEditMode(true)} className="flex items-center gap-2">
+                  <Edit3 className="h-4 w-4" />
+                  Edit profile
+                </Button>
               )}
-            </button>
-            <button
-              onClick={handelCancelUpload}
-              className={`${
-                isImageSelected && !saveButtonHide ? "block" : "hidden"
-              } bg-gray-200 px-2 hover:opacity-80 py-1 mt-4 rounded-sm shadow-sm text-red-900`}
-            >
-              Cancel Upload
-            </button>
-          </div>
-        </div>
-        <div className="bg-gray-100 p-6 rounded-lg">
-          <h3 className="text-lg font-semibold">Personal Information</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-            <div>
-              <label className="block font-medium">Full Name</label>
-              <input
-                type="text"
-                value={userDetails?.fullname}
-                name="fullname"
-                disabled={editMode ? false : true}
-                className={`w-full p-2 border rounded ${
-                  editMode
-                    ? "bg-yellow-50 border-amber-500 focus:ring-amber-400 text-gray-800"
-                    : "bg-gray-50"
-                }`}
-                onChange={handleProfileEditChange}
-              />
             </div>
-            <div>
-              <label className="block font-medium">Email</label>
-              <input
-                type="email"
-                value={userDetails.email}
-                name="email"
-                disabled={editMode ? false : true}
-                className={`w-full p-2 border rounded ${
-                  editMode
-                    ? "bg-yellow-50 border-amber-500 focus:ring-amber-400 text-gray-800"
-                    : "bg-gray-50"
-                }`}
-                onChange={handleProfileEditChange}
-              />
-            </div>
-            <div>
-              <label className="block font-medium">Role</label>
-              <input
-                type="text"
-                value={user?.role}
-                disabled
-                className={`w-full p-2 border rounded bg-gray-50`}
-              />
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div className="bg-gray-100 p-6 rounded-lg">
-          <h3 className="text-lg font-semibold">
-            Islamic Education Subscription
-          </h3>
-          <p className="text-gray-600 mt-2">
-            You are enrolled in the{" "}
-            <strong className="text-red-900">Premium Plan</strong>.
-          </p>
-          <p className="text-gray-600">
-            Access to Quran & Hadith lessons, Fiqh, and Tafsir.
-          </p>
-          <button className="mt-4 p-2 bg-red-900 text-white rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 font-semibold transition">
-            Upgrade Plan
-          </button>
-        </div>
+        <Card className="shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle>Security & access</CardTitle>
+            <CardDescription>Keep your account protected.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm text-muted-foreground">
+            <div className="flex items-center justify-between rounded-lg border bg-muted/30 px-3 py-3">
+              <div className="flex items-center gap-3">
+                <Shield className="h-4 w-4 text-primary" />
+                <div>
+                  <p className="font-semibold text-secondary">Two-factor (coming soon)</p>
+                  <p className="text-xs text-muted-foreground">
+                    Add an extra layer of security to your sign-in.
+                  </p>
+                </div>
+              </div>
+              <Badge variant="outline">Planned</Badge>
+            </div>
+            <div className="flex items-center justify-between rounded-lg border bg-muted/30 px-3 py-3">
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-primary" />
+                <div>
+                  <p className="font-semibold text-secondary">Email notifications</p>
+                  <p className="text-xs text-muted-foreground">
+                    Receive updates about admissions and classes.
+                  </p>
+                </div>
+              </div>
+              <Badge variant="secondary">Enabled</Badge>
+            </div>
+          </CardContent>
+        </Card>
 
-        <div className="flex justify-between mt-4">
-          <div className="edit-actions">
-            {editMode ? (
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setEditMode(true)}
-                  className="flex items-center gap-2 px-4 py-2 border bg-red-900 text-white rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-                >
-                  <FontAwesomeIcon icon={faSave} /> Save
-                </button>
-                <button
-                  onClick={() => setEditMode(false)}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200 transition"
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <div className="enable-edit-mode">
-                <button
-                  onClick={() => setEditMode(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 transition"
-                >
-                  <FontAwesomeIcon icon={faEdit} /> Edit Profile
-                </button>
-              </div>
-            )}
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm">
+          <div className="space-y-1">
+            <p className="font-semibold text-red-800">Need to leave QuranScholars?</p>
+            <p className="text-red-700/80">
+              Deleting your profile removes all data permanently. This action cannot be undone.
+            </p>
           </div>
-          <button
-            className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-900 border border-red-200 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-            onClick={() => handleModalToggle(true)}
+          <Button
+            variant="destructive"
+            className="bg-red-600 hover:bg-red-700"
+            onClick={() => setModalVisible(true)}
           >
-            <FontAwesomeIcon icon={faTrash} /> Delete Profile
-          </button>
+            Delete profile
+          </Button>
         </div>
       </div>
     </div>

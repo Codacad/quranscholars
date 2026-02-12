@@ -1,21 +1,20 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import {
   useUpdateMutation,
-  useGetAdmissionsQuery,
+  useGetMyAdmissionQuery,
 } from "../../state/userApis/admissionApis";
 
 export const useEditStudentDetails = () => {
   const [saveLoading, setSaveLoading] = useState(false);
   const {
-    data,
+    data: admission,
     refetch,
     isLoading: admissionDetailsLoading,
-  } = useGetAdmissionsQuery(undefined, {
+  } = useGetMyAdmissionQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const [update] = useUpdateMutation();
-  const studentDetails =
-    Array.isArray(data) && data.length > 0 ? data[0] : null;
+  const studentDetails = useMemo(() => admission || null, [admission]);
 
   const [error, setError] = useState(null);
   const [userDetails, setUserDetails] = useState({});
@@ -23,29 +22,33 @@ export const useEditStudentDetails = () => {
 
   // Initialize userDetails when studentDetails is available
   useEffect(() => {
-    if (studentDetails) {
-      setUserDetails({
-        fullName: studentDetails.fullName || "",
-        email: studentDetails.email || "",
-        contactNumber: studentDetails.contactNumber || "",
-        dob: studentDetails.dob || "",
-        address: studentDetails.address || "",
-        zipCode: studentDetails.zipCode || "",
-        city: studentDetails.city || "",
-        state: studentDetails.state || "",
-        country: studentDetails.country || "",
-        gender: studentDetails.gender || "",
-        selectedCourses: studentDetails.selectedCourses || [],
-      });
+    if (!studentDetails) return;
 
-      // Initialize editable fields as false
-      setEditableFields(
-        Object.keys(studentDetails).reduce(
-          (acc, key) => ({ ...acc, [key]: false }),
-          {}
-        )
-      );
-    }
+    const clean = {
+      fullName: studentDetails.fullName || "",
+      email: studentDetails.email || "",
+      contactNumber: studentDetails.contactNumber || "",
+      dob: studentDetails.dob || "",
+      address: studentDetails.address || "",
+      zipCode: studentDetails.zipCode || "",
+      city: studentDetails.city || "",
+      state: studentDetails.state || "",
+      country: studentDetails.country || "",
+      gender: studentDetails.gender || "",
+      status: studentDetails.status || "pending",
+      selectedCourses: studentDetails.selectedCourses || [],
+      notes: studentDetails.notes || "",
+    };
+
+    setUserDetails(clean);
+
+    setEditableFields(
+      Object.keys(clean).reduce((acc, key) => {
+        // lock email and status editing from here
+        acc[key] = false;
+        return acc;
+      }, {})
+    );
   }, [studentDetails]);
 
   // Handle field edit mode
@@ -64,12 +67,12 @@ export const useEditStudentDetails = () => {
       setSaveLoading(true);
       if (!value) {
         setError(`${field} cannot be empty`);
+        setSaveLoading(false);
         return;
       }
 
       try {
-        const response = await update({ [field]: value });
-        console.log("Update successful:", response);
+        await update({ [field]: value }).unwrap();
         setEditableFields((prev) => ({ ...prev, [field]: false }));
         refetch();
         setSaveLoading(false);

@@ -53,12 +53,12 @@ const router = createBrowserRouter([
         path: "services",
         element: <Services />,
         children: [
-          { index: true, element: <ServicesList /> },
+          { index: true, element: <Courses /> },
           {
             path: "courses",
             element: <Courses />,
           },
-          { path: "courses/:courseName", element: <CourseOverview /> },
+          { path: "courses/:slug", element: <CourseOverview /> },
           {
             path: "interactive-lessons",
             element: <InteractiveLesson />,

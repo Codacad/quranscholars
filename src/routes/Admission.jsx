@@ -1,403 +1,664 @@
-import { useState } from "react";
-import "../css/Admission.css";
+﻿import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { MdErrorOutline } from "react-icons/md";
-import { TiTick } from "react-icons/ti";
-import {
-  useGetAdmissionsQuery,
-  useJoinMutation,
-} from "../state/userApis/admissionApis";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  useGetMyAdmissionQuery,
+  useJoinMutation,
+  useUpdateMutation,
+} from "../state/userApis/admissionApis";
+import { toast, Toaster } from "sonner";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Checkbox } from "../components/ui/checkbox";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
+import { Textarea } from "../components/ui/textarea";
+import { ScrollArea } from "../components/ui/scroll-area";
+import { cn } from "../lib/utils";
+import {
+  CalendarClock,
+  CheckCircle2,
+  Loader2,
+  Send,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
+
+const courseOptions = [
+  {
+    name: "Quran with Tajweed",
+    detail: "Recitation, Makharij, daily feedback",
+  },
+  { name: "Madani Qaida", detail: "Foundations for beginners" },
+  { name: "Farz Uloom", detail: "Core obligations and fiqh basics" },
+  { name: "Hadith", detail: "Selections with commentary" },
+  { name: "Tafseer", detail: "Context and reflections" },
+  { name: "Fiqh (Hanafi)", detail: "Applied jurisprudence" },
+  { name: "Urdu", detail: "Language immersion" },
+  { name: "Prophet's Stories", detail: "Seerah narratives" },
+  { name: "Masnoon Duayen", detail: "Daily duas with meaning" },
+  { name: "Sarf & Nahv", detail: "Arabic morphology & grammar" },
+];
+
+const countryOptions = [
+  "United States",
+  "United Kingdom",
+  "Canada",
+  "Saudi Arabia",
+  "United Arab Emirates",
+  "Pakistan",
+  "India",
+  "Bangladesh",
+  "Malaysia",
+  "Qatar",
+  "Other",
+];
+
+const admissionSchema = z.object({
+  fullName: z.string().min(3, "Full name is required"),
+  email: z.string().email("Valid email required"),
+  contactNumber: z.string().min(8, "Contact number required"),
+  dob: z.string().min(1, "Date of birth is required"),
+  address: z.string().min(5, "Address is required"),
+  zipCode: z.string().optional(),
+  city: z.string().min(2, "City is required"),
+  state: z.string().min(2, "State is required"),
+  country: z.string().min(2, "Country is required"),
+  gender: z.enum(["male", "female", "other"], {
+    required_error: "Gender is required",
+  }),
+  selectedCourses: z
+    .array(z.string())
+    .min(1, "Select at least one course")
+    .refine((val) => new Set(val).size === val.length, "Duplicate courses"),
+  notes: z.string().max(500, "Keep notes under 500 characters").optional(),
+});
+
+const normalizeDate = (value) => {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toISOString().split("T")[0];
+};
+
 const Admission = () => {
   const { user } = useSelector((state) => state.user);
-  const [join] = useJoinMutation();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [isLoading, setIsLoading] = useState();
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState(user.email);
-  const [contactNumber, setContactNumber] = useState("");
-  const [dob, setDob] = useState("");
-  const [address, setAddress] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [gender, setGender] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const handleAdmissionSubmit = async (e) => {
-    e.preventDefault();
-    const admissionData = {
-      fullName,
-      email,
-      contactNumber,
-      dob,
-      address,
-      zipCode,
-      city,
-      state,
-      country,
-      gender,
-      selectedCourses,
+  const { data: admission, isFetching: isAdmissionLoading } =
+    useGetMyAdmissionQuery();
+  const [join, { isLoading: isJoining }] = useJoinMutation();
+  const [update, { isLoading: isUpdating }] = useUpdateMutation();
+
+  const defaultValues = useMemo(
+    () => ({
+      fullName: admission?.fullName || "",
+      email: user?.email || "",
+      contactNumber: admission?.contactNumber || "",
+      dob: normalizeDate(admission?.dob) || "",
+      address: admission?.address || "",
+      zipCode: admission?.zipCode || "",
+      city: admission?.city || "",
+      state: admission?.state || "",
+      country: admission?.country || "",
+      gender: admission?.gender || "",
+      selectedCourses: admission?.selectedCourses || [],
+      notes: admission?.notes || "",
+    }),
+    [admission, user?.email],
+  );
+
+  const form = useForm({
+    resolver: zodResolver(admissionSchema),
+    defaultValues,
+    mode: "onBlur",
+  });
+
+  useEffect(() => {
+    form.reset(defaultValues);
+  }, [defaultValues, form]);
+
+  const isSubmitting = isJoining || isUpdating;
+
+  const handleSubmit = async (values) => {
+    const payload = {
+      ...values,
+      selectedCourses: Array.from(new Set(values.selectedCourses)),
+      notes: values.notes?.trim() || undefined,
     };
-    setIsLoading(true);
+
+    // Backend forbids changing email; strip it from update payloads
+    if (admission?._id) {
+      delete payload.email;
+    }
+
     try {
-      const response = await join(admissionData);
-      console.log(response);
-      if (response.data) {
-        setSuccess(`Admission Successful, redirecting.....`);
-        setError("");
+      if (admission?._id) {
+        await update(payload).unwrap();
+        toast.success("Admission updated", {
+          description: "Your latest details have been saved.",
+        });
+      } else {
+        await join(payload).unwrap();
+        toast.success("Admission submitted", {
+          description: "We will review and reach out shortly.",
+        });
         navigate("/");
       }
-      if (response.error) {
-        setError(response.error.data.message);
-        setSuccess("");
-      }
-      setIsLoading(false);
     } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-
-    // console.log(admissionData);
-  };
-
-  const handleSelectedCourses = async (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setSelectedCourses((preCourse) => [...preCourse, value]);
-    } else {
-      setSelectedCourses((prevCourses) =>
-        prevCourses.filter((course) => course !== value)
-      );
+      const message =
+        error?.data?.message || "Unable to save admission at the moment.";
+      toast.error(message);
     }
   };
+
+  const selectedCount = form.watch("selectedCourses")?.length || 0;
+  const completenessScore =
+    (selectedCount ? 1 : 0) +
+    (form.watch("fullName") ? 1 : 0) +
+    (form.watch("contactNumber") ? 1 : 0) +
+    (form.watch("dob") ? 1 : 0) +
+    (form.watch("address") ? 1 : 0) +
+    (form.watch("city") ? 1 : 0) +
+    (form.watch("country") ? 1 : 0);
+  const completeness = Math.min(100, Math.round((completenessScore / 7) * 100));
+
   return (
-    <>
-      <div className="admission flex flex-col items-center max-md:px-4 my-8 min-h-screen sm:w-[50%] w-[100%] m-auto">
-        <div className="header border-b py-4 w-full border-gray-200 mb-4">
-          <h1 className="font-bold md:text-4xl text-xl text-red-600 mb-2">
-            CLASS ADMISSION FORM
-          </h1>
-          <h3 className="text-md max-sm:text-sm text-gray-400">
-            Enter your admission information below
-          </h3>
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,_rgba(185,28,28,0.08),_transparent_35%)] pb-12 pt-10">
+      <Toaster richColors />
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 md:px-6">
+        <div className="flex flex-col gap-2">
+          <div className="inline-flex items-center gap-2 self-start rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+            <Sparkles className="h-4 w-4" />
+            Admission Center
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h1 className="text-3xl font-bold text-secondary md:text-4xl">
+                Your pathway to Quran Scholars
+              </h1>
+              <p className="mt-2 max-w-3xl text-sm text-muted-foreground md:text-base">
+                Submit your admission once and keep it updated. We prioritize
+                clarity, so you can track status, refine your preferences, and
+                get started faster.
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" className="capitalize">
+                {admission?.status || "not submitted"}
+              </Badge>
+              <Badge variant="outline">
+                {admission ? "Editing existing profile" : "New admission"}
+              </Badge>
+            </div>
+          </div>
         </div>
-        <form className="form grid grid-cols-2 max-sm:flex flex-col gap-4 w-full">
-          <div className="input-group flex flex-col">
-            <label htmlFor="fullname">
-              Fullname<sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              className="fullname"
-              id="fullname"
-            />
+
+        <div className="grid gap-6 lg:grid-cols-[2fr_1.1fr]">
+          <Card className="shadow-lg shadow-primary/5">
+            <CardHeader className="pb-4">
+              <CardTitle>Primary details</CardTitle>
+              <CardDescription>
+                We pre-fill what we can. Only fields marked with * are required.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form
+                  className="space-y-8"
+                  onSubmit={form.handleSubmit(handleSubmit)}
+                >
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="fullName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Full name*</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Your legal name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email (locked)</FormLabel>
+                          <FormControl>
+                            <Input {...field} readOnly />
+                          </FormControl>
+                          <FormDescription>
+                            We use your account email for verification.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="contactNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Contact number*</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="+1 555 123 4567"
+                              type="tel"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormDescription>
+                            WhatsApp number preferred for quick coordination.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="dob"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Date of birth*</FormLabel>
+                          <FormControl>
+                            <Input type="date" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="grid gap-4">
+                    <FormField
+                      control={form.control}
+                      name="address"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Address*</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Street, building, area"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="grid gap-4 md:grid-cols-4">
+                      <FormField
+                        control={form.control}
+                        name="zipCode"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Zip / Postal</FormLabel>
+                            <FormControl>
+                              <Input placeholder="00000" {...field} />
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="city"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>City*</FormLabel>
+                            <FormControl>
+                              <Input placeholder="City" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="state"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>State / Province*</FormLabel>
+                            <FormControl>
+                              <Input placeholder="State" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="country"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Country*</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              value={field.value || undefined}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Choose" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {countryOptions.map((country) => (
+                                  <SelectItem key={country} value={country}>
+                                    {country}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-6">
+                    <FormField
+                      control={form.control}
+                      name="gender"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>Gender*</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              className="grid grid-cols-3 gap-3"
+                              onValueChange={field.onChange}
+                              value={field.value}
+                            >
+                              {["male", "female", "other"].map((option) => (
+                                <FormItem
+                                  key={option}
+                                  className={cn(
+                                    "flex items-center gap-3 rounded-lg border px-3 py-3 transition hover:border-primary/50",
+                                    field.value === option &&
+                                      "border-primary bg-primary/5",
+                                  )}
+                                >
+                                  <FormControl>
+                                    <RadioGroupItem value={option} />
+                                  </FormControl>
+                                  <FormLabel className="capitalize">
+                                    {option}
+                                  </FormLabel>
+                                </FormItem>
+                              ))}
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="selectedCourses"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Choose course(s)*</FormLabel>
+                          <ScrollArea className="max-h-[380px] rounded-xl border bg-white/70 px-3">
+                            <div className="grid gap-3 py-4 sm:grid-cols-2">
+                              {courseOptions.map((course) => {
+                                const checked = field.value?.includes(
+                                  course.name,
+                                );
+                                return (
+                                  <FormItem
+                                    key={course.name}
+                                    className={cn(
+                                      "group relative flex flex-col gap-2 rounded-2xl border px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",
+                                      checked && "border-primary bg-primary/5",
+                                    )}
+                                  >
+                                    <FormControl>
+                                      <Checkbox
+                                        checked={checked}
+                                        onCheckedChange={(value) => {
+                                          const current = field.value || [];
+                                          if (value) {
+                                            field.onChange([
+                                              ...current,
+                                              course.name,
+                                            ]);
+                                          } else {
+                                            field.onChange(
+                                              current.filter(
+                                                (c) => c !== course.name,
+                                              ),
+                                            );
+                                          }
+                                        }}
+                                      />
+                                    </FormControl>
+                                    <div className="space-y-1">
+                                      <FormLabel className="leading-none">
+                                        {course.name}
+                                      </FormLabel>
+                                      <p className="text-xs text-muted-foreground">
+                                        {course.detail}
+                                      </p>
+                                    </div>
+                                    {checked && (
+                                      <div className="absolute right-3 top-3 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-primary">
+                                        Selected
+                                      </div>
+                                    )}
+                                  </FormItem>
+                                );
+                              })}
+                            </div>
+                          </ScrollArea>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <FormField
+                    control={form.control}
+                    name="notes"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Additional notes</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Tell us about your goals, timing preferences, or any accommodations you need."
+                            rows={4}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <CardFooter className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+                    <div className="text-sm text-muted-foreground">
+                      {selectedCount ? (
+                        <>
+                          {selectedCount} course{selectedCount > 1 ? "s" : ""}{" "}
+                          selected · You can update anytime.
+                        </>
+                      ) : (
+                        "Select at least one course to continue."
+                      )}
+                    </div>
+                    <Button
+                      type="submit"
+                      className="min-w-[180px]"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      )}
+                      {admission ? "Save updates" : "Submit admission"}
+                      {!isSubmitting && <Send className="ml-2 h-4 w-4" />}
+                    </Button>
+                  </CardFooter>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+
+          <div className="space-y-4">
+            <Card className="h-full shadow-lg shadow-primary/5">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center gap-2 text-xl">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  Application Snapshot
+                </CardTitle>
+                <CardDescription>
+                  Instant overview of what we will review on our side.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <Badge>{admission?.status || "pending review"}</Badge>
+                  <Badge variant="outline">
+                    {selectedCount || admission?.selectedCourses?.length || 0}{" "}
+                    course choices
+                  </Badge>
+                  <Badge variant="secondary">
+                    {admission?.city || "City TBD"},{" "}
+                    {admission?.country || "Country"}
+                  </Badge>
+                </div>
+                <div className="rounded-lg border bg-muted/20 p-4">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>Profile completeness</span>
+                    <span>{completeness}%</span>
+                  </div>
+                  <div className="mt-2 h-2 rounded-full bg-muted">
+                    <div
+                      className="h-2 rounded-full bg-primary transition-all"
+                      style={{ width: `${completeness}%` }}
+                    />
+                  </div>
+                </div>
+                <div className="grid gap-3 rounded-lg border bg-background p-3">
+                  <div className="flex items-center gap-3">
+                    <CalendarClock className="h-5 w-5 text-primary" />
+                    <div className="text-sm">
+                      <p className="font-semibold">Expected review</p>
+                      <p className="text-muted-foreground">
+                        24-48 hours after submission. We contact via WhatsApp
+                        and email.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    <div className="text-sm">
+                      <p className="font-semibold">One profile per user</p>
+                      <p className="text-muted-foreground">
+                        Keep your details updated instead of submitting again.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="flex items-center gap-2 border-t bg-muted/30 px-6 py-4 text-xs text-muted-foreground">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                Your information is only visible to the admissions team.
+              </CardFooter>
+            </Card>
+
+            <Card className="shadow-md shadow-primary/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">How it works</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <div className="flex gap-3 rounded-lg border bg-primary/5 p-3">
+                  <div className="mt-0.5 h-6 w-6 rounded-full bg-primary text-center text-xs font-semibold leading-6 text-white">
+                    1
+                  </div>
+                  <div>
+                    <p className="font-semibold text-secondary">
+                      Submit details
+                    </p>
+                    <p>
+                      Complete the form and choose your desired study tracks.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-3 rounded-lg border bg-secondary/5 p-3">
+                  <div className="mt-0.5 h-6 w-6 rounded-full bg-secondary text-center text-xs font-semibold leading-6 text-white">
+                    2
+                  </div>
+                  <div>
+                    <p className="font-semibold text-secondary">
+                      Match & schedule
+                    </p>
+                    <p>
+                      We pair you with a mentor and set orientation within two
+                      days.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-3 rounded-lg border bg-muted/50 p-3">
+                  <div className="mt-0.5 h-6 w-6 rounded-full border border-muted-foreground text-center text-xs font-semibold leading-6 text-muted-foreground">
+                    3
+                  </div>
+                  <div>
+                    <p className="font-semibold text-secondary">
+                      Start learning
+                    </p>
+                    <p>Track your classes and adjust preferences anytime.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-          <div className="input-group flex flex-col">
-            <label htmlFor="email">
-              Email<sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="email"
-              id="email"
-              readOnly
-            />
-          </div>
-          <div className="input-group flex flex-col">
-            <label htmlFor="phone-number">
-              Contact Number{" "}
-              <span className="text-[10px]">
-                (WhatsApp Number is preferred)
-              </span>
-              <sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="tel"
-              value={contactNumber}
-              onChange={(e) => setContactNumber(e.target.value)}
-              className="phone-number"
-              id="phone-number"
-            />
-          </div>
-          <div className="input-group relative flex flex-col max-md:grid-cols-1">
-            <label htmlFor="dob">
-              DOB<sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="date"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-              className="dob"
-              id="dob"
-            />
-          </div>
-          <div className="input-group flex flex-col col-span-2">
-            <label htmlFor="current-address">
-              Address<sup className="text-red-500">*</sup>
-            </label>
-            <input
-              type="text"
-              id="address"
-              className="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-          <div className="city-state-country grid grid-cols-2 max-sm:flex flex-col gap-4 col-span-2">
-            <div className="input-group flex flex-col">
-              <label htmlFor="zipcode">Zip Code</label>
-              <input
-                type="text"
-                id="zipcode"
-                value={zipCode}
-                onChange={(e) => setZipCode(e.target.value)}
-                className="zipcode"
-              />
-            </div>
-            <div className="input-group flex flex-col">
-              <label htmlFor="city">
-                City<sup className="text-red-500">*</sup>
-              </label>
-              <input
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                id="city"
-                className="city"
-              />
-            </div>
-            <div className="input-group flex flex-col">
-              <label htmlFor="state">
-                State<sup className="text-red-500">*</sup>
-              </label>
-              <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                id="state"
-                className="state"
-              />
-            </div>
-            <div className="input-group flex flex-col">
-              <label htmlFor="country">
-                Country<sup className="text-red-500">*</sup>
-              </label>
-              <input
-                type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                id="country"
-                className="country"
-              />
-            </div>
-          </div>
-          <div className="gender border mt-2 relative border-gray-300 p-4 rounded-md col-span-2">
-            <h2 className="absolute -top-3 bg-white left-3">
-              Gender<sup className="text-red-500">*</sup>
-            </h2>
-            <div className="mt-3 input-groups text-sm flex flex-col gap-2">
-              <div className="input-group flex items-center">
-                <input
-                  type="radio"
-                  value={"male"}
-                  checked={gender === "male"}
-                  onChange={(e) => setGender(e.target.value)}
-                  id="male"
-                  name="gender"
-                  className="male"
-                />
-                <label htmlFor="male">Male</label>
-              </div>
-              <div className="input-group flex items-center">
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  className="female"
-                  value={"female"}
-                  checked={gender === "female"}
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                <label htmlFor="female">Female</label>
-              </div>
-            </div>
-          </div>
-          <div className="courses relative mt-2 col-span-2">
-            <h2 className="absolute -top-3 bg-white left-3">
-              Choose Course (s)<sup className="text-red-500">*</sup>
-            </h2>
-            <div className="grid input-groups grid-cols-3 max-sm:grid-cols-1 max-md:grid-cols-2 p-4 mt-3 gap-4 text-sm">
-              <div className="input-group">
-                <input
-                  type="checkbox"
-                  className="quran-with-tajweed"
-                  id="quran-with-tajweed"
-                  value={"Quran with Tajweed"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="quran-with-tajweed" className="w-full">
-                  Quran with Tajweed
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="madani-qaida"
-                  id="madani-qaida"
-                  value={"Madani Qaida"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="madani-qaida" className="w-full">
-                  Madani Qaida
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="farz-uloom"
-                  id="farz-uloom"
-                  value={"Farz Uloom"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="farz-uloom" className="w-full">
-                  Farz Uloom
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  value={"Hadith"}
-                  onChange={handleSelectedCourses}
-                  className="dadith"
-                  id="hadith"
-                />
-                <label htmlFor="hadith" className="w-full">
-                  Hadith
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  value={"Tafseer"}
-                  onChange={handleSelectedCourses}
-                  className="tafseer"
-                  id="tafseer"
-                />
-                <label htmlFor="tafseer" className="w-full">
-                  Tafseer
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="fiqh-hanafi"
-                  id="fiqh-hanafi"
-                  value={"Fiqh (Hanafi)"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="fiqh-hanafi" className="w-full">
-                  Fiqh (Hanafi)
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  value={"Urdu"}
-                  onChange={handleSelectedCourses}
-                  className="urdu"
-                  id="urdu"
-                />
-                <label htmlFor="urdu" className="w-full">
-                  Urdu
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="prophets-stories"
-                  id="prophets-stories"
-                  value={"Prophet's Stories"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="prophets-stories" className="w-full">
-                  {"Prophet's Stories"}
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="masnoon-duayen"
-                  id="masnoon-duayen"
-                  value={"Masnoon Duayen"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="masnoon-duayen" className="w-full">
-                  Masnoon Duayen
-                </label>
-              </div>
-              <div className="input-group flex">
-                <input
-                  type="checkbox"
-                  className="sarf-and-nahv"
-                  id="sarf-and-nahv"
-                  value={"Sarf & Nahv"}
-                  onChange={handleSelectedCourses}
-                />
-                <label htmlFor="sarf-and-nahv" className="w-full">
-                  Sarf & Nahv
-                </label>
-              </div>
-            </div>
-          </div>
-          {error && (
-            <div className="col-span-2">
-              <p className="flex w-full gap-2 items-center justify-center text-red-600 p-2 bg-red-100 rounded-sm text-sm mb-6">
-                <span>
-                  <MdErrorOutline />
-                </span>
-                {error.split(",")[0]}
-              </p>
-            </div>
-          )}
-          {success && (
-            <div className="w-full col-span-2">
-              <p className="flex p-2 gap-2 items-center justify-center text-green-600 rounded-sm bg-green-100 text-sm mb-2">
-                <span>
-                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 shadow-sm">
-                    <TiTick className="text-md" />
-                  </span>
-                </span>
-                {success}
-              </p>
-            </div>
-          )}
-          <div className="action flex justify-end w-[100%] col-span-2 p-4">
-            <button
-              onClick={handleAdmissionSubmit}
-              className={`${
-                isLoading ? "opacity-20" : "opacity-100"
-              } submit-addmission flex items-center justify-center gap-4 w-36 p-3 rounded-md bg-red-600 text-white`}
-            >
-              {isLoading ? (
-                <span className="flex justify-center items-center gap-2">
-                  <span className="spinner"></span>
-                  <span>Loading...</span>
-                </span>
-              ) : (
-                <span>Submit</span>
-              )}
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
-    </>
+      {(isAdmissionLoading || isSubmitting) && (
+        <div className="pointer-events-none fixed inset-0 z-30 grid place-items-center bg-white/50 backdrop-blur-sm">
+          <div className="flex items-center gap-3 rounded-full border bg-white px-4 py-2 shadow-md">
+            <Loader2 className="h-4 w-4 animate-spin text-primary" />
+            <span className="text-sm text-muted-foreground">
+              {isAdmissionLoading
+                ? "Loading your admission..."
+                : "Saving changes..."}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

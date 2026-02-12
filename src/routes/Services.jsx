@@ -23,8 +23,8 @@ const Services = () => {
                 Services & Programs
               </h1>
               <p className="mt-2 text-slate-600 max-w-2xl">
-                Explore courses, mentorship, resources, and community
-                programs—all in one organized hub.
+                Explore courses, mentorship, resources, and community programs
+                all in one organized hub.
               </p>
             </div>
             <div className="flex gap-3">

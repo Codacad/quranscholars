@@ -8,12 +8,11 @@ import { useRef, useState, useEffect } from "react";
 import GridBackground from "../p5_sketches/GridBackground";
 import BlogSection from "../components/BlogSection";
 import FAQSection from "../components/FAQSection";
-import ServicesSection from "../components/ServicesSectioin";
+import ServicesSection from "../components/ServicesSection";
 const Home = () => {
   const gridWrapperRef = useRef();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-
   useEffect(() => {
     const measure = () => {
       if (gridWrapperRef.current) {
@@ -21,10 +20,8 @@ const Home = () => {
         setHeight(gridWrapperRef.current.offsetHeight);
       }
     };
-
     measure();
     window.addEventListener("resize", measure);
-
     return () => {
       window.removeEventListener("resize", measure);
     };

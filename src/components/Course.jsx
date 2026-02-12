@@ -1,4 +1,3 @@
-import React from "react";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { MdOutlineWatchLater } from "react-icons/md";
@@ -8,11 +7,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Course = ({ course, index = 0 }) => {
-  const discountedFee =
-    typeof course.discount === "number"
-      ? course.fee - course.discount
-      : course.fee;
-
   return (
     <>
       <motion.div
@@ -29,8 +23,8 @@ const Course = ({ course, index = 0 }) => {
           <div className="relative overflow-hidden rounded-xl h-52 bg-gray-50">
             <img
               className="h-full w-full object-cover"
-              src={course.course_image}
-              alt={course.course_name}
+              src={course.thumbnail}
+              alt={course.title}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-transparent" />
             <div className="absolute top-3 left-3 inline-flex items-center gap-2 rounded-full bg-white/85 backdrop-blur px-3 py-1 text-xs font-semibold text-red-700 border border-red-100 shadow-sm">
@@ -47,19 +41,19 @@ const Course = ({ course, index = 0 }) => {
               <div className="text-right">
                 <div className="text-2xl font-extrabold text-slate-900 flex items-center gap-1">
                   <LiaRupeeSignSolid />
-                  {discountedFee}
+                  {course.price.amount - course.price.discount}
                 </div>
-                {course.discount ? (
+                {course.price.discount > 0 ? (
                   <div className="text-xs text-gray-500 line-through flex items-center gap-1 justify-end">
                     <LiaRupeeSignSolid />
-                    {course.fee}
+                    {course.price.amount}
                   </div>
                 ) : null}
               </div>
             </div>
 
             <h3 className="text-xl font-bold text-slate-900 leading-snug">
-              {course.course_name}
+              {course.title}
             </h3>
             <p className="text-sm text-slate-600">
               {course.description ||
@@ -69,7 +63,10 @@ const Course = ({ course, index = 0 }) => {
             <div className="grid grid-cols-3 gap-3 text-xs font-semibold text-slate-700">
               <div className="flex items-center gap-2 bg-slate-50 rounded-lg px-2 py-2">
                 <MdOutlineWatchLater className="text-red-600 text-lg" />
-                <span>{course.duration || "Self-paced"}</span>
+                <span>
+                  {`${course.duration.value} ${course.duration.unit}` ||
+                    "Self-paced"}
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-slate-50 rounded-lg px-2 py-2">
                 <MdOutlineStarPurple500 className="text-amber-500 text-lg" />
@@ -83,23 +80,25 @@ const Course = ({ course, index = 0 }) => {
           </div>
 
           <div className="mt-4 flex items-center justify-between border-t pt-3 border-dashed border-gray-200">
-            <div className="flex -space-x-2">
+            <div className="flex items-center -space-x-2">
               {[0, 1, 2].map((i) => (
                 <div
                   key={i}
-                  className="h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br from-red-300 to-amber-200"
-                />
+                  className="h-6 w-6 rounded-full border-2 border-white bg-gradient-to-br from-red-300 to-amber-200 flex justify-center items-center text-red-900 font-bold"
+                >
+                  <span className="text-xs">{i}</span>
+                </div>
               ))}
               <span className="ml-3 text-xs font-semibold text-slate-600">
                 Cohort {index + 1} • New seats
               </span>
             </div>
             <Link
-              to={`/services/courses/${course.course_name}`}
-              className="inline-flex items-center justify-between gap-2 rounded-full bg-red-600 px-4 py-2 text-sm font-bold text-white shadow-md transition hover:bg-red-700 min-w-[155px] whitespace-nowrap"
+              to={`/services/courses/${course.slug}`}
+              className="inline-flex items-cente justify-center items-center gap-1 rounded-full bg-red-600 p-2 text-[12px] font-semibold text-white shadow-md transition hover:bg-red-700 w-36 whitespace-nowrap"
             >
               <span className="leading-none">View Course</span>
-              <span className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <span className="h-4 w-4 rounded-full bg-white/20 flex items-center justify-center shrink-0">
                 <FaArrowRight />
               </span>
             </Link>

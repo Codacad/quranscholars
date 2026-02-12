@@ -121,7 +121,8 @@ const Blogs = () => {
     return blogPosts.filter((post) => {
       const matchesCategory =
         activeCategory === "All" || post.category === activeCategory;
-      const haystack = `${post.title} ${post.description} ${post.tags.join(" ")}`.toLowerCase();
+      const haystack =
+        `${post.title} ${post.description} ${post.tags.join(" ")}`.toLowerCase();
       const matchesTerm = term ? haystack.includes(term) : true;
       return matchesCategory && matchesTerm;
     });

@@ -1,31 +1,5 @@
 import { Link } from "react-router-dom";
-import Steps from "../assets/images/blog/steps.jpg";
-import Tajweed from "../assets/images/blog/tajweed.jpg";
-import Sunnah from "../assets/images/blog/sunnah.jpg";
-const blogPosts = [
-  {
-    title: "5 Simple Steps to Start Learning the Quran",
-    description:
-      "Embark on your Quranic journey with these five easy, practical tips designed for beginners. Start with intention, and let the light of knowledge guide you.",
-    image: Steps,
-    link: "/blog/quran-learning",
-  },
-  {
-    title: "Importance of Tajweed in Daily Recitation",
-    description:
-      "Discover why Tajweed isn't just for scholars. Learn how correct pronunciation transforms your connection with the Quran and enhances your spiritual presence.",
-    image: Tajweed,
-    link: "/blog/tajweed-importance",
-  },
-  {
-    title: "Daily Sunnahs to Revive in Your Routine",
-    description:
-      "Incorporate powerful Sunnahs into your day from waking up to sleeping and bring the teachings of Prophet Muhammad  into every moment.",
-    image: Sunnah,
-    link: "/blog/daily-sunnahs",
-  },
-];
-
+import { blogPosts } from "../data/blogPosts.js";
 const BlogSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
@@ -47,7 +21,7 @@ const BlogSection = () => {
           </div>
           <Link
             to="/blogs"
-            className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-6 py-3 font-semibold shadow-md hover:bg-red-700 transition w-44 justify-center"
+            className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-2 py-3 font-semibold shadow-md hover:bg-red-700 transition w-48 justify-center"
           >
             See all blogs
             <span className="text-base">↗</span>
@@ -75,10 +49,10 @@ const BlogSection = () => {
                 <h3 className="text-lg font-bold text-slate-900 leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-gray-700 text-sm leading-6 flex-1">
+                <p className="text-gray-700 text-sm leading-6">
                   {post.description}
                 </p>
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="relative flex items-center gap-3 flex-wrap">
                   <Link
                     to={post.link}
                     className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-red-700 transition"
@@ -88,7 +62,7 @@ const BlogSection = () => {
                       ↗
                     </span>
                   </Link>
-                  <Link
+                  {/* <Link
                     to="/blogs"
                     className="inline-flex items-center gap-2 text-red-900 font-semibold hover:text-red-700 text-sm"
                   >
@@ -96,7 +70,7 @@ const BlogSection = () => {
                     <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
                       ↗
                     </span>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </article>

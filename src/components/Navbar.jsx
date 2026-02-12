@@ -1,31 +1,24 @@
 import Logo from "/images/Logo.svg";
-import { useEffect } from "react";
-import Quranscholar from "/quranscholar100x70.svg";
-import { useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { useState, useRef } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { CgLogIn, CgProfile } from "react-icons/cg";
+import { useSelector, useDispatch } from "react-redux";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaServicestack } from "react-icons/fa6";
 import { MdDashboard, MdSubject } from "react-icons/md";
-import { MdOutlineConnectWithoutContact } from "react-icons/md";
-import { MdOutlineRoundaboutRight } from "react-icons/md";
-import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { MdOutlineConnectWithoutContact, MdOutlineRoundaboutRight } from "react-icons/md";
+import { CgLogIn, CgProfile } from "react-icons/cg";
+import { IoIosLogOut } from "react-icons/io";
+import { User, LogOut, Settings, Sparkles, UserCircle2 } from "lucide-react";
 import { useLogoutMutation } from "../state/userApis/userAuthApis";
 import { setUser } from "../state/slices/userSlice";
-import { IoIosLogOut } from "react-icons/io";
 import useClickOutside from "../hooks/useClickOutside";
 import { useGetProfilePicutreUrlQuery } from "../state/userApis/fileUploadApis";
+import { Button } from "./ui/button";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
-  const {
-    data,
-    isLoading: isImageLoadding,
-    error: imageLoadingError,
-  } = useGetProfilePicutreUrlQuery();
+  const { data } = useGetProfilePicutreUrlQuery();
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const mobileMenuRef = useRef();
@@ -35,8 +28,17 @@ const Navbar = () => {
   const dropwdownButtonRef = useRef();
   const navigate = useNavigate();
   const [isLoading, setIsloading] = useState(false);
+  const navLinks = [
+    { to: "/", label: "Home", icon: IoHomeOutline },
+    { to: "/services", label: "Services", icon: FaServicestack },
+    { to: "/courses", label: "Courses", icon: MdSubject },
+    { to: "/blogs", label: "Blogs", icon: MdSubject },
+    { to: "/contact", label: "Contact", icon: MdOutlineConnectWithoutContact },
+    { to: "/about", label: "About", icon: MdOutlineRoundaboutRight },
+  ];
+
   const handleToggleSideNav = () => {
-    mobileMenuRef.current.classList.toggle("active");
+    mobileMenuRef.current?.classList.toggle("active");
   };
   useClickOutside(mobileMenuRef, mobileMenuButtonRef, "active");
   useClickOutside(
@@ -45,7 +47,7 @@ const Navbar = () => {
     "dropdown-active",
   );
   const handleUserProfileDropdownToggle = () => {
-    userProfileDropdownRef.current.classList.toggle("dropdown-active");
+    userProfileDropdownRef.current?.classList.toggle("dropdown-active");
   };
 
   const handleLogout = async (e) => {
@@ -70,165 +72,141 @@ const Navbar = () => {
       setIsloading(false);
     }
   };
-  const dropdownVariants = {
-    hidden: {
-      opacity: 0,
-      y: -10,
-      scale: 0.96,
-      pointerEvents: "none",
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      pointerEvents: "auto",
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
-    <div className="navbar">
+    <div className="navbar relative z-30">
       {isLoading && (
         <div className="spinner-wrapper">
           <div className="spinner"></div>
         </div>
       )}
-      <nav className="flex items-center justify-between">
+      <nav className="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm border border-gray-100">
         {/* Logo Section */}
         <Link
           to={"/"}
           className="text-primary flex items-center text-xl md:text-2xl font-bold"
+          aria-label="QuranScholars home"
         >
-          {/* <span className="">QURAN</span>
-          <span className="">SCHOLAR</span> */}
-          <img src={Logo} alt="Logo" className="h-[50px] md:h-full" />
+          <img src={Logo} alt="Logo" className="h-[50px] md:h-[50px]" />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center ml-8 gap-8 text-md font-semibold">
-          <li>
-            <NavLink to={"/"} className="navbar-list">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/services"} className="navbar-list">
-              Services
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/courses"} className="navbar-list">
-              Courses
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/blogs"} className="navbar-list">
-              Blogs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/contact"} className="navbar-list">
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/about"} className="navbar-list">
-              About
-            </NavLink>
-          </li>
+        <ul className="hidden md:flex items-center ml-8 gap-2 text-sm font-semibold">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <NavLink
+                to={link.to}
+                className={({ isActive }) =>
+                  `navbar-list flex items-center gap-2 rounded-lg px-3 py-2 transition ${
+                    isActive ? "bg-primary/10 text-primary" : ""
+                  }`
+                }
+              >
+                <link.icon className="h-4 w-4" />
+                {link.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden ml-auto md:flex gap-6 font-semibold items-center justify-end">
+        <div className="hidden ml-auto md:flex gap-4 font-semibold items-center justify-end">
           {!user && (
-            <Link
-              to={"/register"}
-              className="text-gray-500 underline font-sm-400"
-            >
+            <Link to={"/register"} className="text-gray-500 underline font-sm-400">
               Register
             </Link>
           )}
-          {user && (
-            <div className="flex items-center relative z-20">
-              <button
-                onClick={handleUserProfileDropdownToggle}
+          <Link
+            to="/donate"
+            className="hidden md:inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary transition hover:border-primary/50 hover:bg-primary/10"
+          >
+            Donate
+          </Link>
+          {user ? (
+            <div className="relative z-20">
+              <Button
+                variant="ghost"
                 ref={dropwdownButtonRef}
-                className="flex text-gray-500 gap-2 items-center rounded-sm hover:bg-[rgba(0,0,0,.2)] p-2"
+                onClick={handleUserProfileDropdownToggle}
+                className="flex items-center gap-3 px-3"
               >
                 {data?.url ? (
-                  <img
-                    className="rounded-full w-6 h-6"
-                    src={data && data.url}
-                    alt=""
-                  />
+                  <img className="h-8 w-8 rounded-full object-cover" src={data.url} alt="" />
                 ) : (
-                  <FaUserCircle className="cursor-pointer" size={25} />
+                  <UserCircle2 className="h-6 w-6 text-primary" />
                 )}
-
-                <span className="font-sm-400">{user && user.fullname}</span>
-              </button>
-
+                <div className="text-left">
+                  <p className="text-sm font-semibold text-secondary leading-tight">
+                    {user?.fullname}
+                  </p>
+                  <p className="text-[11px] text-muted-foreground">My account</p>
+                </div>
+              </Button>
               <div
                 ref={userProfileDropdownRef}
-                className={`dropdown-menu rounded-md -left-[50px] top-12 bg-white shadow-md text-gray-500 text-sm min-w-[250px] absolute`}
+                className="dropdown-menu absolute right-0 top-12 w-64 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
               >
-                <div className="flex flex-col px-4 pt-4 pb-2">
+                <div className="bg-gradient-to-r from-primary/10 via-white to-white px-4 py-3">
+                  <p className="text-sm font-semibold text-secondary">{user?.fullname}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                </div>
+                <div className="flex flex-col p-2 text-sm text-gray-700">
                   <Link
                     onClick={handleUserProfileDropdownToggle}
                     to={"/dashboard"}
-                    className="p-2 hover:bg-red-50 hover:text-red-900"
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-primary/5"
                   >
-                    <span className="">Dashboard</span>
+                    <MdDashboard />
+                    <span>Dashboard</span>
                   </Link>
                   <Link
                     onClick={handleUserProfileDropdownToggle}
                     to={"/profile"}
-                    className="p-2 hover:bg-red-50 hover:text-red-900"
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-primary/5"
                   >
-                    <span className="">Profile</span>
+                    <User />
+                    <span>Profile</span>
                   </Link>
                   <Link
                     onClick={handleUserProfileDropdownToggle}
-                    className="p-2 hover:bg-red-50 hover:text-red-900"
+                    to={"/admission"}
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-primary/5"
                   >
-                    Join Quran Scholar
+                    <Sparkles />
+                    <span>Admission</span>
                   </Link>
-                  <hr className="my-2" />
+                  <Link
+                    onClick={handleUserProfileDropdownToggle}
+                    to={"/settings"}
+                    className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-primary/5"
+                  >
+                    <Settings />
+                    <span>Settings</span>
+                  </Link>
                   <button
                     onClick={handleLogout}
-                    className="p-2 hover:bg-red-50 hover:text-red-900 flex justify-center items-center gap-2"
+                    className="mt-1 flex items-center gap-2 rounded-lg px-3 py-2 text-red-600 hover:bg-red-50"
                   >
-                    <IoIosLogOut />
-                    <Link className="">Logout</Link>
+                    <LogOut className="h-4 w-4" />
+                    <span>Logout</span>
                   </button>
                 </div>
               </div>
             </div>
-          )}
-          {!user && (
+          ) : (
             <Link
               to={"/login"}
-              className="flex bg-red-700 hover:opacity-80 items-center px-4 py-2 text-gray-50 rounded-md transition-all duration-200 ease-in-out"
+              className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-sm transition hover:bg-primary/90"
             >
               <span className="font-sm-400">Log In</span>
               <CgLogIn />
             </Link>
           )}
-          {/* <Link
-            to={"/admission"}
-            className="bg-red-500 hover:bg-red-900 text-white rounded-md px-6 py-2 transition-all duration-200 ease-in-out border-2 border-transparent hover:border-red-900"
-          >
-            Admission
-          </Link> */}
         </div>
 
         {/* Mobile Menu Button */}
         <button
           ref={mobileMenuButtonRef}
-          className="w-10 flex justify-end text-2xl text-gray-600"
+          className="w-10 flex justify-end text-2xl text-gray-600 md:hidden"
         >
           <RxHamburgerMenu className="" onClick={handleToggleSideNav} />
         </button>
@@ -239,146 +217,114 @@ const Navbar = () => {
         <div ref={mobileMenuWrapperRef}>
           <nav
             ref={mobileMenuRef}
-            className={`mobile-menu shadow-lg fixed w-[300px] h-full top-0 -right-[100%] z-10 bg-gray-50`}
+            className="mobile-menu fixed top-0 -right-[100%] z-30 h-full w-[320px] bg-gradient-to-b from-white via-white to-primary/5 shadow-2xl transition-all duration-300"
           >
-            <div className="header flex justify-between p-4">
-              {user && (
-                <button
-                  // onClick={handleUserProfileDropdownToggle}
-                  className="flex text-gray-600 gap-2 items-center rounded-sm hover:bg-[rgba(0,0,0,.2)] p-2"
-                >
-                  {data?.url ? (
-                    <img
-                      className="rounded-full w-6 h-6"
-                      src={data && data.url}
-                      alt=""
-                    />
-                  ) : (
-                    <FaUserCircle className="cursor-pointer" size={20} />
-                  )}
-                  <span className="font-sm-400">{user && user.fullname}</span>
-                </button>
-              )}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                {user ? (
+                  <>
+                    {data?.url ? (
+                      <img src={data.url} className="h-9 w-9 rounded-full object-cover" alt="" />
+                    ) : (
+                      <UserCircle2 className="h-8 w-8 text-primary" />
+                    )}
+                    <div className="text-left">
+                      <p className="text-sm font-semibold text-secondary">{user.fullname}</p>
+                      <p className="text-[11px] text-muted-foreground">Account</p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-left">
+                    <p className="text-sm font-semibold text-secondary">Welcome</p>
+                    <p className="text-[11px] text-muted-foreground">Sign in to continue</p>
+                  </div>
+                )}
+              </div>
               <IoMdClose
                 onClick={handleToggleSideNav}
-                className="text-2xl ml-auto text-gray-600 cursor-pointer hover:opacity-60 transition-all"
+                className="text-2xl text-gray-600 cursor-pointer hover:opacity-70 transition"
               />
             </div>
-            <ul className="text-md font-semibold mt-4 flex flex-col gap-4 p-4">
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/"}
-                  className={`sidebar-list`}
-                >
-                  <IoHomeOutline />
-                  <span>Home</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/dashboard"}
-                  className="sidebar-list"
-                >
-                  <MdDashboard />
-                  <span>Dashboard</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/profile"}
-                  className="sidebar-list"
-                >
-                  <CgProfile />
-                  <span>Profile</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/services"}
-                  className="sidebar-list"
-                >
-                  <FaServicestack />
-                  <span>Services</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/courses"}
-                  className="sidebar-list"
-                >
-                  <MdSubject />
-                  <span>Courses</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/contact"}
-                  className="sidebar-list"
-                >
-                  <MdOutlineConnectWithoutContact />
-                  <span>Contact</span>
-                </NavLink>
-              </li>
-              <li className="flex w-full">
-                <NavLink
-                  onClick={handleToggleSideNav}
-                  to={"/about"}
-                  className="sidebar-list"
-                >
-                  <MdOutlineRoundaboutRight />
-                  <span>About</span>
-                </NavLink>
-              </li>
-            </ul>
-            <div className="buttons text-center flex flex-col gap-4 px-6 mt-4">
-              {!user && (
-                <>
-                  <Link
-                    onClick={handleToggleSideNav}
-                    to={"/login"}
-                    className="bg-gray-950 text-white p-2 rounded-md font-bold"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    onClick={handleToggleSideNav}
-                    to={"register"}
-                    className="bg-red-700 hover:opacity-90 text-gray-50 rounded-md font-semibold p-2"
-                  >
-                    Register
-                  </Link>
-                </>
-              )}
 
-              {user && (
-                <Link
-                  to={"/admission"}
-                  onClick={handleToggleSideNav}
-                  className="bg-gray-950 text-white p-2 rounded-md font-bold font-sm-400 uppercase"
-                >
-                  Join Quran Scholar
-                </Link>
-              )}
-              {user && (
-                <NavLink
-                  onClick={handleLogout}
-                  className="flex items-center justify-center w-full gap-2 text-red-900 p-2 rounded-sm transition-all duration-200 hover:opacity-90 bg-gray-100"
-                >
-                  <IoIosLogOut />
-                  <span>Logout</span>
-                </NavLink>
-              )}
+            <div className="overflow-y-auto px-5 py-5 space-y-6">
+              <div className="grid gap-2">
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.to}
+                    onClick={handleToggleSideNav}
+                    to={link.to}
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 rounded-xl border px-3 py-3 text-sm font-semibold transition ${
+                        isActive ? "border-primary/40 bg-primary/10 text-primary" : "border-transparent hover:bg-gray-100"
+                      }`
+                    }
+                  >
+                    <link.icon className="h-4 w-4" />
+                    {link.label}
+                  </NavLink>
+                ))}
+              </div>
+
+              <div className="grid gap-2">
+                {user ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      onClick={handleToggleSideNav}
+                      className="flex items-center justify-between rounded-xl bg-secondary text-white px-4 py-3 text-sm font-semibold shadow-sm hover:opacity-90"
+                    >
+                      Dashboard <MdDashboard />
+                    </Link>
+                    <Link
+                      to="/donate"
+                      onClick={handleToggleSideNav}
+                      className="flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary hover:bg-primary/10"
+                    >
+                      Donate
+                      <Sparkles className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      to="/admission"
+                      onClick={handleToggleSideNav}
+                      className="flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary"
+                    >
+                      Admission <Sparkles className="h-4 w-4" />
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 hover:bg-red-100"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      onClick={handleToggleSideNav}
+                      to="/login"
+                      className="flex items-center justify-center gap-2 rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                    >
+                      Login <CgLogIn />
+                    </Link>
+                    <Link
+                      onClick={handleToggleSideNav}
+                      to="/donate"
+                      className="flex items-center justify-center gap-2 rounded-xl border border-primary/40 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary hover:bg-primary/10"
+                    >
+                      Donate <Sparkles className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      onClick={handleToggleSideNav}
+                      to="/register"
+                      className="flex items-center justify-center gap-2 rounded-xl border border-primary/40 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary hover:bg-primary/10"
+                    >
+                      Register <Sparkles className="h-4 w-4" />
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
-
-            {/* <div className="flex mt-8 p-8">
-              <Link className="text-gray-100 underline" to={'/howitworks'}>How It works</Link>
-            </div> */}
           </nav>
         </div>
       </>

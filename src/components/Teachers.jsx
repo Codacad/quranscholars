@@ -1,27 +1,4 @@
-﻿import HijabImage from "../assets/images/hijab.png";
-import MuslimMan from "../assets/images/muslim.png";
-
-const teachers = [
-  {
-    name: "Farman Farooqui",
-    image: MuslimMan,
-    bio: "Qur'an & Tajwīd mentor with 10+ years guiding recitation and memorization.",
-    focus: "Tajwīd, Hifz, Makharij",
-  },
-  {
-    name: "Noori Fatima",
-    image: HijabImage,
-    bio: "Hadith and Fiqh specialist, helping sisters build confidence in ibadah.",
-    focus: "Hadith, Fiqh, Adab",
-  },
-  {
-    name: "Rayyan Farooqui",
-    image: MuslimMan,
-    bio: "Connects teens to Qur'an through stories, reflective journaling, and seerah.",
-    focus: "Seerah, Youth Circles",
-  },
-];
-
+﻿import { teachers } from "../data/teachers.js";
 function Teachers() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-rose-950 text-slate-50 py-16 md:py-20 px-4 md:px-10">
@@ -37,18 +14,22 @@ function Teachers() {
               Meet the teachers who light your path.
             </h2>
             <p className="text-slate-200 max-w-3xl">
-              Certified scholars who blend classical tradition with modern pedagogy—live feedback, reflective prompts,
-              and pastoral care.
+              Certified scholars who blend classical tradition with modern
+              pedagogy—live feedback, reflective prompts, and pastoral care.
             </p>
           </div>
           <div className="flex gap-3 text-sm text-slate-200">
             <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm">
               <p className="text-2xl font-black text-amber-200">24</p>
-              <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">Instructors</p>
+              <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">
+                Instructors
+              </p>
             </div>
             <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm">
               <p className="text-2xl font-black text-amber-200">12</p>
-              <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">Countries</p>
+              <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">
+                Countries
+              </p>
             </div>
           </div>
         </div>
@@ -68,12 +49,18 @@ function Teachers() {
                     className="h-14 w-14 rounded-2xl object-cover border border-white/20 shadow-sm"
                   />
                   <div>
-                    <p className="text-lg font-bold text-white">{teacher.name}</p>
-                    <p className="text-xs uppercase tracking-[0.18em] text-amber-200">{teacher.focus}</p>
+                    <p className="text-lg font-bold text-white">
+                      {teacher.name}
+                    </p>
+                    <p className="text-xs uppercase tracking-[0.18em] text-amber-200">
+                      {teacher.focus}
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-sm text-slate-200 leading-6 flex-1">{teacher.bio}</p>
+                <p className="text-sm text-slate-200 leading-6 flex-1">
+                  {teacher.bio}
+                </p>
 
                 <div className="rounded-2xl bg-slate-900/60 border border-white/10 px-4 py-3 text-sm text-slate-200 space-y-1">
                   <div className="flex justify-between text-amber-200 text-xs uppercase tracking-[0.14em]">
@@ -82,10 +69,11 @@ function Teachers() {
                   </div>
                   <div className="flex justify-between text-slate-100">
                     <span>Live · 1:1 · Cohort</span>
-                    <span>GMT+0 / +5</span>
+                    <span className="text-[12px] text-right">
+                      Sat-Thu (07 AM - 10 PM)
+                    </span>
                   </div>
                 </div>
-
                 <button className="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 text-white px-4 py-2 text-sm font-semibold shadow-md transition hover:bg-red-600">
                   Book a trial
                   <span className="text-base">↗</span>

@@ -1,37 +1,8 @@
 ﻿import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const faqs = [
-  {
-    question: "What do I need to start learning?",
-    answer:
-      "A stable internet connection, a quiet space, and a phone, tablet, or laptop. No Arabic background is required for beginners.",
-  },
-  {
-    question: "Are classes live or recorded?",
-    answer:
-      "Primarily live for real-time Q&A and mentorship. Selected sessions are recorded for review.",
-  },
-  {
-    question: "Can I choose a male or female tutor?",
-    answer:
-      "Yes. Sisters can select qualified female instructors; youth are matched with age-appropriate teachers.",
-  },
-  {
-    question: "How are payments handled?",
-    answer:
-      "Secure online payments, monthly billing, and simple cancellation with prior notice.",
-  },
-  {
-    question: "Do you offer trial classes?",
-    answer:
-      "Absolutely—book a free trial to experience the teaching style before enrolling.",
-  },
-];
-
+import { faqs } from "../data/faqs.js";
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
-
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -73,9 +44,6 @@ const FAQSection = () => {
                     <p className="text-lg font-semibold text-slate-900">
                       {faq.question}
                     </p>
-                    {/* <p className="text-xs uppercase tracking-[0.18em] text-red-800">
-                      {isOpen ? "Tap to close" : "Tap to expand"}
-                    </p> */}
                   </div>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}

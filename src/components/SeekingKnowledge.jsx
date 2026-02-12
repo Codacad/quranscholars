@@ -1,11 +1,9 @@
 ﻿import SeekingKnowledgeImg from "../assets/images/seeking-knowledge.svg";
 import "../css/SeekingKnowledge.css";
+import { seekingKnowledge } from "../data/seekingKnowledge.js";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const SeekingKnowledge = () => {
-  const [readMore, setReadMore] = useState(false);
-
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-rose-950 text-slate-50 py-16 md:py-24 md:px-10">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(251,191,36,0.16),transparent_30%),radial-gradient(circle_at_60%_80%,rgba(14,165,233,0.14),transparent_36%)]" />
@@ -47,24 +45,7 @@ const SeekingKnowledge = () => {
 
             {
               <div className="grid sm:grid-cols-2 gap-4">
-                {[
-                  {
-                    title: "Qur'an First",
-                    body: "Tajwīd labs, word-by-word reading, and thematic tafsir.",
-                  },
-                  {
-                    title: "Sunnah Alive",
-                    body: "Fiqh for prayer, family, finance, and modern dilemmas.",
-                  },
-                  {
-                    title: "Heart Work",
-                    body: "Tazkiyah routines, reflection prompts, and dhikr trackers.",
-                  },
-                  {
-                    title: "Serve & Share",
-                    body: "Teach a sibling, mentor peers, and lead micro-projects.",
-                  },
-                ].map((item) => (
+                {seekingKnowledge.map((item) => (
                   <div
                     key={item.title}
                     className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm"
@@ -87,12 +68,6 @@ const SeekingKnowledge = () => {
               >
                 Start Learning
               </Link>
-              {/* <button
-                // onClick={() => setReadMore(!readMore)}
-                className="border border-amber-300/60 text-amber-200 hover:border-amber-200 hover:text-white px-5 py-3 rounded-full font-semibold transition"
-              >
-                {readMore ? "Show less" : "See curriculum highlights"}
-              </button> */}
             </div>
           </div>
 
@@ -124,57 +99,6 @@ const SeekingKnowledge = () => {
                 />
               </div>
             </div>
-
-            {/* Card 2: Milestones + stats + verse */}
-            {/* <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden">
-              <div className="p-6 space-y-5">
-                <div className="grid gap-3">
-                  {[
-                    { label: "Intention", note: "Make niyyah, set your rhythm, log dua goals." },
-                    { label: "Learn", note: "Live cohorts, Q&A, concise summaries after class." },
-                    { label: "Reflect", note: "Journals, adhkar trackers, action items for family/work." },
-                    { label: "Share", note: "Teach one lesson forward to cement your learning." },
-                  ].map((step, idx) => (
-                    <div
-                      key={step.label}
-                      className="flex items-start gap-3 rounded-2xl bg-white/8 border border-white/10 px-4 py-3"
-                    >
-                      <div className="h-9 w-9 rounded-full bg-white/20 text-amber-200 font-black flex items-center justify-center shadow-sm">
-                        {idx + 1}
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-white">{step.label}</p>
-                        <p className="text-sm text-slate-200 leading-6">{step.note}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { value: "18k+", label: "Active learners" },
-                    { value: "42", label: "Countries" },
-                    { value: "160", label: "Live sessions/week" },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-2xl bg-slate-900/70 text-white px-4 py-4 shadow-md text-center"
-                    >
-                      <p className="text-2xl font-black">{stat.value}</p>
-                      <p className="text-xs uppercase tracking-[0.14em] mt-1 text-slate-200/80">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-2xl bg-white/5 border border-white/10 px-5 py-4 shadow-sm">
-                  <p className="text-sm uppercase tracking-[0.16em] text-amber-200 font-semibold">Verse to anchor</p>
-                  <p className="text-base leading-7 text-slate-100 mt-1">
-                    “Allah will raise those who have believed among you and those who were given knowledge, by degrees.”
-                    (Qur'an 58:11)
-                  </p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

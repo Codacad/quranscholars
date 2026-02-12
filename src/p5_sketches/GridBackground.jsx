@@ -15,7 +15,6 @@ const GridBackground = ({ dimensions }) => {
 
     const sketch = (p) => {
       let shapes = [];
-
       p.setup = () => {
         p.pixelDensity(1);
         p.createCanvas(canvasWidth, canvasHeight).parent(elemRef.current);
@@ -23,7 +22,7 @@ const GridBackground = ({ dimensions }) => {
         // Use Unicode escapes so names render correctly regardless of file encoding
         const names = [
           "\u0627\u0644\u0644\u0647", // Allah
-          "\u0645\u062d\u0645\u062f \uFDFD", // Muhammad 
+          "\u0645\u062d\u0645\u062f \uFDFD", // Muhammad
           "\u0627\u0644\u0631\u062d\u0645\u0646", // Ar-Rahman
           "\u0627\u0644\u0631\u062d\u064a\u0645", // Ar-Rahim
           "\u0627\u0644\u0633\u0644\u0627\u0645", // As-Salam

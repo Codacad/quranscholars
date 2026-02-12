@@ -5,83 +5,52 @@ import { Link } from "react-router-dom";
 import Course from "../components/Course";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useRef, useState } from "react";
-import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { useGetCoursesQuery } from "../state/courseApis/courses.api";
 const Courses = () => {
-  const courses = useSelector((state) => state.course.courses);
+  const { data, error, isLoading } = useGetCoursesQuery();
+  const courses = data?.data || [];
+  const count = data?.count;
   const serviceContentRef = useRef();
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [category, setCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("featured");
-  const location = useLocation();
-
+  // const location = useLocation();
   const categories = useMemo(() => {
-    const set = new Set();
-    courses.forEach((c) => {
-      if (c?.category) set.add(c.category);
-      if (Array.isArray(c?.tags)) c.tags.forEach((t) => set.add(t));
-    });
-    if (!set.size) return ["All", "Tajweed", "Quran", "Arabic", "Fiqh"];
-    return ["All", ...Array.from(set)];
+    return ["All", ...new Set(courses.map((course) => course.category))];
   }, [courses]);
 
-  const filteredCourses = useMemo(() => {
-    const term = searchTerm.trim().toLowerCase();
-    return courses.filter((course) => {
-      const matchesCategory =
-        selectedCategory === "All" ||
-        course?.category === selectedCategory ||
-        (Array.isArray(course?.tags) &&
-          course.tags.some((tag) => tag === selectedCategory));
-
-      if (!matchesCategory) return false;
-      if (!term) return true;
-
-      const haystack = [
-        course?.title,
-        course?.name,
-        course?.description,
-        Array.isArray(course?.tags) ? course.tags.join(" ") : "",
-      ]
-        .join(" ")
-        .toLowerCase();
-      return haystack.includes(term);
-    });
-  }, [courses, selectedCategory, searchTerm]);
-
-  const sortedCourses = useMemo(() => {
-    const list = [...filteredCourses];
-    if (sortBy === "alphabetical") {
-      list.sort((a, b) =>
-        (a?.title || a?.name || "").localeCompare(b?.title || b?.name || ""),
+  const selectedCourses = useMemo(() => {
+    let result = [...courses];
+    // Search
+    if (searchTerm) {
+      result = result.filter((course) =>
+        course.title.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
-    if (sortBy === "difficulty") {
-      const order = { Beginner: 1, Intermediate: 2, Advanced: 3 };
-      list.sort(
-        (a, b) =>
-          (order[a?.level] || Number.MAX_SAFE_INTEGER) -
-          (order[b?.level] || Number.MAX_SAFE_INTEGER),
-      );
-    }
-    return list;
-  }, [filteredCourses, sortBy]);
 
-  useEffect(() => {
-    if (serviceContentRef.current) {
-      gsap.fromTo(
-        serviceContentRef.current,
-        {
-          opacity: 1,
-          y: -30,
-          duration: 0.5,
-        },
-        { opacity: 1, y: 0, duration: 0.5 },
+    // Filter by Categories
+    if (category != "All") {
+      result = result.filter((course) => category == course.category);
+    }
+    if (sortBy == "alphabetical") {
+      result.sort((a, b) =>
+        a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
       );
     }
-  }, [location.pathname]);
+    // Sorting
+    const levelOrder = {
+      Basic: 1,
+      Intermediate: 2,
+      Advanced: 3,
+    };
+    if (sortBy == "level") {
+      result = result.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
+    }
+    return result;
+  }, [searchTerm, courses, category, sortBy]);
+
   return (
     <>
       <div
@@ -150,9 +119,7 @@ const Courses = () => {
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-3">
                     <div>
-                      <p className="text-3xl font-bold">
-                        {sortedCourses.length}
-                      </p>
+                      <p className="text-3xl font-bold">{count}</p>
                       <p className="text-xs text-white/80">Active courses</p>
                     </div>
                     <div>
@@ -244,9 +211,9 @@ const Courses = () => {
                 A–Z
               </button>
               <button
-                onClick={() => setSortBy("difficulty")}
+                onClick={() => setSortBy("level")}
                 className={`px-3 py-2 rounded-full text-sm font-semibold border transition ${
-                  sortBy === "difficulty"
+                  sortBy === "level"
                     ? "bg-red-600 text-white border-red-600"
                     : "bg-white text-gray-700 border-gray-200"
                 }`}
@@ -255,31 +222,33 @@ const Courses = () => {
               </button>
               <div className="hidden md:block px-3 py-2 rounded-full bg-red-50 text-red-800 border border-red-100 text-sm font-semibold">
                 <FiGrid className="inline mr-2" />
-                {sortedCourses.length} courses
+                {count} courses
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-2 rounded-full text-sm font-semibold border transition ${
-                  selectedCategory === cat
-                    ? "bg-red-600 text-white border-red-600 shadow-sm"
-                    : "bg-white text-gray-700 border-gray-200 hover:border-red-200"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            {categories &&
+              categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  className={`px-3 py-2 rounded-full text-sm font-semibold border transition ${
+                    category === cat
+                      ? "bg-red-600 text-white border-red-600 shadow-sm"
+                      : "bg-white text-gray-700 border-gray-200 hover:border-red-200"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
           </div>
         </div>
 
         <motion.div
           className="course-listing mt-6 grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 max-w-6xl mx-auto px-2 md:px-0"
           initial="hidden"
+          animate="visible"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={{
@@ -291,9 +260,10 @@ const Courses = () => {
             },
           }}
         >
-          {sortedCourses.map((course, index) => (
-            <Course key={index} course={course} index={index} />
-          ))}
+          {courses &&
+            selectedCourses.map((course, index) => (
+              <Course key={index} course={course} index={index} />
+            ))}
         </motion.div>
       </div>
     </>

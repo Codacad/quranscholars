@@ -2,60 +2,22 @@ import { Link } from "react-router-dom";
 import WelcomeImgTeaching from "../assets/images/teaching.svg";
 import WelcomeImgPhone from "../assets/images/phone-inhand.png";
 import "../css/Welcome.css";
-
+import { highlights, milestones, stats } from "../data/discoverIslam";
 const DiscoverIslam = () => {
-  const highlights = [
-    {
-      icon: "[book]",
-      title: "Qur'an Journey",
-      body: "Tajwid labs, thematic tafsir, and memorization circles.",
-    },
-    {
-      icon: "mosque",
-      title: "Sunnah in Practice",
-      body: "Fiqh essentials with real-life scenarios and weekly clinics.",
-    },
-    {
-      icon: "🌙",
-      title: "Heart & Ihsan",
-      body: "Tazkiyah workshops, prophetic character studies, and daily adhkar.",
-    },
-    {
-      icon: "[sister]",
-      title: "Women & Youth",
-      body: "Dedicated female instructors and age-aware learning paths.",
-    },
-  ];
-
-  const milestones = [
-    { label: "Enroll", detail: "Pick a track that suits your pace and goals." },
-    {
-      label: "Learn Live",
-      detail: "Attend interactive sessions with certified teachers.",
-    },
-    {
-      label: "Reflect",
-      detail: "Apply lessons through journaling and guided practice.",
-    },
-    {
-      label: "Serve",
-      detail: "Give back via peer tutoring and community projects.",
-    },
-  ];
-
-  const stats = [
-    { label: "Active learners", value: "12k+" },
-    { label: "Countries", value: "35" },
-    { label: "Live sessions / week", value: "140" },
-  ];
-
   return (
     <section className="relative overflow-hidden">
+      {/* Gradient Backgrounds */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-rose-50" />
       <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-red-200/40 blur-3xl" />
       <div className="pointer-events-none absolute -right-16 top-12 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl" />
 
-      <div className="relative mx-auto max-w-6xl px-4 md:px-10 py-14 md:py-20">
+      {/* Contents (Foreground) */}
+      <div className="relative mx-auto max-w-6xl px-4 md:px-10 py-14">
+        <div className="w-full flex justify-center mb-8">
+          <div className="h-12 w-36 rounded-2xl text-red-900 flex items-center justify-center text-4xl font-[800]">
+            ﷽
+          </div>
+        </div>
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           {/* Left: Text and feature stack */}
           <div className="space-y-8">
@@ -75,7 +37,7 @@ const DiscoverIslam = () => {
                 in community.
               </p>
             </div>
-
+            {/* Highligths */}
             <div className="grid sm:grid-cols-2 gap-4">
               {highlights.map((item) => (
                 <div
@@ -92,7 +54,7 @@ const DiscoverIslam = () => {
                 </div>
               ))}
             </div>
-
+            {/* Stats */}
             <div className="grid sm:grid-cols-3 gap-4">
               {stats.map((stat) => (
                 <div
@@ -142,9 +104,6 @@ const DiscoverIslam = () => {
             <div className="relative rounded-3xl border border-white/60 bg-white/80 backdrop-blur-lg shadow-2xl overflow-hidden">
               <div className="p-6 space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-2xl bg-red-900 text-white flex items-center justify-center text-2xl shadow-md">
-                    ﷽
-                  </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.22em] text-red-800 font-semibold">
                       Live & Guided
