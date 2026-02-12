@@ -1,110 +1,302 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useLocation } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  BookOpenCheck,
+  Compass,
+  HeartHandshake,
+  MessageCircleHeart,
+  ShieldCheck,
+  Sparkles,
+  UserRoundCheck,
+} from "lucide-react";
+
+const guidancePaths = [
+  {
+    title: "Quran and Tajweed Coaching",
+    detail:
+      "One to one recitation sessions focused on makharij, fluency, and confident reading habits with measurable improvement.",
+    icon: BookOpenCheck,
+    tone: "from-red-50 to-rose-50",
+  },
+  {
+    title: "Faith and Identity Mentoring",
+    detail:
+      "Personal mentoring for teens and adults navigating pressure, doubts, and consistency in prayer, study, and Islamic character.",
+    icon: Compass,
+    tone: "from-amber-50 to-orange-50",
+  },
+  {
+    title: "Parent and Family Guidance",
+    detail:
+      "Support for parents on discipline, communication, and home routines grounded in adab and prophetic mercy.",
+    icon: HeartHandshake,
+    tone: "from-emerald-50 to-teal-50",
+  },
+  {
+    title: "Confidential Advisory Sessions",
+    detail:
+      "Private conversations with trusted mentors in a safe and respectful environment for sensitive concerns.",
+    icon: ShieldCheck,
+    tone: "from-sky-50 to-cyan-50",
+  },
+];
+
+const processSteps = [
+  {
+    title: "Share Your Need",
+    detail:
+      "Tell us what support you need: Quran, faith motivation, family advice, or study discipline.",
+  },
+  {
+    title: "Mentor Matching",
+    detail:
+      "We assign a suitable mentor by topic, schedule, and gender preference where possible.",
+  },
+  {
+    title: "Guided Action Plan",
+    detail:
+      "Receive a practical weekly plan with clear targets for learning, worship, and behavior.",
+  },
+];
+
+const moralsFocus = [
+  {
+    title: "Ikhlas (Sincerity)",
+    detail:
+      "Students are trained to seek knowledge for Allah, not for image or status.",
+  },
+  {
+    title: "Adab (Manners)",
+    detail:
+      "Respect for teachers, parents, and peers is treated as part of learning itself.",
+  },
+  {
+    title: "Istiqamah (Consistency)",
+    detail:
+      "Small regular acts in study and worship are prioritized over short bursts.",
+  },
+];
+
+const islamicMotivation = [
+  {
+    arabic: "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+    urdu: "اعمال کا دارومدار نیتوں پر ہے۔",
+    ref: "Hadith meaning",
+    insight:
+      "Our guidance begins with intention, then builds disciplined action around it.",
+  },
+  {
+    arabic: "وَالْعَصْرِ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
+    urdu: "زمانے کی قسم! انسان خسارے میں ہے، مگر وہ جو ایمان و عملِ صالح اختیار کرے۔",
+    ref: "Surah Al-Asr 103:1-3",
+    insight:
+      "Time management, righteous action, and mutual advice are central to personal growth.",
+  },
+];
+
 const PersonalGuidance = () => {
-  const serviceContentRef = useRef();
-  const location = useLocation();
-  useEffect(() => {
-    if (serviceContentRef.current) {
-      gsap.fromTo(
-        serviceContentRef.current,
-        {
-          opacity: 1,
-          y: -30,
-          duration: 0.5,
-        },
-        { opacity: 1, y: 0, duration: 0.5 }
-      );
-    }
-  }, [location.pathname]);
   return (
-    <div ref={serviceContentRef} className="bg-white px-6 pb-4 lg:pb-8">
-      <div className="mx-auto">
-        {/* Title & Intro */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-red-900 mb-4">
-            Personal Guidance
-          </h1>
-          <p className="text-lg text-gray-700">
-            One-on-one Islamic guidance to help students and families navigate
-            their spiritual and personal journeys with confidence and faith.
-          </p>
-        </div>
+    <div className="relative overflow-hidden pb-6 lg:pb-10">
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-32 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-        {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column: Content */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-red-800">
-              Tailored Spiritual Support
-            </h2>
-            <p className="text-gray-700">
-              Every Muslim's path is unique, and sometimes we need personal
-              attention to truly understand and grow. Our qualified instructors
-              and scholars offer private sessions designed to address your
-              individual concerns - whether it's Qur'an recitation improvement,
-              understanding fiqh issues, or seeking help during a crisis of
-              faith.
+      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
+              <MessageCircleHeart className="h-4 w-4" />
+              Personal Guidance
+            </div>
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 md:text-4xl">
+              One to one Islamic mentoring for knowledge, character, and
+              consistency
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Personal guidance is for learners who need focused support beyond
+              general classes. Our mentors help students and families translate
+              Islamic knowledge into daily practice with clarity and compassion.
             </p>
-
-            <h2 className="text-2xl font-semibold text-red-800">
-              Confidential One-on-One Sessions
-            </h2>
-            <p className="text-gray-700">
-              We value your trust. Students and parents can schedule private
-              virtual sessions with certified male and female mentors. These
-              sessions provide a safe and respectful space to ask questions,
-              seek advice, and work on personal goals under the guidance of
-              someone knowledgeable and caring.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-red-800">
-              Academic & Faith Mentorship
-            </h2>
-            <p className="text-gray-700">
-              Need help with time management, Islamic studies, or motivation to
-              keep going Our mentors help build study plans, improve focus, and
-              stay consistent with learning and prayer. We also offer support
-              for teens dealing with pressure and confusion in their Islamic
-              identity.
-            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                to="/admission"
+                className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-800"
+              >
+                Request Guidance
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/student-info"
+                className="inline-flex items-center rounded-xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50"
+              >
+                Open Dashboard
+              </Link>
+            </div>
           </div>
 
-          {/* Right Column: Visual Section */}
-          <div className="bg-red-50 rounded-lg shadow-lg p-6 space-y-6">
-            <h3 className="text-xl font-semibold text-red-900">
-              Who is it for
-            </h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
-                Students needing extra support with Qur'an or Islamic topics
-              </li>
-              <li>
-                Parents seeking parenting advice from an Islamic perspective
-              </li>
-              <li>Teens going through identity or peer-pressure issues</li>
-              <li>
-                Anyone looking to strengthen their faith with private coaching
-              </li>
-            </ul>
-
-            <h3 className="text-xl font-semibold text-red-900">How It Works</h3>
-            <ol className="list-decimal list-inside text-gray-700 space-y-2">
-              <li>Request a session from your student dashboard</li>
-              <li>
-                Choose a teacher/mentor by availability and gender preference
-              </li>
-              <li>Get personalized attention in a private, online setting</li>
-            </ol>
-
-            <div className="text-center mt-6">
-              <button className="bg-red-800 text-white px-6 py-3 rounded hover:bg-red-900 transition">
-                Schedule Guidance
-              </button>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-red-100 bg-gradient-to-br from-red-50 to-white p-4">
+              <p className="text-xs uppercase tracking-[0.1em] text-red-700">
+                Session Format
+              </p>
+              <p className="mt-1 text-2xl font-bold text-red-900">1:1 Live</p>
+              <p className="text-xs text-slate-600">
+                Structured plans with mentor check-ins
+              </p>
+            </div>
+            <div className="rounded-2xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-4">
+              <p className="text-xs uppercase tracking-[0.1em] text-amber-700">
+                Moral Focus
+              </p>
+              <p className="mt-1 text-2xl font-bold text-amber-900">Adab</p>
+              <p className="text-xs text-slate-600">
+                Character and discipline in daily life
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 sm:col-span-2">
+              <p className="text-xs uppercase tracking-[0.1em] text-slate-600">
+                Confidentiality
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-900">
+                Sensitive matters are handled with privacy, empathy, and Islamic
+                ethics.
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section className="mt-6 grid gap-4 md:grid-cols-2">
+        {guidancePaths.map(({ title, detail, icon: Icon, tone }, i) => (
+          <motion.article
+            key={title}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
+            className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+          >
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                <Icon className="h-5 w-5" />
+              </span>
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {detail}
+                </p>
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-2xl font-bold text-slate-900">How Guidance Works</h2>
+          <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
+            <Sparkles className="h-4 w-4" />
+            Structured and Practical
+          </span>
+        </div>
+
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {processSteps.map((step, index) => (
+            <article
+              key={step.title}
+              className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4"
+            >
+              <div className="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-red-700 text-xs font-bold text-white">
+                {index + 1}
+              </div>
+              <h3 className="text-base font-semibold text-slate-900">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {step.detail}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
+        <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-amber-700">
+          <UserRoundCheck className="h-4 w-4" />
+          Islamic Morals and Motivation
+        </div>
+
+        <p
+          className="font-urdu-script mt-4 text-right text-xl leading-[2.8rem] text-slate-800 md:text-2xl md:leading-[3rem]"
+          dir="rtl"
+          lang="ur"
+        >
+          رہنمائی کا اصل مقصد صرف معلومات دینا نہیں بلکہ اخلاق، نیت، اور عمل
+          کی اصلاح کرنا ہے تاکہ طالبِ علم دین کو زندگی میں نافذ کر سکے۔
+        </p>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {islamicMotivation.map((item) => (
+            <article
+              key={item.ref}
+              className="rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/30 p-5"
+            >
+              <p
+                className="font-arabic-script text-right text-3xl leading-[2.9rem] text-slate-900 md:text-4xl md:leading-[3.4rem]"
+                dir="rtl"
+                lang="ar"
+              >
+                {item.arabic}
+              </p>
+              <p
+                className="font-urdu-script mt-3 text-right text-xl leading-[2.8rem] text-slate-700 md:text-2xl md:leading-[3rem]"
+                dir="rtl"
+                lang="ur"
+              >
+                {item.urdu}
+              </p>
+              <p className="mt-3 text-sm text-slate-600">{item.insight}</p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.13em] text-red-700">
+                {item.ref}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {moralsFocus.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-slate-100 bg-slate-50 p-4"
+            >
+              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {item.detail}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-red-200 bg-red-900 px-6 py-7 text-white md:px-8">
+        <h2 className="text-2xl font-bold">Start your personal growth plan</h2>
+        <p className="mt-2 max-w-2xl text-sm text-red-100 md:text-base">
+          Book a guidance pathway and receive focused mentorship for your
+          learning, worship routine, and character development.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link
+            to="/admission"
+            className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-red-900 transition hover:bg-red-100"
+          >
+            Start Admission
+          </Link>
+          <Link
+            to="/services/language-support"
+            className="inline-flex items-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            Language Support
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };

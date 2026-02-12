@@ -1,128 +1,201 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { useLocation } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Brain,
+  Compass,
+  Flag,
+  Gamepad2,
+  Handshake,
+  ShieldAlert,
+  Sparkles,
+  Users,
+} from "lucide-react";
+
+const youthChallenges = [
+  {
+    challenge: "Digital distraction and time waste",
+    response:
+      "Weekly routines with focused study blocks, device boundaries, and accountability check-ins.",
+    icon: ShieldAlert,
+  },
+  {
+    challenge: "Identity pressure and confidence issues",
+    response:
+      "Mentorship circles that strengthen Islamic identity through evidence-based discussion and role models.",
+    icon: Compass,
+  },
+  {
+    challenge: "Stress, anxiety, and emotional fatigue",
+    response:
+      "Faith-centered coping tools: dua, dhikr habits, reflection prompts, and guided peer support.",
+    icon: Brain,
+  },
+];
+
+const growthTracks = [
+  {
+    title: "Leadership and Voice",
+    text: "Communication training, event hosting practice, and teamwork with Islamic adab.",
+    icon: Flag,
+  },
+  {
+    title: "Faith and Character",
+    text: "Consistent salah, honesty, discipline, and respectful conduct in real-life scenarios.",
+    icon: Handshake,
+  },
+  {
+    title: "Skills and Service",
+    text: "Project tasks, volunteering, and community contribution that build responsibility.",
+    icon: Users,
+  },
+  {
+    title: "Healthy Recreation",
+    text: "Purposeful activities, challenge games, and camp style sessions with values.",
+    icon: Gamepad2,
+  },
+];
+
+const timeline = [
+  "Orientation and personal goals",
+  "Small cohort mentor matching",
+  "Weekly halaqah and skill workshop",
+  "Monthly progress and parent feedback",
+  "Community project and showcase",
+];
+
 const YouthPrograms = () => {
-  const serviceContentRef = useRef();
-  const location = useLocation();
-  useEffect(() => {
-    if (serviceContentRef.current) {
-      gsap.fromTo(
-        serviceContentRef.current,
-        {
-          opacity: 1,
-          y: -30,
-          duration: 0.5,
-        },
-        { opacity: 1, y: 0, duration: 0.5 }
-      );
-    }
-  }, [location.pathname]);
   return (
-    <div ref={serviceContentRef} className="bg-white text-gray-800 pb-4 lg:pb-8">
-      <div className="mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-red-900 mb-4">
-            Youth Programs
-          </h1>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Empowering the next generation through knowledge, faith, and
-            leadership. Our youth programs aim to cultivate strong Muslim
-            identities, build resilience, and prepare youth to live Islam
-            confidently in today's world.
-          </p>
+    <div className="relative overflow-hidden pb-6 lg:pb-10">
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
+
+      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+        <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
+              <Sparkles className="h-4 w-4" />
+              Youth Programs
+            </div>
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 md:text-4xl">
+              Youth development that blends Islamic identity, confidence, and
+              real world skills
+            </h1>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 md:text-base">
+              Our programs prepare young Muslims to handle modern challenges
+              with clarity, strong values, and purposeful action. This is not
+              passive learning. It is guided growth through mentorship,
+              discussion, projects, and service.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                to="/admission"
+                className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-800"
+              >
+                Enroll in Youth Program
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/services/community-engagement"
+                className="inline-flex items-center rounded-xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50"
+              >
+                Community Engagement
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-red-100 bg-gradient-to-br from-red-50 via-white to-amber-50 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.13em] text-red-700">
+              Program Snapshot
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="rounded-xl bg-white p-3 shadow-sm">
+                <p className="text-xs text-slate-500">Mentor Format</p>
+                <p className="text-lg font-bold text-slate-900">Small Cohorts</p>
+              </div>
+              <div className="rounded-xl bg-white p-3 shadow-sm">
+                <p className="text-xs text-slate-500">Cadence</p>
+                <p className="text-lg font-bold text-slate-900">Weekly</p>
+              </div>
+              <div className="rounded-xl bg-white p-3 shadow-sm col-span-2">
+                <p className="text-xs text-slate-500">Core Outcome</p>
+                <p className="text-sm font-semibold text-slate-900">
+                  Balanced youth who can learn, lead, and serve with Islamic
+                  character.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
+        <h2 className="text-2xl font-bold text-slate-900">Challenge to Solution Matrix</h2>
+        <p className="mt-2 text-sm text-slate-600 md:text-base">
+          We address current youth realities directly with practical, faith-led
+          responses.
+        </p>
+
+        <div className="mt-5 space-y-3">
+          {youthChallenges.map(({ challenge, response, icon: Icon }) => (
+            <article
+              key={challenge}
+              className="grid gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 p-4 md:grid-cols-[220px_1fr] md:items-center"
+            >
+              <div className="flex items-center gap-2 text-red-800">
+                <Icon className="h-5 w-5" />
+                <span className="text-xs font-semibold uppercase tracking-[0.12em]">
+                  Challenge
+                </span>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900">{challenge}</p>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                  {response}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="rounded-3xl border border-red-100 bg-red-900 p-6 text-white">
+          <h2 className="text-2xl font-bold">Growth Journey Timeline</h2>
+          <div className="mt-5 space-y-3">
+            {timeline.map((step, index) => (
+              <div
+                key={step}
+                className="flex items-start gap-3 rounded-xl border border-white/20 bg-white/10 p-3"
+              >
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold text-red-900">
+                  {index + 1}
+                </span>
+                <p className="text-sm text-red-50">{step}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Section 1 - Identity & Self-Worth */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            Strengthening Islamic Identity
-          </h2>
-          <p className="text-gray-700">
-            In an age where external influences often challenge traditional
-            values, we aim to help Muslim youth understand and take pride in
-            their Islamic identity. Through mentorship programs, weekly halaqas
-            (circles of learning), and peer discussions, young Muslims learn how
-            to integrate Islamic teachings in their daily lives with confidence.
-          </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {growthTracks.map(({ title, text, icon: Icon }, i) => (
+            <motion.article
+              key={title}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.24, delay: i * 0.04 }}
+              className="rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/30 p-4"
+            >
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-red-100 text-red-700">
+                <Icon className="h-4 w-4" />
+              </span>
+              <h3 className="mt-3 text-base font-semibold text-slate-900">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+            </motion.article>
+          ))}
         </div>
-
-        {/* Section 2 - Leadership and Life Skills */}
-        <div className="mb-12 bg-red-50 rounded p-6 shadow-inner">
-          <h2 className="text-2xl font-semibold text-red-900 mb-3">
-            Leadership and Life Skills
-          </h2>
-          <p className="text-gray-700">
-            Our programs go beyond academics and faith to also focus on life
-            skills that every young person needs. We offer leadership training,
-            communication workshops, conflict resolution exercises, time
-            management skills, and project-based team activities that align with
-            Islamic ethics and manners.
-          </p>
-        </div>
-
-        {/* Section 3 - Topics We Cover */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            Relevant and Real Conversations
-          </h2>
-          <p className="text-gray-700 mb-3">
-            Youth today face unique struggles-mental health, peer pressure,
-            online distractions, and questions around faith. We address these
-            issues head-on, using Islamic guidance and open conversations to
-            create a safe space for learning and growth.
-          </p>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            <li>Dealing with anxiety and stress through Islamic tools</li>
-            <li>Understanding gender roles, modesty, and self-respect</li>
-            <li>Handling social media with purpose</li>
-            <li>Combating peer pressure and maintaining values</li>
-            <li>Knowing your rights and responsibilities as a Muslim youth</li>
-          </ul>
-        </div>
-
-        {/* Section 4 - Events and Community Involvement */}
-        <div className="mb-12 bg-red-100 rounded p-6">
-          <h2 className="text-2xl font-semibold text-red-900 mb-3">
-            Events & Volunteering
-          </h2>
-          <p className="text-gray-700">
-            We host online youth camps, webinars, Q&A sessions with scholars,
-            and community clean-up events that help our youth develop a sense of
-            purpose and responsibility. We also encourage them to volunteer in
-            our educational and community services to build empathy and
-            leadership qualities.
-          </p>
-        </div>
-
-        {/* Section 5 - Parent-Youth Collaboration */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-red-800 mb-3">
-            Partnering with Parents
-          </h2>
-          <p className="text-gray-700">
-            Youth development is most effective when supported at home. We
-            provide parents with resources and occasional joint sessions so they
-            can reinforce positive changes and maintain an open line of
-            communication with their children.
-          </p>
-        </div>
-
-        {/* Quote Block */}
-        <div className="bg-red-50 p-6 rounded text-center shadow-md">
-          <blockquote className="text-xl italic text-red-900 font-medium max-w-3xl mx-auto">
-            "Take benefit of five before five: your youth before your old age..."
-            - Prophet Muhammad 
-          </blockquote>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-12">
-          <button className="bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded transition duration-300">
-            Get Involved in Our Youth Program
-          </button>
-        </div>
-      </div>
+      </section>
     </div>
   );
 };

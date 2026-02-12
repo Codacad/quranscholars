@@ -1,11 +1,62 @@
 import { Outlet } from "react-router-dom";
 import ServiceSideNavigation from "../components/navigation/ServiceSideNavigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+
+const serviceMeta = {
+  "/services/courses": {
+    title: "Courses",
+    subtitle: "Structured tracks for Quran, language, and Islamic studies.",
+  },
+  "/services/interactive-lessons": {
+    title: "Interactive Lessons",
+    subtitle: "Live, engaging lessons built for active participation.",
+  },
+  "/services/educational-resources": {
+    title: "Educational Resources",
+    subtitle: "Guided materials to support deep and consistent learning.",
+  },
+  "/services/spiritual-development": {
+    title: "Spiritual Development",
+    subtitle: "Programs for worship habits, reflection, and personal growth.",
+  },
+  "/services/community-engagement": {
+    title: "Community Engagement",
+    subtitle: "Faith-led activities that build unity and service culture.",
+  },
+  "/services/personal-guidance": {
+    title: "Personal Guidance",
+    subtitle: "One-to-one mentorship for learning and life challenges.",
+  },
+  "/services/language-support": {
+    title: "Language Support",
+    subtitle: "Arabic, Urdu, and English pathways for clearer understanding.",
+  },
+  "/services/family-focused-services": {
+    title: "Family Focused Services",
+    subtitle: "Support for households through shared Islamic learning.",
+  },
+  "/services/youth-programs": {
+    title: "Youth Programs",
+    subtitle: "Mentorship and growth programs for the next generation.",
+  },
+  "/services/islamic-events": {
+    title: "Islamic Events",
+    subtitle: "Gatherings that connect knowledge, worship, and community.",
+  },
+};
 
 const Services = () => {
+  const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
+  const activeMeta = serviceMeta[location.pathname] || {
+    title: "Services Overview",
+    subtitle: "Select a service to explore details and programs.",
+  };
+
   return (
     <>
-      <section className="relative bg-gradient-to-br from-amber-50 via-white to-rose-50 min-h-screen py-14 px-4 md:px-8 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-amber-50 via-white to-rose-50 min-h-screen py-14 px-4 md:px-8 overflow-x-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(248,113,113,0.18),transparent_32%),radial-gradient(circle_at_82%_0%,rgba(251,191,36,0.18),transparent_32%)]" />
 
         <div className="relative w-full max-w-screen-2xl mx-auto space-y-8">
@@ -51,15 +102,32 @@ const Services = () => {
               <div className="lg:hidden">
                 <ServiceSideNavigation condensed />
               </div>
+              <div className="rounded-2xl border border-red-100 bg-white/80 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-700">
+                  Active Service
+                </p>
+                <h2 className="mt-1 text-xl font-bold text-slate-900">
+                  {activeMeta.title}
+                </h2>
+                <p className="text-sm text-slate-600">{activeMeta.subtitle}</p>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
-                className="rounded-3xl bg-white/95 backdrop-blur border border-red-100 p-6"
-              >
-                <Outlet />
-              </motion.div>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={location.pathname}
+                  initial={
+                    shouldReduceMotion ? false : { opacity: 0, y: 12, scale: 0.995 }
+                  }
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={
+                    shouldReduceMotion ? undefined : { opacity: 0, y: -8, scale: 0.995 }
+                  }
+                  transition={{ duration: 0.26, ease: "easeOut" }}
+                  className="rounded-3xl bg-white/95 backdrop-blur border border-red-100 p-6"
+                >
+                  <Outlet />
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>

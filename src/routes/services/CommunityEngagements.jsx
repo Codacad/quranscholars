@@ -1,138 +1,267 @@
-import {useEffect, useRef} from "react";
-import { useLocation } from "react-router-dom";
-import gsap from "gsap";
-import { FaHandsHelping, FaComments, FaUsers, FaMosque } from "react-icons/fa";
+﻿import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  CalendarDays,
+  HandHeart,
+  HeartHandshake,
+  MessageSquareText,
+  Landmark,
+  Users,
+  ArrowRight,
+  BookOpenCheck,
+} from "lucide-react";
+
+const engagementPrograms = [
+  {
+    title: "Volunteer and Khidmah Circles",
+    description:
+      "Students and families participate in service drives, mentoring support, and local welfare projects that turn learning into action.",
+    icon: HandHeart,
+    tone: "from-red-50 to-rose-50",
+  },
+  {
+    title: "Weekly Discussion Halqahs",
+    description:
+      "Moderated sessions on adab, faith, and real life challenges help learners practice Islamic values with clarity and confidence.",
+    icon: MessageSquareText,
+    tone: "from-amber-50 to-orange-50",
+  },
+  {
+    title: "Family Learning Meetups",
+    description:
+      "Parent child programs, Quran reflection circles, and quizzes build shared routines and healthy faith based communication.",
+    icon: Users,
+    tone: "from-emerald-50 to-teal-50",
+  },
+  {
+    title: "Masjid and Community Partnerships",
+    description:
+      "Collaborations with local centers connect online learners with trusted offline communities for prayer, mentorship, and events.",
+    icon: Landmark,
+    tone: "from-sky-50 to-cyan-50",
+  },
+];
+
+const outcomes = [
+  {
+    title: "Stronger Muslim Identity",
+    detail:
+      "Learners gain confidence to represent Islamic values through speech, behavior, and service.",
+  },
+  {
+    title: "Knowledge to Practice",
+    detail:
+      "Programs connect study with daily habits so Islamic learning becomes consistent and lived.",
+  },
+  {
+    title: "Belonging and Support",
+    detail:
+      "Families and youth find safe circles for guidance, accountability, and healthy friendships.",
+  },
+];
+
+const motivationTexts = [
+  {
+    arabic: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
+    urdu: "اور دعا کریں: اے میرے رب! میرے علم میں اضافہ فرما۔",
+    reference: "Surah Taha 20:114",
+    insight:
+      "Every community initiative starts with this mindset: keep growing in beneficial knowledge.",
+  },
+  {
+    arabic: "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ",
+    urdu: "سب سے بہترین لوگ وہ ہیں جو لوگوں کو سب سے زیادہ فائدہ پہنچائیں۔",
+    reference: "Hadith meaning",
+    insight:
+      "Service and education together create the most impactful form of community leadership.",
+  },
+];
+
 const CommunityEngagements = () => {
-   const serviceContentRef = useRef();
-  const location = useLocation();
-  useEffect(() => {
-    if (serviceContentRef.current) {
-      gsap.fromTo(
-        serviceContentRef.current,
-        {
-          opacity: 1,
-          y: -30,
-          duration: 0.5,
-        },
-        { opacity: 1, y: 0, duration: 0.5 }
-      );
-    }
-  }, [location.pathname]);
   return (
-    <div ref={serviceContentRef} className="bg-white px-6 pb-4 lg:pb-8">
-      <div className="mx-auto">
-        {/* Header Section */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-red-900 mb-4">
-            Community Engagements
-          </h1>
-          <p className="text-lg text-gray-700">
-            Fostering a strong sense of unity, belonging, and active
-            participation in Islamic life through various programs and events.
-          </p>
-        </header>
+    <div className="relative overflow-hidden pb-6 lg:pb-10">
+      <div className="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-        {/* Engagement Types Section */}
-        <section className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="flex items-start gap-4">
-            <FaHandsHelping className="text-4xl text-red-700 mt-1" />
-            <div>
-              <h3 className="text-xl font-semibold text-red-800">
-                Volunteering Programs
-              </h3>
-              <p className="text-gray-700">
-                Join hands in charitable efforts, community projects, and Dawah
-                activities. Students and families can actively give back to
-                society while strengthening their faith.
-              </p>
+      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
+              <HeartHandshake className="h-4 w-4" />
+              Community Engagements
+            </div>
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight text-slate-900 md:text-4xl">
+              Learning communities that nurture knowledge, service, and unity
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
+              We design structured community experiences where Islamic education
+              leads to service, discipline, and real social impact. Each program
+              is built to strengthen faith while developing character and
+              responsibility.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                to="/admission"
+                className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-800"
+              >
+                Join a Program
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center rounded-xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50"
+              >
+                Partner with Us
+              </Link>
             </div>
           </div>
 
-          <div className="flex items-start gap-4">
-            <FaComments className="text-4xl text-red-700 mt-1" />
-            <div>
-              <h3 className="text-xl font-semibold text-red-800">
-                Discussion Circles
-              </h3>
-              <p className="text-gray-700">
-                Weekly online Halqas and moderated discussions on Islamic
-                topics, current issues, and spiritual growth - promoting
-                knowledge sharing and unity.
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-red-100 bg-gradient-to-br from-red-50 to-white p-4">
+              <p className="text-xs uppercase tracking-[0.1em] text-red-700">
+                Weekly Halqahs
+              </p>
+              <p className="mt-1 text-2xl font-bold text-red-900">Live</p>
+              <p className="text-xs text-slate-600">
+                Moderated learning and reflection circles
+              </p>
+            </div>
+            <div className="rounded-2xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-4">
+              <p className="text-xs uppercase tracking-[0.1em] text-amber-700">
+                Active Families
+              </p>
+              <p className="mt-1 text-2xl font-bold text-amber-900">Growing</p>
+              <p className="text-xs text-slate-600">
+                Shared routines for parents and children
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4 sm:col-span-2">
+              <p className="text-xs uppercase tracking-[0.1em] text-slate-600">
+                Community Focus
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-900">
+                Education that builds commitment to adab, khidmah, and ummah
+                responsibility.
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="flex items-start gap-4">
-            <FaUsers className="text-4xl text-red-700 mt-1" />
-            <div>
-              <h3 className="text-xl font-semibold text-red-800">
-                Family Events
-              </h3>
-              <p className="text-gray-700">
-                Special sessions for parents and children, online family
-                meetups, and Qur'an competitions - encouraging shared learning
-                in a warm, faith-based atmosphere.
-              </p>
+      <section className="mt-6 grid gap-4 md:grid-cols-2">
+        {engagementPrograms.map(({ title, description, icon: Icon, tone }, i) => (
+          <motion.article
+            key={title}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
+            className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+          >
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                <Icon className="h-5 w-5" />
+              </span>
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  {description}
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.article>
+        ))}
+      </section>
 
-          <div className="flex items-start gap-4">
-            <FaMosque className="text-4xl text-red-700 mt-1" />
-            <div>
-              <h3 className="text-xl font-semibold text-red-800">
-                Local Mosque Partnerships
-              </h3>
-              <p className="text-gray-700">
-                Collaborations with masajid across India to support students in
-                finding offline community centers for prayer, learning, and
-                youth activities.
-              </p>
-            </div>
-          </div>
-        </section>
+      <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-2xl font-bold text-slate-900">Why This Matters</h2>
+          <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
+            <BookOpenCheck className="h-4 w-4" />
+            Education with Impact
+          </span>
+        </div>
 
-        {/* Testimonials Section */}
-        <section className="bg-blue-50 p-8 rounded-lg shadow mb-16">
-          <h2 className="text-2xl font-semibold text-red-900 mb-6 text-center">
-            What Our Community Says
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-4 rounded shadow">
-              <p className="text-gray-700 italic">
-                "Joining the Qur'an Scholar sessions brought us closer as a
-                family. My kids look forward to the weekly family quizzes!"
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {outcomes.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4"
+            >
+              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {item.detail}
               </p>
-              <p className="mt-2 font-semibold text-red-800">
-                - Fatima B., Parent
-              </p>
-            </div>
-            <div className="bg-white p-4 rounded shadow">
-              <p className="text-gray-700 italic">
-                "The Dawah workshops and volunteer projects helped me find
-                confidence in speaking about Islam and serving others."
-              </p>
-              <p className="mt-2 font-semibold text-red-800">
-                - Sameer R., Student
-              </p>
-            </div>
-          </div>
-        </section>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        {/* Join Section */}
-        <section className="text-center">
-          <h2 className="text-2xl font-bold text-red-900 mb-4">
-            Be Part of Something Bigger
-          </h2>
-          <p className="text-gray-700 mb-6">
-            Whether you're a student, parent, or teacher, our programs are
-            designed to bring people together with purpose and passion. Join our
-            vibrant learning community and make a difference.
-          </p>
-          <button className="bg-red-800 text-white px-6 py-3 rounded hover:bg-red-900 transition">
-            Get Involved Now
-          </button>
-        </section>
-      </div>
+      <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
+        <div className="inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-amber-700">
+          <CalendarDays className="h-4 w-4" />
+          Quran and Motivation
+        </div>
+
+        <p
+          className="font-urdu-script mt-4 text-right text-xl leading-[2.8rem] text-slate-800 md:text-2xl md:leading-[3rem]"
+          dir="rtl"
+          lang="ur"
+        >
+          ہمارا یقین ہے کہ علم، عمل، اور خدمت ایک دوسرے سے جڑے ہوئے ہیں۔ جب
+          کمیونٹی سیکھتی ہے تو نسلیں سنورتی ہیں۔
+        </p>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {motivationTexts.map((item) => (
+            <article
+              key={item.reference}
+              className="rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/30 p-5"
+            >
+              <p
+                className="font-arabic-script text-right text-3xl leading-[2.9rem] text-slate-900 md:text-4xl md:leading-[3.4rem]"
+                dir="rtl"
+                lang="ar"
+              >
+                {item.arabic}
+              </p>
+              <p
+                className="font-urdu-script mt-3 text-right text-xl leading-[2.8rem] text-slate-700 md:text-2xl md:leading-[3rem]"
+                dir="rtl"
+                lang="ur"
+              >
+                {item.urdu}
+              </p>
+              <p className="mt-3 text-sm text-slate-600">{item.insight}</p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.13em] text-red-700">
+                {item.reference}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-6 rounded-3xl border border-red-200 bg-red-900 px-6 py-7 text-white md:px-8">
+        <h2 className="text-2xl font-bold">Be part of a beneficial community</h2>
+        <p className="mt-2 max-w-2xl text-sm text-red-100 md:text-base">
+          Join our programs to study together, serve together, and grow together
+          with purpose.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link
+            to="/admission"
+            className="inline-flex items-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-red-900 transition hover:bg-red-100"
+          >
+            Start Admission
+          </Link>
+          <Link
+            to="/services/islamic-events"
+            className="inline-flex items-center rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            Explore Events
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };
