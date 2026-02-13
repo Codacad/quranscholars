@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   FiBookOpen,
   FiLayers,
@@ -59,13 +59,13 @@ const links = [
   { to: "/services/islamic-events", label: "Islamic Events", icon: FiStar },
 ];
 
-const ServiceSideNavigation = ({ condensed = false }) => {
+const ServiceSideNavigation = ({ layout = "sidebar" }) => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const itemRefs = useRef({});
+  const isTop = layout === "top";
 
   useEffect(() => {
-    if (!condensed) return;
+    if (!isTop) return;
     const activeEl = itemRefs.current[pathname];
     if (activeEl) {
       activeEl.scrollIntoView({
@@ -74,64 +74,29 @@ const ServiceSideNavigation = ({ condensed = false }) => {
         inline: "center",
       });
     }
-  }, [condensed, pathname]);
+  }, [isTop, pathname]);
 
   return (
-    <div
-      className={`navigation-wrapper ${
-        condensed ? "sticky top-2 z-40" : "sticky top-10"
-      }`}
-    >
+    <div className={`navigation-wrapper ${isTop ? "sticky top-2 z-40" : "sticky top-10"}`}>
       <nav
-        className={`rounded-2xl border border-red-100 bg-white/90 backdrop-blur ${
-          condensed
-            ? "p-2.5"
-            : "p-4"
-        }`}
+        className={`rounded-2xl border border-red-100 bg-white/90 backdrop-blur ${isTop ? "overflow-hidden p-2.5" : "p-4"}`}
         aria-label="Services navigation"
       >
-        <div
-          className={`flex items-center justify-between ${
-            condensed ? "mb-2" : "mb-3"
-          }`}
-        >
+        <div className={`flex items-center justify-between ${isTop ? "mb-2 px-1" : "mb-3"}`}>
           <h2 className="text-lg font-bold text-slate-900">Services</h2>
-          {!condensed && (
+          {!isTop && (
             <span className="text-xs px-2 py-1 rounded-full bg-red-50 text-red-700 border border-red-100">
               Navigation
             </span>
           )}
         </div>
-        {condensed && (
-          <div className="mb-2">
-            <label htmlFor="services-mobile-select" className="sr-only">
-              Select a service
-            </label>
-            <select
-              id="services-mobile-select"
-              value={pathname}
-              onChange={(e) => navigate(e.target.value)}
-              className="w-full rounded-xl border border-red-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
-            >
-              {links.map((item) => (
-                <option key={item.to} value={item.to}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
         <ul
-          className={`${
-            condensed
-              ? "flex overflow-x-auto gap-2 pb-1 hide-scrollbar"
-              : "flex flex-col gap-2"
-          }`}
+          className={`${isTop ? "flex gap-2 overflow-x-auto overflow-y-hidden pb-1 hide-scrollbar whitespace-nowrap" : "flex flex-col gap-2"}`}
         >
           {links.map(({ to, label, icon: Icon }) => (
             <li
               key={to}
-              className={`relative ${condensed ? "min-w-max" : "w-full"}`}
+              className={`relative ${isTop ? "shrink-0 min-w-max" : "w-full"}`}
               ref={(el) => {
                 itemRefs.current[to] = el;
               }}
@@ -151,11 +116,7 @@ const ServiceSideNavigation = ({ condensed = false }) => {
                   >
                     {isActive && (
                       <motion.span
-                        layoutId={
-                          condensed
-                            ? "services-active-pill-mobile"
-                            : "services-active-pill-desktop"
-                        }
+                        layoutId={isTop ? "services-active-pill-top" : "services-active-pill-sidebar"}
                         className="absolute inset-0 rounded-xl border border-red-600 bg-red-600"
                         transition={{
                           type: "tween",

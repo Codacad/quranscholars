@@ -50,6 +50,10 @@ const router = createBrowserRouter([
         element: <Courses />,
       },
       {
+        path: "courses/:slug",
+        element: <CourseOverview />,
+      },
+      {
         path: "services",
         element: <Services />,
         children: [

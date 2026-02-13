@@ -53,7 +53,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="relative login flex justify-center items-center bg-gradient-to-br from-amber-50 via-white to-rose-50 p-6 md:p-12 min-h-screen overflow-hidden">
+      <div className="relative login flex justify-center items-start md:items-center bg-gradient-to-br from-amber-50 via-white to-rose-50 px-4 py-6 md:p-12 min-h-[calc(100vh-140px)] overflow-hidden">
         {/* Decorative Blurs */}
         <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-red-100 blur-3xl opacity-60" />
         <div className="pointer-events-none absolute right-0 top-10 h-72 w-72 rounded-full bg-amber-100 blur-3xl opacity-70" />

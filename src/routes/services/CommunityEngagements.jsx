@@ -1,81 +1,16 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
+  engagementPrograms,
+  outcomes,
+  motivationTexts,
+} from "../../data/communityEngagement";
+import {
   CalendarDays,
-  HandHeart,
   HeartHandshake,
-  MessageSquareText,
-  Landmark,
-  Users,
   ArrowRight,
   BookOpenCheck,
 } from "lucide-react";
-
-const engagementPrograms = [
-  {
-    title: "Volunteer and Khidmah Circles",
-    description:
-      "Students and families participate in service drives, mentoring support, and local welfare projects that turn learning into action.",
-    icon: HandHeart,
-    tone: "from-red-50 to-rose-50",
-  },
-  {
-    title: "Weekly Discussion Halqahs",
-    description:
-      "Moderated sessions on adab, faith, and real life challenges help learners practice Islamic values with clarity and confidence.",
-    icon: MessageSquareText,
-    tone: "from-amber-50 to-orange-50",
-  },
-  {
-    title: "Family Learning Meetups",
-    description:
-      "Parent child programs, Quran reflection circles, and quizzes build shared routines and healthy faith based communication.",
-    icon: Users,
-    tone: "from-emerald-50 to-teal-50",
-  },
-  {
-    title: "Masjid and Community Partnerships",
-    description:
-      "Collaborations with local centers connect online learners with trusted offline communities for prayer, mentorship, and events.",
-    icon: Landmark,
-    tone: "from-sky-50 to-cyan-50",
-  },
-];
-
-const outcomes = [
-  {
-    title: "Stronger Muslim Identity",
-    detail:
-      "Learners gain confidence to represent Islamic values through speech, behavior, and service.",
-  },
-  {
-    title: "Knowledge to Practice",
-    detail:
-      "Programs connect study with daily habits so Islamic learning becomes consistent and lived.",
-  },
-  {
-    title: "Belonging and Support",
-    detail:
-      "Families and youth find safe circles for guidance, accountability, and healthy friendships.",
-  },
-];
-
-const motivationTexts = [
-  {
-    arabic: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
-    urdu: "اور دعا کریں: اے میرے رب! میرے علم میں اضافہ فرما۔",
-    reference: "Surah Taha 20:114",
-    insight:
-      "Every community initiative starts with this mindset: keep growing in beneficial knowledge.",
-  },
-  {
-    arabic: "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ",
-    urdu: "سب سے بہترین لوگ وہ ہیں جو لوگوں کو سب سے زیادہ فائدہ پہنچائیں۔",
-    reference: "Hadith meaning",
-    insight:
-      "Service and education together create the most impactful form of community leadership.",
-  },
-];
 
 const CommunityEngagements = () => {
   return (
@@ -149,33 +84,37 @@ const CommunityEngagements = () => {
       </section>
 
       <section className="mt-6 grid gap-4 md:grid-cols-2">
-        {engagementPrograms.map(({ title, description, icon: Icon, tone }, i) => (
-          <motion.article
-            key={title}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
-            className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
-          >
-            <div className="flex items-start gap-3">
-              <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
-                <Icon className="h-5 w-5" />
-              </span>
-              <div>
-                <h2 className="text-lg font-bold text-slate-900">{title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  {description}
-                </p>
+        {engagementPrograms.map(
+          ({ title, description, icon: Icon, tone }, i) => (
+            <motion.article
+              key={title}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
+              className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+            >
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900">{title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                    {description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.article>
-        ))}
+            </motion.article>
+          ),
+        )}
       </section>
 
       <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-2xl font-bold text-slate-900">Why This Matters</h2>
+          <h2 className="text-2xl font-bold text-slate-900">
+            Why This Matters
+          </h2>
           <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
             <BookOpenCheck className="h-4 w-4" />
             Education with Impact
@@ -188,7 +127,9 @@ const CommunityEngagements = () => {
               key={item.title}
               className="rounded-2xl border border-slate-100 bg-slate-50/80 p-4"
             >
-              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">
+                {item.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {item.detail}
               </p>
@@ -242,7 +183,9 @@ const CommunityEngagements = () => {
       </section>
 
       <section className="mt-6 rounded-3xl border border-red-200 bg-red-900 px-6 py-7 text-white md:px-8">
-        <h2 className="text-2xl font-bold">Be part of a beneficial community</h2>
+        <h2 className="text-2xl font-bold">
+          Be part of a beneficial community
+        </h2>
         <p className="mt-2 max-w-2xl text-sm text-red-100 md:text-base">
           Join our programs to study together, serve together, and grow together
           with purpose.

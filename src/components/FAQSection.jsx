@@ -16,9 +16,15 @@ const FAQSection = () => {
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             Common Questions
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+          <motion.h2
+            initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+          >
             FAQ
-          </h2>
+          </motion.h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Quick answers about classes, tutors, payments, and trials.
           </p>

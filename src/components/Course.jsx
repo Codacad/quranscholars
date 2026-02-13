@@ -2,10 +2,11 @@
 import { SiLevelsdotfyi } from "react-icons/si";
 import { MdOutlineWatchLater, MdOutlineStarPurple500 } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 
 const Course = ({ course, index = 0 }) => {
+  const { pathname } = useLocation();
   const shouldReduceMotion = useReducedMotion();
 
   const priceAmount = course?.price?.amount || 0;
@@ -15,6 +16,9 @@ const Course = ({ course, index = 0 }) => {
     course?.duration?.value && course?.duration?.unit
       ? `${course.duration.value} ${course.duration.unit}`
       : "Self-paced";
+  const detailsPath = pathname.startsWith("/services")
+    ? `/services/courses/${course?.slug || ""}`
+    : `/courses/${course?.slug || ""}`;
 
   return (
     <motion.div
@@ -108,7 +112,7 @@ const Course = ({ course, index = 0 }) => {
           </div>
 
           <Link
-            to={`/services/courses/${course?.slug || ""}`}
+            to={detailsPath}
             className="inline-flex w-36 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-red-600 p-2 text-[12px] font-semibold text-white shadow-md transition hover:bg-red-700"
           >
             <span className="leading-none">View Course</span>

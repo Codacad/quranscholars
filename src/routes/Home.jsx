@@ -9,6 +9,7 @@ import GridBackground from "../p5_sketches/GridBackground";
 import BlogSection from "../components/BlogSection";
 import FAQSection from "../components/FAQSection";
 import ServicesSection from "../components/ServicesSection";
+import { motion } from "framer-motion";
 const Home = () => {
   const gridWrapperRef = useRef();
   const [width, setWidth] = useState(0);
@@ -27,6 +28,30 @@ const Home = () => {
     };
   }, []);
 
+  const sectionReveal = {
+    hidden: { opacity: 0, y: 56 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
+  const heroTextStagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  };
+
+  const heroItem = {
+    hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <>
       <section
@@ -41,34 +66,52 @@ const Home = () => {
 
         <div className="relative w-full home-contents grid grid-cols-2 max-md:grid-cols-1 max-md:gap-8">
           {/* Text Section */}
-          <div className="text flex flex-col md:gap-6 max-md:items-center max-md:text-center gap-4 justify-center px-4">
+          <motion.div
+            variants={heroTextStagger}
+            initial="hidden"
+            animate="show"
+            className="text flex flex-col md:gap-6 max-md:items-center max-md:text-center gap-4 justify-center px-4"
+          >
             {/* Journey Title */}
-            <h3 className="text-red-900 bg-red-200 w-64 rounded-3xl text-center font-bold p-2 text-sm">
+            <motion.h3
+              variants={heroItem}
+              className="text-red-900 bg-red-200 w-64 rounded-3xl text-center font-bold p-2 text-sm"
+            >
               Embark on a Journey of Faith
-            </h3>
+            </motion.h3>
 
             {/* Main Heading */}
-            <h1 className="md:text-5xl text-3xl font-bold text-red-900 leading-[1.6em]">
+            <motion.h1
+              variants={heroItem}
+              className="md:text-5xl text-3xl font-bold text-red-900 leading-[1.6em]"
+            >
               Dive into Interactive Halal Learning for All Ages, Guided by Quran
               and Hadith.
-            </h1>
+            </motion.h1>
             {/* Description */}
-            <p className="text-red-700 text-2xl">
+            <motion.p variants={heroItem} className="text-red-700 text-2xl">
               Designed for every age group nurturing piety, lifelong learning,
               and spiritual growth in the light of the Qur'an and Hadith.
-            </p>
+            </motion.p>
 
             {/* Call-to-Action Button */}
-            <Link
-              to={"/register"}
-              className="w-32 text-center bg-red-900 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
-            >
-              Get Started
-            </Link>
-          </div>
+            <motion.div variants={heroItem}>
+              <Link
+                to={"/register"}
+                className="w-32 text-center bg-red-900 text-white p-2 rounded-full mt-6 hover:bg-red-700 transition-all"
+              >
+                Get Started
+              </Link>
+            </motion.div>
+          </motion.div>
 
           {/* Accent Panel */}
-          <div className="relative hidden md:flex items-center justify-center px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 32, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
+            className="relative hidden md:flex items-center justify-center px-4"
+          >
             <div className="rounded-3xl border border-white/60 bg-white/70 shadow-lg backdrop-blur-sm px-8 py-10 space-y-4 max-w-md">
               <p className="text-sm font-semibold text-red-900 uppercase tracking-[0.18em]">
                 Islamic Study Capsule
@@ -111,17 +154,66 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <DiscoverIslam />
-      <SeekingKnowledge />
-      <ServicesSection />
-      <Teachers />
-      <Testimonials />
-      <BlogSection />
-      <FAQSection />
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <DiscoverIslam />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <SeekingKnowledge />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <ServicesSection />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <Teachers />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <Testimonials />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <BlogSection />
+      </motion.div>
+      <motion.div
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.12 }}
+      >
+        <FAQSection />
+      </motion.div>
     </>
   );
 };

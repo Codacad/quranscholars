@@ -2,6 +2,7 @@
 import "../css/SeekingKnowledge.css";
 import { seekingKnowledge } from "../data/seekingKnowledge.js";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SeekingKnowledge = () => {
   return (
@@ -16,10 +17,16 @@ const SeekingKnowledge = () => {
               Seeking Knowledge
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-5xl font-extrabold leading-tight"
+            >
               Learn with <span className="text-amber-300">ihsān</span>, act with
               humility, and pass it on.
-            </h1>
+            </motion.h1>
 
             <p className="text-lg leading-8 text-slate-200">
               The first command revealed was{" "}
@@ -46,8 +53,12 @@ const SeekingKnowledge = () => {
             {
               <div className="grid sm:grid-cols-2 gap-4">
                 {seekingKnowledge.map((item) => (
-                  <div
+                  <motion.div
                     key={item.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.25 }}
+                    transition={{ duration: 0.42, ease: "easeOut" }}
                     className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm"
                   >
                     <p className="text-sm font-semibold uppercase tracking-[0.14em] text-amber-200">
@@ -56,7 +67,7 @@ const SeekingKnowledge = () => {
                     <p className="text-slate-200 text-sm leading-6">
                       {item.body}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             }
@@ -76,7 +87,13 @@ const SeekingKnowledge = () => {
             <div className="absolute -inset-4 bg-gradient-to-br from-red-500/25 via-amber-400/10 to-cyan-300/10 blur-3xl" />
 
             {/* Card 1: Hero visual */}
-            <div className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden"
+            >
               <div className="p-6 space-y-5">
                 <div className="flex items-center gap-3">
                   <div className="h-12 w-12 rounded-2xl bg-red-700 text-white flex items-center justify-center text-xl font-black shadow-md">
@@ -98,7 +115,7 @@ const SeekingKnowledge = () => {
                   alt="Interactive learning illustration"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

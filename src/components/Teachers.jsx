@@ -1,4 +1,6 @@
-﻿import { teachers } from "../data/teachers.js";
+import { motion } from "framer-motion";
+import { teachers } from "../data/teachers.js";
+
 function Teachers() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-rose-950 text-slate-50 py-16 md:py-20 px-4 md:px-10">
@@ -10,12 +12,18 @@ function Teachers() {
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
               Our Mentors
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            <motion.h2
+              initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-5xl font-extrabold leading-tight"
+            >
               Meet the teachers who light your path.
-            </h2>
+            </motion.h2>
             <p className="text-slate-200 max-w-3xl">
               Certified scholars who blend classical tradition with modern
-              pedagogy—live feedback, reflective prompts, and pastoral care.
+              pedagogy, live feedback, reflective prompts, and pastoral care.
             </p>
           </div>
           <div className="flex gap-3 text-sm text-slate-200">
@@ -36,8 +44,16 @@ function Teachers() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {teachers.map((teacher, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+                delay: idx * 0.04,
+              }}
               className="group relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur shadow-xl overflow-hidden transition-transform duration-200 hover:-translate-y-1"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-500/15 via-white/10 to-amber-400/15" />
@@ -49,9 +65,7 @@ function Teachers() {
                     className="h-14 w-14 rounded-2xl object-cover border border-white/20 shadow-sm"
                   />
                   <div>
-                    <p className="text-lg font-bold text-white">
-                      {teacher.name}
-                    </p>
+                    <p className="text-lg font-bold text-white">{teacher.name}</p>
                     <p className="text-xs uppercase tracking-[0.18em] text-amber-200">
                       {teacher.focus}
                     </p>
@@ -68,7 +82,7 @@ function Teachers() {
                     <span>Availability</span>
                   </div>
                   <div className="flex justify-between text-slate-100">
-                    <span>Live · 1:1 · Cohort</span>
+                    <span>Live . 1:1 . Cohort</span>
                     <span className="text-[12px] text-right">
                       Sat-Thu (07 AM - 10 PM)
                     </span>
@@ -76,10 +90,10 @@ function Teachers() {
                 </div>
                 <button className="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 text-white px-4 py-2 text-sm font-semibold shadow-md transition hover:bg-red-600">
                   Book a trial
-                  <span className="text-base">↗</span>
+                  <span className="text-base">{"->"}</span>
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

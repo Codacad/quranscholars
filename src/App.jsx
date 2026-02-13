@@ -1,19 +1,33 @@
 import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 import CardButton from "./components/cart/CardButton";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./state/slices/userSlice";
+import AppLoader from "./components/ui/AppLoader";
 // import Spinner from "./components/Spinner";
 function App() {
   const { user } = useSelector((state) => state.user);
   const pathName = useLocation();
+  const navigation = useNavigation();
+  const [isAppBooting, setIsAppBooting] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathName]);
+
+  useEffect(() => {
+    const finishBoot = () => setIsAppBooting(false);
+    if (document.readyState === "complete") {
+      const timer = setTimeout(finishBoot, 120);
+      return () => clearTimeout(timer);
+    }
+    window.addEventListener("load", finishBoot);
+    return () => window.removeEventListener("load", finishBoot);
+  }, []);
 
   const useSessionTimeout = (user) => {
     const dispatch = useDispatch();
@@ -35,9 +49,13 @@ function App() {
     }, [user, navigate, dispatch]);
   };
   useSessionTimeout(user);
+
+  const showGlobalLoader = isAppBooting || navigation.state === "loading";
+
   return (
     <>
       <div className="app relative">
+        {showGlobalLoader && <AppLoader overlay label="Loading page..." />}
         <Navbar />
         <Outlet />
         <Footer />

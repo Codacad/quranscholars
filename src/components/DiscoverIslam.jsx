@@ -3,6 +3,7 @@ import WelcomeImgTeaching from "../assets/images/teaching.svg";
 import WelcomeImgPhone from "../assets/images/phone-inhand.png";
 import "../css/Welcome.css";
 import { highlights, milestones, stats } from "../data/discoverIslam";
+import { motion } from "framer-motion";
 const DiscoverIslam = () => {
   return (
     <section className="relative overflow-hidden">
@@ -27,9 +28,15 @@ const DiscoverIslam = () => {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+              <motion.h2
+                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+              >
                 Discover Islam with depth, beauty, and practice.
-              </h2>
+              </motion.h2>
               <p className="text-lg text-slate-700 leading-8">
                 Quran Scholar brings live, mentor-led learning that blends
                 Qur'an, Sunnah, adab, and spiritual refinement. Study in small
@@ -40,8 +47,12 @@ const DiscoverIslam = () => {
             {/* Highligths */}
             <div className="grid sm:grid-cols-2 gap-4">
               {highlights.map((item) => (
-                <div
+                <motion.div
                   key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
                   className="rounded-2xl border border-white/50 bg-white/70 backdrop-blur shadow-md px-5 py-4 space-y-1"
                 >
                   <div className="flex items-center gap-3 text-red-900 text-xl font-semibold">
@@ -51,21 +62,25 @@ const DiscoverIslam = () => {
                   <p className="text-slate-700 text-sm leading-6">
                     {item.body}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
             {/* Stats */}
             <div className="grid sm:grid-cols-3 gap-4">
               {stats.map((stat) => (
-                <div
+                <motion.div
                   key={stat.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.42, ease: "easeOut" }}
                   className="rounded-2xl bg-gradient-to-br from-red-900 to-red-700 text-white px-4 py-5 shadow-lg"
                 >
                   <p className="text-3xl font-black">{stat.value}</p>
                   <p className="text-sm uppercase tracking-[0.14em] mt-1 text-white/80">
                     {stat.label}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -122,8 +137,16 @@ const DiscoverIslam = () => {
 
                 <div className="grid gap-3">
                   {milestones.map((step, idx) => (
-                    <div
+                    <motion.div
                       key={step.label}
+                      initial={{ opacity: 0, x: 18 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{
+                        duration: 0.4,
+                        ease: "easeOut",
+                        delay: idx * 0.05,
+                      }}
                       className="flex items-start gap-3 rounded-2xl bg-red-50/70 border border-red-100 px-4 py-3"
                     >
                       <div className="h-9 w-9 rounded-full bg-white text-red-900 font-black flex items-center justify-center shadow-sm">
@@ -137,7 +160,7 @@ const DiscoverIslam = () => {
                           {step.detail}
                         </p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 

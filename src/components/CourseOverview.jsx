@@ -14,7 +14,6 @@ import { useGetCoursesQuery } from "../state/courseApis/courses.api";
 const CourseOverview = () => {
   const { data, isLoading, isError } = useGetCoursesQuery();
   const courses = data?.data;
-  console.log(courses);
   const { slug } = useParams();
   const course = courses && courses.find((course) => slug === course.slug);
   const handleCoursePayment = async () => {
@@ -22,25 +21,25 @@ const CourseOverview = () => {
   };
   return (
     <>
-      <div className="course-overview bg-gradient-to-br from-amber-50 via-white to-rose-50 min-h-screen">
-        <div className="relative mx-auto px-4 py-10 md:py-14">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.18),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.16),transparent_32%)] pointer-events-none" />
+      <div className="course-overview min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50">
+        <div className="relative mx-auto max-w-6xl px-4 py-6 md:py-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.08),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.1),transparent_32%)]" />
           {isLoading ? (
             "Loading..."
           ) : (
-            <div className="relative grid lg:grid-cols-2 gap-8 items-center">
+            <div className="relative grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="p-6 rounded-2xl bg-white/90 backdrop-blur border border-red-100 shadow-md space-y-5"
+                className="rounded-2xl border border-red-100 bg-white/90 p-5 shadow-md backdrop-blur space-y-4 md:p-6"
               >
                 <div className="flex items-center gap-2 text-sm text-red-700">
                   <Link className="font-semibold" to={"/"}>
                     Home
                   </Link>
                   <IoIosArrowForward className="text-red-600" />
-                  <Link className="font-semibold" to={"/services/courses"}>
+                  <Link className="font-semibold" to={"/courses"}>
                     Courses
                   </Link>
                   <IoIosArrowForward className="text-red-600" />
@@ -66,17 +65,17 @@ const CourseOverview = () => {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.55, ease: "easeOut" }}
-                  className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+                  className="text-3xl font-extrabold leading-tight text-slate-900 md:text-4xl"
                 >
                   {course.title}
                 </motion.h1>
 
-                <p className="text-lg text-slate-700 leading-relaxed">
+                <p className="text-base leading-relaxed text-slate-700 md:text-lg">
                   {course.overview.description ||
                     "Structured mentorship with live sessions, guided practice, and concise resources to master each concept with clarity."}
                 </p>
 
-                <div className="grid sm:grid-cols-3 gap-3 text-sm font-semibold text-slate-800">
+                <div className="grid gap-3 text-sm font-semibold text-slate-800 sm:grid-cols-3">
                   {[
                     {
                       label: "Live + Recorded",
@@ -107,7 +106,7 @@ const CourseOverview = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
-                className="space-y-4 w-full max-w-lg lg:justify-self-end"
+                className="w-full space-y-4 lg:max-w-lg"
               >
                 <div className="rounded-2xl overflow-hidden border border-red-100 bg-white shadow-lg">
                   <div className="relative h-56 bg-gray-100">

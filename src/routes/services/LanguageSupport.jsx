@@ -116,7 +116,9 @@ const LanguageSupport = () => {
               <p className="text-xs uppercase tracking-[0.1em] text-red-700">
                 Delivery Mode
               </p>
-              <p className="mt-1 text-2xl font-bold text-red-900">Live + Guided</p>
+              <p className="mt-1 text-2xl font-bold text-red-900">
+                Live + Guided
+              </p>
               <p className="text-xs text-slate-600">
                 Teacher feedback with weekly revision
               </p>
@@ -144,27 +146,31 @@ const LanguageSupport = () => {
       </section>
 
       <section className="mt-6 grid gap-4 md:grid-cols-3">
-        {languageTracks.map(({ title, subtitle, detail, icon: Icon, tone }, i) => (
-          <motion.article
-            key={title}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
-            className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
-                {subtitle}
-              </span>
-            </div>
-            <h2 className="mt-4 text-lg font-bold text-slate-900">{title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{detail}</p>
-          </motion.article>
-        ))}
+        {languageTracks.map(
+          ({ title, subtitle, detail, icon: Icon, tone }, i) => (
+            <motion.article
+              key={title}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
+              className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
+                  {subtitle}
+                </span>
+              </div>
+              <h2 className="mt-4 text-lg font-bold text-slate-900">{title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {detail}
+              </p>
+            </motion.article>
+          ),
+        )}
       </section>
 
       <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
@@ -185,7 +191,9 @@ const LanguageSupport = () => {
               <div className="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-red-700 text-xs font-bold text-white">
                 {index + 1}
               </div>
-              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">
+                {item.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {item.detail}
               </p>
@@ -209,7 +217,9 @@ const LanguageSupport = () => {
               key={item.title}
               className="rounded-2xl border border-slate-100 bg-slate-50 p-4"
             >
-              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">
+                {item.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {item.detail}
               </p>
@@ -219,7 +229,9 @@ const LanguageSupport = () => {
       </section>
 
       <section className="mt-6 rounded-3xl border border-red-200 bg-red-900 px-6 py-7 text-white md:px-8">
-        <h2 className="text-2xl font-bold">Build your language foundation today</h2>
+        <h2 className="text-2xl font-bold">
+          Build your language foundation today
+        </h2>
         <p className="mt-2 max-w-2xl text-sm text-red-100 md:text-base">
           Choose your preferred language path and begin a guided journey toward
           stronger Islamic understanding and communication.

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { blogPosts } from "../data/blogPosts.js";
+
 const BlogSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
@@ -11,9 +13,15 @@ const BlogSection = () => {
               <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
               Islamic Resources & Blog
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+            <motion.h2
+              initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+            >
               Latest reflections, how-tos, and Sunnah spotlights.
-            </h2>
+            </motion.h2>
             <p className="text-gray-700 text-lg max-w-2xl">
               Dive into concise guides, tajwid tips, family-friendly sunnahs,
               and seerah stories curated by our teachers.
@@ -24,14 +32,22 @@ const BlogSection = () => {
             className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-2 py-3 font-semibold shadow-md hover:bg-red-700 transition w-48 justify-center"
           >
             See all blogs
-            <span className="text-base">↗</span>
+            <span className="text-base">{"->"}</span>
           </Link>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
-            <article
+            <motion.article
               key={index}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+                delay: index * 0.05,
+              }}
               className="group relative rounded-3xl border border-white/50 bg-white shadow-lg overflow-hidden transition-transform duration-200 hover:-translate-y-2 hover:shadow-xl"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-100/60 via-white to-amber-100/50" />
@@ -59,21 +75,12 @@ const BlogSection = () => {
                   >
                     Read blog
                     <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
-                      ↗
+                      {"->"}
                     </span>
                   </Link>
-                  {/* <Link
-                    to="/blogs"
-                    className="inline-flex items-center gap-2 text-red-900 font-semibold hover:text-red-700 text-sm"
-                  >
-                    View all
-                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
-                      ↗
-                    </span>
-                  </Link> */}
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

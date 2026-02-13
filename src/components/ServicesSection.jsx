@@ -1,6 +1,7 @@
-﻿import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { services } from "../data/services.js";
 import Service from "./home/Service.jsx";
+
 const ServicesSection = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 py-16 md:py-20 px-4 md:px-10">
@@ -11,9 +12,15 @@ const ServicesSection = () => {
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             Our Services
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+          <motion.h2
+            initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+          >
             Guided pathways for every seeker.
-          </h2>
+          </motion.h2>
           <p className="text-gray-700 text-lg max-w-3xl mx-auto">
             Build your journey with Qur'an-first learning, live mentorship,
             family programs, and community khidmah.
@@ -22,7 +29,19 @@ const ServicesSection = () => {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <Service key={index} service={service} />
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.45,
+                ease: [0.22, 1, 0.36, 1],
+                delay: index * 0.05,
+              }}
+            >
+              <Service service={service} />
+            </motion.div>
           ))}
         </div>
       </div>
