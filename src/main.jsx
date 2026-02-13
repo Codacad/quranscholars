@@ -6,6 +6,7 @@ import Services from "./routes/Services";
 import About from "./routes/About";
 import Contact from "./routes/Contact";
 import Donate from "./routes/Donate";
+import Mission from "./routes/Mission";
 import Admission from "./routes/Admission";
 import CourseOverview from "./components/CourseOverview";
 import Login from "./routes/Login";
@@ -108,6 +109,7 @@ const router = createBrowserRouter([
       },
       // { path: "blogs/:slug", element: <BlogDetail /> },
       { path: "about", element: <About /> },
+      { path: "mission", element: <Mission /> },
       { path: "contact", element: <Contact /> },
       { path: "donate", element: <Donate /> },
       {

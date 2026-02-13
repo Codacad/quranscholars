@@ -91,6 +91,23 @@ const onboardingSteps = [
   },
 ];
 
+const missionFocusAreas = [
+  "Deep Islamic learning: Quran, Hadith, Fiqh, Seerah, adab, and character.",
+  "World-ready learning: language, analytical thinking, communication, and responsible technology use.",
+  "A unified model where deen and dunya are studied together with purpose and discipline.",
+];
+
+const goldenAgeContributions = [
+  "Algebra and algorithmic foundations (Al-Khwarizmi)",
+  "Optics and experimental method (Ibn al-Haytham)",
+  "Advanced medicine and clinical texts (Ibn Sina, Al-Razi)",
+  "Surgical instruments and procedures (Al-Zahrawi)",
+  "Astronomical observatories and precise star catalogs",
+  "Navigation tools including improved astrolabe systems",
+  "Early engineering automation and mechanical design (Al-Jazari)",
+  "Chemistry and laboratory process refinement",
+];
+
 const quranLearningVerses = [
   {
     arabic: "اِقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
@@ -134,10 +151,11 @@ const About = () => {
           </h1>
 
           <p className="max-w-2xl text-base leading-relaxed text-slate-700 md:text-lg">
-            Quran Scholars helps families and individuals build a consistent
+            Quran Scholars helps families and individuals build a disciplined
             learning routine through live teaching, guided revision, and clear
-            progress tracking. Our model combines traditional Islamic values
-            with practical online delivery.
+            progress tracking. We are building a generation that is grounded in
+            Quran and Sunnah while fully prepared to contribute to the modern
+            world with knowledge, ethics, and skill.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -199,6 +217,57 @@ const About = () => {
               <p className="mt-1 text-sm text-slate-600">{detail}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-14 md:px-6">
+        <div className="rounded-3xl border border-red-100 bg-white p-6 md:p-8">
+          <div className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-red-700">
+            <ShieldCheck className="h-4 w-4" />
+            Mission and Legacy
+          </div>
+
+          <h2 className="mt-4 text-2xl font-bold text-red-950 md:text-3xl">
+            Strong Islamic foundation with world-ready excellence
+          </h2>
+          <p className="mt-3 max-w-4xl text-sm leading-relaxed text-slate-700 md:text-base">
+            For decades, many Muslims rightly focused on Islamic instruction and
+            protected faith, identity, and character. Today, the world has
+            changed. In the age of technology and global knowledge systems, we
+            believe students should receive deep Islamic scholarship together
+            with high-quality contemporary education. The Islamic Golden Age
+            shows that this combined model is part of our true heritage.
+          </p>
+
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            <article className="rounded-2xl border border-slate-100 bg-slate-50 p-5">
+              <h3 className="text-lg font-bold text-slate-900">
+                Our Education Focus
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                {missionFocusAreas.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <CircleCheckBig className="mt-0.5 h-4 w-4 shrink-0 text-red-700" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/40 p-5">
+              <h3 className="text-lg font-bold text-slate-900">
+                Islamic Golden Age Contributions
+              </h3>
+              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                {goldenAgeContributions.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <CircleCheckBig className="mt-0.5 h-4 w-4 shrink-0 text-red-700" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 

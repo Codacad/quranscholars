@@ -1,5 +1,6 @@
-﻿import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import p5 from "p5";
+
 const GridBackground = ({ dimensions }) => {
   const elemRef = useRef();
 
@@ -14,105 +15,153 @@ const GridBackground = ({ dimensions }) => {
     );
 
     const sketch = (p) => {
-      let shapes = [];
+      const colors = {
+        top: [255, 250, 246],
+        mid: [255, 244, 238],
+        bottom: [255, 236, 232],
+        gold: [228, 166, 74],
+        teal: [83, 178, 161],
+        rose: [223, 122, 155],
+        white: [255, 255, 255],
+        ink: [98, 84, 94],
+      };
+
+      let stars = [];
+      let nodes = [];
+      let glows = [];
+      let nebulaOrbs = [];
+      let reduceMotion = false;
+
+      const buildScene = () => {
+        const starCount = Math.max(140, Math.floor((p.width * p.height) / 5600));
+        stars = Array.from({ length: starCount }, () => ({
+          x: p.random(0, p.width),
+          y: p.random(0, p.height * 0.8),
+          size: p.random(1.2, 3.4),
+          twinkle: p.random(0.01, 0.03),
+          phase: p.random(0, p.TWO_PI),
+          tint: p.random([
+            [196, 129, 33],
+            [36, 153, 136],
+            [190, 82, 122],
+            [126, 92, 55],
+          ]),
+        }));
+
+        const nodeCount = Math.max(16, Math.floor(p.width / 90));
+        nodes = Array.from({ length: nodeCount }, () => ({
+          x: p.random(p.width * 0.08, p.width * 0.92),
+          y: p.random(p.height * 0.16, p.height * 0.68),
+          pulse: p.random(0.008, 0.016),
+          phase: p.random(0, p.TWO_PI),
+        }));
+
+        glows = [
+          { x: p.width * 0.18, y: p.height * 0.18, r: p.width * 0.19, color: colors.teal, alpha: 10 },
+          { x: p.width * 0.8, y: p.height * 0.22, r: p.width * 0.22, color: colors.rose, alpha: 10 },
+          { x: p.width * 0.58, y: p.height * 0.7, r: p.width * 0.28, color: colors.gold, alpha: 9 },
+        ];
+
+        nebulaOrbs = Array.from({ length: 7 }, () => ({
+          x: p.random(p.width * 0.06, p.width * 0.94),
+          y: p.random(p.height * 0.12, p.height * 0.9),
+          r: p.random(90, 170),
+          driftX: p.random(-0.06, 0.06),
+          driftY: p.random(-0.04, 0.04),
+          hue: p.random([colors.teal, colors.rose, colors.gold]),
+          alpha: p.random(5, 11),
+        }));
+      };
+
+      const drawSkyGradient = () => {
+        for (let y = 0; y < p.height; y += 2) {
+          const mix = y / p.height;
+          const c1 = p.lerpColor(p.color(...colors.top), p.color(...colors.mid), Math.min(mix * 1.6, 1));
+          const c2 = p.lerpColor(c1, p.color(...colors.bottom), Math.max(0, mix - 0.45) * 1.8);
+          p.stroke(c2);
+          p.line(0, y, p.width, y);
+        }
+      };
+
+      const drawGlow = (item) => {
+        for (let i = 5; i > 0; i -= 1) {
+          const rr = (item.r * i) / 5;
+          p.noStroke();
+          p.fill(item.color[0], item.color[1], item.color[2], item.alpha * (i / 8));
+          p.circle(item.x, item.y, rr);
+        }
+      };
+
+      const drawConstellation = (t) => {
+        nodes.forEach((node) => {
+          const pulse = 1 + (reduceMotion ? 0 : Math.sin(t * node.pulse + node.phase) * 0.3);
+          p.noStroke();
+          p.fill(colors.gold[0], colors.gold[1], colors.gold[2], 68);
+          p.circle(node.x, node.y, 2.8 * pulse);
+
+          p.fill(colors.white[0], colors.white[1], colors.white[2], 40);
+          p.circle(node.x, node.y, 6.8 * pulse);
+        });
+      };
+
+      const drawStars = (t) => {
+        stars.forEach((star) => {
+          const shimmer = reduceMotion ? 1 : 0.6 + 0.4 * Math.sin(t * star.twinkle + star.phase);
+          const coreSize = star.size * shimmer;
+
+          p.noStroke();
+          p.fill(star.tint[0], star.tint[1], star.tint[2], 16 + shimmer * 30);
+          p.circle(star.x, star.y, coreSize * 2.4);
+
+          p.noStroke();
+          p.fill(star.tint[0], star.tint[1], star.tint[2], 45 + shimmer * 55);
+          p.circle(star.x, star.y, coreSize);
+        });
+      };
+
+      const drawNebulaOrbs = () => {
+        nebulaOrbs.forEach((orb) => {
+          for (let i = 4; i > 0; i -= 1) {
+            const rr = (orb.r * i) / 4;
+            p.noStroke();
+            p.fill(orb.hue[0], orb.hue[1], orb.hue[2], orb.alpha * (i / 9));
+            p.circle(orb.x, orb.y, rr);
+          }
+
+          if (!reduceMotion) {
+            orb.x += orb.driftX;
+            orb.y += orb.driftY;
+            if (orb.x < -120) orb.x = p.width + 120;
+            if (orb.x > p.width + 120) orb.x = -120;
+            if (orb.y < -120) orb.y = p.height + 120;
+            if (orb.y > p.height + 120) orb.y = -120;
+          }
+        });
+      };
+
       p.setup = () => {
         p.pixelDensity(1);
         p.createCanvas(canvasWidth, canvasHeight).parent(elemRef.current);
-        p.colorMode(p.HSL, 360, 100, 100, 1);
-        // Use Unicode escapes so names render correctly regardless of file encoding
-        const names = [
-          "\u0627\u0644\u0644\u0647", // Allah
-          "\u0645\u062d\u0645\u062f \uFDFD", // Muhammad
-          "\u0627\u0644\u0631\u062d\u0645\u0646", // Ar-Rahman
-          "\u0627\u0644\u0631\u062d\u064a\u0645", // Ar-Rahim
-          "\u0627\u0644\u0633\u0644\u0627\u0645", // As-Salam
-          "\u0627\u0644\u0643\u0631\u064a\u0645", // Al-Karim
-        ];
-        shapes = Array.from({ length: 12 }, (_, idx) => ({
-          x: p.random(p.width),
-          y: p.random(p.height),
-          radius: p.random(70, 140),
-          hue: p.random([10, 24, 320, 180]),
-          spin: p.random(-0.003, 0.003),
-          sides: p.random([5, 6, 8]),
-          pulse: p.random(0.002, 0.004),
-          phase: p.random(1000),
-          text: names[idx % names.length],
-          textSize: p.random(24, 38),
-          textHue: p.random([12, 24, 330, 180]),
-          textRotation: p.random(-0.2, 0.2),
-        }));
+        p.colorMode(p.RGB, 255, 255, 255, 100);
+        reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+        buildScene();
         p.frameRate(30);
-        p.background(0, 0, 100, 0);
+      };
+
+      p.windowResized = () => {
+        const newWidth = Math.max(320, elemRef.current?.clientWidth || canvasWidth);
+        const newHeight = Math.max(280, elemRef.current?.clientHeight || canvasHeight);
+        p.resizeCanvas(newWidth, newHeight);
+        buildScene();
       };
 
       p.draw = () => {
-        // Slightly stronger clear to avoid ghosting of moving glyphs
-        p.background(0, 0, 100, 0.12);
-
-        // soft grid
-        p.stroke(210, 20, 92, 0.4);
-        p.strokeWeight(1);
-        const spacing = 46;
-        for (let x = spacing / 2; x < p.width; x += spacing) {
-          p.line(x, 0, x, p.height);
-        }
-        for (let y = spacing / 2; y < p.height; y += spacing) {
-          p.line(0, y, p.width, y);
-        }
-
-        // geometric blooms with embedded names
-        shapes.forEach((shape, i) => {
-          const t = p.millis() * shape.pulse + shape.phase;
-          const r = shape.radius * (1 + 0.06 * Math.sin(t));
-          const angleStep = p.TWO_PI / shape.sides;
-          p.push();
-          p.translate(shape.x, shape.y);
-          p.rotate(p.frameCount * shape.spin + i * 0.1);
-          p.noFill();
-          p.stroke(shape.hue, 70, 48, 0.22);
-          p.strokeWeight(1.5);
-          p.beginShape();
-          for (let a = 0; a < p.TWO_PI + 0.01; a += angleStep) {
-            const wobble = 6 * Math.sin(t + a * 2);
-            const x = Math.cos(a) * (r + wobble);
-            const y = Math.sin(a) * (r + wobble);
-            p.vertex(x, y);
-          }
-          p.endShape(p.CLOSE);
-
-          // embed name inside shape
-          p.push();
-          const wobbleX = Math.sin(p.frameCount * 0.003 + i) * 2;
-          const wobbleY = Math.cos(p.frameCount * 0.0035 + i) * 1.5;
-          p.translate(wobbleX, wobbleY);
-          p.rotate(shape.textRotation + Math.sin(t) * 0.02);
-          p.textAlign(p.CENTER, p.CENTER);
-          p.textSize(shape.textSize);
-          p.fill(shape.textHue, 65, 32, 0.28);
-          p.noStroke();
-          p.text(shape.text, 0, 0);
-          p.pop();
-
-          p.pop();
-        });
-
-        // floating sparkles
-        p.noStroke();
-        for (let i = 0; i < 18; i++) {
-          const t = p.frameCount * 0.015 + i;
-          const x =
-            (p.width / 2 + Math.cos(t + i) * (canvasWidth / 2.5)) % p.width;
-          const y =
-            (p.height / 2 + Math.sin(t * 1.3 + i) * (canvasHeight / 2.8)) %
-            p.height;
-          p.fill(170, 40, 72, 0.45);
-          p.circle(
-            (x + p.width) % p.width,
-            (y + p.height) % p.height,
-            3 + (i % 3),
-          );
-        }
+        const t = p.millis();
+        drawSkyGradient();
+        glows.forEach(drawGlow);
+        drawNebulaOrbs();
+        drawConstellation(t);
+        drawStars(t);
       };
     };
 

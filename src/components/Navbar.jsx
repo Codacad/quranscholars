@@ -7,7 +7,10 @@ import { IoMdClose } from "react-icons/io";
 import { IoHomeOutline } from "react-icons/io5";
 import { FaServicestack } from "react-icons/fa6";
 import { MdDashboard, MdSubject } from "react-icons/md";
-import { MdOutlineConnectWithoutContact, MdOutlineRoundaboutRight } from "react-icons/md";
+import {
+  MdOutlineConnectWithoutContact,
+  MdOutlineRoundaboutRight,
+} from "react-icons/md";
 import { CgLogIn } from "react-icons/cg";
 import {
   User,
@@ -90,6 +93,7 @@ const Navbar = () => {
     { to: "/services", label: "Services", icon: FaServicestack },
     { to: "/courses", label: "Courses", icon: MdSubject },
     { to: "/blogs", label: "Blogs", icon: MdSubject },
+    { to: "/mission", label: "Mission", icon: Sparkles },
     { to: "/contact", label: "Contact", icon: MdOutlineConnectWithoutContact },
     { to: "/about", label: "About", icon: MdOutlineRoundaboutRight },
   ];

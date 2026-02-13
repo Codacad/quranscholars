@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Noto+Naskh+Arabic:wght@500;600;700&family=Noto+Nastaliq+Urdu:wght@500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,6 +14,18 @@
 
 .font-urdu-script {
   font-family: "Noto Nastaliq Urdu", "Noto Nastaliq Urdu Draft", serif;
+}
+
+.font-arabic-solid {
+  font-family: "Noto Naskh Arabic", "Amiri Quran", "Amiri", serif;
+}
+
+.font-urdu-solid {
+  font-family:
+    "Noto Nastaliq Urdu",
+    "Noto Nastaliq Urdu Draft",
+    "Jameel Noori Nastaleeq",
+    serif;
 }
 
 @layer base {
