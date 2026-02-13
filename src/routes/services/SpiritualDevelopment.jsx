@@ -2,45 +2,8 @@
 import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  FiHeart,
-  FiSun,
-  FiFeather,
-  FiCompass,
-  FiDownload,
-  FiArrowRight,
-} from "react-icons/fi";
-
-const pillars = [
-  {
-    title: "Daily Dhikr Rhythm",
-    desc: "Guided adhkar sets with timing cues and meaning notes to anchor remembrance.",
-    icon: FiHeart,
-  },
-  {
-    title: "Purification of the Heart",
-    desc: "Ikhlas, sabr, shukr, tawbah—taught with reflective exercises and journaling prompts.",
-    icon: FiFeather,
-  },
-  {
-    title: "Mentorship Circles",
-    desc: "Small-group sohbah with instructors for personal spiritual check-ins and goals.",
-    icon: FiCompass,
-  },
-  {
-    title: "Applied Sunnah Habits",
-    desc: "Micro-habits for Salah presence, charity flow, fasting cadence, and mindful speech.",
-    icon: FiSun,
-  },
-];
-
-const steps = [
-  "Choose your focus track: Dhikr, Tazkiyah, or Seerah reflections.",
-  "Join live reflection circles and get weekly practice cards.",
-  "Track habits with guided checklists and gentle reminders.",
-  "Review with a mentor and set the next 7-day intention plan.",
-];
-
+import { FiDownload, FiArrowRight } from "react-icons/fi";
+import { pillars, steps } from "../../data/spiritaulDevelopment";
 const SpiritualDevelopment = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -56,12 +19,12 @@ const SpiritualDevelopment = () => {
 
   return (
     <div ref={serviceContentRef} className="text-gray-900 pb-10 lg:pb-14">
-      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-6xl space-y-10">
+      <div className="mx-auto max-w-6xl space-y-10">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white/90 backdrop-blur shadow-lg p-8 md:p-10"
+          className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4 md:p-10"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(248,113,113,0.14),transparent_32%),radial-gradient(circle_at_86%_0%,rgba(251,191,36,0.16),transparent_34%)] pointer-events-none" />
           <div className="relative grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
@@ -74,7 +37,7 @@ const SpiritualDevelopment = () => {
               </h1>
               <p className="text-lg text-slate-700 max-w-2xl">
                 Build a heart-centered life with guided dhikr, reflective
-                journaling, and Sunnah-rooted habits—supported by mentors and a
+                journaling, and Sunnah-rooted habits supported by mentors and a
                 like-hearted community.
               </p>
               <div className="flex flex-wrap gap-3">

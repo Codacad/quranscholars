@@ -1,76 +1,18 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import {
-  ArrowRight,
-  Brain,
-  Compass,
-  Flag,
-  Gamepad2,
-  Handshake,
-  ShieldAlert,
-  Sparkles,
-  Users,
-} from "lucide-react";
-
-const youthChallenges = [
-  {
-    challenge: "Digital distraction and time waste",
-    response:
-      "Weekly routines with focused study blocks, device boundaries, and accountability check-ins.",
-    icon: ShieldAlert,
-  },
-  {
-    challenge: "Identity pressure and confidence issues",
-    response:
-      "Mentorship circles that strengthen Islamic identity through evidence-based discussion and role models.",
-    icon: Compass,
-  },
-  {
-    challenge: "Stress, anxiety, and emotional fatigue",
-    response:
-      "Faith-centered coping tools: dua, dhikr habits, reflection prompts, and guided peer support.",
-    icon: Brain,
-  },
-];
-
-const growthTracks = [
-  {
-    title: "Leadership and Voice",
-    text: "Communication training, event hosting practice, and teamwork with Islamic adab.",
-    icon: Flag,
-  },
-  {
-    title: "Faith and Character",
-    text: "Consistent salah, honesty, discipline, and respectful conduct in real-life scenarios.",
-    icon: Handshake,
-  },
-  {
-    title: "Skills and Service",
-    text: "Project tasks, volunteering, and community contribution that build responsibility.",
-    icon: Users,
-  },
-  {
-    title: "Healthy Recreation",
-    text: "Purposeful activities, challenge games, and camp style sessions with values.",
-    icon: Gamepad2,
-  },
-];
-
-const timeline = [
-  "Orientation and personal goals",
-  "Small cohort mentor matching",
-  "Weekly halaqah and skill workshop",
-  "Monthly progress and parent feedback",
-  "Community project and showcase",
-];
-
+  youthChallenges,
+  growthTracks,
+  timeline,
+} from "../../data/youthPrograms";
 const YouthPrograms = () => {
   return (
     <div className="relative overflow-hidden pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative rounded-3xl bg-white p-4">
         <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -111,7 +53,9 @@ const YouthPrograms = () => {
             <div className="mt-4 grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-white p-3 shadow-sm">
                 <p className="text-xs text-slate-500">Mentor Format</p>
-                <p className="text-lg font-bold text-slate-900">Small Cohorts</p>
+                <p className="text-lg font-bold text-slate-900">
+                  Small Cohorts
+                </p>
               </div>
               <div className="rounded-xl bg-white p-3 shadow-sm">
                 <p className="text-xs text-slate-500">Cadence</p>
@@ -130,7 +74,9 @@ const YouthPrograms = () => {
       </section>
 
       <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
-        <h2 className="text-2xl font-bold text-slate-900">Challenge to Solution Matrix</h2>
+        <h2 className="text-2xl font-bold text-slate-900">
+          Challenge to Solution Matrix
+        </h2>
         <p className="mt-2 text-sm text-slate-600 md:text-base">
           We address current youth realities directly with practical, faith-led
           responses.
@@ -149,7 +95,9 @@ const YouthPrograms = () => {
                 </span>
               </div>
               <div>
-                <p className="text-sm font-semibold text-slate-900">{challenge}</p>
+                <p className="text-sm font-semibold text-slate-900">
+                  {challenge}
+                </p>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">
                   {response}
                 </p>
@@ -190,8 +138,12 @@ const YouthPrograms = () => {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-red-100 text-red-700">
                 <Icon className="h-4 w-4" />
               </span>
-              <h3 className="mt-3 text-base font-semibold text-slate-900">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+              <h3 className="mt-3 text-base font-semibold text-slate-900">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {text}
+              </p>
             </motion.article>
           ))}
         </div>

@@ -2,98 +2,16 @@
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  BookOpenCheck,
-  Compass,
-  HeartHandshake,
   MessageCircleHeart,
-  ShieldCheck,
   Sparkles,
   UserRoundCheck,
 } from "lucide-react";
-
-const guidancePaths = [
-  {
-    title: "Quran and Tajweed Coaching",
-    detail:
-      "One to one recitation sessions focused on makharij, fluency, and confident reading habits with measurable improvement.",
-    icon: BookOpenCheck,
-    tone: "from-red-50 to-rose-50",
-  },
-  {
-    title: "Faith and Identity Mentoring",
-    detail:
-      "Personal mentoring for teens and adults navigating pressure, doubts, and consistency in prayer, study, and Islamic character.",
-    icon: Compass,
-    tone: "from-amber-50 to-orange-50",
-  },
-  {
-    title: "Parent and Family Guidance",
-    detail:
-      "Support for parents on discipline, communication, and home routines grounded in adab and prophetic mercy.",
-    icon: HeartHandshake,
-    tone: "from-emerald-50 to-teal-50",
-  },
-  {
-    title: "Confidential Advisory Sessions",
-    detail:
-      "Private conversations with trusted mentors in a safe and respectful environment for sensitive concerns.",
-    icon: ShieldCheck,
-    tone: "from-sky-50 to-cyan-50",
-  },
-];
-
-const processSteps = [
-  {
-    title: "Share Your Need",
-    detail:
-      "Tell us what support you need: Quran, faith motivation, family advice, or study discipline.",
-  },
-  {
-    title: "Mentor Matching",
-    detail:
-      "We assign a suitable mentor by topic, schedule, and gender preference where possible.",
-  },
-  {
-    title: "Guided Action Plan",
-    detail:
-      "Receive a practical weekly plan with clear targets for learning, worship, and behavior.",
-  },
-];
-
-const moralsFocus = [
-  {
-    title: "Ikhlas (Sincerity)",
-    detail:
-      "Students are trained to seek knowledge for Allah, not for image or status.",
-  },
-  {
-    title: "Adab (Manners)",
-    detail:
-      "Respect for teachers, parents, and peers is treated as part of learning itself.",
-  },
-  {
-    title: "Istiqamah (Consistency)",
-    detail:
-      "Small regular acts in study and worship are prioritized over short bursts.",
-  },
-];
-
-const islamicMotivation = [
-  {
-    arabic: "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
-    urdu: "اعمال کا دارومدار نیتوں پر ہے۔",
-    ref: "Hadith meaning",
-    insight:
-      "Our guidance begins with intention, then builds disciplined action around it.",
-  },
-  {
-    arabic: "وَالْعَصْرِ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
-    urdu: "زمانے کی قسم! انسان خسارے میں ہے، مگر وہ جو ایمان و عملِ صالح اختیار کرے۔",
-    ref: "Surah Al-Asr 103:1-3",
-    insight:
-      "Time management, righteous action, and mutual advice are central to personal growth.",
-  },
-];
+import {
+  guidancePaths,
+  processSteps,
+  moralsFocus,
+  islamicMotivation,
+} from "../../data/personalGuidance";
 
 const PersonalGuidance = () => {
   return (
@@ -101,7 +19,7 @@ const PersonalGuidance = () => {
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-32 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative rounded-3xl bg-white p-4 shadow-sm">
         <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -193,7 +111,9 @@ const PersonalGuidance = () => {
 
       <section className="mt-6 rounded-3xl border border-red-100 bg-white p-5 md:p-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-2xl font-bold text-slate-900">How Guidance Works</h2>
+          <h2 className="text-2xl font-bold text-slate-900">
+            How Guidance Works
+          </h2>
           <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
             <Sparkles className="h-4 w-4" />
             Structured and Practical
@@ -209,7 +129,9 @@ const PersonalGuidance = () => {
               <div className="mb-3 inline-flex h-7 w-7 items-center justify-center rounded-full bg-red-700 text-xs font-bold text-white">
                 {index + 1}
               </div>
-              <h3 className="text-base font-semibold text-slate-900">{step.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">
+                {step.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {step.detail}
               </p>
@@ -229,8 +151,8 @@ const PersonalGuidance = () => {
           dir="rtl"
           lang="ur"
         >
-          رہنمائی کا اصل مقصد صرف معلومات دینا نہیں بلکہ اخلاق، نیت، اور عمل
-          کی اصلاح کرنا ہے تاکہ طالبِ علم دین کو زندگی میں نافذ کر سکے۔
+          رہنمائی کا اصل مقصد صرف معلومات دینا نہیں بلکہ اخلاق، نیت، اور عمل کی
+          اصلاح کرنا ہے تاکہ طالبِ علم دین کو زندگی میں نافذ کر سکے۔
         </p>
 
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
@@ -267,7 +189,9 @@ const PersonalGuidance = () => {
               key={item.title}
               className="rounded-2xl border border-slate-100 bg-slate-50 p-4"
             >
-              <h3 className="text-base font-semibold text-slate-900">{item.title}</h3>
+              <h3 className="text-base font-semibold text-slate-900">
+                {item.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
                 {item.detail}
               </p>

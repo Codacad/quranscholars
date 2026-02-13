@@ -1,78 +1,18 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight, Baby, Heart, Shield, Users } from "lucide-react";
 import {
-  ArrowRight,
-  Baby,
-  BookMarked,
-  CalendarSync,
-  Heart,
-  Home,
-  Shield,
-  Users,
-} from "lucide-react";
-
-const stageTimeline = [
-  {
-    stage: "Early Home Foundations",
-    audience: "Parents of young children",
-    focus:
-      "Create routines around salah, duas, and adab through gentle repetition and positive modeling.",
-  },
-  {
-    stage: "School Age Character Building",
-    audience: "Families with children 7 to 12",
-    focus:
-      "Build responsibility, truthful speech, and respect for parents and teachers through practical activities.",
-  },
-  {
-    stage: "Teen Identity and Stability",
-    audience: "Families with teens",
-    focus:
-      "Support youth through faith questions, peer pressure, digital influence, and confidence in Islamic identity.",
-  },
-  {
-    stage: "Household Growth and Balance",
-    audience: "Whole family",
-    focus:
-      "Strengthen communication, conflict resolution, and shared spiritual goals with mercy and structure.",
-  },
-];
-
-const familyPrograms = [
-  {
-    title: "Parenting with Purpose",
-    summary:
-      "Live workshops connecting Quran and Sunnah principles to daily parenting decisions.",
-    icon: Home,
-  },
-  {
-    title: "Family Quran Reflection Nights",
-    summary:
-      "Guided tafsir stories and discussion prompts for parents and children to learn together.",
-    icon: BookMarked,
-  },
-  {
-    title: "Household Routine Coaching",
-    summary:
-      "Weekly structure for prayer, revision, respectful behavior, and healthy device habits.",
-    icon: CalendarSync,
-  },
-];
-
-const trustPoints = [
-  "Age specific curriculum for parents, children, and teens",
-  "Private mentor guidance for sensitive family challenges",
-  "Islamic ethics first approach with practical modern tools",
-  "Consistent follow up plans instead of one time advice",
-];
-
+  stageTimeline,
+  familyPrograms,
+  trustPoints,
+} from "../../data/familyFocused";
 const FamilyFocused = () => {
   return (
     <div className="relative overflow-hidden pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative rounded-3xl bg-white p-4">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -176,7 +116,9 @@ const FamilyFocused = () => {
         </div>
 
         <aside className="lg:sticky lg:top-24 h-fit rounded-3xl border border-red-100 bg-white p-5 md:p-6">
-          <h3 className="text-lg font-bold text-slate-900">Why families trust this</h3>
+          <h3 className="text-lg font-bold text-slate-900">
+            Why families trust this
+          </h3>
           <ul className="mt-4 space-y-3">
             {trustPoints.map((point) => (
               <li
@@ -210,8 +152,12 @@ const FamilyFocused = () => {
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-red-100 text-red-700">
                 <Icon className="h-5 w-5" />
               </span>
-              <h3 className="mt-3 text-lg font-semibold text-slate-900">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{summary}</p>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
+                {title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {summary}
+              </p>
             </article>
           ))}
         </div>

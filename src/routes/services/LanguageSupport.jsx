@@ -1,85 +1,18 @@
 ﻿import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight, Languages, Sparkles, Users } from "lucide-react";
 import {
-  ArrowRight,
-  Globe,
-  Languages,
-  MessageCircleMore,
-  ScrollText,
-  Sparkles,
-  Users,
-} from "lucide-react";
-
-const languageTracks = [
-  {
-    title: "Quranic Arabic Track",
-    subtitle: "Arabic",
-    detail:
-      "Structured lessons for vocabulary, grammar, and comprehension so students read and understand Quran passages with confidence.",
-    icon: ScrollText,
-    tone: "from-red-50 to-rose-50",
-  },
-  {
-    title: "Urdu Learning Support",
-    subtitle: "Urdu",
-    detail:
-      "Islamic concepts are explained in clear Urdu for students and families who prefer native language support and stronger retention.",
-    icon: MessageCircleMore,
-    tone: "from-amber-50 to-orange-50",
-  },
-  {
-    title: "English Islamic Literacy",
-    subtitle: "English",
-    detail:
-      "Clear English delivery for youth and international learners to understand aqidah, adab, and fiqh topics in practical language.",
-    icon: Globe,
-    tone: "from-sky-50 to-cyan-50",
-  },
-];
-
-const outcomes = [
-  {
-    title: "Better Quran Comprehension",
-    detail:
-      "Students move from word-level reading to meaningful understanding and reflection.",
-  },
-  {
-    title: "Confident Islamic Communication",
-    detail:
-      "Learners express Islamic knowledge clearly in family discussions and community settings.",
-  },
-  {
-    title: "Cross Language Access",
-    detail:
-      "Core Islamic teachings become accessible regardless of native language background.",
-  },
-];
-
-const learningFlow = [
-  {
-    title: "Assess and place",
-    detail:
-      "We identify current language level and choose the right entry point.",
-  },
-  {
-    title: "Study with context",
-    detail:
-      "Each lesson links language directly to Quran, Hadith, and daily practice.",
-  },
-  {
-    title: "Revise and apply",
-    detail:
-      "Weekly drills and guided speaking tasks build consistency and fluency.",
-  },
-];
-
+  languageTracks,
+  outcomes,
+  learningFlow,
+} from "../../data/languageSupport";
 const LanguageSupport = () => {
   return (
     <div className="relative overflow-hidden pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-14 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative rounded-3xl bg-white p-4">
         <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">

@@ -55,7 +55,7 @@ const Services = () => {
 
   return (
     <>
-      <section className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 px-0 py-8 sm:px-4 sm:py-12 md:px-8 md:py-14">
+      <section className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 px-0 py-4 sm:px-4 sm:py-6 md:px-8 md:py-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(248,113,113,0.18),transparent_32%),radial-gradient(circle_at_82%_0%,rgba(251,191,36,0.18),transparent_32%)]" />
 
         <div className="relative mx-auto w-full max-w-6xl space-y-5 px-2 sm:px-0 md:space-y-8">
@@ -88,7 +88,7 @@ const Services = () => {
           </motion.div>
 
           <div className="grid min-w-0 gap-4">
-            <div className="rounded-2xl border border-red-100 bg-white/80 px-3 py-3 sm:px-4">
+            <div className="rounded-2xl border border-red-100 bg-white/80 px-3 py-3 sm:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-700">
                 Active Service
               </p>

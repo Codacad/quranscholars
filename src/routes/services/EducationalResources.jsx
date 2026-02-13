@@ -1,56 +1,9 @@
 ﻿import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
-import {
-  FiBookOpen,
-  FiDownload,
-  FiGlobe,
-  FiFileText,
-  FiFilm,
-  FiLayers,
-  FiArrowRight,
-} from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
-
-const resourceSections = [
-  {
-    title: "Qur'an & Tafsir",
-    desc: "Classical and contemporary exegesis, thematic charts, and memorization planners.",
-    icon: FiBookOpen,
-    badge: "PDF + Slides",
-  },
-  {
-    title: "Hadith & Seerah",
-    desc: "Curated narrations with commentary, Seerah timelines, and quick-reference cards.",
-    icon: FiFileText,
-    badge: "Guides",
-  },
-  {
-    title: "Fiqh & Practical Rulings",
-    desc: "Case studies, madhhab comparisons, and step-by-step worship checklists.",
-    icon: FiLayers,
-    badge: "Checklists",
-  },
-  {
-    title: "Arabic & Tajweed",
-    desc: "Grammar primers, morphology drills, tajweed rule sheets, and recitation trackers.",
-    icon: FiGlobe,
-    badge: "Workbooks",
-  },
-  {
-    title: "Media Library",
-    desc: "Short explainer videos, audio recitations, and annotated slides for visual learners.",
-    icon: FiFilm,
-    badge: "Audio/Video",
-  },
-  {
-    title: "Templates & Tools",
-    desc: "Flashcards, spaced-repetition decks, reflection journals, and syllabus templates.",
-    icon: FiDownload,
-    badge: "Templates",
-  },
-];
-
+import { resourceSections } from "../../data/educationalResources";
 const EducationalResources = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -69,12 +22,12 @@ const EducationalResources = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-10 lg:pb-14"
     >
-      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-6xl space-y-10">
+      <div className="mx-auto max-w-6xl space-y-10">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white/90 backdrop-blur p-8 md:p-10"
+          className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4 md:p-10"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.14),transparent_32%),radial-gradient(circle_at_84%_0%,rgba(251,191,36,0.16),transparent_34%)] pointer-events-none" />
           <div className="relative grid md:grid-cols-[1.15fr_0.85fr] gap-6 items-center">
@@ -87,7 +40,7 @@ const EducationalResources = () => {
               </h1>
               <p className="text-lg text-slate-700 max-w-2xl">
                 A curated vault of PDFs, workbooks, media, and ready-to-use
-                templates—built to keep your learning authentic, organized, and
+                templates built to keep your learning authentic, organized, and
                 actionable.
               </p>
               <div className="flex flex-wrap gap-3">

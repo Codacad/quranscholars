@@ -7,82 +7,14 @@ import {
   MapPin,
   Sparkles,
 } from "lucide-react";
-
-const placeholderImage =
-  "data:image/svg+xml;utf8," +
-  encodeURIComponent(`
-    <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800' viewBox='0 0 1200 800'>
-      <defs>
-        <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
-          <stop offset='0%' stop-color='#fee2e2'/>
-          <stop offset='50%' stop-color='#fef3c7'/>
-          <stop offset='100%' stop-color='#ffffff'/>
-        </linearGradient>
-      </defs>
-      <rect width='1200' height='800' fill='url(#g)'/>
-      <rect x='40' y='40' width='1120' height='720' rx='26' fill='none' stroke='#b91c1c' stroke-opacity='0.25' stroke-width='4'/>
-      <text x='50%' y='48%' text-anchor='middle' fill='#7f1d1d' font-family='Arial, sans-serif' font-size='46' font-weight='700'>Event Image Placeholder</text>
-      <text x='50%' y='56%' text-anchor='middle' fill='#991b1b' font-family='Arial, sans-serif' font-size='24'>Replace in events[] with your real image URL/path</text>
-    </svg>
-  `);
-
-const events = [
-  {
-    title: "Ramadan Reflection Night",
-    date: "March 10, 2026",
-    time: "8:30 PM",
-    venue: "Online Live Session",
-    category: "Seasonal Program",
-    summary:
-      "Interactive reminders, Quran reflection points, and family guidance for a spiritually focused Ramadan routine.",
-    image: placeholderImage,
-  },
-  {
-    title: "Seerah Story Circle",
-    date: "April 04, 2026",
-    time: "7:00 PM",
-    venue: "Community Hall",
-    category: "Educational Gathering",
-    summary:
-      "Narrative based session on key moments from the life of the Prophet with practical lessons for youth and parents.",
-    image: placeholderImage,
-  },
-  {
-    title: "Youth Leadership Meetup",
-    date: "April 18, 2026",
-    time: "6:00 PM",
-    venue: "Hybrid",
-    category: "Youth Event",
-    summary:
-      "Workshops on identity, confidence, team collaboration, and Islamic communication for young Muslim leaders.",
-    image: placeholderImage,
-  },
-  {
-    title: "Family Eid Connect",
-    date: "June 05, 2026",
-    time: "5:30 PM",
-    venue: "Main Auditorium",
-    category: "Family Celebration",
-    summary:
-      "Community celebration with activities for children, reminders for parents, and meaningful family networking.",
-    image: placeholderImage,
-  },
-];
-
-const pillars = [
-  "Faith-centered gatherings that revive hearts",
-  "Age-appropriate educational content for all",
-  "Safe community environment with Islamic values",
-  "Programs designed for continuity, not one-time inspiration",
-];
-
+import { placeholderImage, events, pillars } from "../../data/islamicEvents";
 const IslamicEvents = () => {
   return (
     <div className="relative overflow-hidden pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-36 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative rounded-3xl bg-white p-4">
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -137,10 +69,7 @@ const IslamicEvents = () => {
 
       <section className="mt-6">
         <div className="mb-4 flex items-center justify-between gap-3">
-          <h2 className="text-2xl font-bold text-slate-900">Upcoming Event Cards</h2>
-          <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700">
-            Replace placeholders anytime
-          </span>
+          <h2 className="text-2xl font-bold text-slate-900">Upcoming Event</h2>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -150,7 +79,11 @@ const IslamicEvents = () => {
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.25, delay: index * 0.05, ease: "easeOut" }}
+              transition={{
+                duration: 0.25,
+                delay: index * 0.05,
+                ease: "easeOut",
+              }}
               className="overflow-hidden rounded-3xl border border-red-100 bg-white shadow-sm"
             >
               <div className="relative h-52 bg-slate-100">
@@ -167,7 +100,9 @@ const IslamicEvents = () => {
               </div>
 
               <div className="p-5">
-                <h3 className="text-xl font-bold text-slate-900">{event.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900">
+                  {event.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   {event.summary}
                 </p>
