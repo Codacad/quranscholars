@@ -1,57 +1,9 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
-import {
-  FiUsers,
-  FiMessageCircle,
-  FiAward,
-  FiClock,
-  FiVideo,
-  FiLayers,
-  FiArrowRight,
-} from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
-
-const featureCards = [
-  {
-    title: "Live Q&A + Hot Seats",
-    desc: "Ask on the spot, see real scenarios dissected, and get guided corrections in-session.",
-    icon: FiMessageCircle,
-  },
-  {
-    title: "Breakout Pods",
-    desc: "Small-group rooms to reflect on ayat, role-play, and present back key takeaways.",
-    icon: FiUsers,
-  },
-  {
-    title: "Interactive Quizzes",
-    desc: "Micro-assessments, polls, and gamified streaks keep you accountable and focused.",
-    icon: FiAward,
-  },
-  {
-    title: "Multi-format Media",
-    desc: "Clarity-first slides, short clips, and annotated visuals to anchor every concept.",
-    icon: FiVideo,
-  },
-  {
-    title: "Paced Sprints",
-    desc: "45–60 minute blocks with reflection pauses and stretch prompts to avoid fatigue.",
-    icon: FiClock,
-  },
-  {
-    title: "Guided Templates",
-    desc: "Downloadable note frames, tafsir worksheets, and dua trackers to apply right away.",
-    icon: FiLayers,
-  },
-];
-
-const steps = [
-  "Pick your track (Tajweed, Aqidah, Seerah, or Skills).",
-  "Get your live schedule, recordings hub, and prep sheet.",
-  "Join via our classroom link; engage in pods and Q&A.",
-  "Submit reflections; get feedback and next actions.",
-];
-
+import { featureCards, steps } from "../../data/interactiveLessons";
 const InteractiveLesson = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -61,7 +13,7 @@ const InteractiveLesson = () => {
       gsap.fromTo(
         serviceContentRef.current,
         { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
       );
     }
   }, [location.pathname]);
@@ -71,12 +23,12 @@ const InteractiveLesson = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-8 lg:pb-12"
     >
-      <div className="mx-auto px-4 md:px-6 lg:px-8 max-w-6xl space-y-10">
+      <div className="max-w-6xl space-y-10">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white/90 backdrop-blur shadow-lg p-8 md:p-10"
+          className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.16),transparent_32%),radial-gradient(circle_at_86%_0%,rgba(251,191,36,0.18),transparent_34%)] pointer-events-none" />
           <div className="relative grid md:grid-cols-[1.2fr_0.9fr] gap-6 items-center">
@@ -159,7 +111,9 @@ const InteractiveLesson = () => {
               <li>• Reverts building foundations with guidance</li>
               <li>• Intermediate learners wanting tafsir/fiqh depth</li>
               <li>• Busy professionals needing focused, high-yield sessions</li>
-              <li>• Non-native Arabic/Urdu speakers preferring English-led live</li>
+              <li>
+                • Non-native Arabic/Urdu speakers preferring English-led live
+              </li>
             </ul>
           </div>
         </motion.section>

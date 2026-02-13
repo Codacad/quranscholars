@@ -55,15 +55,15 @@ const Services = () => {
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-amber-50 via-white to-rose-50 min-h-screen py-14 px-4 md:px-8 overflow-x-hidden">
+      <section className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-amber-50 via-white to-rose-50 px-0 py-8 sm:px-4 sm:py-12 md:px-8 md:py-14">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(248,113,113,0.18),transparent_32%),radial-gradient(circle_at_82%_0%,rgba(251,191,36,0.18),transparent_32%)]" />
 
-        <div className="relative w-full max-w-6xl mx-auto space-y-6 md:space-y-8">
+        <div className="relative mx-auto w-full max-w-6xl space-y-5 px-2 sm:px-0 md:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="rounded-3xl border border-red-100 bg-white/90 backdrop-blur px-4 py-6 md:px-10 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+            className="flex flex-col gap-4 rounded-3xl border border-red-100 bg-white/90 px-3 py-5 backdrop-blur sm:px-4 md:flex-row md:items-center md:justify-between md:px-10 md:py-8"
           >
             <div>
               <p className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
@@ -88,7 +88,7 @@ const Services = () => {
           </motion.div>
 
           <div className="grid min-w-0 gap-4">
-            <div className="rounded-2xl border border-red-100 bg-white/80 px-4 py-3">
+            <div className="rounded-2xl border border-red-100 bg-white/80 px-3 py-3 sm:px-4">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-700">
                 Active Service
               </p>
@@ -102,14 +102,18 @@ const Services = () => {
               <motion.div
                 key={location.pathname}
                 initial={
-                  shouldReduceMotion ? false : { opacity: 0, y: 12, scale: 0.995 }
+                  shouldReduceMotion
+                    ? false
+                    : { opacity: 0, y: 12, scale: 0.995 }
                 }
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={
-                  shouldReduceMotion ? undefined : { opacity: 0, y: -8, scale: 0.995 }
+                  shouldReduceMotion
+                    ? undefined
+                    : { opacity: 0, y: -8, scale: 0.995 }
                 }
                 transition={{ duration: 0.26, ease: "easeOut" }}
-                className="min-w-0 overflow-x-hidden rounded-3xl bg-white/95 backdrop-blur border border-red-100 p-4 sm:p-6"
+                className="min-w-0 overflow-x-hidden rounded-3xl border border-red-100 bg-white/95 p-3 backdrop-blur sm:p-6"
               >
                 <Outlet />
               </motion.div>
