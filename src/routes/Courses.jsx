@@ -157,7 +157,9 @@ const Courses = () => {
                       <p className="text-xs text-white/80">Active courses</p>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold">{categories.length - 1}</p>
+                      <p className="text-3xl font-bold">
+                        {categories.length - 1}
+                      </p>
                       <p className="text-xs text-white/80">Categories</p>
                     </div>
                     <div>

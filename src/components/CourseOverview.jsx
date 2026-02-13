@@ -10,6 +10,7 @@ import { FaDesktop } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useGetCoursesQuery } from "../state/courseApis/courses.api";
+import AppLoader from "./ui/AppLoader";
 // import { useCoursePaymentMutation } from "../state/userApis/paymentApi";
 const CourseOverview = () => {
   const { data, isLoading, isError } = useGetCoursesQuery();
@@ -22,17 +23,17 @@ const CourseOverview = () => {
   return (
     <>
       <div className="course-overview min-h-screen bg-gradient-to-br from-slate-50 via-white to-amber-50">
-        <div className="relative mx-auto max-w-6xl px-4 py-6 md:py-10">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.08),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.1),transparent_32%)]" />
+        <div className="relative mx-auto max-w-6xl p-4">
+          {/* <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.08),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.1),transparent_32%)]" /> */}
           {isLoading ? (
-            "Loading..."
+            <AppLoader overlay label="Loading course details..." />
           ) : (
             <div className="relative grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="rounded-2xl border border-red-100 bg-white/90 p-5 shadow-md backdrop-blur space-y-4 md:p-6"
+                className="rounded-2xl  bg-white/90 p-5 backdrop-blur space-y-4 md:p-6"
               >
                 <div className="flex items-center gap-2 text-sm text-red-700">
                   <Link className="font-semibold" to={"/"}>
@@ -108,7 +109,7 @@ const CourseOverview = () => {
                 transition={{ duration: 0.55, ease: "easeOut", delay: 0.05 }}
                 className="w-full space-y-4 lg:max-w-lg"
               >
-                <div className="rounded-2xl overflow-hidden border border-red-100 bg-white shadow-lg">
+                <div className="rounded-2xl overflow-hidden  bg-white">
                   <div className="relative h-56 bg-gray-100">
                     <img
                       className="h-full w-full object-cover"

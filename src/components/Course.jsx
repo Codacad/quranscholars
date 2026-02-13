@@ -8,7 +8,6 @@ import { motion, useReducedMotion } from "framer-motion";
 const Course = ({ course, index = 0 }) => {
   const { pathname } = useLocation();
   const shouldReduceMotion = useReducedMotion();
-
   const priceAmount = course?.price?.amount || 0;
   const discount = course?.price?.discount || 0;
   const finalPrice = Math.max(0, priceAmount - discount);
@@ -127,4 +126,3 @@ const Course = ({ course, index = 0 }) => {
 };
 
 export default Course;
-
