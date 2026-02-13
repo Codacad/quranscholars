@@ -113,7 +113,7 @@ const Services = () => {
                     : { opacity: 0, y: -8, scale: 0.995 }
                 }
                 transition={{ duration: 0.26, ease: "easeOut" }}
-                className="min-w-0 overflow-x-hidden rounded-3xl border border-red-100 bg-white/95 p-3 backdrop-blur sm:p-6"
+                className="min-w-0 overflow-x-hidden rounded-3xl border border-red-100 bg-white/95 p-3 backdrop-blur"
               >
                 <Outlet />
               </motion.div>
