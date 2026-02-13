@@ -23,7 +23,7 @@ const CourseOverview = () => {
   return (
     <>
       <div className="course-overview min-h-screen">
-        <div className="relative mx-auto max-w-6xl p-4">
+        <div className="relative mx-auto max-w-6xl">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.08),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.1),transparent_32%)]" />
           {isLoading ? (
             <AppLoader overlay label="Loading course details..." />
