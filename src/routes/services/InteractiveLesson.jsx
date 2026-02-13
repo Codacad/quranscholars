@@ -30,7 +30,7 @@ const InteractiveLesson = () => {
           transition={{ duration: 0.45 }}
           className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.16),transparent_32%),radial-gradient(circle_at_86%_0%,rgba(251,191,36,0.18),transparent_34%)] pointer-events-none" />
+          {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.16),transparent_32%),radial-gradient(circle_at_86%_0%,rgba(251,191,36,0.18),transparent_34%)] pointer-events-none" /> */}
           <div className="relative grid md:grid-cols-[1.2fr_0.9fr] gap-6 items-center">
             <div className="space-y-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
