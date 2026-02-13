@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
       <div className="pointer-events-none absolute -left-24 top-12 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 top-36 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
 
-      <section className="relative rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
+      <section className="relative max-w-6xl mx-auto rounded-3xl border border-red-100 bg-white p-5 shadow-sm md:p-8">
         <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -109,8 +109,8 @@ const PrivacyPolicy = () => {
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base">
               Quran Scholar is committed to handling personal information with
-              transparency, accountability, and care. This page explains what
-              we collect, why we collect it, and the rights you have over your
+              transparency, accountability, and care. This page explains what we
+              collect, why we collect it, and the rights you have over your
               data.
             </p>
 
@@ -165,7 +165,7 @@ const PrivacyPolicy = () => {
         </div>
       </section>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+      <div className="mt-6 grid gap-6  max-w-6xl mx-auto lg:grid-cols-[1.25fr_0.75fr]">
         <div className="space-y-6">
           <section className="rounded-3xl border border-red-100 bg-white p-5 md:p-7">
             <h2 className="text-2xl font-bold text-slate-900">
@@ -305,7 +305,10 @@ const PrivacyPolicy = () => {
             <div className="mt-4 space-y-3 text-sm text-slate-700">
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-red-700" />
-                <a href="mailto:contact@quranscholar.in" className="hover:underline">
+                <a
+                  href="mailto:contact@quranscholar.in"
+                  className="hover:underline"
+                >
                   contact@quranscholar.in
                 </a>
               </p>
@@ -313,7 +316,8 @@ const PrivacyPolicy = () => {
                 <Phone className="h-4 w-4 text-red-700" /> +91-805-712-1113
               </p>
               <p className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-red-700" /> Moradabad, Uttar Pradesh, India
+                <MapPin className="h-4 w-4 text-red-700" /> Moradabad, Uttar
+                Pradesh, India
               </p>
             </div>
           </section>

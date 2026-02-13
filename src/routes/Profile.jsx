@@ -7,7 +7,13 @@ import { useSelector } from "react-redux";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
 import InlineSpinner from "../components/InlineSpinner";
@@ -32,7 +38,8 @@ const ProfilePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const modalRef = useRef();
   const { data } = useGetProfilePicutreUrlQuery();
-  const [uploadProfilePicture, { isLoading: isUploading }] = useUploadProfilePictureMutation();
+  const [uploadProfilePicture, { isLoading: isUploading }] =
+    useUploadProfilePictureMutation();
   const { user } = useSelector((state) => state.user);
 
   const [file, setFile] = useState(null);
@@ -96,7 +103,12 @@ const ProfilePage = () => {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(185,28,28,0.06),_transparent_35%)] px-4 pb-12 pt-8">
-      {modalVisible && <ProfileDeleteModal ref={modalRef} onClose={() => setModalVisible(false)} />}
+      {modalVisible && (
+        <ProfileDeleteModal
+          ref={modalRef}
+          onClose={() => setModalVisible(false)}
+        />
+      )}
 
       <div className="mx-auto flex max-w-5xl flex-col gap-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -130,12 +142,18 @@ const ProfilePage = () => {
               />
               <label className="absolute -bottom-3 -right-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white shadow-lg hover:bg-primary/90">
                 <Camera className="h-4 w-4" />
-                <input type="file" className="hidden" onChange={handleImageChange} />
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
               </label>
             </div>
             <div className="flex-1 space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-2xl font-semibold text-secondary">{userDetails.fullname}</h2>
+                <h2 className="text-2xl font-semibold text-secondary">
+                  {userDetails.fullname}
+                </h2>
                 <Badge variant="outline">{userDetails.email}</Badge>
               </div>
               <p className="text-sm text-muted-foreground">{userDetails.bio}</p>
@@ -155,17 +173,31 @@ const ProfilePage = () => {
               </div>
               <div className="flex flex-wrap gap-2">
                 {file && (
-                  <Button size="sm" onClick={handleImageUpload} disabled={isUploading}>
-                    {isUploading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                  <Button
+                    size="sm"
+                    onClick={handleImageUpload}
+                    disabled={isUploading}
+                  >
+                    {isUploading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : null}
                     Save photo
                   </Button>
                 )}
                 {file && (
-                  <Button variant="ghost" size="sm" onClick={() => setFile(null)}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setFile(null)}
+                  >
                     Cancel
                   </Button>
                 )}
-                {error && <p className="text-sm font-medium text-destructive">{error}</p>}
+                {error && (
+                  <p className="text-sm font-medium text-destructive">
+                    {error}
+                  </p>
+                )}
                 {message && <p className="text-sm text-primary">{message}</p>}
               </div>
             </div>
@@ -175,12 +207,16 @@ const ProfilePage = () => {
         <Card className="shadow-md shadow-primary/5">
           <CardHeader className="pb-3">
             <CardTitle>Profile details</CardTitle>
-            <CardDescription>Update how we reach you and what others see.</CardDescription>
+            <CardDescription>
+              Update how we reach you and what others see.
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">Full name</label>
+                <label className="text-sm font-medium text-secondary">
+                  Full name
+                </label>
                 <Input
                   name="fullname"
                   value={userDetails.fullname}
@@ -189,7 +225,9 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">Email</label>
+                <label className="text-sm font-medium text-secondary">
+                  Email
+                </label>
                 <Input
                   name="email"
                   type="email"
@@ -200,7 +238,9 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">Phone</label>
+                <label className="text-sm font-medium text-secondary">
+                  Phone
+                </label>
                 <Input
                   name="phone"
                   placeholder="Add phone"
@@ -210,7 +250,9 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">Location</label>
+                <label className="text-sm font-medium text-secondary">
+                  Location
+                </label>
                 <Input
                   name="location"
                   placeholder="City, Country"
@@ -235,17 +277,28 @@ const ProfilePage = () => {
             <div className="flex flex-wrap gap-3">
               {editMode ? (
                 <>
-                  <Button onClick={handleSaveProfile} className="flex items-center gap-2">
+                  <Button
+                    onClick={handleSaveProfile}
+                    className="flex items-center gap-2"
+                  >
                     <CheckCircle2 className="h-4 w-4" />
                     Save changes
                   </Button>
-                  <Button variant="ghost" onClick={() => setEditMode(false)} className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    onClick={() => setEditMode(false)}
+                    className="flex items-center gap-2"
+                  >
                     <X className="h-4 w-4" />
                     Cancel
                   </Button>
                 </>
               ) : (
-                <Button variant="outline" onClick={() => setEditMode(true)} className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  onClick={() => setEditMode(true)}
+                  className="flex items-center gap-2"
+                >
                   <Edit3 className="h-4 w-4" />
                   Edit profile
                 </Button>
@@ -264,7 +317,9 @@ const ProfilePage = () => {
               <div className="flex items-center gap-3">
                 <Shield className="h-4 w-4 text-primary" />
                 <div>
-                  <p className="font-semibold text-secondary">Two-factor (coming soon)</p>
+                  <p className="font-semibold text-secondary">
+                    Two-factor (coming soon)
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     Add an extra layer of security to your sign-in.
                   </p>
@@ -276,7 +331,9 @@ const ProfilePage = () => {
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
                 <div>
-                  <p className="font-semibold text-secondary">Email notifications</p>
+                  <p className="font-semibold text-secondary">
+                    Email notifications
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     Receive updates about admissions and classes.
                   </p>
@@ -289,9 +346,12 @@ const ProfilePage = () => {
 
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm">
           <div className="space-y-1">
-            <p className="font-semibold text-red-800">Need to leave QuranScholars?</p>
+            <p className="font-semibold text-red-800">
+              Need to leave QuranScholars?
+            </p>
             <p className="text-red-700/80">
-              Deleting your profile removes all data permanently. This action cannot be undone.
+              Deleting your profile removes all data permanently. This action
+              cannot be undone.
             </p>
           </div>
           <Button

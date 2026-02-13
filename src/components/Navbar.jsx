@@ -29,6 +29,7 @@ import { useGetCoursesQuery } from "../state/courseApis/courses.api";
 import { Button } from "./ui/button";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
+    console.log(user);
   const { data } = useGetProfilePicutreUrlQuery();
   const { data: coursesData, isLoading: isCoursesLoading } = useGetCoursesQuery();
   const dispatch = useDispatch();

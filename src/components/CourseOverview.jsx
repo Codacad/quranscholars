@@ -26,7 +26,7 @@ const CourseOverview = () => {
         <div className="relative mx-auto max-w-6xl">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(248,113,113,0.08),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.1),transparent_32%)]" />
           {isLoading ? (
-            <AppLoader overlay label="Loading course details..." />
+            <AppLoader label="Loading course details..." />
           ) : (
             <div className="relative grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <motion.div

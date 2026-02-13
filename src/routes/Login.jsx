@@ -9,6 +9,7 @@ import { TiTick } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../state/slices/userSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Loader2 } from "lucide-react";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState();
   const navigate = useNavigate();
-  const [login] = useLoginMutation();
+  const [login, { isLoading: isLoging }] = useLoginMutation();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const handleLoginSubmit = async (e) => {
@@ -158,10 +159,7 @@ const Login = () => {
             } w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4 shadow-md`}
           >
             {isLoading ? (
-              <span className="flex gap-3 items-center">
-                <span className="spinner"></span>
-                <span>Signing in...</span>
-              </span>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
               <>
                 <SlLogin />
