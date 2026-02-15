@@ -1,4 +1,4 @@
-Ôªøimport { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { FiArrowRight } from "react-icons/fi";
@@ -23,16 +23,16 @@ const EducationalResources = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-10 lg:pb-14"
     >
-      <div className="mx-auto max-w-6xl">
-        <ServiceBreadcrumb />
+      <div className="mx-auto max-w-6xl space-y-6">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4 md:p-10"
         >
+          <ServiceBreadcrumb />
           {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.14),transparent_32%),radial-gradient(circle_at_84%_0%,rgba(251,191,36,0.16),transparent_34%)] pointer-events-none" /> */}
-          <div className="relative grid md:grid-cols-[1.15fr_0.85fr] gap-6 items-center">
+          <div className="relative mt-4 grid md:grid-cols-[1.15fr_0.85fr] gap-6 items-center">
             <div className="space-y-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
                 Library Hub
@@ -54,7 +54,7 @@ const EducationalResources = () => {
                 </span>
               </div>
             </div>
-            <div className="relative rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6 shadow-xl">
+            <div className="relative rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/70">
                 Download stats
               </p>
@@ -96,7 +96,7 @@ const EducationalResources = () => {
             {resourceSections.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-red-100 bg-white/90 shadow-sm p-4 hover:-translate-y-1 hover:shadow-md transition"
+                className="rounded-2xl border border-red-100 bg-white/90 p-4 hover:-translate-y-1 transition"
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-700">
@@ -120,7 +120,7 @@ const EducationalResources = () => {
           transition={{ duration: 0.45 }}
           className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6"
         >
-          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 shadow-sm space-y-3">
+          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 space-y-3">
             <h3 className="text-xl font-bold text-slate-900">
               Multilingual & multimedia
             </h3>
@@ -133,15 +133,15 @@ const EducationalResources = () => {
               while following synced notes.
             </p>
           </div>
-          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 shadow-sm space-y-3">
+          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 space-y-3">
             <h3 className="text-xl font-bold text-slate-900">Who it serves</h3>
             <ul className="space-y-2 text-slate-800">
-              <li>‚Ä¢ Students: supplement courses with ready references.</li>
+              <li>ï Students: supplement courses with ready references.</li>
               <li>
-                ‚Ä¢ Teachers: pull authentic citations and classroom visuals.
+                ï Teachers: pull authentic citations and classroom visuals.
               </li>
-              <li>‚Ä¢ Parents: share age-appropriate summaries at home.</li>
-              <li>‚Ä¢ Seekers: structured paths without information overload.</li>
+              <li>ï Parents: share age-appropriate summaries at home.</li>
+              <li>ï Seekers: structured paths without information overload.</li>
             </ul>
           </div>
         </motion.section>
@@ -151,11 +151,11 @@ const EducationalResources = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-white/90 border border-red-100 shadow-lg p-8 text-center"
+          className="rounded-3xl bg-white/90 border border-red-100 p-8 text-center"
         >
           <blockquote className="italic text-xl text-slate-900 font-semibold max-w-3xl mx-auto">
-            ‚ÄúWhoever follows a path in pursuit of knowledge, Allah will make a
-            path to Paradise easy for them.‚Äù
+            ìWhoever follows a path in pursuit of knowledge, Allah will make a
+            path to Paradise easy for them.î
           </blockquote>
         </motion.section>
 
@@ -164,7 +164,7 @@ const EducationalResources = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 shadow-xl"
+          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8"
         >
           <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
             <div>
@@ -177,7 +177,7 @@ const EducationalResources = () => {
               </p>
             </div>
             <div className="flex flex-wrap gap-3 justify-start md:justify-end">
-              <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-5 py-3 shadow-md hover:-translate-y-0.5 transition">
+              <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-5 py-3 hover:-translate-y-0.5 transition">
                 Browse Resources
                 <span className="h-8 w-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
                   <FiArrowRight />
@@ -195,3 +195,4 @@ const EducationalResources = () => {
 };
 
 export default EducationalResources;
+

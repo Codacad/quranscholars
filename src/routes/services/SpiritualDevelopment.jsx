@@ -1,4 +1,4 @@
-Ôªøimport { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -20,15 +20,15 @@ const SpiritualDevelopment = () => {
 
   return (
     <div ref={serviceContentRef} className="text-gray-900 pb-10 lg:pb-14">
-      <div className="mx-auto max-w-6xl space-y-5">
-        <ServiceBreadcrumb />
+      <div className="mx-auto max-w-6xl space-y-6">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4"
         >
-          <div className="relative grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
+          <ServiceBreadcrumb />
+          <div className="relative mt-4 grid md:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
             <div className="space-y-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
                 Tazkiyah Pathway
@@ -50,7 +50,7 @@ const SpiritualDevelopment = () => {
                 </span>
               </div>
             </div>
-            <div className="relative rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6 shadow-xl">
+            <div className="relative rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6">
               <p className="text-xs uppercase tracking-[0.18em] text-white/70">
                 Pulse stats
               </p>
@@ -89,7 +89,7 @@ const SpiritualDevelopment = () => {
           {pillars.map((item, idx) => (
             <div
               key={idx}
-              className="rounded-2xl border border-red-100 bg-white/90 shadow-sm p-5 hover:-translate-y-1 hover:shadow-md transition"
+              className="rounded-2xl border border-red-100 bg-white/90 p-5 hover:-translate-y-1 transition"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-50 text-red-700">
@@ -111,7 +111,7 @@ const SpiritualDevelopment = () => {
           transition={{ duration: 0.45 }}
           className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6"
         >
-          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 shadow-sm space-y-3">
+          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 space-y-3">
             <h3 className="text-xl font-bold text-slate-900">Why it matters</h3>
             <p className="text-slate-700">
               Spiritual growth is heart-work: resilience, clarity, and mercy.
@@ -119,13 +119,13 @@ const SpiritualDevelopment = () => {
               remembrance flow from a nurtured heart.
             </p>
             <ul className="space-y-2 text-slate-800">
-              <li>‚Ä¢ Inner sakinah and mental clarity</li>
-              <li>‚Ä¢ Steadier khushu in prayer</li>
-              <li>‚Ä¢ Ethical reflexes in daily interactions</li>
-              <li>‚Ä¢ Habit of gratitude and tawakkul</li>
+              <li>ï Inner sakinah and mental clarity</li>
+              <li>ï Steadier khushu in prayer</li>
+              <li>ï Ethical reflexes in daily interactions</li>
+              <li>ï Habit of gratitude and tawakkul</li>
             </ul>
           </div>
-          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 shadow-sm space-y-3">
+          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 space-y-3">
             <h3 className="text-xl font-bold text-slate-900">
               How it works (4 steps)
             </h3>
@@ -150,7 +150,7 @@ const SpiritualDevelopment = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-white/90 border border-red-100 shadow-lg p-8"
+          className="rounded-3xl bg-white/90 border border-red-100 p-8"
         >
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
@@ -173,10 +173,10 @@ const SpiritualDevelopment = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-white/90 border border-red-100 shadow-lg p-8 text-center"
+          className="rounded-3xl bg-white/90 border border-red-100 p-8 text-center"
         >
           <blockquote className="italic text-xl text-slate-900 font-semibold max-w-3xl mx-auto">
-            ‚ÄúVerily, in the remembrance of Allah do hearts find rest.‚Äù ‚Äî Surah
+            ìVerily, in the remembrance of Allah do hearts find rest.î ó Surah
             Ar-Ra'd (13:28)
           </blockquote>
         </motion.section>
@@ -186,7 +186,7 @@ const SpiritualDevelopment = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 shadow-xl text-center"
+          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 text-center"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">
             Start your tazkiyah journey
@@ -195,7 +195,7 @@ const SpiritualDevelopment = () => {
             Join live circles, download focus packs, and receive gentle
             reminders to keep your heart engaged.
           </p>
-          <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-6 py-3 shadow-md hover:-translate-y-0.5 transition">
+          <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-6 py-3 hover:-translate-y-0.5 transition">
             Enroll Now
             <span className="h-8 w-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
               <FiArrowRight />
@@ -208,3 +208,4 @@ const SpiritualDevelopment = () => {
 };
 
 export default SpiritualDevelopment;
+

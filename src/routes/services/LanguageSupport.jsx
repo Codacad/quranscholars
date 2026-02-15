@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Languages, Sparkles, Users } from "lucide-react";
 import {
@@ -12,10 +12,10 @@ const LanguageSupport = () => {
     <div className="relative pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-14 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
-      <ServiceBreadcrumb />
 
-      <section className="relative mt-2 rounded-3xl bg-white p-4">
-        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <section className="relative mt-2 rounded-3xl bg-white p-4 md:p-5">
+        <ServiceBreadcrumb />
+        <div className="mt-3 grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
               <Languages className="h-4 w-4" />
@@ -89,10 +89,10 @@ const LanguageSupport = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.28, delay: i * 0.04, ease: "easeOut" }}
-              className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+              className={`rounded-2xl border border-red-100 bg-gradient-to-br ${tone} p-5`}
             >
               <div className="flex items-start justify-between gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700">
                   <Icon className="h-5 w-5" />
                 </span>
                 <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700">
@@ -191,3 +191,4 @@ const LanguageSupport = () => {
 };
 
 export default LanguageSupport;
+

@@ -24,16 +24,16 @@ const InteractiveLesson = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-8 lg:pb-12"
     >
-      <div className="max-w-6xl space-y-5">
-        <ServiceBreadcrumb />
+      <div className="max-w-6xl space-y-6">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="relative overflow-hidden rounded-3xl bg-white/90 backdrop-blur p-4"
         >
+          <ServiceBreadcrumb />
           {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_20%,rgba(248,113,113,0.16),transparent_32%),radial-gradient(circle_at_86%_0%,rgba(251,191,36,0.18),transparent_34%)] pointer-events-none" /> */}
-          <div className="relative grid md:grid-cols-[1.2fr_0.9fr] gap-6 items-center">
+          <div className="relative mt-4 grid md:grid-cols-[1.2fr_0.9fr] gap-6 items-center">
             <div className="space-y-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
                 Live & collaborative
@@ -56,7 +56,7 @@ const InteractiveLesson = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="rounded-2xl bg-red-600 text-white p-5 shadow-xl">
+              <div className="rounded-2xl bg-red-600 text-white p-5">
                 <p className="text-xs uppercase tracking-[0.18em] text-white/70">
                   Snapshot
                 </p>
@@ -92,7 +92,7 @@ const InteractiveLesson = () => {
           transition={{ duration: 0.45 }}
           className="grid md:grid-cols-2 gap-6"
         >
-          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 shadow-sm">
+          <div className="rounded-2xl bg-white/90 border border-red-100 p-6">
             <h2 className="text-2xl font-bold text-slate-900 mb-3">
               Why interactive
             </h2>
@@ -106,7 +106,7 @@ const InteractiveLesson = () => {
               an experience, not just a class.
             </p>
           </div>
-          <div className="rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6 shadow-lg">
+          <div className="rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-6">
             <h3 className="text-xl font-bold mb-3">Who it suits</h3>
             <ul className="space-y-2 text-sm font-semibold">
               <li>• Teens & adults seeking structured, social learning</li>
@@ -132,7 +132,7 @@ const InteractiveLesson = () => {
             {featureCards.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-red-100 bg-white/90 shadow-sm p-4 hover:-translate-y-1 hover:shadow-md transition"
+                className="rounded-2xl border border-red-100 bg-white/90 p-4 hover:-translate-y-1 transition"
               >
                 <div className="flex items-center gap-3">
                   <span className="h-10 w-10 rounded-xl bg-red-50 text-red-700 flex items-center justify-center">
@@ -153,7 +153,7 @@ const InteractiveLesson = () => {
           transition={{ duration: 0.45 }}
           className="grid md:grid-cols-2 gap-6"
         >
-          <div className="rounded-2xl bg-white/90 border border-red-100 p-6 shadow-sm">
+          <div className="rounded-2xl bg-white/90 border border-red-100 p-6">
             <h3 className="text-xl font-bold text-slate-900 mb-3">
               Benefits you feel
             </h3>
@@ -165,7 +165,7 @@ const InteractiveLesson = () => {
               <li>• Barakah of learning together as a jama'ah</li>
             </ul>
           </div>
-          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6 shadow-sm">
+          <div className="rounded-2xl bg-amber-50/80 border border-amber-100 p-6">
             <h3 className="text-xl font-bold text-slate-900 mb-3">
               How to join (4 steps)
             </h3>
@@ -190,7 +190,7 @@ const InteractiveLesson = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-white/90 border border-red-100 shadow-lg p-8 text-center"
+          className="rounded-3xl bg-white/90 border border-red-100 p-8 text-center"
         >
           <blockquote className="italic text-xl text-slate-900 font-semibold max-w-3xl mx-auto">
             “Tell me and I forget, teach me and I may remember, involve me and I
@@ -203,7 +203,7 @@ const InteractiveLesson = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 shadow-xl text-center"
+          className="rounded-3xl bg-gradient-to-br from-red-600 to-amber-500 text-white p-8 text-center"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">
             Ready to learn differently?
@@ -212,7 +212,7 @@ const InteractiveLesson = () => {
             Join a live, interactive cohort and experience discussion-led,
             practice-driven sessions that stick.
           </p>
-          <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-6 py-3 shadow-md hover:-translate-y-0.5 transition">
+          <button className="inline-flex items-center gap-2 rounded-full bg-white text-red-700 font-bold px-6 py-3 hover:-translate-y-0.5 transition">
             Register for an Interactive Class
             <span className="h-8 w-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center">
               <FiArrowRight />
@@ -225,3 +225,4 @@ const InteractiveLesson = () => {
 };
 
 export default InteractiveLesson;
+

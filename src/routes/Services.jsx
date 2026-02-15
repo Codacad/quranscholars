@@ -8,7 +8,7 @@ const Services = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-white via-slate-50 to-white px-0 py-4 sm:px-4 sm:py-6 md:px-8 md:py-8">
+      <section className="relative min-h-screen bg-gradient-to-br from-amber-50 via-white to-rose-50 px-0 py-4 sm:px-4 sm:py-6 md:px-8 md:py-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(148,163,184,0.08),transparent_32%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.06),transparent_32%)]" />
 
         <div className="relative mx-auto w-full max-w-6xl space-y-5 px-2 sm:px-0 md:space-y-8">
@@ -28,7 +28,7 @@ const Services = () => {
                     : { opacity: 0, y: -8, scale: 0.995 }
                 }
                 transition={{ duration: 0.26, ease: "easeOut" }}
-                className="min-w-0 rounded-3xl bg-white p-3 backdrop-blur"
+                className="min-w-0 rounded-3xl p-3 backdrop-blur"
               >
                 <Outlet />
               </motion.div>

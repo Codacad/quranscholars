@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import {
@@ -12,10 +12,10 @@ const YouthPrograms = () => {
     <div className="relative pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
-      <ServiceBreadcrumb />
 
-      <section className="relative mt-2 rounded-3xl bg-white p-4">
-        <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+      <section className="relative mt-2 rounded-3xl bg-white p-4 md:p-5">
+        <ServiceBreadcrumb />
+        <div className="mt-3 grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
               <Sparkles className="h-4 w-4" />
@@ -53,17 +53,17 @@ const YouthPrograms = () => {
               Program Snapshot
             </p>
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-white p-3 shadow-sm">
+              <div className="rounded-xl bg-white p-3">
                 <p className="text-xs text-slate-500">Mentor Format</p>
                 <p className="text-lg font-bold text-slate-900">
                   Small Cohorts
                 </p>
               </div>
-              <div className="rounded-xl bg-white p-3 shadow-sm">
+              <div className="rounded-xl bg-white p-3">
                 <p className="text-xs text-slate-500">Cadence</p>
                 <p className="text-lg font-bold text-slate-900">Weekly</p>
               </div>
-              <div className="rounded-xl bg-white p-3 shadow-sm col-span-2">
+              <div className="rounded-xl bg-white p-3 col-span-2">
                 <p className="text-xs text-slate-500">Core Outcome</p>
                 <p className="text-sm font-semibold text-slate-900">
                   Balanced youth who can learn, lead, and serve with Islamic
@@ -155,3 +155,4 @@ const YouthPrograms = () => {
 };
 
 export default YouthPrograms;
+

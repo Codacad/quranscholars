@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Baby, Heart, Shield, Users } from "lucide-react";
 import {
@@ -12,10 +12,10 @@ const FamilyFocused = () => {
     <div className="relative pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
-      <ServiceBreadcrumb />
 
-      <section className="relative mt-2 rounded-3xl bg-white p-4">
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <section className="relative mt-2 rounded-3xl bg-white p-4 md:p-5">
+        <ServiceBreadcrumb />
+        <div className="mt-3 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
               <Users className="h-4 w-4" />
@@ -51,7 +51,7 @@ const FamilyFocused = () => {
               Family Priority Areas
             </p>
             <div className="mt-4 space-y-3">
-              <div className="flex items-start gap-3 rounded-xl bg-white p-3 shadow-sm">
+              <div className="flex items-start gap-3 rounded-xl bg-white p-3">
                 <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-red-100 text-red-700">
                   <Baby className="h-4 w-4" />
                 </span>
@@ -59,7 +59,7 @@ const FamilyFocused = () => {
                   Tarbiyah with gentleness and discipline
                 </p>
               </div>
-              <div className="flex items-start gap-3 rounded-xl bg-white p-3 shadow-sm">
+              <div className="flex items-start gap-3 rounded-xl bg-white p-3">
                 <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
                   <Heart className="h-4 w-4" />
                 </span>
@@ -67,7 +67,7 @@ const FamilyFocused = () => {
                   Emotional support rooted in prophetic mercy
                 </p>
               </div>
-              <div className="flex items-start gap-3 rounded-xl bg-white p-3 shadow-sm">
+              <div className="flex items-start gap-3 rounded-xl bg-white p-3">
                 <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-700">
                   <Shield className="h-4 w-4" />
                 </span>
@@ -169,3 +169,4 @@ const FamilyFocused = () => {
 };
 
 export default FamilyFocused;
+

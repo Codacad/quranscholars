@@ -127,20 +127,20 @@ const Courses = () => {
               </motion.p>
 
               <div className="flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-800 shadow-sm">
+                <span className="inline-flex items-center gap-2 rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-800">
                   <FiSliders />
                   Personalized pacing
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900 shadow-sm">
+                <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-900">
                   Live and recorded access
                 </span>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <button className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-red-700">
+                <button className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-red-700">
                   Explore Tracks
                 </button>
-                <button className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 shadow-sm transition hover:border-red-300">
+                <button className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:border-red-300">
                   View Syllabus PDF
                 </button>
               </div>
@@ -150,7 +150,7 @@ const Courses = () => {
               <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-red-100 blur-2xl" />
               <div className="absolute -bottom-8 -right-8 h-28 w-28 rounded-full bg-amber-100 blur-2xl" />
               <div className="relative grid gap-4">
-                <div className="rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 p-6 text-white shadow-xl">
+                <div className="rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 p-6 text-white">
                   <p className="text-sm uppercase tracking-[0.18em] text-white/80">
                     At a glance
                   </p>
@@ -178,7 +178,7 @@ const Courses = () => {
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-red-100 bg-white/80 p-5 shadow-lg backdrop-blur">
+                <div className="rounded-2xl border border-red-100 bg-white/80 p-5 backdrop-blur">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold text-red-700">
                       Next live cohort
@@ -220,7 +220,7 @@ const Courses = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search courses, tags, topics..."
-                className="w-full max-w-md rounded-full border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm shadow-sm focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-100"
+                className="w-full max-w-md rounded-full border border-gray-200 bg-white py-2.5 pl-10 pr-4 text-sm focus:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-100"
               />
             </div>
             <div className="hidden items-center gap-2 text-sm text-gray-600 md:flex">
@@ -274,7 +274,7 @@ const Courses = () => {
               onClick={() => setCategory(cat)}
               className={`rounded-full border px-3 py-2 text-sm font-semibold transition ${
                 category === cat
-                  ? "border-red-600 bg-red-600 text-white shadow-sm"
+                  ? "border-red-600 bg-red-600 text-white"
                   : "border-gray-200 bg-white text-gray-700 hover:border-red-200"
               }`}
             >
@@ -317,3 +317,4 @@ const Courses = () => {
 };
 
 export default Courses;
+

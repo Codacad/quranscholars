@@ -126,7 +126,7 @@ const CourseOverview = () => {
                         alt={course.title}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-transparent" />
-                      <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-red-700 shadow-sm">
+                      <div className="absolute bottom-4 left-4 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-red-700">
                         Guided by certified instructors
                       </div>
                     </div>
@@ -164,7 +164,7 @@ const CourseOverview = () => {
                       <Link
                         to={"#"}
                         onClick={() => handleCoursePayment()}
-                        className="flex items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-3 text-white font-bold shadow-md transition hover:bg-red-700"
+                        className="flex items-center justify-center gap-2 rounded-full bg-red-600 px-5 py-3 text-white font-bold transition hover:bg-red-700"
                       >
                         Buy Course
                         <span className="h-6 w-6 rounded-full bg-white/20 flex items-center justify-center">
@@ -186,7 +186,7 @@ const CourseOverview = () => {
           "Loading..."
         ) : (
           <div className="max-w-6xl mx-auto px-4 pb-8">
-            <div className="rounded-2xl border border-amber-100 bg-amber-50/80 p-5 shadow-sm flex flex-col gap-1">
+            <div className="rounded-2xl border border-amber-100 bg-amber-50/80 p-5 flex flex-col gap-1">
               <p className="text-xs uppercase tracking-[0.18em] text-amber-700 font-semibold">
                 Upcoming live session
               </p>
@@ -211,7 +211,7 @@ const CourseOverview = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="rounded-2xl bg-white/90 backdrop-blur border border-red-100 shadow-md p-6"
+                className="rounded-2xl bg-white/90 backdrop-blur border border-red-100 p-6"
               >
                 <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
                   What you will learn
@@ -234,7 +234,7 @@ const CourseOverview = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: 0.05, ease: "easeOut" }}
-                className="rounded-2xl bg-white/90 backdrop-blur border border-red-100 shadow-md p-6"
+                className="rounded-2xl bg-white/90 backdrop-blur border border-red-100 p-6"
               >
                 <div className="flex items-center gap-3">
                   <FaDesktop className="text-red-600 text-4xl" />
@@ -268,3 +268,4 @@ const CourseOverview = () => {
 };
 
 export default CourseOverview;
+

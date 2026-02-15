@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -14,10 +14,10 @@ const IslamicEvents = () => {
     <div className="relative pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 top-36 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
-      <ServiceBreadcrumb />
 
-      <section className="relative mt-2 rounded-3xl bg-white p-4">
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <section className="relative mt-2 rounded-3xl bg-white p-4 md:p-5">
+        <ServiceBreadcrumb />
+        <div className="mt-3 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
               <CalendarDays className="h-4 w-4" />
@@ -86,7 +86,7 @@ const IslamicEvents = () => {
                 delay: index * 0.05,
                 ease: "easeOut",
               }}
-              className="overflow-hidden rounded-3xl border border-red-100 bg-white shadow-sm"
+              className="overflow-hidden rounded-3xl border border-red-100 bg-white"
             >
               <div className="relative h-52 bg-slate-100">
                 <img
@@ -159,3 +159,4 @@ const IslamicEvents = () => {
 };
 
 export default IslamicEvents;
+
