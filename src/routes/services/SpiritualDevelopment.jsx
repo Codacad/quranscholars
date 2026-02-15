@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiDownload, FiArrowRight } from "react-icons/fi";
 import { pillars, steps } from "../../data/spiritaulDevelopment";
+import ServiceBreadcrumb from "../../components/navigation/ServiceBreadcrumb";
 const SpiritualDevelopment = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -19,7 +20,8 @@ const SpiritualDevelopment = () => {
 
   return (
     <div ref={serviceContentRef} className="text-gray-900 pb-10 lg:pb-14">
-      <div className="mx-auto max-w-6xl space-y-10">
+      <div className="mx-auto max-w-6xl space-y-5">
+        <ServiceBreadcrumb />
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

@@ -1,4 +1,3 @@
-import { IoIosArrowForward } from "react-icons/io";
 import { FiFilter, FiSearch, FiGrid, FiSliders } from "react-icons/fi";
 import { Link, useLocation } from "react-router-dom";
 import { useMemo, useRef, useState } from "react";
@@ -6,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import Course from "../components/Course";
 import { useGetCoursesQuery } from "../state/courseApis/courses.api";
 import AppLoader from "../components/ui/AppLoader";
+import ServiceBreadcrumb from "../components/navigation/ServiceBreadcrumb";
 
 const Courses = () => {
   const { pathname } = useLocation();
@@ -87,8 +87,9 @@ const Courses = () => {
           : "min-h-screen bg-gradient-to-br from-amber-50 via-white to-rose-50 px-2 py-4 md:p-8"
       }`}
     >
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="relative overflow-hidden rounded-2xl border border-red-100 bg-white">
+      <div className="mx-auto w-full max-w-6xl space-y-4">
+        {isServicesView && <ServiceBreadcrumb currentLabel="Courses" />}
+        <div className="relative rounded-2xl border border-red-100 bg-white">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.12),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.14),transparent_30%)]" />
           <div className="relative grid items-center gap-6 p-4 sm:p-6 md:grid-cols-2 md:p-10">
             <div className="space-y-4">
@@ -96,13 +97,15 @@ const Courses = () => {
                 <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
                 Course Library
               </div>
-              <div className="flex items-center gap-2 text-sm text-red-700">
-                <Link className="font-semibold" to="/">
-                  Home
-                </Link>
-                <IoIosArrowForward className="text-red-600" />
-                <span className="opacity-80">Courses</span>
-              </div>
+              {!isServicesView && (
+                <div className="flex items-center gap-2 text-sm text-red-700">
+                  <Link className="font-semibold" to="/">
+                    Home
+                  </Link>
+                  <span className="opacity-80">/</span>
+                  <span className="opacity-80">Courses</span>
+                </div>
+              )}
 
               <motion.h1
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}

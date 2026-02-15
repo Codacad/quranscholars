@@ -6,13 +6,15 @@ import {
   growthTracks,
   timeline,
 } from "../../data/youthPrograms";
+import ServiceBreadcrumb from "../../components/navigation/ServiceBreadcrumb";
 const YouthPrograms = () => {
   return (
-    <div className="relative overflow-hidden pb-6 lg:pb-10">
+    <div className="relative pb-6 lg:pb-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
+      <ServiceBreadcrumb />
 
-      <section className="relative rounded-3xl bg-white p-4">
+      <section className="relative mt-2 rounded-3xl bg-white p-4">
         <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">

@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { resourceSections } from "../../data/educationalResources";
+import ServiceBreadcrumb from "../../components/navigation/ServiceBreadcrumb";
 const EducationalResources = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -22,7 +23,8 @@ const EducationalResources = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-10 lg:pb-14"
     >
-      <div className="mx-auto max-w-6xl space-y-10">
+      <div className="mx-auto max-w-6xl">
+        <ServiceBreadcrumb />
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

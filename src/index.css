@@ -22,9 +22,7 @@
 
 .font-urdu-solid {
   font-family:
-    "Noto Nastaliq Urdu",
-    "Noto Nastaliq Urdu Draft",
-    "Jameel Noori Nastaleeq",
+    "Noto Nastaliq Urdu", "Noto Nastaliq Urdu Draft", "Jameel Noori Nastaleeq",
     serif;
 }
 
@@ -111,6 +109,9 @@
   }
   .glass-card {
     @apply;
+  }
+  .in-button-loader {
+    @apply mr-2 h-4 w-4 animate-spin;
   }
 }
 .swiper-pagination-bullet-active {

@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { featureCards, steps } from "../../data/interactiveLessons";
+import ServiceBreadcrumb from "../../components/navigation/ServiceBreadcrumb";
 const InteractiveLesson = () => {
   const serviceContentRef = useRef();
   const location = useLocation();
@@ -23,7 +24,8 @@ const InteractiveLesson = () => {
       ref={serviceContentRef}
       className="text-gray-900 font-sans pb-8 lg:pb-12"
     >
-      <div className="max-w-6xl space-y-10">
+      <div className="max-w-6xl space-y-5">
+        <ServiceBreadcrumb />
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
