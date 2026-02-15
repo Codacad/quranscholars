@@ -17,8 +17,8 @@ import ServiceBreadcrumb from "../../components/navigation/ServiceBreadcrumb";
 const PersonalGuidance = () => {
   return (
     <div className="relative pb-6 lg:pb-10">
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-red-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-32 h-72 w-72 rounded-full bg-amber-100/60 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-16 hidden h-72 w-72 rounded-full bg-red-100/60 blur-3xl md:block" />
+      <div className="pointer-events-none absolute -right-20 top-40 hidden h-72 w-72 rounded-full bg-amber-100/60 blur-3xl md:block" />
 
       <section className="relative mt-2 rounded-3xl bg-white p-4 md:p-5">
         <ServiceBreadcrumb />
@@ -228,4 +228,3 @@ const PersonalGuidance = () => {
 };
 
 export default PersonalGuidance;
-

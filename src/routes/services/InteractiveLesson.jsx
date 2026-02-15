@@ -22,8 +22,10 @@ const InteractiveLesson = () => {
   return (
     <div
       ref={serviceContentRef}
-      className="text-gray-900 font-sans pb-8 lg:pb-12"
+      className="relative text-gray-900 font-sans pb-8 lg:pb-12"
     >
+      <div className="pointer-events-none absolute -left-24 top-16 hidden h-72 w-72 rounded-full bg-red-100/60 blur-3xl md:block" />
+      <div className="pointer-events-none absolute -right-20 top-40 hidden h-72 w-72 rounded-full bg-amber-100/60 blur-3xl md:block" />
       <div className="max-w-6xl space-y-6">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
@@ -225,4 +227,3 @@ const InteractiveLesson = () => {
 };
 
 export default InteractiveLesson;
-
