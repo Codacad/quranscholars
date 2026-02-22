@@ -48,7 +48,7 @@
 //         <img
 //           src={post.image}
 //           alt={post.title}
-//           className="w-full h-auto rounded-lg shadow-lg mb-8"
+//           className="w-full h-auto rounded-lg  mb-8"
 //         />
 
 //         <div className="md:flex md:gap-8">
@@ -70,14 +70,14 @@
 
 //           {/* Sidebar */}
 //           <aside className="mt-12 md:mt-0 w-full md:w-1/3 flex-shrink-0">
-//             <div className="bg-white border border-red-100 shadow-sm rounded-xl p-6 mb-8">
+//             <div className="bg-white border border-red-100  rounded-xl p-6 mb-8">
 //               <h3 className="text-xl font-semibold text-red-900 mb-4">
 //                 About the Author
 //               </h3>
 //               <p className="text-gray-700">Admin * Lead Instructor</p>
 //             </div>
 
-//             <div className="bg-white border border-red-100 shadow-sm rounded-xl p-6">
+//             <div className="bg-white border border-red-100  rounded-xl p-6">
 //               <h3 className="text-xl font-semibold text-red-900 mb-4">
 //                 Related Articles
 //               </h3>
@@ -113,7 +113,7 @@
 //         </div>
 
 //         {/* Comments Section */}
-//         <div className="mt-16 bg-white border border-red-100 shadow-sm rounded-xl p-6">
+//         <div className="mt-16 bg-white border border-red-100  rounded-xl p-6">
 //           <h3 className="text-2xl font-semibold text-red-900 mb-4">
 //             Comments
 //           </h3>

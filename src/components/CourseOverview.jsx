@@ -8,7 +8,7 @@ import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useGetCoursesQuery } from "../state/courseApis/courses.api";
-import AppLoader from "./ui/AppLoader";
+import AppLoader from "./AppLoader";
 import ServiceBreadcrumb from "./navigation/ServiceBreadcrumb";
 // import { useCoursePaymentMutation } from "../state/userApis/paymentApi";
 const CourseOverview = () => {

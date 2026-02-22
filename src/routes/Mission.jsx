@@ -201,7 +201,7 @@ const Mission = () => {
       <div className="pointer-events-none absolute -right-20 top-40 h-80 w-80 rounded-full bg-amber-100/60 blur-3xl" />
 
       <section className="relative mx-auto max-w-6xl px-4 md:px-6">
-        <div className="rounded-3xl border border-red-100 bg-white/90 p-6 shadow-sm backdrop-blur md:p-8">
+        <div className="rounded-3xl border border-red-100 bg-white/90 p-6  backdrop-blur md:p-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
             <Sparkles className="h-4 w-4" />
             Our Mission
@@ -234,7 +234,7 @@ const Mission = () => {
               delay: index * 0.05,
               ease: "easeOut",
             }}
-            className="rounded-2xl border border-red-100 bg-white p-5 shadow-sm"
+            className="rounded-2xl border border-red-100 bg-white p-5 "
           >
             <Icon className="h-5 w-5 text-red-700" />
             <h2 className="mt-3 text-lg font-bold text-slate-900">{title}</h2>

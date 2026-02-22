@@ -1,22 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Toaster } from "sonner";
 import {
   useUploadProfilePictureMutation,
   useGetProfilePicutreUrlQuery,
 } from "../state/userApis/fileUploadApis";
 import { useSelector } from "react-redux";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
-import { Separator } from "../components/ui/separator";
-import { Badge } from "../components/ui/badge";
-import InlineSpinner from "../components/InlineSpinner";
 import ProfileDeleteModal from "../components/Modals/ProfileDeleteModal";
 import {
   Camera,
@@ -28,15 +17,18 @@ import {
   MapPin,
   Phone,
   Shield,
-  User,
   X,
 } from "lucide-react";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
+const inputClass =
+  "w-full rounded-xl border border-slate-200 bg-white/95 px-3 py-2.5 text-sm text-slate-800  outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 disabled:bg-slate-50 disabled:text-slate-500";
+
+const badgeClass = "inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold";
+
 const ProfilePage = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const modalRef = useRef();
   const { data } = useGetProfilePicutreUrlQuery();
   const [uploadProfilePicture, { isLoading: isUploading }] =
     useUploadProfilePictureMutation();
@@ -51,8 +43,8 @@ const ProfilePage = () => {
     fullname: user?.fullname || "",
     email: user?.email || "",
     bio: "Committed to consistent Quran study and deeper understanding.",
-    location: "—",
-    phone: "—",
+    location: "--",
+    phone: "--",
   });
 
   useEffect(() => {
@@ -96,24 +88,29 @@ const ProfilePage = () => {
   };
 
   const handleSaveProfile = () => {
-    // Hooked to future profile save endpoint
     setMessage("Profile details saved.");
     setEditMode(false);
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(185,28,28,0.06),_transparent_35%)] px-4 pb-12 pt-8">
-      {modalVisible && (
-        <ProfileDeleteModal
-          ref={modalRef}
-          onClose={() => setModalVisible(false)}
-        />
-      )}
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(185,28,28,0.08),_transparent_35%)] px-4 pb-12 pt-8">
+      <Toaster
+        position="top-center"
+        visibleToasts={3}
+        toastOptions={{ duration: 4500 }}
+      />
+      <AnimatePresence>
+        {modalVisible ? (
+          <ProfileDeleteModal onClose={() => setModalVisible(false)} />
+        ) : null}
+      </AnimatePresence>
 
       <div className="mx-auto flex max-w-5xl flex-col gap-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <Badge className="bg-primary/10 text-primary">Profile</Badge>
+            <span className={`${badgeClass} border-primary/30 bg-primary/10 text-primary`}>
+              Profile
+            </span>
             <h1 className="mt-2 text-3xl font-bold text-secondary md:text-4xl">
               Your personal workspace
             </h1>
@@ -122,25 +119,25 @@ const ProfilePage = () => {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="capitalize">
+            <span className={`${badgeClass} border-slate-300 bg-slate-100 capitalize text-slate-700`}>
               {user?.role || "student"}
-            </Badge>
-            <Badge variant="outline">
+            </span>
+            <span className={`${badgeClass} border-primary/20 bg-white text-slate-700`}>
               <CheckCircle2 className="mr-1 h-3 w-3 text-primary" />
               Verified
-            </Badge>
+            </span>
           </div>
         </div>
 
-        <Card className="shadow-lg shadow-primary/5">
-          <CardContent className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10">
+        <section className="rounded-3xl border border-slate-200 bg-white/90 p-6  ">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
             <div className="relative h-28 w-28 shrink-0">
               <img
                 src={file ? URL.createObjectURL(file) : data?.url}
                 alt="Profile"
-                className="h-full w-full rounded-2xl object-cover border border-gray-100 shadow-sm"
+                className="h-full w-full rounded-2xl border border-gray-100 object-cover "
               />
-              <label className="absolute -bottom-3 -right-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white shadow-lg hover:bg-primary/90">
+              <label className="absolute -bottom-3 -right-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary text-white  hover:bg-primary/90">
                 <Camera className="h-4 w-4" />
                 <input
                   type="file"
@@ -154,7 +151,9 @@ const ProfilePage = () => {
                 <h2 className="text-2xl font-semibold text-secondary">
                   {userDetails.fullname}
                 </h2>
-                <Badge variant="outline">{userDetails.email}</Badge>
+                <span className={`${badgeClass} border-slate-300 bg-white text-slate-600`}>
+                  {userDetails.email}
+                </span>
               </div>
               <p className="text-sm text-muted-foreground">{userDetails.bio}</p>
               <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -173,51 +172,49 @@ const ProfilePage = () => {
               </div>
               <div className="flex flex-wrap gap-2">
                 {file && (
-                  <Button
-                    size="sm"
+                  <button
+                    type="button"
                     onClick={handleImageUpload}
                     disabled={isUploading}
+                    className="inline-flex items-center rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-white transition hover:bg-primary/90 disabled:opacity-70"
                   >
                     {isUploading ? (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     ) : null}
                     Save photo
-                  </Button>
+                  </button>
                 )}
                 {file && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  <button
+                    type="button"
                     onClick={() => setFile(null)}
+                    className="inline-flex items-center rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
                     Cancel
-                  </Button>
+                  </button>
                 )}
                 {error && (
-                  <p className="text-sm font-medium text-destructive">
-                    {error}
-                  </p>
+                  <p className="text-sm font-medium text-destructive">{error}</p>
                 )}
                 {message && <p className="text-sm text-primary">{message}</p>}
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        <Card className="shadow-md shadow-primary/5">
-          <CardHeader className="pb-3">
-            <CardTitle>Profile details</CardTitle>
-            <CardDescription>
+        <section className="rounded-3xl border border-slate-200 bg-white/90 p-6  ">
+          <div className="mb-6 border-b border-slate-100 pb-3">
+            <h3 className="text-xl font-semibold text-secondary">Profile details</h3>
+            <p className="text-sm text-muted-foreground">
               Update how we reach you and what others see.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
+            </p>
+          </div>
+          <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">
-                  Full name
-                </label>
-                <Input
+                <label className="text-sm font-medium text-secondary">Full name</label>
+                <input
+                  className={inputClass}
                   name="fullname"
                   value={userDetails.fullname}
                   onChange={handleFieldChange}
@@ -225,23 +222,20 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">
-                  Email
-                </label>
-                <Input
+                <label className="text-sm font-medium text-secondary">Email</label>
+                <input
+                  className={inputClass}
                   name="email"
                   type="email"
                   value={userDetails.email}
                   onChange={handleFieldChange}
                   disabled
-                  className="bg-gray-50"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">
-                  Phone
-                </label>
-                <Input
+                <label className="text-sm font-medium text-secondary">Phone</label>
+                <input
+                  className={inputClass}
                   name="phone"
                   placeholder="Add phone"
                   value={userDetails.phone}
@@ -250,10 +244,9 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-secondary">
-                  Location
-                </label>
-                <Input
+                <label className="text-sm font-medium text-secondary">Location</label>
+                <input
+                  className={inputClass}
                   name="location"
                   placeholder="City, Country"
                   value={userDetails.location}
@@ -264,7 +257,8 @@ const ProfilePage = () => {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-secondary">Bio</label>
-              <Textarea
+              <textarea
+                className={inputClass}
                 name="bio"
                 rows={3}
                 value={userDetails.bio}
@@ -273,46 +267,47 @@ const ProfilePage = () => {
               />
             </div>
 
-            <Separator />
+            <div className="h-px w-full bg-slate-200" />
             <div className="flex flex-wrap gap-3">
               {editMode ? (
                 <>
-                  <Button
+                  <button
+                    type="button"
                     onClick={handleSaveProfile}
-                    className="flex items-center gap-2"
+                    className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
                   >
                     <CheckCircle2 className="h-4 w-4" />
                     Save changes
-                  </Button>
-                  <Button
-                    variant="ghost"
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => setEditMode(false)}
-                    className="flex items-center gap-2"
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
                     <X className="h-4 w-4" />
                     Cancel
-                  </Button>
+                  </button>
                 </>
               ) : (
-                <Button
-                  variant="outline"
+                <button
+                  type="button"
                   onClick={() => setEditMode(true)}
-                  className="flex items-center gap-2"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   <Edit3 className="h-4 w-4" />
                   Edit profile
-                </Button>
+                </button>
               )}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
-        <Card className="shadow-sm">
-          <CardHeader className="pb-3">
-            <CardTitle>Security & access</CardTitle>
-            <CardDescription>Keep your account protected.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4 text-sm text-muted-foreground">
+        <section className="rounded-3xl border border-slate-200 bg-white/90 p-6 ">
+          <div className="mb-4 border-b border-slate-100 pb-3">
+            <h3 className="text-lg font-semibold text-secondary">Security and access</h3>
+            <p className="text-sm text-muted-foreground">Keep your account protected.</p>
+          </div>
+          <div className="space-y-4 text-sm text-muted-foreground">
             <div className="flex items-center justify-between rounded-lg border bg-muted/30 px-3 py-3">
               <div className="flex items-center gap-3">
                 <Shield className="h-4 w-4 text-primary" />
@@ -325,42 +320,38 @@ const ProfilePage = () => {
                   </p>
                 </div>
               </div>
-              <Badge variant="outline">Planned</Badge>
+              <span className={`${badgeClass} border-slate-300 bg-white text-slate-700`}>Planned</span>
             </div>
             <div className="flex items-center justify-between rounded-lg border bg-muted/30 px-3 py-3">
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
                 <div>
-                  <p className="font-semibold text-secondary">
-                    Email notifications
-                  </p>
+                  <p className="font-semibold text-secondary">Email notifications</p>
                   <p className="text-xs text-muted-foreground">
                     Receive updates about admissions and classes.
                   </p>
                 </div>
               </div>
-              <Badge variant="secondary">Enabled</Badge>
+              <span className={`${badgeClass} border-primary/20 bg-primary/10 text-primary`}>Enabled</span>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm">
           <div className="space-y-1">
-            <p className="font-semibold text-red-800">
-              Need to leave QuranScholars?
-            </p>
+            <p className="font-semibold text-red-800">Need to leave QuranScholars?</p>
             <p className="text-red-700/80">
               Deleting your profile removes all data permanently. This action
               cannot be undone.
             </p>
           </div>
-          <Button
-            variant="destructive"
-            className="bg-red-600 hover:bg-red-700"
+          <button
+            type="button"
+            className="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
             onClick={() => setModalVisible(true)}
           >
             Delete profile
-          </Button>
+          </button>
         </div>
       </div>
     </div>

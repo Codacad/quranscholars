@@ -1,4 +1,4 @@
-﻿import SeekingKnowledge from "../components/SeekingKnowledge";
+import SeekingKnowledge from "../components/SeekingKnowledge";
 import Teachers from "../components/Teachers";
 import Testimonials from "../components/Testimonial";
 import DiscoverIslam from "../components/DiscoverIslam";
@@ -118,63 +118,63 @@ const Home = () => {
             }}
             className="relative hidden md:flex items-center justify-center px-4"
           >
-            <div className="w-full max-w-2xl rounded-3xl border border-white/60 bg-white/70 shadow-lg backdrop-blur-sm px-8 py-10 space-y-4">
+            <div className="w-full max-w-2xl rounded-3xl border border-white/60 bg-white/70  backdrop-blur-sm px-8 py-10 space-y-4">
               <p
                 dir="rtl"
                 className="font-arabic-solid text-base font-semibold text-red-900 tracking-[0.08em] text-right"
               >
-                الرحلة التعليمية الإسلامية
+                ?????? ????????? ?????????
               </p>
               <p
                 dir="rtl"
                 className="font-urdu-solid text-xl text-slate-800 leading-[2.5] text-right"
               >
-                قرآن، سنت اور ادب کی روشنی میں روزانہ سیکھنے کا مضبوط نظام
-                بنائیں۔ لائیو اساتذہ کے ساتھ رہنمائی حاصل کریں۔
+                ????? ??? ??? ??? ?? ????? ??? ?????? ?????? ?? ????? ????
+                ??????? ????? ?????? ?? ???? ??????? ???? ?????
               </p>
               <div className="grid grid-cols-2 gap-3 text-sm text-slate-800">
                 <div
-                  className="rounded-2xl bg-red-50 p-4 shadow-sm text-right"
+                  className="rounded-2xl bg-red-50 p-4  text-right"
                   dir="rtl"
                 >
                   <p className="font-arabic-solid text-sm font-semibold tracking-[0.05em] text-red-800">
-                    معمل التجويد
+                    ???? ???????
                   </p>
                   <p className="font-urdu-solid mt-1 text-2xl font-bold text-red-900">
-                    براہِ راست
+                    ????? ????
                   </p>
                   <p className="font-urdu-solid text-sm mt-5 leading-7 text-red-700">
-                    مخارج کی مشق اور فوری رہنمائی
+                    ????? ?? ??? ??? ???? ???????
                   </p>
                 </div>
                 <div
-                  className="rounded-2xl bg-amber-50 p-4 shadow-sm text-right"
+                  className="rounded-2xl bg-amber-50 p-4  text-right"
                   dir="rtl"
                 >
                   <p className="font-arabic-solid text-sm font-semibold tracking-[0.05em] text-amber-800">
-                    قصص السيرة
+                    ??? ??????
                   </p>
                   <p className="font-urdu-solid mt-1 text-lg font-semibold leading-[2.5] text-amber-800">
-                    بچوں اور نوجوانوں کے لیے سیرتِ نبوی کے اسباق
+                    ???? ??? ???????? ?? ??? ????? ???? ?? ?????
                   </p>
                   <p className="font-urdu-solid mt-4 text-sm text-amber-700">
-                    دو لسانی ورک شیٹس
+                    ?? ????? ??? ????
                   </p>
                 </div>
                 <div
-                  className="rounded-2xl bg-emerald-50 p-4 shadow-sm col-span-2 flex items-center justify-between"
+                  className="rounded-2xl bg-emerald-50 p-4  col-span-2 flex items-center justify-between"
                   dir="rtl"
                 >
                   <div className="text-right">
                     <p className="font-arabic-solid text-sm font-semibold tracking-[0.05em] text-emerald-800">
-                      مسار الفقه والأدب
+                      ???? ????? ??????
                     </p>
                     <p className="font-urdu-solid mt-1 text-lg font-semibold leading-8 text-emerald-900">
-                      نماز، طہارت اور اسلامی آداب پورے خاندان کے لیے
+                      ????? ????? ??? ?????? ???? ???? ?????? ?? ???
                     </p>
                   </div>
-                  <span className="w-24 flex justify-center items-center font-urdu-solid rounded-full bg-white/70 p-2 text-sm font-semibold text-emerald-800 shadow-sm">
-                    شام کی کلاسز
+                  <span className="w-24 flex justify-center items-center font-urdu-solid rounded-full bg-white/70 p-2 text-sm font-semibold text-emerald-800 ">
+                    ??? ?? ?????
                   </span>
                 </div>
               </div>

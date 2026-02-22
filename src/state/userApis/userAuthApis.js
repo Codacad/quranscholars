@@ -8,6 +8,12 @@ const userAuthApi = createApi({
   }),
 
   endpoints: (builder) => ({
+    me: builder.query({
+      query: () => ({
+        url: "api/auth/me",
+        method: "GET",
+      }),
+    }),
     register: builder.mutation({
       query: (data) => ({
         url: "api/auth/register",
@@ -38,7 +44,12 @@ const userAuthApi = createApi({
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useLogoutMutation, useDeleteProfileMutation } =
-  userAuthApi;
+export const {
+  useMeQuery,
+  useRegisterMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useDeleteProfileMutation,
+} = userAuthApi;
 
 export default userAuthApi;

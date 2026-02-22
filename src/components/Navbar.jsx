@@ -17,6 +17,7 @@ import {
   LogOut,
   Settings,
   Sparkles,
+  ShieldCheck,
   UserCircle2,
   ChevronDown,
 } from "lucide-react";
@@ -26,10 +27,10 @@ import { setUser } from "../state/slices/userSlice";
 import useClickOutside from "../hooks/useClickOutside";
 import { useGetProfilePicutreUrlQuery } from "../state/userApis/fileUploadApis";
 import { useGetCoursesQuery } from "../state/courseApis/courses.api";
-import { Button } from "./ui/button";
+import admissionApis from "../state/userApis/admissionApis";
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
-    console.log(user);
+  const isAdmin = String(user?.role || "").trim().toLowerCase() === "admin";
   const { data } = useGetProfilePicutreUrlQuery();
   const { data: coursesData, isLoading: isCoursesLoading } = useGetCoursesQuery();
   const dispatch = useDispatch();
@@ -120,6 +121,7 @@ const Navbar = () => {
       if (response.data) {
         localStorage.removeItem("user");
         setIsloading(false);
+        dispatch(admissionApis.util.resetApiState());
         dispatch(setUser(null));
         navigate("/");
         if (mobileMenuRef.current) {
@@ -141,7 +143,7 @@ const Navbar = () => {
           <div className="spinner"></div>
         </div>
       )}
-      <nav className="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm border border-gray-100">
+      <nav className="flex items-center justify-between rounded-2xl bg-white/70 px-4 py-2 backdrop-blur supports-[backdrop-filter]:bg-white/60  border border-gray-100">
         {/* Logo Section */}
         <Link
           to={"/"}
@@ -182,7 +184,7 @@ const Navbar = () => {
                   }`}
                 >
                   <div
-                    className={`origin-top-left rounded-2xl border border-gray-100 bg-white p-2 shadow-xl transition-all duration-200 ${
+                    className={`origin-top-left rounded-2xl border border-gray-100 bg-white p-2  transition-all duration-200 ${
                       openDesktopDropdown === "services"
                         ? "translate-y-0 scale-100"
                         : "translate-y-1 scale-95"
@@ -237,7 +239,7 @@ const Navbar = () => {
                   }`}
                 >
                   <div
-                    className={`origin-top-left rounded-2xl border border-gray-100 bg-white p-2 shadow-xl transition-all duration-200 ${
+                    className={`origin-top-left rounded-2xl border border-gray-100 bg-white p-2  transition-all duration-200 ${
                       openDesktopDropdown === "courses"
                         ? "translate-y-0 scale-100"
                         : "translate-y-1 scale-95"
@@ -310,11 +312,11 @@ const Navbar = () => {
           </Link>
           {user ? (
             <div className="relative z-20">
-              <Button
-                variant="ghost"
+              <button
+                type="button"
                 ref={dropwdownButtonRef}
                 onClick={handleUserProfileDropdownToggle}
-                className="flex items-center gap-3 px-3"
+                className="flex items-center gap-3 rounded-xl border border-transparent bg-white px-3 py-2 text-left transition hover:border-primary/20 hover:bg-primary/5"
               >
                 {data?.url ? (
                   <img className="h-8 w-8 rounded-full object-cover" src={data.url} alt="" />
@@ -327,10 +329,10 @@ const Navbar = () => {
                   </p>
                   <p className="text-[11px] text-muted-foreground">My account</p>
                 </div>
-              </Button>
+              </button>
               <div
                 ref={userProfileDropdownRef}
-                className="dropdown-menu absolute right-0 top-12 w-64 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl"
+                className="dropdown-menu absolute right-0 top-12 w-64 overflow-hidden rounded-2xl border border-gray-100 bg-white "
               >
                 <div className="bg-gradient-to-r from-primary/10 via-white to-white px-4 py-3">
                   <p className="text-sm font-semibold text-secondary">{user?.fullname}</p>
@@ -361,6 +363,16 @@ const Navbar = () => {
                     <Sparkles />
                     <span>Admission</span>
                   </Link>
+                  {isAdmin && (
+                    <Link
+                      onClick={handleUserProfileDropdownToggle}
+                      to={"/admin/admissions"}
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-primary/5"
+                    >
+                      <ShieldCheck className="h-4 w-4" />
+                      <span>Admin Admissions</span>
+                    </Link>
+                  )}
                   <Link
                     onClick={handleUserProfileDropdownToggle}
                     to={"/settings"}
@@ -382,7 +394,7 @@ const Navbar = () => {
           ) : (
             <Link
               to={"/login"}
-              className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white shadow-sm transition hover:bg-primary/90"
+              className="flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-white  transition hover:bg-primary/90"
             >
               <span className="font-sm-400">Log In</span>
               <CgLogIn />
@@ -404,7 +416,7 @@ const Navbar = () => {
         <div ref={mobileMenuWrapperRef}>
           <nav
             ref={mobileMenuRef}
-            className="mobile-menu fixed top-0 -right-[100%] z-30 h-full w-[min(86vw,320px)] bg-white shadow-2xl transition-all duration-300"
+            className="mobile-menu fixed top-0 -right-[100%] z-30 h-full w-[min(86vw,320px)] bg-white  transition-all duration-300"
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
@@ -585,7 +597,7 @@ const Navbar = () => {
                     <Link
                       to="/dashboard"
                       onClick={handleToggleSideNav}
-                      className="flex items-center justify-between rounded-xl bg-secondary text-white px-4 py-3 text-sm font-semibold shadow-sm hover:opacity-90"
+                      className="flex items-center justify-between rounded-xl bg-secondary text-white px-4 py-3 text-sm font-semibold  hover:opacity-90"
                     >
                       Dashboard <MdDashboard />
                     </Link>
@@ -604,6 +616,15 @@ const Navbar = () => {
                     >
                       Admission <Sparkles className="h-4 w-4" />
                     </Link>
+                    {isAdmin && (
+                      <Link
+                        to="/admin/admissions"
+                        onClick={handleToggleSideNav}
+                        className="flex items-center justify-between rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm font-semibold text-primary"
+                      >
+                        Admin Admissions <ShieldCheck className="h-4 w-4" />
+                      </Link>
+                    )}
                     <button
                       onClick={handleLogout}
                       className="flex items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 hover:bg-red-100"
@@ -617,7 +638,7 @@ const Navbar = () => {
                     <Link
                       onClick={handleToggleSideNav}
                       to="/login"
-                      className="flex items-center justify-center gap-2 rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                      className="flex items-center justify-center gap-2 rounded-xl bg-secondary px-4 py-3 text-sm font-semibold text-white  hover:opacity-90"
                     >
                       Login <CgLogIn />
                     </Link>

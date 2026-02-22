@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Course from "../components/Course";
 import { useGetCoursesQuery } from "../state/courseApis/courses.api";
-import AppLoader from "../components/ui/AppLoader";
+import AppLoader from "../components/AppLoader";
 import ServiceBreadcrumb from "../components/navigation/ServiceBreadcrumb";
 
 const Courses = () => {

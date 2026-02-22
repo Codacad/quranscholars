@@ -13,7 +13,7 @@ const Testimonials = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(248,113,113,0.12),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.12),transparent_30%)]" />
       <div className="relative max-w-6xl mx-auto space-y-8">
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 ">
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             Voices from our learners
           </div>
@@ -62,13 +62,13 @@ const Testimonials = () => {
 
         <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 md:px-4">
           <button
-            className="testi-prev pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white shadow-lg flex items-center justify-center hover:bg-red-700 transition"
+            className="testi-prev pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white  flex items-center justify-center hover:bg-red-700 transition"
             aria-label="Previous testimonial"
           >
             ‹
           </button>
           <button
-            className="testi-next pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white shadow-lg flex items-center justify-center hover:bg-red-700 transition"
+            className="testi-next pointer-events-auto h-12 w-12 md:h-14 md:w-14 rounded-full bg-red-900 text-white  flex items-center justify-center hover:bg-red-700 transition"
             aria-label="Next testimonial"
           >
             ›

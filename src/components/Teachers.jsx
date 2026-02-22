@@ -8,7 +8,7 @@ function Teachers() {
       <div className="relative max-w-6xl mx-auto space-y-10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-3 rounded-full bg-red-700/20 text-red-100 px-4 py-2 text-sm font-semibold shadow-sm">
+            <div className="inline-flex items-center gap-3 rounded-full bg-red-700/20 text-red-100 px-4 py-2 text-sm font-semibold ">
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
               Our Mentors
             </div>
@@ -27,13 +27,13 @@ function Teachers() {
             </p>
           </div>
           <div className="flex gap-3 text-sm text-slate-200">
-            <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm">
+            <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 ">
               <p className="text-2xl font-black text-amber-200">24</p>
               <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">
                 Instructors
               </p>
             </div>
-            <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm">
+            <div className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 ">
               <p className="text-2xl font-black text-amber-200">12</p>
               <p className="uppercase tracking-[0.14em] text-slate-200/80 text-xs">
                 Countries
@@ -54,7 +54,7 @@ function Teachers() {
                 ease: [0.22, 1, 0.36, 1],
                 delay: idx * 0.04,
               }}
-              className="group relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur shadow-xl overflow-hidden transition-transform duration-200 hover:-translate-y-1"
+              className="group relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur  overflow-hidden transition-transform duration-200 hover:-translate-y-1"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-500/15 via-white/10 to-amber-400/15" />
               <div className="relative p-6 space-y-4 h-full flex flex-col">
@@ -62,7 +62,7 @@ function Teachers() {
                   <img
                     src={teacher.image}
                     alt={teacher.name}
-                    className="h-14 w-14 rounded-2xl object-cover border border-white/20 shadow-sm"
+                    className="h-14 w-14 rounded-2xl object-cover border border-white/20 "
                   />
                   <div>
                     <p className="text-lg font-bold text-white">{teacher.name}</p>
@@ -88,7 +88,7 @@ function Teachers() {
                     </span>
                   </div>
                 </div>
-                <button className="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 text-white px-4 py-2 text-sm font-semibold shadow-md transition hover:bg-red-600">
+                <button className="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 text-white px-4 py-2 text-sm font-semibold  transition hover:bg-red-600">
                   Book a trial
                   <span className="text-base">{"->"}</span>
                 </button>

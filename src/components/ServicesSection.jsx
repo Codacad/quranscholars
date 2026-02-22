@@ -8,7 +8,7 @@ const ServicesSection = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,113,113,0.1),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.12),transparent_30%)]" />
       <div className="relative max-w-6xl mx-auto space-y-10">
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+          <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 ">
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
             Our Services
           </div>

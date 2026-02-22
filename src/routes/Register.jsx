@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash, FaLongArrowAltRight } from "react-icons/fa";
 import { RiAccountPinCircleFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,27 +13,43 @@ const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [redirectCountdown, setRedirectCountdown] = useState(3);
   const [register] = useRegisterMutation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isRedirecting) return undefined;
+
+    const interval = setInterval(() => {
+      setRedirectCountdown((prev) => Math.max(0, prev - 1));
+    }, 1000);
+
+    const timeout = setTimeout(() => {
+      navigate("/login");
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [isRedirecting, navigate]);
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (isRedirecting) return;
+
     setIsLoading(true);
     try {
-      const response = await register({ fullname, email, password });
-      if (response.data) {
-        setSuccess("Registration successful, you are being redirected...");
-        setError("");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      }
-      if (response.error) {
-        setError(response.error.data.message);
-        setSuccess("");
-      }
-      setIsLoading(false);
+      await register({ fullname, email, password }).unwrap();
+      setSuccess("Registration successful.");
+      setError("");
+      setRedirectCountdown(3);
+      setIsRedirecting(true);
     } catch (error) {
-      console.log(error.message);
+      setError(error?.data?.message || "Registration failed. Please try again.");
+      setSuccess("");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -45,7 +61,7 @@ const Register = () => {
         <div className="pointer-events-none absolute right-0 top-10 h-72 w-72 rounded-full bg-amber-100 blur-3xl opacity-70" />
         <form
           onSubmit={handleRegister}
-          className="relative z-10 lg:w-[520px] md:w-[80%] sm:w-[90%] p-7 md:p-8 bg-white/90 backdrop-blur rounded-2xl border border-red-100 shadow-[0_20px_70px_-28px_rgba(220,38,38,0.45)]"
+          className="relative z-10 lg:w-[520px] md:w-[80%] sm:w-[90%] p-7 md:p-8 bg-white/90 backdrop-blur rounded-2xl border border-red-100 )]"
         >
           <div className="form-header text-center mb-6 space-y-2">
             <p className="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-xs font-semibold text-red-800 border border-red-100">
@@ -74,12 +90,26 @@ const Register = () => {
             <div>
               <p className="flex p-2 gap-2 items-center justify-center text-green-600 rounded-sm bg-green-100 text-sm mb-2">
                 <span>
-                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 shadow-sm">
+                  <span className="flex rounded-full items-center justify-center text-white w-4 h-4 bg-green-400 ">
                     <TiTick className="text-md" />
                   </span>
                 </span>
                 {success}
               </p>
+              {isRedirecting && (
+                <div className="mb-4 rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                  <div className="flex items-center gap-2 text-sm font-medium text-green-700">
+                    <span className="spinner h-4 w-4" />
+                    Redirecting to login in {redirectCountdown}s...
+                  </div>
+                  <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-green-100">
+                    <div
+                      className="h-full rounded-full bg-green-500 transition-all duration-1000"
+                      style={{ width: `${((3 - redirectCountdown) / 3) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {/* Full Name Input */}
@@ -95,6 +125,7 @@ const Register = () => {
                 className="p-3 w-full bg-transparent outline-none rounded-xl"
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
+                disabled={isRedirecting}
               />
             </div>
           </div>
@@ -112,6 +143,7 @@ const Register = () => {
                 className="p-3 w-full bg-transparent outline-none rounded-xl"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isRedirecting}
               />
             </div>
           </div>
@@ -129,11 +161,13 @@ const Register = () => {
                 className="p-3 w-full bg-transparent outline-none rounded-xl pr-12"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={isRedirecting}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((v) => !v)}
                 className="absolute right-3 text-red-500 hover:text-red-700 transition"
+                disabled={isRedirecting}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
@@ -146,15 +180,20 @@ const Register = () => {
           {/* Register Button */}
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isRedirecting}
             className={`${
-              isLoading ? "opacity-20" : "opacity-100"
-            } w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4 shadow-md`}
+              isLoading || isRedirecting ? "opacity-60 cursor-not-allowed" : "opacity-100"
+            } w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4 `}
           >
             {isLoading ? (
               <span className="flex gap-4 items-center">
                 <span className="spinner"></span>
                 <span>Loading...</span>
+              </span>
+            ) : isRedirecting ? (
+              <span className="flex gap-3 items-center">
+                <span className="spinner"></span>
+                <span>Redirecting...</span>
               </span>
             ) : (
               <>

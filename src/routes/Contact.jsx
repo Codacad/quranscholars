@@ -57,7 +57,7 @@ const Contact = () => {
       <div
         className={`fixed top-8 ${
           submitMessage ? "left-4" : "-left-[420px]"
-        } z-50 flex items-center gap-4 rounded-xl bg-red-100 p-4 text-red-700 shadow-2xl transition-all duration-300`}
+        } z-50 flex items-center gap-4 rounded-xl bg-red-100 p-4 text-red-700  transition-all duration-300`}
       >
         <span className="text-sm font-medium">
           Message received. Our team will contact you soon.
@@ -150,7 +150,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-red-100 bg-white/90 p-6 shadow-[0_20px_70px_-28px_rgba(220,38,38,0.45)] backdrop-blur md:p-8">
+          <div className="rounded-2xl border border-red-100 bg-white/90 p-6 )] backdrop-blur md:p-8">
             <div className="mb-5">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-700">
                 Send Us a Message
@@ -222,7 +222,7 @@ const Contact = () => {
               <div className="sm:col-span-2">
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-red-600 p-3 font-semibold text-white shadow-md transition-all duration-200 hover:bg-red-700"
+                  className="w-full rounded-xl bg-red-600 p-3 font-semibold text-white  transition-all duration-200 hover:bg-red-700"
                 >
                   Send Message
                 </button>

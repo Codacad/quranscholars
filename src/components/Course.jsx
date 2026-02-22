@@ -1,4 +1,4 @@
-﻿import { LiaRupeeSignSolid } from "react-icons/lia";
+import { LiaRupeeSignSolid } from "react-icons/lia";
 import { SiLevelsdotfyi } from "react-icons/si";
 import { MdOutlineWatchLater, MdOutlineStarPurple500 } from "react-icons/md";
 import { FaArrowRight } from "react-icons/fa";
@@ -31,7 +31,7 @@ const Course = ({ course, index = 0 }) => {
       }
       whileHover={shouldReduceMotion ? undefined : { y: -4 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-2xl border border-red-100 bg-white shadow-md"
+      className="relative overflow-hidden rounded-2xl border border-red-100 bg-white "
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-50/80 via-white to-amber-50 opacity-0 transition duration-300 hover:opacity-100" />
 
@@ -45,7 +45,7 @@ const Course = ({ course, index = 0 }) => {
             decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-transparent" />
-          <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-full border border-red-100 bg-white/85 px-3 py-1 text-xs font-semibold text-red-700 shadow-sm backdrop-blur">
+          <div className="absolute left-3 top-3 inline-flex items-center gap-2 rounded-full border border-red-100 bg-white/85 px-3 py-1 text-xs font-semibold text-red-700  backdrop-blur">
             <SiLevelsdotfyi className="text-red-600" />
             {course?.level || "All levels"}
           </div>
@@ -106,13 +106,13 @@ const Course = ({ course, index = 0 }) => {
               </div>
             ))}
             <span className="ml-3 text-xs font-semibold text-slate-600">
-              Cohort {index + 1} • New seats
+              Cohort {index + 1} � New seats
             </span>
           </div>
 
           <Link
             to={detailsPath}
-            className="inline-flex w-36 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-red-600 p-2 text-[12px] font-semibold text-white shadow-md transition hover:bg-red-700"
+            className="inline-flex w-36 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-red-600 p-2 text-[12px] font-semibold text-white  transition hover:bg-red-700"
           >
             <span className="leading-none">View Course</span>
             <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/20">

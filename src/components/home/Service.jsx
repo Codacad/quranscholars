@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 const Service = ({ service }) => {
   const Icon = service.icon;
   return (
-    <div className="group relative rounded-3xl border border-white/60 bg-white/80 backdrop-blur shadow-lg overflow-hidden transition-transform duration-200 hover:-translate-y-1">
+    <div className="group relative rounded-3xl border border-white/60 bg-white/80 backdrop-blur  overflow-hidden transition-transform duration-200 hover:-translate-y-1">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-100/60 via-white to-amber-100/60" />
       <div className="relative p-6 space-y-4 h-full flex flex-col">
-        <div className="h-12 w-12 rounded-2xl bg-red-100 text-red-900 flex items-center justify-center shadow-sm">
+        <div className="h-12 w-12 rounded-2xl bg-red-100 text-red-900 flex items-center justify-center ">
           <Icon className="w-8 h-8" />
         </div>
         <div className="space-y-1">

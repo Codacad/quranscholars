@@ -9,7 +9,7 @@ const BlogSection = () => {
       <div className="relative max-w-6xl mx-auto space-y-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+            <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 ">
               <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
               Islamic Resources & Blog
             </div>
@@ -29,7 +29,7 @@ const BlogSection = () => {
           </div>
           <Link
             to="/blogs"
-            className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-2 py-3 font-semibold shadow-md hover:bg-red-700 transition w-48 justify-center"
+            className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-2 py-3 font-semibold  hover:bg-red-700 transition w-48 justify-center"
           >
             See all blogs
             <span className="text-base">{"->"}</span>
@@ -48,7 +48,7 @@ const BlogSection = () => {
                 ease: [0.22, 1, 0.36, 1],
                 delay: index * 0.05,
               }}
-              className="group relative rounded-3xl border border-white/50 bg-white shadow-lg overflow-hidden transition-transform duration-200 hover:-translate-y-2 hover:shadow-xl"
+              className="group relative rounded-3xl border border-white/50 bg-white  overflow-hidden transition-transform duration-200 hover:-translate-y-2 "
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-red-100/60 via-white to-amber-100/50" />
               <div className="relative">
@@ -57,7 +57,7 @@ const BlogSection = () => {
                   alt={post.title}
                   className="w-full h-48 object-cover"
                 />
-                <div className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-800 shadow-sm">
+                <div className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-red-800 ">
                   Featured
                 </div>
               </div>
@@ -71,7 +71,7 @@ const BlogSection = () => {
                 <div className="relative flex items-center gap-3 flex-wrap">
                   <Link
                     to={post.link}
-                    className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-red-700 transition"
+                    className="inline-flex items-center gap-2 rounded-full bg-red-900 text-white px-4 py-2 text-sm font-semibold  hover:bg-red-700 transition"
                   >
                     Read blog
                     <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">

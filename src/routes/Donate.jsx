@@ -72,7 +72,7 @@ const Donate = () => {
       <div className="pointer-events-none absolute -right-24 top-40 h-72 w-72 rounded-full bg-amber-100/70 blur-3xl" />
 
       <div className="relative mx-auto w-full max-w-6xl space-y-6 md:space-y-8">
-        <section className="rounded-3xl border border-red-100 bg-white/90 p-5 shadow-sm backdrop-blur md:p-8">
+        <section className="rounded-3xl border border-red-100 bg-white/90 p-5  backdrop-blur md:p-8">
           <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-red-100 bg-red-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.13em] text-red-800">
@@ -143,10 +143,10 @@ const Donate = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
-              className={`rounded-3xl border border-red-100 bg-gradient-to-br ${tone} p-5 shadow-sm`}
+              className={`rounded-3xl border border-red-100 bg-gradient-to-br ${tone} p-5 `}
             >
               <div className="flex items-start gap-3">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 shadow-sm">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-red-700 ">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>

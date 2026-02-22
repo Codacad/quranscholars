@@ -161,7 +161,7 @@ const About = () => {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               to="/admission"
-              className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-red-900/20 transition hover:bg-red-800"
+              className="inline-flex items-center gap-2 rounded-xl bg-red-700 px-6 py-3 text-sm font-semibold text-white   transition hover:bg-red-800"
             >
               Start Admission
               <ArrowRight className="h-4 w-4" />
@@ -175,7 +175,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-red-100 bg-white/90 p-4 shadow-[0_24px_70px_-35px_rgba(127,29,29,0.55)] backdrop-blur-sm">
+        <div className="rounded-3xl border border-red-100 bg-white/90 p-4 )] backdrop-blur-sm">
           <img
             src={ChildWithQuran}
             alt="Student learning Quran"
@@ -207,7 +207,7 @@ const About = () => {
           {impactStats.map(({ icon: Icon, label, value, detail }) => (
             <article
               key={label}
-              className="rounded-2xl border border-red-100 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-red-100 bg-white p-5 "
             >
               <Icon className="h-5 w-5 text-red-700" />
               <p className="mt-4 text-xs uppercase tracking-[0.14em] text-slate-500">
@@ -293,7 +293,7 @@ const About = () => {
             {quranLearningVerses.map((verse) => (
               <article
                 key={verse.reference}
-                className="group rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/30 p-5 transition duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-lg hover:shadow-red-100/60"
+                className="group rounded-2xl border border-red-100 bg-gradient-to-b from-white to-red-50/30 p-5 transition duration-300 hover:-translate-y-1 hover:border-red-200  "
               >
                 <p
                   className="font-arabic-script text-right text-3xl leading-[2.8rem] text-slate-900 md:text-4xl md:leading-[3.4rem]"

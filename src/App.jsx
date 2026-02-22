@@ -7,13 +7,22 @@ import { useLocation, useNavigate, useNavigation } from "react-router-dom";
 import CardButton from "./components/cart/CardButton";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./state/slices/userSlice";
-import AppLoader from "./components/ui/AppLoader";
+import { useMeQuery } from "./state/userApis/userAuthApis";
+import AppLoader from "./components/AppLoader";
 // import Spinner from "./components/Spinner";
 function App() {
   const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const pathName = useLocation();
   const navigation = useNavigation();
   const [isAppBooting, setIsAppBooting] = useState(true);
+  const {
+    data: currentUser,
+    isLoading: isUserSyncLoading,
+    isSuccess: isUserSyncSuccess,
+    isError: isUserSyncError,
+    error: userSyncError,
+  } = useMeQuery();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,8 +38,25 @@ function App() {
     return () => window.removeEventListener("load", finishBoot);
   }, []);
 
+  useEffect(() => {
+    if (isUserSyncSuccess && currentUser) {
+      dispatch(setUser(currentUser));
+      return;
+    }
+    if (isUserSyncError) {
+      if (userSyncError?.status === 401 || userSyncError?.status === 403) {
+        dispatch(setUser(null));
+      }
+    }
+  }, [
+    currentUser,
+    dispatch,
+    isUserSyncError,
+    isUserSyncSuccess,
+    userSyncError?.status,
+  ]);
+
   const useSessionTimeout = (user) => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
       if (!user?.expires || typeof user.expires !== "number") return; // Ensure expires is present
@@ -50,7 +76,8 @@ function App() {
   };
   useSessionTimeout(user);
 
-  const showGlobalLoader = isAppBooting || navigation.state === "loading";
+  const showGlobalLoader =
+    isAppBooting || isUserSyncLoading || navigation.state === "loading";
 
   return (
     <>

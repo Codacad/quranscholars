@@ -1,41 +1,54 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import Home from "./routes/Home";
-import Services from "./routes/Services";
-import About from "./routes/About";
-import Contact from "./routes/Contact";
-import Donate from "./routes/Donate";
-import Mission from "./routes/Mission";
-import Admission from "./routes/Admission";
-import CourseOverview from "./components/CourseOverview";
-import Login from "./routes/Login";
-import Register from "./routes/Register";
-import Courses from "./routes/Courses";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import { Provider } from "react-redux";
+import App from "./App.jsx";
+import "./index.css";
 import { store } from "./state/store.js";
-import PrivacyPolicy from "./routes/PrivacyPolicy.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
 import NotLoggedIn from "./components/NotLoggedIn.jsx";
-import HowItWorks from "./routes/HowItWork.jsx";
-import Profile from "./routes/Profile.jsx";
-import StudentInfo from "./routes/StudentInfo.jsx";
-import TestPage from "./routes/TestPage.jsx";
-import InteractiveLesson from "./routes/services/InteractiveLesson.jsx";
-import ServicesList from "./routes/ServicesList.jsx";
-import EducationalResources from "./routes/services/EducationalResources.jsx";
-import SpiritualDevelopment from "./routes/services/SpiritualDevelopment.jsx";
-import CommunityEngagements from "./routes/services/CommunityEngagements.jsx";
-import PersonalGuidance from "./routes/services/PersonalGuidance.jsx";
-import LanguageSupport from "./routes/services/LanguageSupport.jsx";
-import FamilyFocused from "./routes/services/FamilyFocused.jsx";
-import IslamicEvents from "./routes/services/IslamicEvents.jsx";
-import YouthPrograms from "./routes/services/YouthPrograms.jsx";
-import AccountDeleted from "./routes/AccountDeleted.jsx";
-import Blogs from "./routes/blogs/Blogs.jsx";
-// import BlogDetail from "./components/blogs/BlogDetails.jsx";
+
+const Home = lazy(() => import("./routes/Home"));
+const Services = lazy(() => import("./routes/Services"));
+const About = lazy(() => import("./routes/About"));
+const Contact = lazy(() => import("./routes/Contact"));
+const Donate = lazy(() => import("./routes/Donate"));
+const Mission = lazy(() => import("./routes/Mission"));
+const Admission = lazy(() => import("./routes/Admission"));
+const CourseOverview = lazy(() => import("./components/CourseOverview"));
+const Login = lazy(() => import("./routes/Login"));
+const Register = lazy(() => import("./routes/Register"));
+const Courses = lazy(() => import("./routes/Courses"));
+const PrivacyPolicy = lazy(() => import("./routes/PrivacyPolicy.jsx"));
+const Profile = lazy(() => import("./routes/Profile.jsx"));
+const StudentInfo = lazy(() => import("./routes/StudentInfo.jsx"));
+const TestPage = lazy(() => import("./routes/TestPage.jsx"));
+const InteractiveLesson = lazy(() => import("./routes/services/InteractiveLesson.jsx"));
+const EducationalResources = lazy(() => import("./routes/services/EducationalResources.jsx"));
+const SpiritualDevelopment = lazy(() => import("./routes/services/SpiritualDevelopment.jsx"));
+const CommunityEngagements = lazy(() => import("./routes/services/CommunityEngagements.jsx"));
+const PersonalGuidance = lazy(() => import("./routes/services/PersonalGuidance.jsx"));
+const LanguageSupport = lazy(() => import("./routes/services/LanguageSupport.jsx"));
+const FamilyFocused = lazy(() => import("./routes/services/FamilyFocused.jsx"));
+const IslamicEvents = lazy(() => import("./routes/services/IslamicEvents.jsx"));
+const YouthPrograms = lazy(() => import("./routes/services/YouthPrograms.jsx"));
+const AccountDeleted = lazy(() => import("./routes/AccountDeleted.jsx"));
+const Blogs = lazy(() => import("./routes/blogs/Blogs.jsx"));
+const AdminAdmissions = lazy(() => import("./routes/AdminAdmissions.jsx"));
+
+const withSuspense = (node) => (
+  <Suspense
+    fallback={
+      <div className="grid min-h-[40vh] place-items-center text-sm text-slate-500">
+        Loading...
+      </div>
+    }
+  >
+    {node}
+  </Suspense>
+);
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,83 +57,81 @@ const router = createBrowserRouter([
       {
         path: "/",
         index: true,
-        element: <Home />,
+        element: withSuspense(<Home />),
       },
       {
         path: "courses",
-        element: <Courses />,
+        element: withSuspense(<Courses />),
       },
       {
         path: "courses/:slug",
-        element: <CourseOverview />,
+        element: withSuspense(<CourseOverview />),
       },
       {
         path: "services",
-        element: <Services />,
+        element: withSuspense(<Services />),
         children: [
-          { index: true, element: <Courses /> },
+          { index: true, element: withSuspense(<Courses />) },
           {
             path: "courses",
-            element: <Courses />,
+            element: withSuspense(<Courses />),
           },
-          { path: "courses/:slug", element: <CourseOverview /> },
+          { path: "courses/:slug", element: withSuspense(<CourseOverview />) },
           {
             path: "interactive-lessons",
-            element: <InteractiveLesson />,
+            element: withSuspense(<InteractiveLesson />),
           },
           {
             path: "educational-resources",
-            element: <EducationalResources />,
+            element: withSuspense(<EducationalResources />),
           },
           {
             path: "spiritual-development",
-            element: <SpiritualDevelopment />,
+            element: withSuspense(<SpiritualDevelopment />),
           },
           {
             path: "community-engagement",
-            element: <CommunityEngagements />,
+            element: withSuspense(<CommunityEngagements />),
           },
           {
             path: "personal-guidance",
-            element: <PersonalGuidance />,
+            element: withSuspense(<PersonalGuidance />),
           },
           {
             path: "language-support",
-            element: <LanguageSupport />,
+            element: withSuspense(<LanguageSupport />),
           },
           {
             path: "family-focused-services",
-            element: <FamilyFocused />,
+            element: withSuspense(<FamilyFocused />),
           },
           {
             path: "islamic-events",
-            element: <IslamicEvents />,
+            element: withSuspense(<IslamicEvents />),
           },
           {
             path: "youth-programs",
-            element: <YouthPrograms />,
+            element: withSuspense(<YouthPrograms />),
           },
         ],
       },
       {
         path: "blogs",
-        element: <Blogs />,
-        // children: [],
+        element: withSuspense(<Blogs />),
       },
-      // { path: "blogs/:slug", element: <BlogDetail /> },
-      { path: "about", element: <About /> },
-      { path: "mission", element: <Mission /> },
-      { path: "contact", element: <Contact /> },
-      { path: "donate", element: <Donate /> },
+      { path: "about", element: withSuspense(<About />) },
+      { path: "mission", element: withSuspense(<Mission />) },
+      { path: "contact", element: withSuspense(<Contact />) },
+      { path: "donate", element: withSuspense(<Donate />) },
       {
         path: "account-deleted",
-        elemen: <AccountDeleted />,
+        element: withSuspense(<AccountDeleted />),
       },
       {
         path: "admission",
         element: (
           <ProtectedRoute>
-            <Admission />
+            {withSuspense(<Admission />)}
           </ProtectedRoute>
         ),
       },
@@ -128,7 +139,7 @@ const router = createBrowserRouter([
         path: "login",
         element: (
           <NotLoggedIn>
-            <Login />
+            {withSuspense(<Login />)}
           </NotLoggedIn>
         ),
       },
@@ -136,17 +147,17 @@ const router = createBrowserRouter([
         path: "register",
         element: (
           <NotLoggedIn>
-            <Register />
+            {withSuspense(<Register />)}
           </NotLoggedIn>
         ),
       },
 
-      { path: "/privacy", element: <PrivacyPolicy /> },
+      { path: "/privacy", element: withSuspense(<PrivacyPolicy />) },
       {
         path: "/profile",
         element: (
           <ProtectedRoute>
-            <Profile />
+            {withSuspense(<Profile />)}
           </ProtectedRoute>
         ),
       },
@@ -154,11 +165,19 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <ProtectedRoute>
-            <StudentInfo />
+            {withSuspense(<StudentInfo />)}
           </ProtectedRoute>
         ),
       },
-      { path: "/test", element: <TestPage /> },
+      {
+        path: "/admin/admissions",
+        element: (
+          <AdminRoute>
+            {withSuspense(<AdminAdmissions />)}
+          </AdminRoute>
+        ),
+      },
+      { path: "/test", element: withSuspense(<TestPage />) },
     ],
   },
 ]);

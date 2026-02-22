@@ -1,4 +1,4 @@
-ï»¿import SeekingKnowledgeImg from "../assets/images/seeking-knowledge.svg";
+import SeekingKnowledgeImg from "../assets/images/seeking-knowledge.svg";
 import "../css/SeekingKnowledge.css";
 import { seekingKnowledge } from "../data/seekingKnowledge.js";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const SeekingKnowledge = () => {
         <div className="grid lg:grid-cols-2 gap-10 items-start max-w-6xl">
           {/* Left: Narrative + CTAs */}
           <div className="space-y-6 w-full">
-            <div className="inline-flex items-center gap-3 rounded-full bg-red-700/25 text-red-100 px-4 py-2 text-sm font-semibold shadow-sm">
+            <div className="inline-flex items-center gap-3 rounded-full bg-red-700/25 text-red-100 px-4 py-2 text-sm font-semibold ">
               <span className="h-2 w-2 rounded-full bg-amber-300 animate-pulse" />
               Seeking Knowledge
             </div>
@@ -24,29 +24,29 @@ const SeekingKnowledge = () => {
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               className="text-4xl md:text-5xl font-extrabold leading-tight"
             >
-              Learn with <span className="text-amber-300">ihsÄn</span>, act with
+              Learn with <span className="text-amber-300">ihsan</span>, act with
               humility, and pass it on.
             </motion.h1>
 
             <p className="text-lg leading-8 text-slate-200">
               The first command revealed was{" "}
-              <strong className="text-amber-200">â€œIqraâ€ (Read)</strong>. The
-              Qurâ€™an and Sunnah call every believer to pursue knowledge that
+              <strong className="text-amber-200">“Iqra” (Read)</strong>. The
+              Qur’an and Sunnah call every believer to pursue knowledge that
               illuminates the heart and benefits creation. Join live circles,
               reflect with mentors, and serve by teaching what you learn.
             </p>
 
-            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur px-6 py-5 shadow-lg space-y-2">
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur px-6 py-5  space-y-2">
               <p className="text-sm uppercase tracking-[0.18em] text-amber-200 font-semibold">
                 Prophetic Guidance
               </p>
               <p className="text-lg text-slate-50 leading-8">
-                â€œSeeking knowledge is an obligation upon every Muslim.â€ â€” Hadith
-                (Ibn MÄjah)
+                “Seeking knowledge is an obligation upon every Muslim.” — Hadith
+                (Ibn Majah)
               </p>
               <p className="text-slate-300 text-sm">
                 We weave every module around actionable sunnahs, adab of
-                learning, and daily adhkÄr.
+                learning, and daily adhkar.
               </p>
             </div>
 
@@ -59,7 +59,7 @@ const SeekingKnowledge = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.42, ease: "easeOut" }}
-                    className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 shadow-sm"
+                    className="rounded-2xl bg-white/5 border border-white/10 px-4 py-3 "
                   >
                     <p className="text-sm font-semibold uppercase tracking-[0.14em] text-amber-200">
                       {item.title}
@@ -75,7 +75,7 @@ const SeekingKnowledge = () => {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/register"
-                className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition"
+                className="bg-red-600 hover:bg-red-500 text-white px-6 py-3 rounded-full font-semibold  transition"
               >
                 Start Learning
               </Link>
@@ -92,11 +92,11 @@ const SeekingKnowledge = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden"
+              className="relative rounded-3xl border border-white/15 bg-white/5 backdrop-blur-xl  overflow-hidden"
             >
               <div className="p-6 space-y-5">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 rounded-2xl bg-red-700 text-white flex items-center justify-center text-xl font-black shadow-md">
+                  <div className="h-12 w-12 rounded-2xl bg-red-700 text-white flex items-center justify-center text-xl font-black ">
                     IQRA
                   </div>
                   <div>
@@ -110,7 +110,7 @@ const SeekingKnowledge = () => {
                 </div>
 
                 <img
-                  className="w-full rounded-2xl border border-white/10 shadow-sm object-cover"
+                  className="w-full rounded-2xl border border-white/10  object-cover"
                   src={SeekingKnowledgeImg}
                   alt="Interactive learning illustration"
                 />

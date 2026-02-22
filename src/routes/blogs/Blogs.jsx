@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { FiSearch, FiTag, FiClock, FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
@@ -136,7 +136,7 @@ const Blogs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white shadow-lg p-8 md:p-12"
+          className="relative overflow-hidden rounded-3xl border border-red-100 bg-white  p-8 md:p-12"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(248,113,113,0.15),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(251,191,36,0.18),transparent_35%)] pointer-events-none" />
           <div className="relative space-y-4 text-center">
@@ -149,7 +149,7 @@ const Blogs = () => {
             </h1>
             <p className="text-lg text-slate-700 max-w-3xl mx-auto">
               Practical guidance, reflections, and study notes rooted in Quran
-              and Sunnah—curated to nurture your heart, habits, and family.
+              and Sunnah�curated to nurture your heart, habits, and family.
             </p>
             <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-3">
               <div className="relative w-full md:w-96">
@@ -158,7 +158,7 @@ const Blogs = () => {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search topics, tags, or keywords..."
-                  className="w-full pl-10 pr-4 py-3 rounded-full bg-white border border-gray-200 shadow-sm focus:border-red-300 focus:ring-2 focus:ring-red-100 outline-none transition"
+                  className="w-full pl-10 pr-4 py-3 rounded-full bg-white border border-gray-200  focus:border-red-300 focus:ring-2 focus:ring-red-100 outline-none transition"
                 />
               </div>
               <div className="flex flex-wrap gap-2 justify-center">
@@ -168,7 +168,7 @@ const Blogs = () => {
                     onClick={() => setActiveCategory(cat)}
                     className={`px-3 py-2 rounded-full text-sm font-semibold border transition ${
                       activeCategory === cat
-                        ? "bg-red-600 text-white border-red-600 shadow-sm"
+                        ? "bg-red-600 text-white border-red-600 "
                         : "bg-white text-gray-700 border-gray-200 hover:border-red-200"
                     }`}
                   >
@@ -189,7 +189,7 @@ const Blogs = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.35, delay: index * 0.05 }}
               whileHover={{ y: -6, scale: 1.01 }}
-              className="group relative overflow-hidden rounded-2xl border border-red-100 bg-white shadow-sm hover:shadow-xl transition duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-red-100 bg-white   transition duration-300"
             >
               <div className="relative h-52">
                 <img

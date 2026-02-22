@@ -3,7 +3,7 @@ import '../../css/read-more/ReadmoreSeekingknowledge.css'
 const SeekingKnowledgeReadMore = ({readMoreToggle, setReadMoreToggle}) => {
   return (
     <>
-      <div className={readMoreToggle ? "readmore-seekingknowledge show-read-more bg-orange-300 shadow-2xl" : "readmore-seekingknowledge bg-orange-300 shadow-2xl"}>
+      <div className={readMoreToggle ? "readmore-seekingknowledge show-read-more bg-orange-300 " : "readmore-seekingknowledge bg-orange-300 "}>
       <div className="close" onClick={() => setReadMoreToggle(!readMoreToggle)}>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </div>

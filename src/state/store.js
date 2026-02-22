@@ -6,6 +6,7 @@ import admissionApis from "./userApis/admissionApis";
 import fileUploadApi from "./userApis/fileUploadApis";
 import paymentApi from "./userApis/paymentApi";
 import courseApi from "./courseApis/courses.api";
+import adminAdmissionApis from "./adminApis/adminAdmissionApis";
 export const store = configureStore({
   reducer: {
     course: courseReducer,
@@ -14,7 +15,8 @@ export const store = configureStore({
     [admissionApis.reducerPath]: admissionApis.reducer,
     [fileUploadApi.reducerPath]: fileUploadApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
-    [courseApi.reducerPath]: courseApi.reducer
+    [courseApi.reducerPath]: courseApi.reducer,
+    [adminAdmissionApis.reducerPath]: adminAdmissionApis.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -22,7 +24,8 @@ export const store = configureStore({
       .concat(admissionApis.middleware)
       .concat(fileUploadApi.middleware)
       .concat(paymentApi.middleware)
-      .concat(courseApi.middleware),
+      .concat(courseApi.middleware)
+      .concat(adminAdmissionApis.middleware),
 });
 
 export default store;

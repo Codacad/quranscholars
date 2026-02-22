@@ -4,7 +4,7 @@ const courseApi = createApi({
     reducerPath: 'courseApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_URL || "http://localhost:3000",
-        // credentials: "include",
+        credentials: "include",
     }),
     endpoints: (builder) => ({
         getCourses: builder.query({

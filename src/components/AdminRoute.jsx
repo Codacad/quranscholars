@@ -1,10 +1,11 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMeQuery } from "../state/userApis/userAuthApis";
-const ProtectedRoute = ({ children }) => {
+
+const AdminRoute = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const { isLoading } = useMeQuery();
+  const isAdmin = String(user?.role || "").trim().toLowerCase() === "admin";
 
   if (isLoading) {
     return (
@@ -15,10 +16,14 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!user) {
-    return <Navigate to={"/login"} replace />;
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
 };
 
-export default ProtectedRoute;
+export default AdminRoute;

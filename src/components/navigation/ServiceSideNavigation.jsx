@@ -109,7 +109,7 @@ const ServiceSideNavigation = ({ layout = "sidebar" }) => {
                   <motion.div
                     className={`relative z-10 flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm font-semibold transition-colors ${
                       isActive
-                        ? "text-white border-transparent shadow-md"
+                        ? "text-white border-transparent "
                         : "bg-white text-slate-700 border-gray-200 hover:border-red-200 hover:text-red-700"
                     }`}
                     transition={{ duration: 0.16, ease: "easeOut" }}

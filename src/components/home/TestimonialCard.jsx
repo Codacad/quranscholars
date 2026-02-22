@@ -2,14 +2,14 @@ import React from "react";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 const TestimonialCard = ({ testimonial, index }) => {
   return (
-    <div className="relative h-full rounded-3xl border border-white/15 bg-white/80 backdrop-blur shadow-xl overflow-hidden">
+    <div className="relative h-full rounded-3xl border border-white/15 bg-white/80 backdrop-blur  overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-red-100/60 via-white to-amber-100/50 opacity-80" />
       <div className="relative p-6 space-y-4 h-full flex flex-col">
         <div className="flex items-center gap-4">
           <img
             src={`https://i.pravatar.cc/150?img=${index + 10}`}
             alt={`${testimonial.name} avatar`}
-            className="h-14 w-14 rounded-2xl object-cover border border-white/50 shadow-sm"
+            className="h-14 w-14 rounded-2xl object-cover border border-white/50 "
           />
           <div>
             <p className="text-lg font-bold text-slate-900">

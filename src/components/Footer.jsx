@@ -1,8 +1,6 @@
 import Logo from "/images/Logo.svg";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 
 const Footer = () => {
   const columns = [
@@ -77,14 +75,23 @@ const Footer = () => {
               Get class openings, events, and study tips once a week. No spam.
             </p>
             <div className="mt-4 flex items-center gap-2">
-              <Input placeholder="you@example.com" type="email" className="bg-white" />
-              <Button className="whitespace-nowrap">Subscribe</Button>
+              <input
+                placeholder="you@example.com"
+                type="email"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800  outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
+              />
+              <button
+                type="button"
+                className="whitespace-nowrap rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90"
+              >
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-gray-200 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} QuranScholars. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} QuranScholars. All rights reserved.</p>
           <div className="flex gap-4">
             <Link to="/privacy" className="hover:text-primary">
               Privacy

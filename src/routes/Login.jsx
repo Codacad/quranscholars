@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "../state/userApis/userAuthApis";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SlLogin } from "react-icons/sl";
 import { MdErrorOutline } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
@@ -20,7 +20,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [login, { isLoading: isLoging }] = useLoginMutation();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -34,7 +33,6 @@ const Login = () => {
         setSuccess(response.data.message);
         setError("");
         dispatch(setUser(response.data));
-        localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/admission");
         setIsLoading(false);
       }
@@ -61,7 +59,7 @@ const Login = () => {
 
         <form
           onSubmit={handleLoginSubmit}
-          className="relative z-10 lg:w-[520px] md:w-[80%] sm:w-[90%] p-7 md:p-8 bg-white/90 backdrop-blur rounded-2xl border border-red-100 shadow-[0_20px_70px_-28px_rgba(220,38,38,0.45)]"
+          className="relative z-10 lg:w-[520px] md:w-[80%] sm:w-[90%] p-7 md:p-8 bg-white/90 backdrop-blur rounded-2xl border border-red-100 )]"
         >
           {/* Header */}
           <div className="form-header text-center mb-6 space-y-2">
@@ -156,7 +154,7 @@ const Login = () => {
             disabled={isLoading}
             className={`${
               isLoading ? "opacity-30" : "opacity-100"
-            } w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4 shadow-md`}
+            } w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded-xl transition-all duration-200 ease-in-out flex items-center justify-center gap-2 mb-4 `}
           >
             {isLoading ? (
               <Loader2 className="in-button-loader" />

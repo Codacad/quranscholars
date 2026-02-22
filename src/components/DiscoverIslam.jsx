@@ -22,7 +22,7 @@ const DiscoverIslam = () => {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           {/* Left: Text and feature stack */}
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 shadow-sm">
+            <div className="inline-flex items-center gap-3 rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 ">
               <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
               Illuminating hearts with authentic scholarship
             </div>
@@ -53,7 +53,7 @@ const DiscoverIslam = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="rounded-2xl border border-white/50 bg-white/70 backdrop-blur shadow-md px-5 py-4 space-y-1"
+                  className="rounded-2xl border border-white/50 bg-white/70 backdrop-blur  px-5 py-4 space-y-1"
                 >
                   <div className="flex items-center gap-3 text-red-900 text-xl font-semibold">
                     <span>{item.icon}</span>
@@ -74,7 +74,7 @@ const DiscoverIslam = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.42, ease: "easeOut" }}
-                  className="rounded-2xl bg-gradient-to-br from-red-900 to-red-700 text-white px-4 py-5 shadow-lg"
+                  className="rounded-2xl bg-gradient-to-br from-red-900 to-red-700 text-white px-4 py-5 "
                 >
                   <p className="text-3xl font-black">{stat.value}</p>
                   <p className="text-sm uppercase tracking-[0.14em] mt-1 text-white/80">
@@ -84,7 +84,7 @@ const DiscoverIslam = () => {
               ))}
             </div>
 
-            <div className="rounded-2xl border border-red-100 bg-white/80 backdrop-blur px-6 py-5 shadow-md space-y-3">
+            <div className="rounded-2xl border border-red-100 bg-white/80 backdrop-blur px-6 py-5  space-y-3">
               <p className="text-sm uppercase tracking-[0.18em] text-red-800 font-semibold">
                 Qur'an & Sunnah Spotlight
               </p>
@@ -99,7 +99,7 @@ const DiscoverIslam = () => {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/courses"
-                  className="bg-red-900 hover:bg-red-700 transition-all px-6 py-3 rounded-full text-white text-center shadow-lg"
+                  className="bg-red-900 hover:bg-red-700 transition-all px-6 py-3 rounded-full text-white text-center "
                 >
                   Explore Courses
                 </Link>
@@ -116,7 +116,7 @@ const DiscoverIslam = () => {
           {/* Right: Visual panel */}
           <div className="relative">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-red-100 via-white to-amber-50 blur-xl" />
-            <div className="relative rounded-3xl border border-white/60 bg-white/80 backdrop-blur-lg shadow-2xl overflow-hidden">
+            <div className="relative rounded-3xl border border-white/60 bg-white/80 backdrop-blur-lg  overflow-hidden">
               <div className="p-6 space-y-4">
                 <div className="flex items-center gap-3">
                   <div>
@@ -132,7 +132,7 @@ const DiscoverIslam = () => {
                 <img
                   src={WelcomeImgTeaching}
                   alt="Interactive teaching"
-                  className="w-full rounded-2xl border border-red-100 shadow-sm"
+                  className="w-full rounded-2xl border border-red-100 "
                 />
 
                 <div className="grid gap-3">
@@ -149,7 +149,7 @@ const DiscoverIslam = () => {
                       }}
                       className="flex items-start gap-3 rounded-2xl bg-red-50/70 border border-red-100 px-4 py-3"
                     >
-                      <div className="h-9 w-9 rounded-full bg-white text-red-900 font-black flex items-center justify-center shadow-sm">
+                      <div className="h-9 w-9 rounded-full bg-white text-red-900 font-black flex items-center justify-center ">
                         {idx + 1}
                       </div>
                       <div>
@@ -164,7 +164,7 @@ const DiscoverIslam = () => {
                   ))}
                 </div>
 
-                <div className="rounded-2xl bg-slate-900 text-white px-5 py-4 shadow-md">
+                <div className="rounded-2xl bg-slate-900 text-white px-5 py-4 ">
                   <p className="text-sm uppercase tracking-[0.18em] text-amber-200">
                     Verse to Live By
                   </p>
@@ -178,7 +178,7 @@ const DiscoverIslam = () => {
                   <img
                     src={WelcomeImgPhone}
                     alt="Learning on phone"
-                    className="h-12 w-12 rounded-xl border border-red-100 shadow-sm object-cover"
+                    className="h-12 w-12 rounded-xl border border-red-100  object-cover"
                   />
                   <p>
                     Mobile-friendly classrooms, downloadable notes, and session

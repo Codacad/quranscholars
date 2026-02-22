@@ -23,7 +23,6 @@ export const useEditStudentDetails = () => {
   // Initialize userDetails when studentDetails is available
   useEffect(() => {
     if (!studentDetails) return;
-
     const clean = {
       fullName: studentDetails.fullName || "",
       email: studentDetails.email || "",
