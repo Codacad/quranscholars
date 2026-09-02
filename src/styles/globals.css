@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@import "./fonts.css";
+@import "./theme.css";
+@import "./components.css";
+@import "./utilities.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@layer base {
+  * {
+    @apply p-0 m-0 box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-body;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    @apply max-w-full;
+  }
+}

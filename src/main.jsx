@@ -2,182 +2,177 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import App from "./App.jsx";
-import "./index.css";
-import { store } from "./state/store.js";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import AdminRoute from "./components/AdminRoute.jsx";
-import NotLoggedIn from "./components/NotLoggedIn.jsx";
+import App from "@/app/App.jsx";
+import "@/styles/globals.css";
+import { store } from "@/app/store.js";
+import ProtectedRoute from "@/components/guards/ProtectedRoute.jsx";
+import AdminRoute from "@/components/guards/AdminRoute.jsx";
+import NotLoggedIn from "@/components/guards/NotLoggedIn.jsx";
+import WebSocketClient from "@/realtime/WebSocketClient.jsx";
+import BerrySandLmsDemo from "./assets/example themes/berry-sand-lms";
+const Home = lazy(() => import("@/pages/home/Home.jsx"));
+const Services = lazy(() => import("@/pages/services/Services.jsx"));
+const About = lazy(() => import("@/pages/about/About.jsx"));
+const Contact = lazy(() => import("@/pages/contact/Contact.jsx"));
+const Donate = lazy(() => import("@/pages/donate/Donate.jsx"));
+const Mission = lazy(() => import("@/pages/about/Mission.jsx"));
+const Admission = lazy(() => import("@/pages/admissions/Admission.jsx"));
+const CourseOverview = lazy(() => import("@/pages/courses/CourseOverview.jsx"));
+const Login = lazy(() => import("@/pages/auth/Login.jsx"));
+const Register = lazy(() => import("@/pages/auth/Register.jsx"));
+const Courses = lazy(() => import("@/pages/courses/Courses.jsx"));
+const PrivacyPolicy = lazy(() => import("@/pages/legal/PrivacyPolicy.jsx"));
+const Profile = lazy(() => import("@/pages/account/Profile.jsx"));
+const StudentInfo = lazy(() => import("@/pages/account/StudentInfo.jsx"));
+const TestPage = lazy(() => import("@/pages/dev/TestPage.jsx"));
 
-const Home = lazy(() => import("./routes/Home"));
-const Services = lazy(() => import("./routes/Services"));
-const About = lazy(() => import("./routes/About"));
-const Contact = lazy(() => import("./routes/Contact"));
-const Donate = lazy(() => import("./routes/Donate"));
-const Mission = lazy(() => import("./routes/Mission"));
-const Admission = lazy(() => import("./routes/Admission"));
-const CourseOverview = lazy(() => import("./components/CourseOverview"));
-const Login = lazy(() => import("./routes/Login"));
-const Register = lazy(() => import("./routes/Register"));
-const Courses = lazy(() => import("./routes/Courses"));
-const PrivacyPolicy = lazy(() => import("./routes/PrivacyPolicy.jsx"));
-const Profile = lazy(() => import("./routes/Profile.jsx"));
-const StudentInfo = lazy(() => import("./routes/StudentInfo.jsx"));
-const TestPage = lazy(() => import("./routes/TestPage.jsx"));
-const InteractiveLesson = lazy(() => import("./routes/services/InteractiveLesson.jsx"));
-const EducationalResources = lazy(() => import("./routes/services/EducationalResources.jsx"));
-const SpiritualDevelopment = lazy(() => import("./routes/services/SpiritualDevelopment.jsx"));
-const CommunityEngagements = lazy(() => import("./routes/services/CommunityEngagements.jsx"));
-const PersonalGuidance = lazy(() => import("./routes/services/PersonalGuidance.jsx"));
-const LanguageSupport = lazy(() => import("./routes/services/LanguageSupport.jsx"));
-const FamilyFocused = lazy(() => import("./routes/services/FamilyFocused.jsx"));
-const IslamicEvents = lazy(() => import("./routes/services/IslamicEvents.jsx"));
-const YouthPrograms = lazy(() => import("./routes/services/YouthPrograms.jsx"));
-const AccountDeleted = lazy(() => import("./routes/AccountDeleted.jsx"));
-const Blogs = lazy(() => import("./routes/blogs/Blogs.jsx"));
-const AdminAdmissions = lazy(() => import("./routes/AdminAdmissions.jsx"));
+const InteractiveLesson = lazy(
+  () => import("@/pages/services/InteractiveLesson.jsx"),
+);
+const EducationalResources = lazy(
+  () => import("@/pages/services/EducationalResources.jsx"),
+);
+const SpiritualDevelopment = lazy(
+  () => import("@/pages/services/SpiritualDevelopment.jsx"),
+);
+const CommunityEngagements = lazy(
+  () => import("@/pages/services/CommunityEngagements.jsx"),
+);
+const PersonalGuidance = lazy(
+  () => import("@/pages/services/PersonalGuidance.jsx"),
+);
+const LanguageSupport = lazy(
+  () => import("@/pages/services/LanguageSupport.jsx"),
+);
+const FamilyFocused = lazy(() => import("@/pages/services/FamilyFocused.jsx"));
+const IslamicEvents = lazy(() => import("@/pages/services/IslamicEvents.jsx"));
+const YouthPrograms = lazy(() => import("@/pages/services/YouthPrograms.jsx"));
+const AccountDeleted = lazy(() => import("@/pages/account/AccountDeleted.jsx"));
+const Blogs = lazy(() => import("@/pages/blog/Blogs.jsx"));
 
-const withSuspense = (node) => (
-  <Suspense
-    fallback={
-      <div className="grid min-h-[40vh] place-items-center text-sm text-slate-500">
-        Loading...
-      </div>
-    }
-  >
-    {node}
-  </Suspense>
+const AdminAdmissions = lazy(
+  () => import("@/pages/admissions/AdminAdmissions.jsx"),
+);
+
+const WithSuspense = (node) => (
+  <Suspense fallback={<div>Loading...</div>}>{node}</Suspense>
 );
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: WithSuspense(<App />),
     children: [
       {
         path: "/",
         index: true,
-        element: withSuspense(<Home />),
+        element: <Home />,
+      },
+      {
+        path: "example-theme",
+        element: <BerrySandLmsDemo />,
       },
       {
         path: "courses",
-        element: withSuspense(<Courses />),
+        element: WithSuspense(<Courses />),
       },
       {
         path: "courses/:slug",
-        element: withSuspense(<CourseOverview />),
+        element: WithSuspense(<CourseOverview />),
       },
       {
         path: "services",
-        element: withSuspense(<Services />),
+        element: WithSuspense(<Services />),
         children: [
-          { index: true, element: withSuspense(<Courses />) },
+          { index: true, element: WithSuspense(<Courses />) },
           {
             path: "courses",
-            element: withSuspense(<Courses />),
+            element: WithSuspense(<Courses />),
           },
-          { path: "courses/:slug", element: withSuspense(<CourseOverview />) },
+          { path: "courses/:slug", element: WithSuspense(<CourseOverview />) },
           {
             path: "interactive-lessons",
-            element: withSuspense(<InteractiveLesson />),
+            element: WithSuspense(<InteractiveLesson />),
           },
           {
             path: "educational-resources",
-            element: withSuspense(<EducationalResources />),
+            element: WithSuspense(<EducationalResources />),
           },
           {
             path: "spiritual-development",
-            element: withSuspense(<SpiritualDevelopment />),
+            element: WithSuspense(<SpiritualDevelopment />),
           },
           {
             path: "community-engagement",
-            element: withSuspense(<CommunityEngagements />),
+            element: WithSuspense(<CommunityEngagements />),
           },
           {
             path: "personal-guidance",
-            element: withSuspense(<PersonalGuidance />),
+            element: WithSuspense(<PersonalGuidance />),
           },
           {
             path: "language-support",
-            element: withSuspense(<LanguageSupport />),
+            element: WithSuspense(<LanguageSupport />),
           },
           {
             path: "family-focused-services",
-            element: withSuspense(<FamilyFocused />),
+            element: WithSuspense(<FamilyFocused />),
           },
           {
             path: "islamic-events",
-            element: withSuspense(<IslamicEvents />),
+            element: WithSuspense(<IslamicEvents />),
           },
           {
             path: "youth-programs",
-            element: withSuspense(<YouthPrograms />),
+            element: WithSuspense(<YouthPrograms />),
           },
         ],
       },
       {
-        path: "blogs",
-        element: withSuspense(<Blogs />),
+        path: "websocket-test",
+        element: WithSuspense(<WebSocketClient />),
       },
-      { path: "about", element: withSuspense(<About />) },
-      { path: "mission", element: withSuspense(<Mission />) },
-      { path: "contact", element: withSuspense(<Contact />) },
-      { path: "donate", element: withSuspense(<Donate />) },
+      {
+        path: "blogs",
+        element: WithSuspense(<Blogs />),
+      },
+      { path: "about", element: WithSuspense(<About />) },
+      { path: "mission", element: WithSuspense(<Mission />) },
+      { path: "contact", element: WithSuspense(<Contact />) },
+      { path: "donate", element: WithSuspense(<Donate />) },
       {
         path: "account-deleted",
-        element: withSuspense(<AccountDeleted />),
+        element: WithSuspense(<AccountDeleted />),
       },
       {
         path: "admission",
-        element: (
-          <ProtectedRoute>
-            {withSuspense(<Admission />)}
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute>{WithSuspense(<Admission />)}</ProtectedRoute>,
       },
       {
         path: "login",
-        element: (
-          <NotLoggedIn>
-            {withSuspense(<Login />)}
-          </NotLoggedIn>
-        ),
+        element: <NotLoggedIn>{WithSuspense(<Login />)}</NotLoggedIn>,
       },
       {
         path: "register",
-        element: (
-          <NotLoggedIn>
-            {withSuspense(<Register />)}
-          </NotLoggedIn>
-        ),
+        element: <NotLoggedIn>{WithSuspense(<Register />)}</NotLoggedIn>,
       },
 
-      { path: "/privacy", element: withSuspense(<PrivacyPolicy />) },
+      { path: "/privacy", element: WithSuspense(<PrivacyPolicy />) },
       {
         path: "/profile",
-        element: (
-          <ProtectedRoute>
-            {withSuspense(<Profile />)}
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute>{WithSuspense(<Profile />)}</ProtectedRoute>,
       },
       {
         path: "/dashboard",
         element: (
-          <ProtectedRoute>
-            {withSuspense(<StudentInfo />)}
-          </ProtectedRoute>
+          <ProtectedRoute>{WithSuspense(<StudentInfo />)}</ProtectedRoute>
         ),
       },
       {
         path: "/admin/admissions",
-        element: (
-          <AdminRoute>
-            {withSuspense(<AdminAdmissions />)}
-          </AdminRoute>
-        ),
+        element: <AdminRoute>{WithSuspense(<AdminAdmissions />)}</AdminRoute>,
       },
-      { path: "/test", element: withSuspense(<TestPage />) },
+      { path: "/test", element: WithSuspense(<TestPage />) },
     ],
   },
 ]);

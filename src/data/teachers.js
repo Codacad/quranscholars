@@ -1,5 +1,5 @@
-import HijabImage from "../assets/images/hijab.png";
-import MuslimMan from "../assets/images/muslim.png";
+import HijabImage from "@/assets/images/hijab.png";
+import MuslimMan from "@/assets/images/muslim.png";
 export const teachers = [
     {
         name: "Farman Farooqui",

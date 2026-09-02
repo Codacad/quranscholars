@@ -1,0 +1,31 @@
+import { configureStore } from "@reduxjs/toolkit";
+import courseReducer from "@/store/slices/courseSlice.js";
+import userAuthApi from "@/services/api/user/userAuthApis.js";
+import userSlice from "@/store/slices/userSlice.js";
+import admissionApis from "@/services/api/user/admissionApis.js";
+import fileUploadApi from "@/services/api/user/fileUploadApis.js";
+import paymentApi from "@/services/api/user/paymentApi.js";
+import courseApi from "@/services/api/courses/courses.api.js";
+import adminAdmissionApis from "@/services/api/admin/adminAdmissionApis.js";
+export const store = configureStore({
+  reducer: {
+    course: courseReducer,
+    user: userSlice,
+    [userAuthApi.reducerPath]: userAuthApi.reducer,
+    [admissionApis.reducerPath]: admissionApis.reducer,
+    [fileUploadApi.reducerPath]: fileUploadApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
+    [courseApi.reducerPath]: courseApi.reducer,
+    [adminAdmissionApis.reducerPath]: adminAdmissionApis.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware()
+      .concat(userAuthApi.middleware)
+      .concat(admissionApis.middleware)
+      .concat(fileUploadApi.middleware)
+      .concat(paymentApi.middleware)
+      .concat(courseApi.middleware)
+      .concat(adminAdmissionApis.middleware),
+});
+
+export default store;

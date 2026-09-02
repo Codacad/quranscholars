@@ -1,6 +1,6 @@
-import Steps from "../assets/images/blog/steps.jpg";
-import Tajweed from "../assets/images/blog/tajweed.jpg";
-import Sunnah from "../assets/images/blog/sunnah.jpg";
+import Steps from "@/assets/images/blog/steps.jpg";
+import Tajweed from "@/assets/images/blog/tajweed.jpg";
+import Sunnah from "@/assets/images/blog/sunnah.jpg";
 export const blogPosts = [
     {
         title: "5 Simple Steps to Start Learning the Quran",
