@@ -1,0 +1,44 @@
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, BookOpenCheck, Clock3, PlayCircle } from "lucide-react";
+import LearningCourseCard from "@/features/recorded-courses/components/LearningCourseCard.jsx";
+import { getRecordedCourses } from "@/features/recorded-courses/services/recordedCoursesRepository.js";
+import { readLearningState, subscribeToLearning } from "@/features/recorded-courses/services/learningStorage.js";
+
+const MyLearning = () => {
+  const [learningState, setLearningState] = useState(readLearningState);
+  const allCourses = useMemo(() => getRecordedCourses(), []);
+  const enrolledCourses = allCourses
+    .filter((course) => learningState.enrollments?.[course.id])
+    .map((course) => ({ course, enrollment: learningState.enrollments[course.id] }));
+  const completedLessons = enrolledCourses.reduce((total, item) => total + (item.enrollment.completedLessonIds?.length || 0), 0);
+  const totalLessons = enrolledCourses.reduce((total, item) => total + item.course.totalLessons, 0);
+
+  useEffect(() => subscribeToLearning(() => setLearningState(readLearningState())), []);
+
+  return (
+    <main className="min-h-[70vh] bg-[#fbfcfa] px-4 py-12 text-[#172b24] sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex flex-col gap-6 border-b border-[#dfe6e2] pb-8 sm:flex-row sm:items-end sm:justify-between">
+          <div><p className="text-xs font-black uppercase tracking-[0.15em] text-primary">Student learning area</p><h1 className="mt-2 font-display text-[clamp(2.5rem,5vw,4.2rem)] font-black leading-none tracking-[-0.045em]">My Learning</h1><p className="mt-4 max-w-2xl text-base font-medium leading-7 text-[#68766f]">Continue your recorded courses, review completed lessons, and keep your study momentum in one place.</p></div>
+          <Link to="/recorded-courses" className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-[#ccd8d2] bg-white px-4 text-sm font-black text-primary no-underline transition hover:bg-[#f0f7f4]">Browse courses <ArrowRight className="size-4" /></Link>
+        </div>
+
+        {enrolledCourses.length ? (
+          <>
+            <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl border border-[#dfe6e2] bg-white p-5"><dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.11em] text-[#718079]"><BookOpenCheck className="size-4 text-primary" />Enrolled</dt><dd className="mt-2 font-display text-3xl font-black">{enrolledCourses.length}</dd></div>
+              <div className="rounded-xl border border-[#dfe6e2] bg-white p-5"><dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.11em] text-[#718079]"><PlayCircle className="size-4 text-primary" />Lessons completed</dt><dd className="mt-2 font-display text-3xl font-black">{completedLessons}</dd></div>
+              <div className="rounded-xl border border-[#dfe6e2] bg-white p-5"><dt className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.11em] text-[#718079]"><Clock3 className="size-4 text-primary" />Overall progress</dt><dd className="mt-2 font-display text-3xl font-black">{totalLessons ? Math.round((completedLessons / totalLessons) * 100) : 0}%</dd></div>
+            </dl>
+            <section className="mt-10" aria-labelledby="courses-in-progress"><div className="flex items-center justify-between gap-4"><h2 id="courses-in-progress" className="font-display text-2xl font-black">Courses in progress</h2><span className="text-sm font-bold text-[#718079]">Progress saves on this device for now</span></div><div className="mt-5 grid gap-5">{enrolledCourses.map(({ course, enrollment }) => <LearningCourseCard key={course.id} course={course} enrollment={enrollment} />)}</div></section>
+          </>
+        ) : (
+          <section className="mt-10 rounded-2xl border border-dashed border-[#cbd8d1] bg-white p-10 text-center"><span className="mx-auto grid size-14 place-items-center rounded-xl bg-[#e8f4f0] text-primary"><BookOpenCheck className="size-6" /></span><h2 className="mt-5 font-display text-2xl font-black">Your learning library is ready</h2><p className="mx-auto mt-3 max-w-md text-sm font-medium leading-6 text-[#68766f]">Courses you purchase or enroll in will appear here with saved lesson progress.</p><Link to="/recorded-courses" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">Find a recorded course <ArrowRight className="size-4" /></Link></section>
+        )}
+      </div>
+    </main>
+  );
+};
+
+export default MyLearning;

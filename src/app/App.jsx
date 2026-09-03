@@ -12,6 +12,7 @@ function App() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const pathName = useLocation();
+  const isCoursePlayer = pathName.pathname.startsWith("/learn/");
   const navigation = useNavigation();
   const [isAppBooting, setIsAppBooting] = useState(true);
   const {
@@ -78,9 +79,9 @@ function App() {
   return (
     <>
       <div>
-        <Navbar />
+        {!isCoursePlayer && <Navbar />}
         <Outlet />
-        <Footer />
+        {!isCoursePlayer && <Footer />}
       </div>
     </>);
 

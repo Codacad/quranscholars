@@ -3,15 +3,6 @@
     @apply visible pointer-events-auto translate-y-0 opacity-100;
   }
 
-  .mobile-menu-wrapper:has(.mobile-menu-panel.active) {
-    background: rgba(43, 33, 26, 0.34);
-    pointer-events: auto;
-  }
-
-  .mobile-menu-panel.active {
-    @apply translate-x-0;
-  }
-
   .page-container {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }

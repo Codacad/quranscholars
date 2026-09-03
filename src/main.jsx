@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLoader from "@/components/feedback/AppLoader.jsx";
 import { Provider } from "react-redux";
 import App from "@/app/App.jsx";
 import "@/styles/globals.css";
@@ -21,6 +22,16 @@ const CourseOverview = lazy(() => import("@/pages/courses/CourseOverview.jsx"));
 const Login = lazy(() => import("@/pages/auth/Login.jsx"));
 const Register = lazy(() => import("@/pages/auth/Register.jsx"));
 const Courses = lazy(() => import("@/pages/courses/Courses.jsx"));
+const RecordedCourses = lazy(
+  () => import("@/pages/recorded-courses/RecordedCourses.jsx"),
+);
+const RecordedCourseDetails = lazy(
+  () => import("@/pages/recorded-courses/RecordedCourseDetails.jsx"),
+);
+const RecordedCoursePlayer = lazy(
+  () => import("@/pages/recorded-courses/RecordedCoursePlayer.jsx"),
+);
+const MyLearning = lazy(() => import("@/pages/account/MyLearning.jsx"));
 const PrivacyPolicy = lazy(() => import("@/pages/legal/PrivacyPolicy.jsx"));
 const Profile = lazy(() => import("@/pages/account/Profile.jsx"));
 const StudentInfo = lazy(() => import("@/pages/account/StudentInfo.jsx"));
@@ -55,7 +66,7 @@ const AdminAdmissions = lazy(
 );
 
 const WithSuspense = (node) => (
-  <Suspense fallback={<div>Loading...</div>}>{node}</Suspense>
+  <Suspense fallback={<AppLoader />}>{node}</Suspense>
 );
 
 const router = createBrowserRouter([
@@ -74,105 +85,119 @@ const router = createBrowserRouter([
       },
       {
         path: "courses",
-        element: WithSuspense(<Courses />),
+        element: <Courses />,
       },
       {
         path: "courses/:slug",
-        element: WithSuspense(<CourseOverview />),
+        element: <CourseOverview />,
+      },
+      {
+        path: "recorded-courses",
+        element: <RecordedCourses />,
+      },
+      {
+        path: "recorded-courses/:slug",
+        element: <RecordedCourseDetails />,
+      },
+      {
+        path: "my-learning",
+        element: <ProtectedRoute>{<MyLearning />}</ProtectedRoute>,
+      },
+      {
+        path: "learn/:slug/:lessonId",
+        element: <ProtectedRoute>{<RecordedCoursePlayer />}</ProtectedRoute>,
       },
       {
         path: "services",
-        element: WithSuspense(<Services />),
+        element: <Services />,
         children: [
-          { index: true, element: WithSuspense(<Courses />) },
+          { index: true, element: <Courses /> },
           {
             path: "courses",
-            element: WithSuspense(<Courses />),
+            element: <Courses />,
           },
-          { path: "courses/:slug", element: WithSuspense(<CourseOverview />) },
+          { path: "courses/:slug", element: <CourseOverview /> },
           {
             path: "interactive-lessons",
-            element: WithSuspense(<InteractiveLesson />),
+            element: <InteractiveLesson />,
           },
           {
             path: "educational-resources",
-            element: WithSuspense(<EducationalResources />),
+            element: <EducationalResources />,
           },
           {
             path: "spiritual-development",
-            element: WithSuspense(<SpiritualDevelopment />),
+            element: <SpiritualDevelopment />,
           },
           {
             path: "community-engagement",
-            element: WithSuspense(<CommunityEngagements />),
+            element: <CommunityEngagements />,
           },
           {
             path: "personal-guidance",
-            element: WithSuspense(<PersonalGuidance />),
+            element: <PersonalGuidance />,
           },
           {
             path: "language-support",
-            element: WithSuspense(<LanguageSupport />),
+            element: <LanguageSupport />,
           },
           {
             path: "family-focused-services",
-            element: WithSuspense(<FamilyFocused />),
+            element: <FamilyFocused />,
           },
           {
             path: "islamic-events",
-            element: WithSuspense(<IslamicEvents />),
+            element: <IslamicEvents />,
           },
           {
             path: "youth-programs",
-            element: WithSuspense(<YouthPrograms />),
+            element: <YouthPrograms />,
           },
         ],
       },
       {
         path: "websocket-test",
-        element: WithSuspense(<WebSocketClient />),
+        element: <WebSocketClient />,
       },
       {
         path: "blogs",
-        element: WithSuspense(<Blogs />),
+        element: <Blogs />,
       },
-      { path: "about", element: WithSuspense(<About />) },
-      { path: "mission", element: WithSuspense(<Mission />) },
-      { path: "contact", element: WithSuspense(<Contact />) },
-      { path: "donate", element: WithSuspense(<Donate />) },
+      { path: "about", element: <About /> },
+      { path: "mission", element: <Mission /> },
+      { path: "contact", element: <Contact /> },
+      { path: "donate", element: <Donate /> },
       {
         path: "account-deleted",
-        element: WithSuspense(<AccountDeleted />),
+        element: <AccountDeleted />,
       },
       {
         path: "admission",
-        element: <ProtectedRoute>{WithSuspense(<Admission />)}</ProtectedRoute>,
+        element: <ProtectedRoute>{<Admission />}</ProtectedRoute>,
       },
       {
         path: "login",
-        element: <NotLoggedIn>{WithSuspense(<Login />)}</NotLoggedIn>,
+        element: <NotLoggedIn>{<Login />}</NotLoggedIn>,
       },
       {
         path: "register",
-        element: <NotLoggedIn>{WithSuspense(<Register />)}</NotLoggedIn>,
+        element: <NotLoggedIn>{<Register />}</NotLoggedIn>,
       },
 
-      { path: "/privacy", element: WithSuspense(<PrivacyPolicy />) },
+      { path: "/privacy", element: <PrivacyPolicy /> },
       {
         path: "/profile",
-        element: <ProtectedRoute>{WithSuspense(<Profile />)}</ProtectedRoute>,
+        element: <ProtectedRoute>{<Profile />}</ProtectedRoute>,
       },
       {
         path: "/dashboard",
-        element: (
-          <ProtectedRoute>{WithSuspense(<StudentInfo />)}</ProtectedRoute>
-        ),
+        element: <ProtectedRoute>{<StudentInfo />}</ProtectedRoute>,
       },
       {
         path: "/admin/admissions",
-        element: <AdminRoute>{WithSuspense(<AdminAdmissions />)}</AdminRoute>,
+        element: <AdminRoute>{<AdminAdmissions />}</AdminRoute>,
       },
-      { path: "/test", element: WithSuspense(<TestPage />) },
+      { path: "/test", element: <TestPage /> },
     ],
   },
 ]);

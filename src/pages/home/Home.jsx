@@ -6,7 +6,6 @@ import {
   CalendarCheck,
   Check,
   ChevronDown,
-  GraduationCap,
   Headphones,
   Play,
   Quote,
@@ -18,12 +17,15 @@ import {
   showcaseStats,
   showcasePath,
   learningFormats,
-  featuredCourses,
   platformFeatures,
   teachers,
   testimonials,
   faqs,
 } from "@/data/homeData.js";
+import RecordedCourseCard from "@/features/recorded-courses/components/RecordedCourseCard.jsx";
+import { getFeaturedRecordedCourses } from "@/features/recorded-courses/services/recordedCoursesRepository.js";
+
+const homeRecordedCourses = getFeaturedRecordedCourses(3);
 
 const SectionLabel = ({ children, light = false }) => (
   <div
@@ -130,14 +132,14 @@ const Home = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link
-                to="/courses"
+                to="/recorded-courses"
                 className="group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg bg-[#f4c95d] px-6 text-sm font-black text-[#102f2a] no-underline shadow-[0_16px_38px_rgba(0,0,0,.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffd978] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f4c95d]"
               >
                 Explore courses
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                to="/register"
+                to="/courses"
                 className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg border border-white/[.24] bg-white/10 px-6 text-sm font-black text-white no-underline backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:bg-white/[.16] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <Headphones className="size-[1.1rem] text-[#9ad8ca]" />
@@ -190,7 +192,7 @@ const Home = () => {
                   </h2>
                 </div>
                 <Link
-                  to="/courses"
+                  to="/recorded-courses/tajweed-foundations-recite-with-confidence"
                   aria-label="Play course preview"
                   className="grid size-11 shrink-0 place-items-center rounded-lg bg-white text-[#0f766e] transition hover:scale-105"
                 >
@@ -284,64 +286,27 @@ const Home = () => {
         >
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <SectionLabel>Start with a learning path</SectionLabel>
+              <SectionLabel>Featured recorded courses</SectionLabel>
               <h2 className="text-balance font-display text-[clamp(2.2rem,4vw,3.65rem)] font-black leading-[1.04] tracking-[-0.045em]">
-                Study what matters, in the format that fits.
+                Start now. Learn at your own pace.
               </h2>
               <p className="mt-5 max-w-xl text-base font-medium leading-relaxed text-[#66736e]">
-                Choose a focused course, join live mentorship, or blend both
-                into a learning rhythm you can sustain.
+                Learn through professional, structured video lessons and return
+                exactly where you left off.
               </p>
             </div>
             <Link
-              to="/courses"
+              to="/recorded-courses"
               className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline"
             >
-              View all courses
+              View recorded courses
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {featuredCourses.map((course) => (
-              <article
-                className="group overflow-hidden rounded-[1.6rem] border border-[#e0e5e1] bg-white shadow-[0_12px_40px_rgba(28,55,46,.06)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_55px_rgba(28,55,46,.12)]"
-                key={course.title}
-              >
-                <div
-                  className={
-                    "relative aspect-[1.45] overflow-hidden " + course.tone
-                  }
-                >
-                  <div className="absolute left-5 top-5 z-10 rounded-full border border-white/65 bg-white/85 px-3 py-1.5 text-[0.66rem] font-black uppercase tracking-[0.13em] text-[#30534a] backdrop-blur">
-                    {course.format}
-                  </div>
-                  <img
-                    className="size-full object-contain p-5 transition duration-500 group-hover:scale-[1.04]"
-                    src={course.image}
-                    alt=""
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs font-extrabold text-[#78847f]">
-                    <GraduationCap className="size-4 text-primary" />
-                    {course.level}
-                  </div>
-                  <h3 className="mt-4 font-display text-2xl font-black tracking-[-0.03em] text-[#172a23]">
-                    {course.title}
-                  </h3>
-                  <p className="mt-3 min-h-[4.5rem] text-sm font-medium leading-relaxed text-[#66736e]">
-                    {course.description}
-                  </p>
-                  <Link
-                    to="/courses"
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-black text-primary no-underline"
-                  >
-                    Explore course
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </article>
+            {homeRecordedCourses.map((course) => (
+              <RecordedCourseCard key={course.id} course={course} />
             ))}
           </div>
         </motion.div>
@@ -419,7 +384,7 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 grid place-items-center">
                   <Link
-                    to="/courses"
+                    to="/recorded-courses/tajweed-foundations-recite-with-confidence"
                     aria-label="Play course preview"
                     className="grid size-17 place-items-center rounded-full border-4 border-white/40 bg-white text-primary shadow-xl transition hover:scale-105"
                   >
@@ -449,7 +414,7 @@ const Home = () => {
                   </h3>
                 </div>
                 <Link
-                  to="/courses"
+                  to="/recorded-courses/tajweed-foundations-recite-with-confidence"
                   className="rounded-xl bg-white px-4 py-2.5 text-center text-xs font-black text-[#133a33] no-underline"
                 >
                   Next lesson

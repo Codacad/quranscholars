@@ -7,20 +7,55 @@ import { FaArrowRight } from "react-icons/fa";
 import { IoMdCheckbox } from "react-icons/io";
 import { FaDesktop } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { useGetCoursesQuery } from "@/services/api/courses/courses.api.js";
+import { useGetCourseBySlugQuery } from "@/services/api/courses/courses.api.js";
 import AppLoader from "@/components/feedback/AppLoader.jsx";
 import ServiceBreadcrumb from "@/components/navigation/ServiceBreadcrumb.jsx";
 // import { useCoursePaymentMutation } from "@/services/api/user/paymentApi.js";
 const CourseOverview = () => {
-  const { data, isLoading, isError } = useGetCoursesQuery();
-  const courses = data?.data;
   const { slug } = useParams();
+  const {
+    data: course,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetCourseBySlugQuery(slug, { skip: !slug });
   const { pathname } = useLocation();
   const isServicesView = pathname.startsWith("/services");
-  const course = courses && courses.find((course) => slug === course.slug);
   const handleCoursePayment = async () => {
     console.log("HandlePayment");
   };
+
+  if (isError || (!isLoading && !course)) {
+    return (
+      <main className="grid min-h-[60vh] place-items-center bg-background px-4 py-16">
+        <div className="max-w-md text-center">
+          <h1 className="text-2xl font-black text-foreground">
+            Course details are unavailable
+          </h1>
+          <p className="mt-3 text-sm font-medium leading-6 text-muted-foreground">
+            We couldn’t load this course. Please try again or return to the
+            catalog.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <button
+              className="min-h-11 rounded-lg border-0 bg-primary px-5 text-sm font-black text-primary-foreground"
+              type="button"
+              onClick={refetch}
+            >
+              Try again
+            </button>
+            <Link
+              className="inline-flex min-h-11 items-center rounded-lg border border-border bg-surface px-5 text-sm font-black text-foreground no-underline"
+              to="/courses"
+            >
+              Browse courses
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <>
       <div>
