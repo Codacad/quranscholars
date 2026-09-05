@@ -1,63 +1,7 @@
 import { useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import {
-  FiBookOpen,
-  FiLayers,
-  FiCompass,
-  FiHeart,
-  FiUsers,
-  FiHeadphones,
-  FiGlobe,
-  FiHome,
-  FiSun,
-  FiStar } from
-"react-icons/fi";
-import { motion } from "framer-motion";
-
-const links = [
-{ to: "/services/courses", label: "Courses", icon: FiBookOpen },
-{
-  to: "/services/interactive-lessons",
-  label: "Interactive Lessons",
-  icon: FiLayers
-},
-{
-  to: "/services/educational-resources",
-  label: "Educational Resources",
-  icon: FiCompass
-},
-{
-  to: "/services/spiritual-development",
-  label: "Spiritual Development",
-  icon: FiHeart
-},
-{
-  to: "/services/community-engagement",
-  label: "Community Engagement",
-  icon: FiUsers
-},
-{
-  to: "/services/personal-guidance",
-  label: "Personal Guidance",
-  icon: FiHeadphones
-},
-{
-  to: "/services/language-support",
-  label: "Language Support",
-  icon: FiGlobe
-},
-{
-  to: "/services/family-focused-services",
-  label: "Family Focused Services",
-  icon: FiHome
-},
-{
-  to: "/services/youth-programs",
-  label: "Youth Programs",
-  icon: FiSun
-},
-{ to: "/services/islamic-events", label: "Islamic Events", icon: FiStar }];
-
+import { ArrowLeft, Grid2X2 } from "lucide-react";
+import { serviceCatalog } from "@/data/servicesData.js";
 
 const ServiceSideNavigation = ({ layout = "sidebar" }) => {
   const { pathname } = useLocation();
@@ -66,84 +10,29 @@ const ServiceSideNavigation = ({ layout = "sidebar" }) => {
 
   useEffect(() => {
     if (!isTop) return;
-    const activeEl = itemRefs.current[pathname];
-    if (activeEl) {
-      activeEl.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: "center"
-      });
-    }
+    itemRefs.current[pathname]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }, [isTop, pathname]);
 
   return (
-    <div>
-      <nav
-
-        aria-label="Services navigation">
-        
-        <div>
-          <h2>Services</h2>
-          {!isTop &&
-          <span>
-              Navigation
-            </span>
-          }
-        </div>
-        <ul>
-
-          
-          {links.map(({ to, label, icon: Icon }) =>
-          <li
-            key={to}
-
-            ref={(el) => {
-              itemRefs.current[to] = el;
-            }}>
-            
-              <NavLink
-              to={to}>
-
-              
-                {({ isActive }) =>
-              <motion.div
-
-
-
-
-
-                transition={{ duration: 0.16, ease: "easeOut" }}>
-                
-                    {isActive &&
-                <motion.span
-                  layoutId={isTop ? "services-active-pill-top" : "services-active-pill-sidebar"}
-
-                  transition={{
-                    type: "tween",
-                    duration: 0.17,
-                    ease: "easeOut"
-                  }} />
-
-                }
-                    <span>
-
-
-
-                  
-                      <Icon />
-
-                  
-                    </span>
-                    <span>{label}</span>
-                  </motion.div>
-              }
+    <nav className={isTop ? "mx-auto flex max-w-7xl items-center gap-2 px-4 py-2 sm:px-6" : "rounded-2xl border border-[#dfe6e2] bg-white p-3"} aria-label="Services navigation">
+      <NavLink to="/services" className={({ isActive }) => `inline-flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-xs font-black no-underline transition ${isActive ? "bg-[#0f766e] text-white" : "text-[#52655c] hover:bg-[#eef4f1] hover:text-primary"}`}>
+        {isTop ? <ArrowLeft className="size-3.5" /> : <Grid2X2 className="size-3.5" />}
+        All services
+      </NavLink>
+      <ul className={isTop ? "flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" : "mt-2 grid gap-1"}>
+        {serviceCatalog.map(({ slug, label, icon: Icon }) => {
+          const to = `/services/${slug}`;
+          return (
+            <li key={to} ref={(element) => { itemRefs.current[to] = element; }} className="shrink-0">
+              <NavLink to={to} className={({ isActive }) => `inline-flex min-h-9 items-center gap-2 whitespace-nowrap rounded-lg px-3 text-xs font-black no-underline transition ${isActive ? "bg-[#e2f1eb] text-[#0b6159]" : "text-[#5e7168] hover:bg-[#f2f6f4] hover:text-[#173b31]"}`}>
+                <Icon className="size-3.5" />{label}
               </NavLink>
             </li>
-          )}
-        </ul>
-      </nav>
-    </div>);
-
+          );
+        })}
+      </ul>
+    </nav>
+  );
 };
 
 export default ServiceSideNavigation;

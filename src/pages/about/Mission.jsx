@@ -1,354 +1,131 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Atom,
-  BookOpenCheck,
-  Brain,
+  BookHeart,
+  BrainCircuit,
+  Check,
   Compass,
-  ExternalLink,
-  FlaskConical,
-  Microscope,
-  Orbit,
-  ShieldCheck,
-  Sparkles } from
-"lucide-react";
+  GraduationCap,
+  HeartHandshake,
+  Sparkles,
+} from "lucide-react";
+import MarketingHero from "@/components/marketing/MarketingHero.jsx";
+import SectionIntro from "@/components/marketing/SectionIntro.jsx";
 
-const missionPillars = [
-{
-  title: "Integrated Education Model",
-  detail:
-  "We develop students who are grounded in Quran and Sunnah and also equipped for modern academic and professional excellence.",
-  icon: BookOpenCheck
-},
-{
-  title: "Confident Muslim Contribution",
-  detail:
-  "Our goal is to produce people who can lead with ethics, solve real-world problems, and contribute positively to society.",
-  icon: Brain
-},
-{
-  title: "Legacy to Leadership",
-  detail:
-  "We revive the spirit of the Islamic Golden Age by pairing disciplined faith with scientific curiosity, innovation, and service.",
-  icon: Sparkles
-}];
-
-
-const inventions = [
-{
-  name: "Algebra (Al-Jabr)",
-  inventor: "Muhammad ibn Musa al-Khwarizmi",
-  period: "c. 820 CE",
-  todayUse:
-  "Core of engineering, computer science, encryption, data analysis, finance, and school mathematics worldwide.",
-  importance:
-  "Algebra gives the language of modern problem-solving and quantitative reasoning across nearly every technical field.",
-  references: [
+const commitments = [
   {
-    label: "Wikipedia: Al-Khwarizmi",
-    url: "https://en.wikipedia.org/wiki/Al-Khwarizmi"
+    title: "Preserve depth",
+    description: "Present Islamic knowledge with care, context, and respect for qualified scholarship.",
+    icon: BookHeart,
   },
   {
-    label: "Wikipedia: Al-Jabr",
-    url: "https://en.wikipedia.org/wiki/Al-Jabr"
+    title: "Improve access",
+    description: "Use technology to make structured learning reachable across schedules and locations.",
+    icon: BrainCircuit,
   },
   {
-    label: "Britannica: al-Khwarizmi",
-    url: "https://www.britannica.com/biography/al-Khwarizmi"
-  }],
-
-  icon: Atom
-},
-{
-  name: "Algorithmic Method",
-  inventor: "Muhammad ibn Musa al-Khwarizmi",
-  period: "9th century CE",
-  todayUse:
-  "Foundation of software, search engines, AI systems, navigation apps, and digital automation.",
-  importance:
-  "Algorithms power modern computing. Without them, scalable software, AI, and digital infrastructure cannot function.",
-  references: [
-  {
-    label: "Wikipedia: Al-Khwarizmi",
-    url: "https://en.wikipedia.org/wiki/Al-Khwarizmi"
+    title: "Develop character",
+    description: "Connect what students learn with worship, conduct, family life, and service.",
+    icon: Compass,
   },
   {
-    label: "Britannica: al-Khwarizmi",
-    url: "https://www.britannica.com/biography/al-Khwarizmi"
-  }],
-
-  icon: Brain
-},
-{
-  name: "Camera Obscura and Experimental Optics",
-  inventor: "Hasan Ibn al-Haytham",
-  period: "c. 1021 CE",
-  todayUse:
-  "Principles used in modern cameras, optical engineering, imaging devices, and scientific experimentation.",
-  importance:
-  "His optics work strengthened the scientific method and transformed how vision, light, and imaging are understood today.",
-  references: [
-  {
-    label: "Wikipedia: Ibn al-Haytham",
-    url: "https://en.wikipedia.org/wiki/Ibn_al-Haytham"
-  }],
-
-  icon: Microscope
-},
-{
-  name: "Canon of Medicine",
-  inventor: "Ibn Sina (Avicenna)",
-  period: "c. 1025 CE",
-  todayUse:
-  "Influenced medical education, diagnostics, and clinical organization in hospitals and universities.",
-  importance:
-  "It helped standardize medical teaching and clinical structure, shaping long-term development of formal medicine.",
-  references: [
-  {
-    label: "Wikipedia: The Canon of Medicine",
-    url: "https://en.wikipedia.org/wiki/The_Canon_of_Medicine"
+    title: "Build confidence",
+    description: "Help learners participate in modern life while staying grounded in their faith.",
+    icon: GraduationCap,
   },
-  {
-    label: "Wikipedia: Avicenna",
-    url: "https://en.wikipedia.org/wiki/Avicenna"
-  }],
+];
 
-  icon: ShieldCheck
-},
-{
-  name: "Surgical Instruments and Procedures",
-  inventor: "Abu al-Qasim al-Zahrawi",
-  period: "c. 1000 CE",
-  todayUse:
-  "Basis for many modern surgical tools and practical surgical training methods.",
-  importance:
-  "Systematic surgical instruments and method-based training are central to safe surgery even now.",
-  references: [
-  {
-    label: "Wikipedia: Al-Zahrawi",
-    url: "https://en.wikipedia.org/wiki/Al-Zahrawi"
-  },
-  {
-    label: "Wikipedia: Al-Tasrif",
-    url: "https://en.wikipedia.org/wiki/Al-Tasrif"
-  }],
+const focusAreas = [
+  "A coherent path from beginner foundations to deeper study",
+  "Teacher-led learning where interaction and correction matter",
+  "Self-paced access for students with changing schedules",
+  "Family and youth experiences designed for their real context",
+  "A platform that keeps progress, expectations, and next steps clear",
+];
 
-  icon: FlaskConical
-},
-{
-  name: "Hospital Clinical Practice and Case Methods",
-  inventor: "Al-Razi (Rhazes)",
-  period: "9th-10th century CE",
-  todayUse:
-  "Clinical observation, case documentation, and evidence-guided treatment in modern medicine.",
-  importance:
-  "Case-based observation remains one of the strongest foundations for diagnosis and treatment quality.",
-  references: [
-  {
-    label: "Britannica: al-Razi",
-    url: "https://www.britannica.com/biography/al-Razi"
-  },
-  {
-    label: "Wikipedia: Al-Razi",
-    url: "https://en.wikipedia.org/wiki/Al-Razi"
-  }],
+const Mission = () => (
+  <main className="bg-[#fbfcfa] text-[#172b24]">
+    <MarketingHero
+      eyebrow="Our mission"
+      title="Help Muslims learn with depth, confidence, and continuity."
+      description="We exist to make trustworthy Islamic learning easier to begin, easier to understand, and easier to carry into daily life—wherever a student lives and whatever pace they can sustain."
+      urdu={{
+        title: "مسلمانوں کو علم، عمل اور اعتماد کے ساتھ آگے بڑھانا",
+        description: "ہمارا مقصد معتبر اسلامی تعلیم کو ایسا قابلِ رسائی اور قابلِ فہم بنانا ہے کہ ہر طالب علم اسے اپنی رفتار سے سیکھ سکے اور اپنی روزمرہ زندگی میں اختیار کر سکے۔",
+      }}
+      icon={Sparkles}
+      primaryAction={{ to: "/courses", label: "Start learning" }}
+      secondaryAction={{ to: "/about", label: "About QuranScholar" }}
+      highlights={[
+        { label: "Grounded in", value: "Quran, authentic Sunnah, scholarship, and good character" },
+        { label: "Enabled by", value: "Clear curriculum, thoughtful technology, and human guidance" },
+        { label: "Measured by", value: "Understanding, consistency, conduct, and beneficial action" },
+      ]}
+      labelledBy="mission-title"
+    />
 
-  icon: BookOpenCheck
-},
-{
-  name: "Mechanical Automation and Programmable Devices",
-  inventor: "Al-Jazari",
-  period: "1206 CE",
-  todayUse:
-  "Conceptual roots for robotics, automation systems, mechanical engineering, and control mechanisms.",
-  importance:
-  "Automation design principles from this tradition continue into robotics, manufacturing, and control systems.",
-  references: [
-  {
-    label: "Wikipedia: Ismail al-Jazari",
-    url: "https://en.wikipedia.org/wiki/Ismail_al-Jazari"
-  },
-  {
-    label: "National Geographic: Al-Jazari",
-    url: "https://www.nationalgeographic.com/history/history-magazine/article/ismail-al-jazari-muslim-inventor-called-father-robotics"
-  }],
-
-  icon: Orbit
-},
-{
-  name: "Astrolabe Advancements and Precise Navigation Tools",
-  inventor: "Developed by multiple Muslim scholars",
-  period: "8th-13th centuries CE",
-  todayUse:
-  "Contributed to celestial navigation, mapping, surveying, and later global maritime travel.",
-  importance:
-  "Precise navigation tools were essential for astronomy, travel, trade, and timekeeping development.",
-  references: [
-  {
-    label: "Wikipedia: Astrolabe",
-    url: "https://en.wikipedia.org/wiki/Astrolabe"
-  }],
-
-  icon: Compass
-}];
-
-
-const Mission = () => {
-  return (
-    <div>
-      <div />
-      <div />
-
-      <section>
-        <div>
-          <span>
-            <Sparkles />
-            Our Mission
-          </span>
-          <h1>
-            Rebuilding an Ummah that leads in deen and in the modern world
-          </h1>
-          <p>
-            For decades, many Muslims rightly prioritized Islamic learning and
-            preserved deen with sincerity. That was a noble and important path.
-            Today, in an era of technology and global systems, our mission is to
-            carry that same Islamic strength while adding excellence in
-            language, science, technology, and professional education. We teach
-            Quran, Sunnah, and Islamic character with depth, alongside
-            world-ready knowledge, so students can live faithfully and lead
-            confidently.
-          </p>
+    <section className="px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="mission-belief-title">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,.85fr)_minmax(22rem,1.15fr)] lg:items-start">
+        <SectionIntro
+          id="mission-belief-title"
+          eyebrow="What we believe"
+          title="Beneficial knowledge should shape how a person lives."
+          description="Access alone is not enough. Learners need trustworthy material, good sequencing, capable teachers, meaningful practice, and the confidence to keep going."
+        />
+        <div className="rounded-2xl bg-[#0b3e38] p-7 text-white sm:p-9">
+          <HeartHandshake className="size-6 text-[#f4c95d]" />
+          <blockquote className="mt-5 text-balance font-display text-2xl font-black leading-tight tracking-[-0.03em] sm:text-3xl">
+            “Build an LMS that respects sacred knowledge and the realities of modern learners.”
+          </blockquote>
+          <p className="mt-5 text-sm font-medium leading-7 text-white/68">That principle guides how we design courses, support families, and decide what belongs on the platform.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        {missionPillars.map(({ title, detail, icon: Icon }, index) =>
-        <motion.article
-          key={title}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{
-            duration: 0.35,
-            delay: index * 0.05,
-            ease: "easeOut"
-          }}>
-
-          
-            <Icon />
-            <h2>{title}</h2>
-            <p>
-              {detail}
-            </p>
-          </motion.article>
-        )}
-      </section>
-
-      <section>
-        <div>
-          <h2>
-            Islamic Golden Age Inventions and Their Impact Today
-          </h2>
-          <p>
-            The Islamic Golden Age was not symbolic history. It produced
-            practical breakthroughs that still shape modern life.
-          </p>
-
-          <div>
-            {inventions.map((item, index) =>
-            <motion.article
-              key={item.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.32,
-                delay: index * 0.04,
-                ease: "easeOut"
-              }}>
-
-              
-                <div>
-                  <div>
-                    <h3>
-                      <item.icon />
-                      {item.name}
-                    </h3>
-                    <p>
-                      <span>Inventor:</span>{" "}
-                      {item.inventor}
-                    </p>
-                    <p>
-                      <span>Period:</span>{" "}
-                      {item.period}
-                    </p>
-                  </div>
-                  <span>
-                    Still used today
-                  </span>
-                </div>
-                <p>
-                  <span>
-                    Modern use:
-                  </span>{" "}
-                  {item.todayUse}
-                </p>
-                <p>
-                  <span>
-                    Why important:
-                  </span>{" "}
-                  {item.importance}
-                </p>
-                <div>
-                  {item.references.map((reference) =>
-                <a
-                  key={reference.url}
-                  href={reference.url}
-                  target="_blank"
-                  rel="noreferrer noopener">
-
-                  
-                      {reference.label}
-                      <ExternalLink />
-                    </a>
-                )}
-                </div>
-              </motion.article>
-            )}
-          </div>
+    <section className="border-y border-[#e1e7e3] bg-white px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="commitments-title">
+      <div className="mx-auto max-w-7xl">
+        <SectionIntro id="commitments-title" eyebrow="Our commitments" title="Four principles behind every learning experience." align="center" />
+        <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {commitments.map(({ title, description, icon: Icon }) => (
+            <article key={title} className="rounded-2xl border border-[#dfe6e2] bg-[#fbfcfa] p-6">
+              <span className="grid size-11 place-items-center rounded-xl bg-[#e5f2ed] text-primary"><Icon className="size-5" /></span>
+              <h3 className="mt-5 text-lg font-black tracking-[-0.02em]">{title}</h3>
+              <p className="mt-2 text-sm font-medium leading-7 text-[#687970]">{description}</p>
+            </article>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <div>
-          <h2>
-            Join this mission of education, dignity, and contribution
-          </h2>
-          <p>
-            We are committed to producing Muslims who are spiritually grounded,
-            intellectually strong, and socially useful. Build this future with
-            us through learning, support, and action.
-          </p>
-          <div>
-            <Link
-              to="/admission">
-
-              
-              Start Learning
-            </Link>
-            <Link
-              to="/donate">
-
-              
-              Support the Mission
-              <ArrowRight />
-            </Link>
-          </div>
+    <section className="px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="focus-title">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(22rem,1fr)_minmax(0,1fr)] lg:items-center">
+        <div className="rounded-2xl border border-[#dfe6e2] bg-white p-6 shadow-[0_16px_44px_rgba(21,54,44,.055)] sm:p-8">
+          <p className="text-xs font-black uppercase tracking-[0.15em] text-primary">What we are building toward</p>
+          <ul className="mt-5 grid gap-3.5">
+            {focusAreas.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-sm font-bold leading-6 text-[#53665e]"><Check className="mt-1 size-4 shrink-0 text-primary" strokeWidth={3} />{item}</li>
+            ))}
+          </ul>
         </div>
-      </section>
-    </div>);
+        <div>
+          <SectionIntro
+            id="focus-title"
+            eyebrow="The long view"
+            title="A learning ecosystem that grows with its students."
+            description="QuranScholar is designed to expand carefully: stronger curriculum, better learning tools, broader language support, and more pathways for individuals, families, and communities. Growth should improve trust and clarity—not weaken them."
+          />
+          <Link to="/services" className="group mt-6 inline-flex items-center gap-2 text-sm font-black text-primary no-underline">Explore our learner services <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
+        </div>
+      </div>
+    </section>
 
-};
+    <section className="px-4 pb-16 sm:px-6 sm:pb-20">
+      <div className="mx-auto flex max-w-7xl flex-col gap-6 rounded-2xl bg-[#0b3e38] p-7 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-2xl"><p className="text-xs font-black uppercase tracking-[0.15em] text-[#9ed6c8]">Take part</p><h2 className="mt-3 font-display text-3xl font-black tracking-[-0.04em]">Turn the intention to learn into a steady path.</h2></div>
+        <div className="flex flex-wrap gap-3"><Link to="/courses" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#f4c95d] px-5 text-sm font-black text-[#11342e] no-underline">Explore courses <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link><Link to="/donate" className="inline-flex min-h-12 items-center rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-black text-white no-underline">Support the mission</Link></div>
+      </div>
+    </section>
+  </main>
+);
 
 export default Mission;

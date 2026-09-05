@@ -26,8 +26,6 @@ import {
   Compass,
   ArrowRight,
   LibraryBig,
-  Radio,
-  PlayCircle,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLogoutMutation } from "@/services/api/user/userAuthApis.js";
@@ -247,14 +245,14 @@ const Navbar = () => {
       (coursesData?.data || [])
         .filter((course) => course?.slug)
         .map((course) => ({
-          to: `/courses/${course.slug}`,
+          to: `/live-classes/${course.slug}`,
           label: course.title || "Course",
         })),
     [coursesData],
   );
 
   const serviceLinks = [
-    { to: "/services/courses", label: "Courses" },
+    { to: "/live-classes", label: "Live classes" },
     { to: "/services/interactive-lessons", label: "Interactive Lessons" },
     { to: "/services/educational-resources", label: "Educational Resources" },
     { to: "/services/spiritual-development", label: "Spiritual Development" },
@@ -272,8 +270,9 @@ const Navbar = () => {
   const navLinks = [
     { to: "/", label: "Home", icon: IoHomeOutline },
     { to: "/services", label: "Services", icon: FaServicestack },
-    { to: "/recorded-courses", label: "Recorded courses", icon: PlayCircle },
-    { to: "/courses", label: "Live courses", icon: Radio },
+    { to: "/courses", label: "Courses", icon: MdSubject },
+    { to: "/live-classes", label: "Live Classes", icon: LibraryBig },
+    { to: "/instructors", label: "Instructors", icon: UsersRound },
     { to: "/blogs", label: "Blogs", icon: MdSubject },
     { to: "/mission", label: "Mission", icon: Sparkles },
     { to: "/contact", label: "Contact", icon: MdOutlineConnectWithoutContact },
@@ -286,9 +285,11 @@ const Navbar = () => {
       description: "Choose how you want to learn",
       icon: BookOpen,
       links: [
-        { to: "/recorded-courses", label: "Recorded courses" },
-        { to: "/courses", label: "Live instructor-led courses" },
-        { to: "/my-learning", label: "My Learning" },
+        { to: "/courses", label: "All courses" },
+        { to: "/courses/self-paced", label: "Self-paced courses" },
+        { to: "/live-classes", label: "Live instructor-led classes" },
+        { to: "/instructors", label: "Instructors" },
+        { to: "/dashboard/learning", label: "My Learning" },
         { to: "/services/interactive-lessons", label: "Interactive lessons" },
         {
           to: "/services/educational-resources",
@@ -349,7 +350,7 @@ const Navbar = () => {
 
     if (!query) return;
 
-    navigate(`/recorded-courses?search=${encodeURIComponent(query)}`);
+    navigate(`/courses/self-paced?search=${encodeURIComponent(query)}`);
     setNavbarSearch("");
     setIsExploreOpen(false);
     setIsMobileMenuOpen(false);
@@ -390,7 +391,7 @@ const Navbar = () => {
   };
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/90 font-body backdrop-blur-xl">
-      <nav className="mx-auto flex min-h-18 w-full max-w-[90rem] items-center gap-4 px-6 max-xl:justify-between max-xl:px-4 max-sm:min-h-16">
+      <nav className="mx-auto flex min-h-18 w-full max-w-360 items-center gap-4 px-6 max-xl:justify-between max-xl:px-4 max-sm:min-h-16">
         {/* Logo Section */}
         <Link
           className="inline-flex shrink-0 items-center no-underline"
@@ -429,8 +430,18 @@ const Navbar = () => {
 
           <ul className="m-0 flex list-none items-center gap-1 p-0">
             <li>
-              <NavLink className={desktopNavLinkClass} to="/recorded-courses">
+              <NavLink className={desktopNavLinkClass} to="/courses">
                 Courses
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={desktopNavLinkClass} to="/live-classes">
+                Live Classes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className={desktopNavLinkClass} to="/instructors">
+                Instructors
               </NavLink>
             </li>
             <li>
@@ -587,9 +598,9 @@ const Navbar = () => {
               </Link>
               <Link
                 className="inline-flex min-h-10 items-center justify-center rounded-md border border-primary bg-primary px-4 text-sm font-bold leading-none text-primary-foreground no-underline transition-colors duration-200 hover:border-primary-hover hover:bg-primary/90"
-                to="/register"
+                to="/get-started"
               >
-                Join free
+                Join QuranScholar
               </Link>
             </>
           )}
@@ -648,7 +659,7 @@ const Navbar = () => {
 
                   <Link
                     className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold text-primary no-underline hover:text-primary-hover"
-                    to="/courses"
+                    to="/live-classes"
                     onClick={() => setIsExploreOpen(false)}
                   >
                     Browse live courses
@@ -737,10 +748,10 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] overflow-hidden transition-[visibility] duration-300 xl:hidden",
+          "fixed inset-0 transition-[visibility] duration-300 xl:hidden",
           isMobileMenuOpen
-            ? "visible pointer-events-auto"
-            : "invisible pointer-events-none delay-300",
+            ? "visible pointer-events-auto z-70"
+            : "invisible pointer-events-none delay-300 z-70",
         )}
         aria-hidden={!isMobileMenuOpen}
       >
@@ -925,7 +936,21 @@ const Navbar = () => {
                               onClick={closeMobileMenu}
                               to="/courses"
                             >
-                              Browse all live courses
+                              Browse all courses
+                            </NavLink>
+                            <NavLink
+                              className={mobileSubnavLinkClass}
+                              onClick={closeMobileMenu}
+                              to="/courses/self-paced"
+                            >
+                              Self-paced courses
+                            </NavLink>
+                            <NavLink
+                              className={mobileSubnavLinkClass}
+                              onClick={closeMobileMenu}
+                              to="/live-classes"
+                            >
+                              Live course catalog
                             </NavLink>
                             {isCoursesLoading && (
                               <div className="rounded-md px-3 py-2 text-sm font-semibold leading-snug text-faint-foreground">
@@ -978,7 +1003,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     className="flex min-h-11 items-center justify-between gap-3 rounded-md px-3 py-2 text-[0.95rem] font-bold text-muted-foreground no-underline transition-colors duration-200 hover:bg-surface-alt hover:text-foreground [&_svg]:size-[1.1rem]"
-                    to="/my-learning"
+                    to="/dashboard/learning"
                     onClick={closeMobileMenu}
                   >
                     My Learning <LibraryBig />
@@ -1034,9 +1059,9 @@ const Navbar = () => {
                   <Link
                     className="flex min-h-11 items-center justify-between gap-3 rounded-md px-3 py-2 text-[0.95rem] font-bold text-muted-foreground no-underline transition-colors duration-200 hover:bg-surface-alt hover:text-foreground [&_svg]:size-[1.1rem]"
                     onClick={closeMobileMenu}
-                    to="/register"
+                    to="/get-started"
                   >
-                    Register <Sparkles />
+                    Get started <Sparkles />
                   </Link>
                 </>
               )}

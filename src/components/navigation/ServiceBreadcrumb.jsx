@@ -1,67 +1,15 @@
-import { Link, useLocation } from "react-router-dom";
+import { ChevronRight, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const toLabel = (segment) =>
-segment.
-split("-").
-filter(Boolean).
-map((part) => part.charAt(0).toUpperCase() + part.slice(1)).
-join(" ");
-
-const ServiceBreadcrumb = ({ currentLabel }) => {
-  const { pathname } = useLocation();
-  const segments = pathname.split("/").filter(Boolean);
-  const serviceIndex = segments.indexOf("services");
-
-  if (serviceIndex === -1) {
-    return null;
-  }
-
-  const trail = [
-  { label: "Home", to: "/" },
-  { label: "Services", to: "/services" }];
-
-  const serviceSegments = segments.slice(serviceIndex + 1);
-
-  serviceSegments.forEach((segment, index) => {
-    const isLast = index === serviceSegments.length - 1;
-    const to = `/services/${serviceSegments.slice(0, index + 1).join("/")}`;
-
-    trail.push({
-      label: isLast && currentLabel ? currentLabel : toLabel(segment),
-      to
-    });
-  });
-  if (serviceSegments.length === 0 && currentLabel) {
-    trail.push({ label: currentLabel, to: pathname });
-  }
-
-  return (
-    <nav
-      aria-label="Breadcrumb">
-
-      
-      <div>
-        {trail.map((item, index) => {
-          const isLast = index === trail.length - 1;
-
-          return (
-            <div key={item.to}>
-              {isLast ?
-              <span aria-current="page">
-                  {item.label}
-                </span> :
-
-              <Link to={item.to}>
-                  {item.label}
-                </Link>
-              }
-              {!isLast && <span>/</span>}
-            </div>);
-
-        })}
-      </div>
-    </nav>);
-
-};
+const ServiceBreadcrumb = ({ currentLabel }) => (
+  <nav aria-label="Breadcrumb">
+    <ol className="flex flex-wrap items-center gap-1.5 text-xs font-bold text-[#6a7a72]">
+      <li><Link to="/" className="inline-flex items-center gap-1.5 rounded-md px-1 py-1 text-[#6a7a72] no-underline transition hover:text-primary"><Home className="size-3.5" />Home</Link></li>
+      <li aria-hidden="true"><ChevronRight className="size-3.5 text-[#a3afa9]" /></li>
+      <li><Link to="/services" className="rounded-md px-1 py-1 text-[#6a7a72] no-underline transition hover:text-primary">Services</Link></li>
+      {currentLabel && <><li aria-hidden="true"><ChevronRight className="size-3.5 text-[#a3afa9]" /></li><li><span className="px-1 py-1 text-[#203b31]" aria-current="page">{currentLabel}</span></li></>}
+    </ol>
+  </nav>
+);
 
 export default ServiceBreadcrumb;

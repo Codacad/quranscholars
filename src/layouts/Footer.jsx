@@ -7,8 +7,10 @@ const footerColumns = [
   {
     title: "Platform",
     links: [
-      { to: "/recorded-courses", label: "Recorded courses" },
-      { to: "/courses", label: "Live courses" },
+      { to: "/courses", label: "All courses" },
+      { to: "/courses/self-paced", label: "Self-paced courses" },
+      { to: "/live-classes", label: "Live Classes" },
+      { to: "/instructors", label: "Instructors" },
       { to: "/services", label: "Services" },
       { to: "/admission", label: "Admission" },
       { to: "/blogs", label: "Blogs" },
@@ -28,7 +30,7 @@ const footerColumns = [
     links: [
       { to: "/login", label: "Login" },
       { to: "/register", label: "Register" },
-      { to: "/my-learning", label: "My Learning" },
+      { to: "/dashboard/learning", label: "My Learning" },
       { to: "/privacy", label: "Privacy" },
     ],
   },
@@ -152,10 +154,10 @@ const Footer = () => {
               Support
             </Link>
             <Link
-              to="/recorded-courses"
+              to="/courses"
               className="font-semibold no-underline transition hover:text-primary"
             >
-              Recorded courses
+              Courses
             </Link>
           </div>
         </div>

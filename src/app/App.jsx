@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import Navbar from "@/layouts/Navbar.jsx";
 import Footer from "@/layouts/Footer.jsx";
 import { useLocation, useNavigate, useNavigation } from "react-router-dom";
@@ -12,7 +11,11 @@ function App() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const pathName = useLocation();
-  const isCoursePlayer = pathName.pathname.startsWith("/learn/");
+  const isWorkspace =
+    pathName.pathname.startsWith("/learn/") ||
+    pathName.pathname.startsWith("/classroom/") ||
+    pathName.pathname.startsWith("/dashboard") ||
+    pathName.pathname.startsWith("/instructor/");
   const navigation = useNavigation();
   const [isAppBooting, setIsAppBooting] = useState(true);
   const {
@@ -20,7 +23,7 @@ function App() {
     isLoading: isUserSyncLoading,
     isSuccess: isUserSyncSuccess,
     isError: isUserSyncError,
-    error: userSyncError
+    error: userSyncError,
   } = useMeQuery();
 
   useEffect(() => {
@@ -48,12 +51,12 @@ function App() {
       }
     }
   }, [
-  currentUser,
-  dispatch,
-  isUserSyncError,
-  isUserSyncSuccess,
-  userSyncError?.status]
-  );
+    currentUser,
+    dispatch,
+    isUserSyncError,
+    isUserSyncSuccess,
+    userSyncError?.status,
+  ]);
 
   const useSessionTimeout = (user) => {
     const navigate = useNavigate();
@@ -79,12 +82,12 @@ function App() {
   return (
     <>
       <div>
-        {!isCoursePlayer && <Navbar />}
+        {!isWorkspace && <Navbar />}
         <Outlet />
-        {!isCoursePlayer && <Footer />}
+        {!isWorkspace && <Footer />}
       </div>
-    </>);
-
+    </>
+  );
 }
 
 export default App;

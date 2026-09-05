@@ -30,7 +30,7 @@ const Course = ({ course }) => {
       : "Flexible pace";
   const detailsPath = pathname.startsWith("/services")
     ? "/services/courses/" + (course?.slug || "")
-    : "/courses/" + (course?.slug || "");
+    : "/courses/live/" + (course?.slug || "");
   const description =
     course?.description ||
     course?.overview?.description ||

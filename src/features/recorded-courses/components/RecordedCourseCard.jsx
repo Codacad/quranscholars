@@ -8,9 +8,9 @@ const compactNumber = new Intl.NumberFormat("en-IN", { notation: "compact", maxi
 const RecordedCourseCard = ({ course }) => (
   <article className="group flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-[#dfe6e2] bg-white shadow-[0_8px_30px_rgba(21,54,44,.055)] transition duration-300 hover:-translate-y-1 hover:border-[#bfd1c9] hover:shadow-[0_20px_48px_rgba(21,54,44,.11)]">
     <Link
-      to={`/recorded-courses/${course.slug}`}
+      to={`/courses/self-paced/${course.slug}`}
       className="relative block aspect-[16/10] overflow-hidden bg-[#e5f0eb] no-underline"
-      aria-label={`View recorded course: ${course.title}`}
+      aria-label={`View self-paced course: ${course.title}`}
     >
       {course.thumbnail ? (
         <img
@@ -39,7 +39,7 @@ const RecordedCourseCard = ({ course }) => (
         <p className="text-[0.68rem] font-black uppercase tracking-[0.12em] text-primary">{course.category}</p>
         <span className="text-xs font-bold text-[#77847e]">{course.level}</span>
       </div>
-      <Link to={`/recorded-courses/${course.slug}`} className="no-underline">
+      <Link to={`/courses/self-paced/${course.slug}`} className="no-underline">
         <h3 className="mt-3 line-clamp-2 font-display text-xl font-black leading-[1.25] tracking-[-0.025em] text-[#192e27] transition group-hover:text-primary">
           {course.title}
         </h3>

@@ -1,435 +1,153 @@
 import { Link } from "react-router-dom";
-import ChildWithQuran from "/child-with-quran.svg";
 import {
   ArrowRight,
-  BookOpen,
-  CircleCheckBig,
-  Clock3,
-  Globe,
-  GraduationCap,
-  Handshake,
-  Heart,
+  BookOpenCheck,
+  HeartHandshake,
+  Laptop2,
+  Radio,
   ShieldCheck,
   Sparkles,
-  Users } from
-"lucide-react";
+  UsersRound,
+} from "lucide-react";
+import MarketingHero from "@/components/marketing/MarketingHero.jsx";
+import SectionIntro from "@/components/marketing/SectionIntro.jsx";
+import learningIllustration from "@/assets/images/seeking-knowledge.svg";
 
-const impactStats = [
-{
-  label: "Live Mentorship",
-  value: "1:1 + Group",
-  detail: "Flexible sessions for kids and adults",
-  icon: Users
-},
-{
-  label: "Global Access",
-  value: "Across Time Zones",
-  detail: "Structured classes that fit family routines",
-  icon: Globe
-},
-{
-  label: "Review Cycle",
-  value: "24-48 Hours",
-  detail: "Admission review and onboarding response",
-  icon: Clock3
-},
-{
-  label: "Learning Tracks",
-  value: "10+ Courses",
-  detail: "Quran, Hadith, Fiqh, language, and more",
-  icon: GraduationCap
-}];
+const principles = [
+  {
+    title: "Faithful foundations",
+    description: "Learning is rooted in the Quran, authentic Sunnah, sound scholarship, and respectful student conduct.",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Clear teaching",
+    description: "Complex subjects are organised into understandable lessons, practice, and practical next steps.",
+    icon: Sparkles,
+  },
+  {
+    title: "Human support",
+    description: "Students can access guidance when choosing a path and accountability while progressing through it.",
+    icon: HeartHandshake,
+  },
+  {
+    title: "Safe learning",
+    description: "Respect, privacy, age-aware experiences, and transparent expectations shape every program.",
+    icon: ShieldCheck,
+  },
+];
 
+const journey = [
+  { step: "01", title: "Choose a goal", detail: "Explore the catalog or ask our learner-support team for guidance." },
+  { step: "02", title: "Select your format", detail: "Learn independently or proceed with scheduled teacher-led study." },
+  { step: "03", title: "Build consistency", detail: "Follow a clear sequence, keep progress visible, and use support when needed." },
+];
 
-const pillars = [
-{
-  title: "Authentic Knowledge",
-  text: "Curriculum is built around Quran and Sunnah with practical, age-appropriate delivery.",
-  icon: ShieldCheck
-},
-{
-  title: "Human-Centered Teaching",
-  text: "Teachers focus on tajweed quality, confidence, and spiritual growth at a sustainable pace.",
-  icon: Heart
-},
-{
-  title: "Clear Progress Path",
-  text: "Students follow structured tracks with checkpoints, revision plans, and actionable feedback.",
-  icon: CircleCheckBig
-},
-{
-  title: "Family-Friendly Flexibility",
-  text: "Online scheduling and guided plans help parents and working students stay consistent.",
-  icon: Handshake
-}];
+const About = () => (
+  <main className="bg-[#fbfcfa] text-[#172b24]">
+    <MarketingHero
+      eyebrow="About QuranScholar"
+      title="Islamic learning designed for real life."
+      description="QuranScholar is an online learning platform for students and families who want trustworthy Islamic education with modern structure, flexible access, and meaningful teacher support."
+      urdu={{
+        title: "اسلامی تعلیم جو آج کی زندگی اور ضروریات کے لیے ترتیب دی گئی ہے",
+        description: "قرآن اسکالر طلبہ اور خاندانوں کے لیے ایک آن لائن تعلیمی پلیٹ فارم ہے، جہاں معتبر اسلامی علوم کو منظم نصاب، آسان رسائی اور اساتذہ کی رہنمائی کے ساتھ پیش کیا جاتا ہے۔",
+      }}
+      icon={BookOpenCheck}
+      primaryAction={{ to: "/courses", label: "Explore courses" }}
+      secondaryAction={{ to: "/mission", label: "Read our mission" }}
+      highlights={[
+        { label: "Study your way", value: "Self-paced lessons and live instructor-led cohorts" },
+        { label: "Learn with purpose", value: "Quran, Tajweed, Islamic studies, and family learning" },
+        { label: "Stay supported", value: "Admissions guidance and learner-focused services" },
+      ]}
+      labelledBy="about-title"
+    />
 
-
-const studyTracks = [
-"Quran Reading with Tajweed",
-"Quran Memorization (Hifz)",
-"Farz Uloom and Fiqh Basics",
-"Hadith and Seerah Studies",
-"Arabic (Sarf and Nahv)",
-"Masnoon Duayen and Daily Adab"];
-
-
-const onboardingSteps = [
-{
-  title: "Submit Admission",
-  detail:
-  "Fill your profile, choose your courses, and share your study goals in one place."
-},
-{
-  title: "Mentor Matching",
-  detail:
-  "We review your details and align you with a suitable instructor and class format."
-},
-{
-  title: "Start Your Routine",
-  detail:
-  "Begin classes with clear milestones, revision flow, and regular feedback."
-}];
-
-
-const missionFocusAreas = [
-"Deep Islamic learning: Quran, Hadith, Fiqh, Seerah, adab, and character.",
-"World-ready learning: language, analytical thinking, communication, and responsible technology use.",
-"A unified model where deen and dunya are studied together with purpose and discipline."];
-
-
-const goldenAgeContributions = [
-"Algebra and algorithmic foundations (Al-Khwarizmi)",
-"Optics and experimental method (Ibn al-Haytham)",
-"Advanced medicine and clinical texts (Ibn Sina, Al-Razi)",
-"Surgical instruments and procedures (Al-Zahrawi)",
-"Astronomical observatories and precise star catalogs",
-"Navigation tools including improved astrolabe systems",
-"Early engineering automation and mechanical design (Al-Jazari)",
-"Chemistry and laboratory process refinement"];
-
-
-const quranLearningVerses = [
-{
-  arabic: "اِقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
-  urdu: "پڑھیے اپنے رب کے نام سے جس نے پیدا کیا۔",
-  meaning:
-  "Revelation began with the command to read, establishing learning as a sacred act.",
-  reference: "Surah Al-Alaq (96:1)"
-},
-{
-  arabic: "وَقُلْ رَبِّ زِدْنِي عِلْمًا",
-  urdu: "اور دعا کریں: اے میرے رب! میرے علم میں اضافہ فرما۔",
-  meaning:
-  "A believer is taught to keep asking Allah for growth in beneficial knowledge.",
-  reference: "Surah Taha (20:114)"
-},
-{
-  arabic:
-  "قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ وَالَّذِينَ لَا يَعْلَمُونَ",
-  urdu: "کہہ دیجیے: کیا جاننے والے اور نہ جاننے والے برابر ہو سکتے ہیں؟",
-  meaning:
-  "The Quran highlights the elevated rank of people who seek and live by knowledge.",
-  reference: "Surah Az-Zumar (39:9)"
-}];
-
-
-const About = () => {
-  return (
-    <div>
-      <div />
-      <div />
-
-      <section>
-        <div>
-          <div>
-            <Sparkles />
-            About Quran Scholars
-          </div>
-
-          <h1>
-            A modern Islamic learning platform rooted in Quran and Sunnah
-          </h1>
-
-          <p>
-            Quran Scholars helps families and individuals build a disciplined
-            learning routine through live teaching, guided revision, and clear
-            progress tracking. We are building a generation that is grounded in
-            Quran and Sunnah while fully prepared to contribute to the modern
-            world with knowledge, ethics, and skill.
-          </p>
-
-          <div>
-            <Link
-              to="/admission">
-
-              
-              Start Admission
-              <ArrowRight />
-            </Link>
-            <Link
-              to="/courses">
-
-              
-              Explore Courses
-            </Link>
-          </div>
+    <section className="px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="about-platform-title">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(18rem,.72fr)_minmax(0,1.28fr)] lg:items-center">
+        <div className="relative overflow-hidden rounded-2xl bg-[#e6f2ed] p-8 sm:p-10">
+          <div className="absolute -right-16 -top-16 size-44 rounded-full bg-[#f4c95d]/20" aria-hidden="true" />
+          <img src={learningIllustration} alt="Student building knowledge through online learning" className="relative mx-auto max-h-[24rem] w-full object-contain" />
         </div>
-
         <div>
-          <img
-            src={ChildWithQuran}
-            alt="Student learning Quran" />
-
-          
-          <div>
-            <div>
-              <p>
-                Teaching Style
-              </p>
-              <p>
-                Live, guided, feedback-focused
-              </p>
-            </div>
-            <div>
-              <p>
-                Core Focus
-              </p>
-              <p>
-                Tajweed, understanding, character
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div>
-          {impactStats.map(({ icon: Icon, label, value, detail }) =>
-          <article
-            key={label}>
-
-            
-              <Icon />
-              <p>
-                {label}
-              </p>
-              <p>{value}</p>
-              <p>{detail}</p>
+          <SectionIntro
+            id="about-platform-title"
+            eyebrow="The platform"
+            title="A focused place to learn, practise, and progress."
+            description="We bring course discovery, structured lessons, live learning, and learner support into one clear experience. The aim is simple: make beneficial knowledge easier to begin and easier to sustain."
+          />
+          <div className="mt-7 grid gap-4 sm:grid-cols-2">
+            <article className="rounded-2xl border border-[#dfe6e2] bg-white p-5">
+              <Laptop2 className="size-5 text-primary" />
+              <h3 className="mt-4 font-black">Self-paced study</h3>
+              <p className="mt-2 text-sm font-medium leading-6 text-[#687970]">Start immediately, follow lessons in order, and return when your schedule allows.</p>
             </article>
-          )}
-        </div>
-      </section>
-
-      <section>
-        <div>
-          <div>
-            <ShieldCheck />
-            Mission and Legacy
-          </div>
-
-          <h2>
-            Strong Islamic foundation with world-ready excellence
-          </h2>
-          <p>
-            For decades, many Muslims rightly focused on Islamic instruction and
-            protected faith, identity, and character. Today, the world has
-            changed. In the age of technology and global knowledge systems, we
-            believe students should receive deep Islamic scholarship together
-            with high-quality contemporary education. The Islamic Golden Age
-            shows that this combined model is part of our true heritage.
-          </p>
-
-          <div>
-            <article>
-              <h3>
-                Our Education Focus
-              </h3>
-              <ul>
-                {missionFocusAreas.map((item) =>
-                <li key={item}>
-                    <CircleCheckBig />
-                    <span>{item}</span>
-                  </li>
-                )}
-              </ul>
-            </article>
-
-            <article>
-              <h3>
-                Islamic Golden Age Contributions
-              </h3>
-              <ul>
-                {goldenAgeContributions.map((item) =>
-                <li key={item}>
-                    <CircleCheckBig />
-                    <span>{item}</span>
-                  </li>
-                )}
-              </ul>
+            <article className="rounded-2xl border border-[#dfe6e2] bg-white p-5">
+              <Radio className="size-5 text-primary" />
+              <h3 className="mt-4 font-black">Live guided study</h3>
+              <p className="mt-2 text-sm font-medium leading-6 text-[#687970]">Join scheduled cohorts for direct teaching, questions, and accountable progress.</p>
             </article>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section>
-        <div>
-          <div>
-            <BookOpen />
-            Quran and Learning
-          </div>
-          <h2>
-            Islamic foundations for education
-          </h2>
-          <p
-
-            dir="rtl"
-            lang="ur">
-            
-            علم اسلام میں عبادت کا راستہ ہے۔ ہمارا مقصد یہی ہے کہ سیکھنے کا سفر
-            قرآن و سنت کی روشنی میں مضبوط اور باعمل بنے۔
-          </p>
-
-          <div>
-            {quranLearningVerses.map((verse) =>
-            <article
-              key={verse.reference}>
-
-              
-                <p
-
-                dir="rtl">
-                
-                  {verse.arabic}
-                </p>
-                <p
-
-                dir="rtl">
-                
-                  {verse.urdu}
-                </p>
-                <p>
-                  {verse.meaning}
-                </p>
-                <p>
-                  {verse.reference}
-                </p>
-              </article>
-            )}
-          </div>
+    <section className="border-y border-[#e1e7e3] bg-white px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="principles-title">
+      <div className="mx-auto max-w-7xl">
+        <SectionIntro
+          id="principles-title"
+          eyebrow="What guides us"
+          title="Standards learners should be able to feel."
+          description="A professional LMS needs more than polished screens. These principles shape our content, programs, and support decisions."
+        />
+        <div className="mt-9 grid gap-px overflow-hidden rounded-2xl border border-[#dfe6e2] bg-[#dfe6e2] sm:grid-cols-2 lg:grid-cols-4">
+          {principles.map(({ title, description, icon: Icon }) => (
+            <article key={title} className="bg-[#fbfcfa] p-6 sm:p-7">
+              <span className="grid size-11 place-items-center rounded-xl bg-[#e5f2ed] text-primary"><Icon className="size-5" /></span>
+              <h3 className="mt-5 text-lg font-black tracking-[-0.02em]">{title}</h3>
+              <p className="mt-2 text-sm font-medium leading-7 text-[#687970]">{description}</p>
+            </article>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section>
+    <section className="px-4 py-14 sm:px-6 sm:py-18" aria-labelledby="journey-title">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,.75fr)_minmax(22rem,1.25fr)]">
         <div>
-          <div>
-            <BookOpen />
-            What Makes Us Different
-          </div>
-          <div>
-            {pillars.map(({ icon: Icon, title, text }) =>
-            <article
-              key={title}>
-
-              
-                <div>
-                  <Icon />
-                  <div>
-                    <h3>
-                      {title}
-                    </h3>
-                    <p>
-                      {text}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            )}
-          </div>
+          <SectionIntro
+            id="journey-title"
+            eyebrow="From intention to routine"
+            title="A simpler way to start learning."
+            description="Students should understand what happens next. Our course and support pathways are designed to keep each decision clear."
+          />
+          <Link to="/services" className="group mt-6 inline-flex items-center gap-2 text-sm font-black text-primary no-underline">Explore learner services <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
         </div>
+        <ol className="grid gap-4">
+          {journey.map(({ step, title, detail }) => (
+            <li key={step} className="grid grid-cols-[2.75rem_1fr] gap-4 rounded-2xl border border-[#dfe6e2] bg-white p-5 sm:p-6">
+              <span className="grid size-11 place-items-center rounded-xl bg-[#0f766e] text-xs font-black text-white">{step}</span>
+              <div><h3 className="text-lg font-black tracking-[-0.02em]">{title}</h3><p className="mt-1.5 text-sm font-medium leading-6 text-[#687970]">{detail}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
 
-        <div>
-          <div>
-            <GraduationCap />
-            Popular Learning Tracks
-          </div>
-
-          <div>
-            {studyTracks.map((course) =>
-            <div
-              key={course}>
-
-              
-                <CircleCheckBig />
-                <span>
-                  {course}
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div>
-            These tracks align with our admission flow and can be customized by
-            age, level, and learning goal.
-          </div>
+    <section className="px-4 pb-16 sm:px-6 sm:pb-20">
+      <div className="mx-auto flex max-w-7xl flex-col gap-7 rounded-2xl bg-[#0b3e38] p-7 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.15em] text-[#9ed6c8]"><UsersRound className="size-4 text-[#f4c95d]" />Built around learners</p>
+          <h2 className="mt-3 text-balance font-display text-3xl font-black tracking-[-0.04em]">Find a learning path you can stay committed to.</h2>
+          <p className="mt-3 text-sm font-medium leading-7 text-white/70">Compare both course formats, or speak with us if you need help choosing.</p>
         </div>
-      </section>
-
-      <section>
-        <div>
-          <h2>
-            Your Journey with Quran Scholars
-          </h2>
-          <p>
-            A straightforward workflow designed to keep learning smooth from
-            first application to regular classes.
-          </p>
-
-          <div>
-            {onboardingSteps.map((step, index) =>
-            <article
-              key={step.title}>
-
-              
-                <div>
-                  {index + 1}
-                </div>
-                <h3>
-                  {step.title}
-                </h3>
-                <p>{step.detail}</p>
-              </article>
-            )}
-          </div>
+        <div className="flex flex-wrap gap-3">
+          <Link to="/courses" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#f4c95d] px-5 text-sm font-black text-[#11342e] no-underline">Browse courses <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
+          <Link to="/contact" className="inline-flex min-h-12 items-center rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-black text-white no-underline">Contact us</Link>
         </div>
-      </section>
-
-      <section>
-        <div>
-          <h2>
-            Ready to begin your learning plan?
-          </h2>
-          <p>
-            Submit your admission profile and we will help you choose the best
-            track for your schedule, level, and goals.
-          </p>
-          <div>
-            <Link
-              to="/admission">
-
-              
-              Apply Now
-            </Link>
-            <Link
-              to="/contact">
-
-              
-              Talk to Us
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>);
-
-};
+      </div>
+    </section>
+  </main>
+);
 
 export default About;

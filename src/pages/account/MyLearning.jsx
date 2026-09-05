@@ -20,8 +20,8 @@ const MyLearning = () => {
     <main className="min-h-[70vh] bg-[#fbfcfa] px-4 py-12 text-[#172b24] sm:px-6 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-6 border-b border-[#dfe6e2] pb-8 sm:flex-row sm:items-end sm:justify-between">
-          <div><p className="text-xs font-black uppercase tracking-[0.15em] text-primary">Student learning area</p><h1 className="mt-2 font-display text-[clamp(2.5rem,5vw,4.2rem)] font-black leading-none tracking-[-0.045em]">My Learning</h1><p className="mt-4 max-w-2xl text-base font-medium leading-7 text-[#68766f]">Continue your recorded courses, review completed lessons, and keep your study momentum in one place.</p></div>
-          <Link to="/recorded-courses" className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-[#ccd8d2] bg-white px-4 text-sm font-black text-primary no-underline transition hover:bg-[#f0f7f4]">Browse courses <ArrowRight className="size-4" /></Link>
+          <div><p className="text-xs font-black uppercase tracking-[0.15em] text-primary">Student learning area</p><h1 className="mt-2 font-display text-[clamp(2.5rem,5vw,4.2rem)] font-black leading-none tracking-[-0.045em]">My Learning</h1><p className="mt-4 max-w-2xl text-base font-medium leading-7 text-[#68766f]">Continue your self-paced courses, review completed lessons, and keep your study momentum in one place.</p></div>
+          <Link to="/courses/self-paced" className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-lg border border-[#ccd8d2] bg-white px-4 text-sm font-black text-primary no-underline transition hover:bg-[#f0f7f4]">Browse courses <ArrowRight className="size-4" /></Link>
         </div>
 
         {enrolledCourses.length ? (
@@ -34,7 +34,7 @@ const MyLearning = () => {
             <section className="mt-10" aria-labelledby="courses-in-progress"><div className="flex items-center justify-between gap-4"><h2 id="courses-in-progress" className="font-display text-2xl font-black">Courses in progress</h2><span className="text-sm font-bold text-[#718079]">Progress saves on this device for now</span></div><div className="mt-5 grid gap-5">{enrolledCourses.map(({ course, enrollment }) => <LearningCourseCard key={course.id} course={course} enrollment={enrollment} />)}</div></section>
           </>
         ) : (
-          <section className="mt-10 rounded-2xl border border-dashed border-[#cbd8d1] bg-white p-10 text-center"><span className="mx-auto grid size-14 place-items-center rounded-xl bg-[#e8f4f0] text-primary"><BookOpenCheck className="size-6" /></span><h2 className="mt-5 font-display text-2xl font-black">Your learning library is ready</h2><p className="mx-auto mt-3 max-w-md text-sm font-medium leading-6 text-[#68766f]">Courses you purchase or enroll in will appear here with saved lesson progress.</p><Link to="/recorded-courses" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">Find a recorded course <ArrowRight className="size-4" /></Link></section>
+          <section className="mt-10 rounded-2xl border border-dashed border-[#cbd8d1] bg-white p-10 text-center"><span className="mx-auto grid size-14 place-items-center rounded-xl bg-[#e8f4f0] text-primary"><BookOpenCheck className="size-6" /></span><h2 className="mt-5 font-display text-2xl font-black">Your learning library is ready</h2><p className="mx-auto mt-3 max-w-md text-sm font-medium leading-6 text-[#68766f]">Courses you purchase or enroll in will appear here with saved lesson progress.</p><Link to="/courses/self-paced" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">Find a self-paced course <ArrowRight className="size-4" /></Link></section>
         )}
       </div>
     </main>

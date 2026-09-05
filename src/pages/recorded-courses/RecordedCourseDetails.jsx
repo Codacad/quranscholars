@@ -84,7 +84,7 @@ const RecordedCourseDetails = () => {
   }, [course]);
 
   if (!course) {
-    return <main className="grid min-h-[60vh] place-items-center bg-[#fbfcfa] px-4"><div className="max-w-lg text-center"><span className="mx-auto grid size-12 place-items-center rounded-xl bg-[#e8f4f0] text-primary"><BookOpen /></span><h1 className="mt-5 font-display text-3xl font-black">Course not found</h1><p className="mt-3 text-[#68766f]">This recorded course may have moved or is not currently published.</p><Link to="/recorded-courses" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline"><ArrowLeft className="size-4" />Back to courses</Link></div></main>;
+    return <main className="grid min-h-[60vh] place-items-center bg-[#fbfcfa] px-4"><div className="max-w-lg text-center"><span className="mx-auto grid size-12 place-items-center rounded-xl bg-[#e8f4f0] text-primary"><BookOpen /></span><h1 className="mt-5 font-display text-3xl font-black">Course not found</h1><p className="mt-3 text-[#68766f]">This self-paced course may have moved or is not currently published.</p><Link to="/courses/self-paced" className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline"><ArrowLeft className="size-4" />Back to courses</Link></div></main>;
   }
 
   const firstLessonId = course.lessons[0]?.id;
@@ -115,7 +115,7 @@ const RecordedCourseDetails = () => {
       <section className="bg-[#082f2b] px-4 py-12 text-white sm:px-6 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_23rem] lg:items-start">
           <div>
-            <nav className="flex flex-wrap items-center gap-2 text-xs font-bold text-white/60" aria-label="Breadcrumb"><Link to="/recorded-courses" className="text-[#a6dcd0] no-underline hover:text-white">Recorded courses</Link><span>/</span><span>{course.category}</span></nav>
+            <nav className="flex flex-wrap items-center gap-2 text-xs font-bold text-white/60" aria-label="Breadcrumb"><Link to="/courses" className="text-[#a6dcd0] no-underline hover:text-white">Courses</Link><span>/</span><Link to="/courses/self-paced" className="text-[#a6dcd0] no-underline hover:text-white">Self-paced</Link><span>/</span><span>{course.category}</span></nav>
             <div className="mt-6 flex flex-wrap gap-2"><span className="rounded-md bg-[#f4c95d] px-2.5 py-1 text-[0.65rem] font-black uppercase tracking-[0.09em] text-[#17372f]">Self-paced</span>{course.bestseller && <span className="rounded-md border border-white/20 bg-white/10 px-2.5 py-1 text-[0.65rem] font-black uppercase tracking-[0.09em]">Bestseller</span>}</div>
             <h1 className="mt-5 max-w-4xl text-balance font-display text-[clamp(2.35rem,5vw,4.4rem)] font-black leading-[1.04] tracking-[-0.045em]">{course.title}</h1>
             <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white/72">{course.shortDescription}</p>

@@ -16,9 +16,9 @@ import { getRecordedCourseBySlug } from "@/features/recorded-courses/services/re
 import { getEnrollment, subscribeToLearning, updateCourseProgress } from "@/features/recorded-courses/services/learningStorage.js";
 
 const RecordedCoursePlayer = () => {
-  const { slug, lessonId } = useParams();
+  const { courseSlug, lessonId } = useParams();
   const navigate = useNavigate();
-  const course = getRecordedCourseBySlug(slug);
+  const course = getRecordedCourseBySlug(courseSlug);
   const [enrollment, setEnrollment] = useState(() => (course ? getEnrollment(course.id) : null));
   const [mobileCurriculumOpen, setMobileCurriculumOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const RecordedCoursePlayer = () => {
   }
 
   if (!enrollment) {
-    return <main className="grid min-h-screen place-items-center bg-[#fbfcfa] px-4"><div className="max-w-lg text-center"><h1 className="font-display text-3xl font-black">Enroll before opening lessons</h1><p className="mt-3 text-[#68766f]">This course is not in your learning library yet.</p><Link to={`/recorded-courses/${course.slug}`} className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View course <ChevronRight className="size-4" /></Link></div></main>;
+    return <main className="grid min-h-screen place-items-center bg-[#fbfcfa] px-4"><div className="max-w-lg text-center"><h1 className="font-display text-3xl font-black">Enroll before opening lessons</h1><p className="mt-3 text-[#68766f]">This course is not in your learning library yet.</p><Link to={`/courses/self-paced/${course.slug}`} className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-black text-white no-underline">View course <ChevronRight className="size-4" /></Link></div></main>;
   }
 
   const openLesson = (lesson) => {

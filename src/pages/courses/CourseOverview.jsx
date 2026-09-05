@@ -86,6 +86,10 @@ const CourseOverview = () => {
                         Courses
                       </Link>
                       <span>/</span>
+                      <Link to={"/courses/live"}>
+                        Live courses
+                      </Link>
+                      <span>/</span>
                       <span>{course.title}</span>
                     </div>
                 }
@@ -122,7 +126,7 @@ const CourseOverview = () => {
                   <div>
                     {[
                   {
-                    label: "Live + Recorded",
+                    label: "Live + Replay",
                     value: course.mode || "Blended"
                   },
                   { label: "Cohort Size", value: "12–18 learners" },

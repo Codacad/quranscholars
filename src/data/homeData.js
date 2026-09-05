@@ -110,7 +110,7 @@ const platformFeatures = [
     {
         icon: MessageCircleMore,
         title: "Guidance when self-study is not enough",
-        text: "Move from recorded learning into live classes and scholar support when you need it.",
+        text: "Move from self-paced learning into live classes and scholar support when you need it.",
     },
 ];
 
@@ -158,9 +158,9 @@ const testimonials = [
 
 const faqs = [
     {
-        question: "Are courses live, recorded, or both?",
+        question: "Are courses live, self-paced, or both?",
         answer:
-            "Both. You can study professionally produced, self-paced video courses and join live scholar-led classes. Blended pathways bring the two formats together.",
+            "Both. You can study professionally produced self-paced courses and join live scholar-led classes. Blended pathways bring the two formats together.",
     },
     {
         question: "Do I need an Arabic or Islamic studies background?",
@@ -175,7 +175,7 @@ const faqs = [
     {
         question: "Will my course progress be saved?",
         answer:
-            "Recorded courses are organised by sections and lessons, allowing you to resume learning and keep track of completed material.",
+            "Self-paced courses are organised by sections and lessons, allowing you to resume learning and keep track of completed material.",
     },
     {
         question: "Can I choose a male or female instructor?",

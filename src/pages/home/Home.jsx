@@ -24,6 +24,8 @@ import {
 } from "@/data/homeData.js";
 import RecordedCourseCard from "@/features/recorded-courses/components/RecordedCourseCard.jsx";
 import { getFeaturedRecordedCourses } from "@/features/recorded-courses/services/recordedCoursesRepository.js";
+import { liveClasses } from "@/data/lmsData.js";
+import { LiveClassCard } from "@/pages/live-classes/LiveClasses.jsx";
 
 const homeRecordedCourses = getFeaturedRecordedCourses(3);
 
@@ -59,7 +61,7 @@ const Home = () => {
   };
 
   return (
-    <main className="overflow-hidden bg-[#fbfcfa] text-[#14231e]">
+    <main className="overflow-hidden bg-[#fbfcfa] text-[#14231e] z-0">
       {/* Showcase */}
       <section
         id="main"
@@ -123,7 +125,7 @@ const Home = () => {
               className="mt-6 max-w-172 text-pretty text-[clamp(1.05rem,1.45vw,1.24rem)] font-medium leading-[1.75] text-white/[.74]"
             >
               Learn Quran, Tajweed, Hadith, Fiqh, and family-focused Islamic
-              studies through live scholar-led classes and high-quality recorded
+              studies through live scholar-led classes and high-quality self-paced
               courses designed for flexible, structured learning.
             </motion.p>
 
@@ -132,14 +134,14 @@ const Home = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link
-                to="/recorded-courses"
+                to="/courses/self-paced"
                 className="group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg bg-[#f4c95d] px-6 text-sm font-black text-[#102f2a] no-underline shadow-[0_16px_38px_rgba(0,0,0,.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffd978] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f4c95d]"
               >
                 Explore courses
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                to="/courses"
+                to="/live-classes"
                 className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg border border-white/[.24] bg-white/10 px-6 text-sm font-black text-white no-underline backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:bg-white/[.16] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <Headphones className="size-[1.1rem] text-[#9ad8ca]" />
@@ -154,7 +156,7 @@ const Home = () => {
             >
               {showcaseStats.map((stat) => (
                 <div
-                  className="border-white/[.12] bg-[#061f1c]/40 p-4 max-sm:border-t sm:border-l first:border-0"
+                  className="border-white/12 bg-[#061f1c]/40 p-4 max-sm:border-t sm:border-l first:border-0"
                   key={stat.label}
                 >
                   <p className="font-display text-2xl font-black leading-none text-white">
@@ -169,7 +171,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="relative hidden min-h-[34rem] w-full lg:block"
+            className="relative hidden min-h-136 w-full lg:block"
             initial={{
               opacity: 0,
               x: prefersReducedMotion ? 0 : 24,
@@ -192,7 +194,7 @@ const Home = () => {
                   </h2>
                 </div>
                 <Link
-                  to="/recorded-courses/tajweed-foundations-recite-with-confidence"
+                  to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
                   aria-label="Play course preview"
                   className="grid size-11 shrink-0 place-items-center rounded-lg bg-white text-[#0f766e] transition hover:scale-105"
                 >
@@ -286,7 +288,7 @@ const Home = () => {
         >
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <SectionLabel>Featured recorded courses</SectionLabel>
+              <SectionLabel>Featured self-paced courses</SectionLabel>
               <h2 className="text-balance font-display text-[clamp(2.2rem,4vw,3.65rem)] font-black leading-[1.04] tracking-[-0.045em]">
                 Start now. Learn at your own pace.
               </h2>
@@ -296,10 +298,10 @@ const Home = () => {
               </p>
             </div>
             <Link
-              to="/recorded-courses"
+              to="/courses/self-paced"
               className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline"
             >
-              View recorded courses
+              View self-paced courses
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
@@ -309,6 +311,16 @@ const Home = () => {
               <RecordedCourseCard key={course.id} course={course} />
             ))}
           </div>
+        </motion.div>
+      </section>
+
+      <section className="border-t border-[#e3e9e5] bg-white px-6 py-24 max-sm:px-4 max-sm:py-18">
+        <motion.div className="mx-auto max-w-7xl" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={reveal}>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl"><SectionLabel>Instructor-led programs</SectionLabel><h2 className="text-balance font-display text-[clamp(2.2rem,4vw,3.65rem)] font-black leading-[1.04] tracking-[-0.045em]">Learn live. Grow with guidance.</h2><p className="mt-5 max-w-xl text-base font-medium leading-relaxed text-[#66736e]">Follow a schedule, ask questions and build lasting study habits with an instructor and learning community.</p></div>
+            <Link to="/live-classes" className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline">Explore live classes<ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">{liveClasses.map((item) => <LiveClassCard key={item.id} item={item} />)}</div>
         </motion.div>
       </section>
 
@@ -328,7 +340,7 @@ const Home = () => {
               Built for serious self-paced study
             </SectionLabel>
             <h2 className="text-balance font-display text-[clamp(2.3rem,4vw,3.8rem)] font-black leading-[1.03] tracking-[-0.045em]">
-              Recorded courses that feel thoughtfully taught.
+              Self-paced courses that feel thoughtfully taught.
             </h2>
             <p className="mt-6 max-w-xl text-base font-medium leading-[1.8] text-white/68">
               A complete video processing pipeline works quietly in the
@@ -384,7 +396,7 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 grid place-items-center">
                   <Link
-                    to="/recorded-courses/tajweed-foundations-recite-with-confidence"
+                    to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
                     aria-label="Play course preview"
                     className="grid size-17 place-items-center rounded-full border-4 border-white/40 bg-white text-primary shadow-xl transition hover:scale-105"
                   >
@@ -414,7 +426,7 @@ const Home = () => {
                   </h3>
                 </div>
                 <Link
-                  to="/recorded-courses/tajweed-foundations-recite-with-confidence"
+                  to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
                   className="rounded-xl bg-white px-4 py-2.5 text-center text-xs font-black text-[#133a33] no-underline"
                 >
                   Next lesson

@@ -57,7 +57,7 @@ const getPageWindow = (currentPage, totalPages) => {
 
 const CourseSkeleton = () => (
   <div className="overflow-hidden rounded-2xl border border-[#e1e7e3] bg-white shadow-[0_10px_30px_rgba(18,48,40,.05)]">
-    <div className="aspect-[16/10] animate-pulse bg-[#e8efeb]" />
+    <div className="aspect-16/10 animate-pulse bg-[#e8efeb]" />
     <div className="space-y-4 p-5">
       <div className="h-3 w-24 animate-pulse rounded-full bg-[#e3eae6]" />
       <div className="h-6 w-4/5 animate-pulse rounded-md bg-[#e3eae6]" />
@@ -264,15 +264,15 @@ const Courses = () => {
           aria-hidden="true"
         />
         <div
-          className="absolute -right-28 -top-48 -z-20 size-[40rem] rounded-full border-[96px] border-white/[.035]"
+          className="absolute -right-28 -top-48 -z-20 size-160 rounded-full border-96 border-white/[.035]"
           aria-hidden="true"
         />
         <div
-          className="absolute -bottom-48 left-[34%] -z-20 size-[30rem] rounded-full bg-[#3e9d88]/15 blur-3xl"
+          className="absolute -bottom-48 left-[34%] -z-20 size-120 rounded-full bg-[#3e9d88]/15 blur-3xl"
           aria-hidden="true"
         />
 
-        <div className="mx-auto grid min-h-[31rem] w-full max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.08fr_.72fr] lg:py-20 max-sm:px-4 max-sm:py-12">
+        <div className="mx-auto grid min-h-124 w-full max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.08fr_.72fr] lg:py-20 max-sm:px-4 max-sm:py-12">
           <motion.div initial="hidden" animate="visible" variants={reveal}>
             {!isServicesView && (
               <nav
@@ -286,7 +286,14 @@ const Courses = () => {
                   Home
                 </Link>
                 <span aria-hidden="true">/</span>
-                <span aria-current="page">Courses</span>
+                <Link
+                  className="text-white/70 no-underline hover:text-white"
+                  to="/courses"
+                >
+                  Courses
+                </Link>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">Live courses</span>
               </nav>
             )}
 
@@ -376,7 +383,7 @@ const Courses = () => {
                 {
                   icon: MonitorPlay,
                   title: "Flexible access",
-                  text: "Learn through live and recorded experiences.",
+                  text: "Join live classes with session replays when included.",
                 },
                 {
                   icon: BookOpenCheck,
