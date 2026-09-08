@@ -24,7 +24,7 @@ export const serviceCatalog = [
     audience: "Learners who benefit from direct explanation, practice, and accountability.",
     outcomes: ["Ask questions in context", "Practise with teacher feedback", "Leave with a clear next step"],
     includes: ["Small-group discussion", "Guided recitation or concept practice", "Session notes and follow-up direction"],
-    delivery: "Available alongside selected live courses and mentoring programs.",
+    delivery: "Available alongside selected live classes and mentoring programs.",
   },
   {
     slug: "educational-resources",

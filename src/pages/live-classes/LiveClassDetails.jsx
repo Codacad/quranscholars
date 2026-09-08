@@ -63,7 +63,7 @@ export default function LiveClassDetails() {
           </div>
           <aside className="rounded-2xl border border-white/15 bg-white/[.08] p-6 backdrop-blur">
             <p className="text-xs font-black uppercase tracking-[.14em] text-[#a6dace]">
-              Next cohort
+              Class schedule
             </p>
             <div className="mt-5 grid gap-4 text-sm font-bold">
               <p className="flex gap-3">
@@ -110,10 +110,10 @@ export default function LiveClassDetails() {
           </section>
           <section>
             <h2 className="font-display text-2xl font-black">
-              Program curriculum
+              Topics covered
             </h2>
             <div className="mt-5 grid gap-3">
-              {item.curriculum.map((week) => (
+              {item.outline.map((week) => (
                 <article
                   key={week.week}
                   className="rounded-xl border border-border bg-white p-5"
@@ -127,9 +127,6 @@ export default function LiveClassDetails() {
                         {week.title}
                       </h3>
                     </div>
-                    <span className="text-xs font-bold capitalize text-muted-foreground">
-                      {week.state}
-                    </span>
                   </div>
                   <p className="mt-3 text-sm font-medium text-muted-foreground">
                     {week.topics.join(" · ")}

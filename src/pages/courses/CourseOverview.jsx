@@ -86,8 +86,8 @@ const CourseOverview = () => {
                         Courses
                       </Link>
                       <span>/</span>
-                      <Link to={"/courses/live"}>
-                        Live courses
+                      <Link to={"/live-classes"}>
+                        Live classes
                       </Link>
                       <span>/</span>
                       <span>{course.title}</span>

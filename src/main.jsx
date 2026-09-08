@@ -22,7 +22,7 @@ const Mission = lazy(() => import("@/pages/about/Mission.jsx"));
 const Admission = lazy(() => import("@/pages/admissions/Admission.jsx"));
 const Login = lazy(() => import("@/pages/auth/Login.jsx"));
 const Register = lazy(() => import("@/pages/auth/Register.jsx"));
-const CourseCatalog = lazy(() => import("@/pages/courses/CourseCatalog.jsx"));
+
 const RecordedCourses = lazy(
   () => import("@/pages/recorded-courses/RecordedCourses.jsx"),
 );
@@ -101,15 +101,15 @@ const router = createBrowserRouter([
       },
       {
         path: "courses",
-        element: <CourseCatalog />,
-      },
-      {
-        path: "courses/self-paced",
         element: <RecordedCourses />,
       },
       {
+        path: "courses/self-paced",
+        element: <CourseRouteRedirect basePath="/courses" />,
+      },
+      {
         path: "courses/self-paced/:slug",
-        element: <RecordedCourseDetails />,
+        element: <CourseRouteRedirect basePath="/courses" includeSlug />,
       },
       {
         path: "courses/live",
@@ -121,12 +121,12 @@ const router = createBrowserRouter([
       },
       {
         path: "recorded-courses",
-        element: <CourseRouteRedirect basePath="/courses/self-paced" />,
+        element: <CourseRouteRedirect basePath="/courses" />,
       },
       {
         path: "recorded-courses/:slug",
         element: (
-          <CourseRouteRedirect basePath="/courses/self-paced" includeSlug />
+          <CourseRouteRedirect basePath="/courses" includeSlug />
         ),
       },
       { path: "courses/:slug", element: <RecordedCourseDetails /> },
@@ -139,7 +139,7 @@ const router = createBrowserRouter([
       { path: "get-started/instructor", element: <InstructorStart /> },
       {
         path: "my-learning",
-        element: <ProtectedRoute>{<MyLearning />}</ProtectedRoute>,
+        element: <ProtectedRoute><CourseRouteRedirect basePath="/dashboard/learning" /></ProtectedRoute>,
       },
       {
         path: "learn/:courseSlug/:lessonId",
@@ -155,7 +155,7 @@ const router = createBrowserRouter([
         element: <WorkspaceLayout type="student" />,
         children: [
           { index: true, element: <StudentDashboard /> },
-          { path: "learning", element: <StudentSectionPage /> },
+          { path: "learning", element: <MyLearning /> },
           { path: "assignments", element: <StudentSectionPage /> },
           { path: "wishlist", element: <StudentSectionPage /> },
           { path: "purchases", element: <StudentSectionPage /> },
@@ -191,11 +191,11 @@ const router = createBrowserRouter([
           { index: true, element: <ServicesList /> },
           {
             path: "courses",
-            element: <CourseRouteRedirect basePath="/courses/live" />,
+            element: <CourseRouteRedirect basePath="/live-classes" />,
           },
           {
             path: "courses/:slug",
-            element: <CourseRouteRedirect basePath="/courses/live" includeSlug />,
+            element: <CourseRouteRedirect basePath="/live-classes" includeSlug />,
           },
           {
             path: "interactive-lessons",

@@ -8,7 +8,6 @@ const footerColumns = [
     title: "Platform",
     links: [
       { to: "/courses", label: "All courses" },
-      { to: "/courses/self-paced", label: "Self-paced courses" },
       { to: "/live-classes", label: "Live Classes" },
       { to: "/instructors", label: "Instructors" },
       { to: "/services", label: "Services" },

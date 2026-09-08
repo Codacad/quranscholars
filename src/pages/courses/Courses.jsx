@@ -293,7 +293,7 @@ const Courses = () => {
                   Courses
                 </Link>
                 <span aria-hidden="true">/</span>
-                <span aria-current="page">Live courses</span>
+                <span aria-current="page">Live classes</span>
               </nav>
             )}
 
@@ -320,7 +320,7 @@ const Courses = () => {
                 type="button"
                 onClick={scrollToCatalog}
               >
-                Explore live courses
+                Explore live classes
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </button>
               <Link

@@ -134,7 +134,7 @@ const Home = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link
-                to="/courses/self-paced"
+                to="/courses"
                 className="group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg bg-[#f4c95d] px-6 text-sm font-black text-[#102f2a] no-underline shadow-[0_16px_38px_rgba(0,0,0,.22)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#ffd978] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f4c95d]"
               >
                 Explore courses
@@ -194,7 +194,7 @@ const Home = () => {
                   </h2>
                 </div>
                 <Link
-                  to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
+                  to="/courses/tajweed-foundations-recite-with-confidence"
                   aria-label="Play course preview"
                   className="grid size-11 shrink-0 place-items-center rounded-lg bg-white text-[#0f766e] transition hover:scale-105"
                 >
@@ -298,7 +298,7 @@ const Home = () => {
               </p>
             </div>
             <Link
-              to="/courses/self-paced"
+              to="/courses"
               className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline"
             >
               View self-paced courses
@@ -396,7 +396,7 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 grid place-items-center">
                   <Link
-                    to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
+                    to="/courses/tajweed-foundations-recite-with-confidence"
                     aria-label="Play course preview"
                     className="grid size-17 place-items-center rounded-full border-4 border-white/40 bg-white text-primary shadow-xl transition hover:scale-105"
                   >
@@ -426,7 +426,7 @@ const Home = () => {
                   </h3>
                 </div>
                 <Link
-                  to="/courses/self-paced/tajweed-foundations-recite-with-confidence"
+                  to="/courses/tajweed-foundations-recite-with-confidence"
                   className="rounded-xl bg-white px-4 py-2.5 text-center text-xs font-black text-[#133a33] no-underline"
                 >
                   Next lesson

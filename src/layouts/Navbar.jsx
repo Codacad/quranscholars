@@ -1,5 +1,5 @@
 import Logo from "/images/Logo-2.svg";
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -31,7 +31,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLogoutMutation } from "@/services/api/user/userAuthApis.js";
 import { setUser } from "@/store/slices/userSlice.js";
 import { useGetProfilePicutreUrlQuery } from "@/services/api/user/fileUploadApis.js";
-import { useGetCoursesQuery } from "@/services/api/courses/courses.api.js";
+import { getFeaturedRecordedCourses } from "@/features/recorded-courses/services/recordedCoursesRepository.js";
 import admissionApis from "@/services/api/user/admissionApis.js";
 import { cn } from "@/lib/utils.js";
 
@@ -72,8 +72,7 @@ const Navbar = () => {
 
   const { data } = useGetProfilePicutreUrlQuery();
 
-  const { data: coursesData, isLoading: isCoursesLoading } =
-    useGetCoursesQuery();
+  const isCoursesLoading = false;
 
   const dispatch = useDispatch();
 
@@ -240,16 +239,7 @@ const Navbar = () => {
     };
   }, [isProfileOpen]);
 
-  const courseLinks = useMemo(
-    () =>
-      (coursesData?.data || [])
-        .filter((course) => course?.slug)
-        .map((course) => ({
-          to: `/live-classes/${course.slug}`,
-          label: course.title || "Course",
-        })),
-    [coursesData],
-  );
+  const courseLinks = getFeaturedRecordedCourses(4).map((course) => ({ to: `/courses/${course.slug}`, label: course.title }));
 
   const serviceLinks = [
     { to: "/live-classes", label: "Live classes" },
@@ -286,7 +276,6 @@ const Navbar = () => {
       icon: BookOpen,
       links: [
         { to: "/courses", label: "All courses" },
-        { to: "/courses/self-paced", label: "Self-paced courses" },
         { to: "/live-classes", label: "Live instructor-led classes" },
         { to: "/instructors", label: "Instructors" },
         { to: "/dashboard/learning", label: "My Learning" },
@@ -350,7 +339,7 @@ const Navbar = () => {
 
     if (!query) return;
 
-    navigate(`/courses/self-paced?search=${encodeURIComponent(query)}`);
+    navigate(`/courses?search=${encodeURIComponent(query)}`);
     setNavbarSearch("");
     setIsExploreOpen(false);
     setIsMobileMenuOpen(false);
@@ -625,10 +614,10 @@ const Navbar = () => {
                     </span>
                     <div>
                       <p className="text-sm font-extrabold text-foreground">
-                        Featured live courses
+                        Featured video courses
                       </p>
                       <p className="mt-0.5 text-xs text-muted-foreground">
-                        Join a scholar-led pathway
+                        Explore structured video lessons
                       </p>
                     </div>
                   </div>
@@ -659,10 +648,10 @@ const Navbar = () => {
 
                   <Link
                     className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold text-primary no-underline hover:text-primary-hover"
-                    to="/live-classes"
+                    to="/courses"
                     onClick={() => setIsExploreOpen(false)}
                   >
-                    Browse live courses
+                    Browse courses
                     <ArrowRight className="size-4" />
                   </Link>
                 </section>
@@ -937,20 +926,6 @@ const Navbar = () => {
                               to="/courses"
                             >
                               Browse all courses
-                            </NavLink>
-                            <NavLink
-                              className={mobileSubnavLinkClass}
-                              onClick={closeMobileMenu}
-                              to="/courses/self-paced"
-                            >
-                              Self-paced courses
-                            </NavLink>
-                            <NavLink
-                              className={mobileSubnavLinkClass}
-                              onClick={closeMobileMenu}
-                              to="/live-classes"
-                            >
-                              Live course catalog
                             </NavLink>
                             {isCoursesLoading && (
                               <div className="rounded-md px-3 py-2 text-sm font-semibold leading-snug text-faint-foreground">

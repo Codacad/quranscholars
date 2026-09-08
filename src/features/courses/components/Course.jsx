@@ -30,7 +30,7 @@ const Course = ({ course }) => {
       : "Flexible pace";
   const detailsPath = pathname.startsWith("/services")
     ? "/services/courses/" + (course?.slug || "")
-    : "/courses/live/" + (course?.slug || "");
+    : "/live-classes/" + (course?.slug || "");
   const description =
     course?.description ||
     course?.overview?.description ||
@@ -82,7 +82,7 @@ const Course = ({ course }) => {
           {course?.level || "All levels"}
         </span>
         <span className="absolute right-4 top-4 inline-flex min-h-7 items-center rounded-full bg-[#0b3e38] px-3 text-[0.66rem] font-black uppercase tracking-[0.1em] text-white shadow-sm">
-          Live course
+          Live class
         </span>
         {discount > 0 && priceAmount > 0 && (
           <span className="absolute bottom-4 right-4 rounded-full bg-[#f4c95d] px-3 py-1.5 text-[0.68rem] font-black text-[#17372f] shadow-sm">

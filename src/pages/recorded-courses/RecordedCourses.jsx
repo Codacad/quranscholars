@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { ArrowRight, BookOpen, Grid3X3, Radio, Search, Sparkles, X } from "lucide-react";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import { ArrowRight, BookOpen, Grid3X3, Search, Sparkles, X } from "lucide-react";
 import CustomSelect from "@/components/ui/CustomSelect.jsx";
 import RecordedCourseCard from "@/features/recorded-courses/components/RecordedCourseCard.jsx";
 import RecordedCourseSkeleton from "@/features/recorded-courses/components/RecordedCourseSkeleton.jsx";
@@ -24,12 +24,27 @@ const sortOptions = [
 ];
 
 const RecordedCourses = () => {
-  const [searchParams] = useSearchParams();
-  const [search, setSearch] = useState(() => searchParams.get("search") || "");
-  const [category, setCategory] = useState("All");
-  const [level, setLevel] = useState("All");
-  const [sort, setSort] = useState("popular");
-  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
+  const category = recordedCourseCategories.includes(searchParams.get("subject")) ? searchParams.get("subject") : "All";
+  const level = recordedCourseLevels.includes(searchParams.get("level")) ? searchParams.get("level") : "All";
+  const sort = sortOptions.some((option) => option.value === searchParams.get("sort")) ? searchParams.get("sort") : "popular";
+  const page = Math.max(1, Number.parseInt(searchParams.get("page"), 10) || 1);
+  const updateFilter = (key, value, fallback = "") => setSearchParams((previous) => {
+    const next = new URLSearchParams(previous);
+    if (value === fallback || !value) next.delete(key); else next.set(key, value);
+    next.delete("page");
+    return next;
+  }, { replace: key === "search" });
+  const setSearch = (value) => updateFilter("search", value);
+  const setCategory = (value) => updateFilter("subject", value, "All");
+  const setLevel = (value) => updateFilter("level", value, "All");
+  const setSort = (value) => updateFilter("sort", value, "popular");
+  const setPage = (updater) => setSearchParams((previous) => {
+    const next = new URLSearchParams(previous);
+    next.set("page", String(updater(currentPage)));
+    return next;
+  });
   const isLoading = false;
   const hasError = false;
 
@@ -54,13 +69,7 @@ const RecordedCourses = () => {
   const hasActiveFilters =
     search || category !== "All" || level !== "All" || sort !== "popular";
 
-  const clearFilters = () => {
-    setSearch("");
-    setCategory("All");
-    setLevel("All");
-    setSort("popular");
-    setPage(1);
-  };
+  const clearFilters = () => setSearchParams({});
 
   return (
     <main className="bg-[#fbfcfa] text-[#172b24]">
@@ -69,16 +78,16 @@ const RecordedCourses = () => {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,.72fr)] lg:items-center lg:gap-14">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-[#9ed6c8]"><Sparkles className="size-4 text-[#f4c95d]" />On-demand learning</div>
-            <h1 className="mt-5 max-w-4xl text-balance font-display text-[clamp(2.65rem,5.5vw,5rem)] font-black leading-[1.02] tracking-[-0.045em]">Learn deeply, on your schedule.</h1>
-            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-white/70 sm:text-lg">Professional self-paced courses in Quran, Tajweed, Hadith, Arabic, and Islamic studies—with structured lessons and progress that is ready when you return.</p>
+            <h1 className="mt-5 max-w-4xl text-balance font-display text-[clamp(2.65rem,5.5vw,5rem)] font-black leading-[1.02] tracking-[-0.045em]">Video courses. Learn at your own pace.</h1>
+            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-white/70 sm:text-lg">Explore instructor-created courses in Quran, Tajweed, Arabic, and Islamic studies. Review what each course covers, explore its lesson outline, and choose the right starting point for your learning.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#self-paced-catalog" className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#f4c95d] px-5 text-sm font-black text-[#11342e] no-underline transition hover:bg-[#ffda79]">Browse self-paced courses <ArrowRight className="size-4" /></a>
-              <Link to="/courses/live" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 text-sm font-black text-white no-underline transition hover:bg-white/15"><Radio className="size-4 text-[#9ed6c8]" />View live courses</Link>
+              <a href="#self-paced-catalog" className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-[#f4c95d] px-5 text-sm font-black text-[#11342e] no-underline transition hover:bg-[#ffda79]">Browse courses <ArrowRight className="size-4" /></a>
+              <a href="#how-courses-work" className="inline-flex min-h-12 items-center rounded-lg border border-white/20 px-5 text-sm font-black text-white no-underline">How courses work</a>
             </div>
           </div>
           <UrduCompanion
             title="اپنی رفتار سے، اپنے وقت کے مطابق دینی تعلیم حاصل کریں"
-            description="قرآن، تجوید، حدیث، عربی اور اسلامی علوم کے منظم اسباق جب چاہیں شروع کریں اور اپنی پیش رفت محفوظ رکھتے ہوئے مسلسل آگے بڑھیں۔"
+            description="قرآن، تجوید، عربی اور اسلامی علوم کے ویڈیو کورسز اپنی رفتار سے پڑھیں۔ داخلہ لینے سے پہلے اسباق، استاد، قیمت اور کورس کی تفصیلات دیکھیں۔"
           />
         </div>
       </section>
@@ -87,7 +96,7 @@ const RecordedCourses = () => {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-primary">Self-paced course library</p>
+              <p className="text-xs font-black uppercase tracking-[0.16em] text-primary">Video course library</p>
               <h2 className="mt-2 font-display text-3xl font-black tracking-[-0.035em] sm:text-4xl">Find your next course</h2>
             </div>
             <p className="inline-flex items-center gap-2 text-sm font-bold text-[#68766f]" aria-live="polite"><Grid3X3 className="size-4 text-primary" />Showing {visibleCourses.length} of {filteredCourses.length} courses</p>
@@ -96,7 +105,7 @@ const RecordedCourses = () => {
           <div className="mt-8 border-y border-[#dfe6e2] py-5">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
               <label className="relative min-w-0 flex-1 md:max-w-2xl">
-                <span className="sr-only">Search the self-paced course catalog</span>
+                <span className="sr-only">Search video courses</span>
                 <Search className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#718078]" />
                 <input
                   className="h-11 w-full rounded-lg border border-[#d8e1dc] bg-white py-2 pl-10 pr-11 text-sm font-semibold text-[#20332c] outline-none transition placeholder:font-medium placeholder:text-[#95a19c] hover:border-[#bdccc5] focus:border-primary focus:ring-3 focus:ring-primary/10"
@@ -160,7 +169,7 @@ const RecordedCourses = () => {
           {isLoading ? (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{Array.from({ length: 8 }, (_, index) => <RecordedCourseSkeleton key={index} />)}</div>
           ) : hasError ? (
-            <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-8 text-center"><h3 className="font-display text-xl font-black text-red-900">We could not load self-paced courses</h3><p className="mt-2 text-sm font-medium text-red-700">Please refresh the page or try again shortly.</p></div>
+            <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-8 text-center"><h3 className="font-display text-xl font-black text-red-900">We could not load courses</h3><p className="mt-2 text-sm font-medium text-red-700">Please refresh the page or try again shortly.</p></div>
           ) : visibleCourses.length ? (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{visibleCourses.map((course) => <RecordedCourseCard key={course.id} course={course} />)}</div>
           ) : (
@@ -173,7 +182,7 @@ const RecordedCourses = () => {
           )}
 
           {pageCount > 1 && (
-            <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Self-paced course pages">
+            <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Course pages">
               <button type="button" disabled={currentPage === 1} onClick={() => setPage((value) => Math.max(1, value - 1))} className="min-h-10 rounded-lg border border-[#d5ded9] bg-white px-4 text-sm font-black text-[#43554d] disabled:cursor-not-allowed disabled:opacity-45">Previous</button>
               <span className="px-2 text-sm font-bold text-[#68766f]">Page {currentPage} of {pageCount}</span>
               <button type="button" disabled={currentPage === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))} className="min-h-10 rounded-lg border border-[#d5ded9] bg-white px-4 text-sm font-black text-[#43554d] disabled:cursor-not-allowed disabled:opacity-45">Next</button>
@@ -182,14 +191,27 @@ const RecordedCourses = () => {
         </div>
       </section>
 
-      <section className="border-t border-[#dfe6e2] bg-white px-4 py-12 sm:px-6">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 rounded-2xl bg-[#0b3e38] p-7 text-white sm:flex-row sm:items-center sm:justify-between sm:p-9">
-          <div><p className="text-xs font-black uppercase tracking-[0.15em] text-[#9ed6c8]">Need direct guidance?</p><h2 className="mt-2 font-display text-2xl font-black">Learn live with a QuranScholar instructor.</h2><p className="mt-2 text-sm font-medium text-white/65">Instructor-led courses use the existing admission and scheduling pathway.</p></div>
-          <Link to="/courses/live" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black text-[#123a33] no-underline">Explore live courses <ArrowRight className="size-4" /></Link>
+      <section id="how-courses-work" aria-labelledby="how-courses-title" className="scroll-mt-24 border-t border-[#dfe6e2] bg-white px-4 py-14 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-black uppercase tracking-[0.15em] text-primary">Your learning journey</p>
+          <h2 id="how-courses-title" className="mt-2 font-display text-3xl font-black">How courses work</h2>
+          <ol className="mt-8 grid gap-6 md:grid-cols-3">
+            {[
+              ["Choose your subject", "Browse by subject and level to find a course that fits your interests and experience."],
+              ["Explore the course", "Review the learning outcomes, video lesson outline, instructor, price and access terms before enrolling."],
+              ["Learn at your own pace", "Follow the recorded lessons in order and revisit topics as you build your understanding."],
+            ].map(([title, description], index) => <li key={title} className="rounded-xl border border-[#dfe6e2] p-6"><span className="text-sm font-black text-primary">0{index + 1}</span><h3 className="mt-3 font-display text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-7 text-[#68766f]">{description}</p></li>)}
+          </ol>
+          <div className="mt-10 max-w-3xl space-y-3">
+            {[
+              ["What does a course include?", "Each course has its own recorded lesson outline. Check its details for included resources, prerequisites and learning outcomes."],
+              ["How long can I access a course?", "Review the access terms on the course details page before enrolling. Access duration and pricing depend on the course."],
+              ["Where do I continue learning?", "Open My Learning from your account to find your enrolled courses and continue your lessons."],
+            ].map(([question, answer]) => <details key={question} className="rounded-xl border border-[#dfe6e2] p-5"><summary className="cursor-pointer font-bold">{question}</summary><p className="mt-3 text-sm leading-7 text-[#68766f]">{answer}</p></details>)}
+          </div>
         </div>
       </section>
     </main>
   );
 };
-
 export default RecordedCourses;

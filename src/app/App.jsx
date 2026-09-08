@@ -7,11 +7,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "@/store/slices/userSlice.js";
 import { useMeQuery } from "@/services/api/user/userAuthApis.js";
 import AppLoader from "@/components/feedback/AppLoader.jsx";
+import DevelopmentWelcome from "@/components/feedback/DevelopmentWelcome.jsx";
 function App() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const pathName = useLocation();
-  const isWorkspace =
+  const isWorkspace = 
     pathName.pathname.startsWith("/learn/") ||
     pathName.pathname.startsWith("/classroom/") ||
     pathName.pathname.startsWith("/dashboard") ||
@@ -86,6 +87,7 @@ function App() {
         <Outlet />
         {!isWorkspace && <Footer />}
       </div>
+      <DevelopmentWelcome />
     </>
   );
 }

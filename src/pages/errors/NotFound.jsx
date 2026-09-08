@@ -13,7 +13,7 @@ const NotFound = () => (
         <p className="text-sm font-bold text-[#52655c]">Choose a reliable place to continue:</p>
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           <Link to="/" className="group rounded-xl border border-[#dfe6e2] p-4 text-[#29443a] no-underline transition hover:border-[#bcd1c7] hover:bg-[#f4f8f6]"><Home className="size-5 text-primary" /><span className="mt-3 block font-black">Home</span><span className="mt-1 block text-xs font-medium text-[#718078]">Return to the platform overview.</span></Link>
-          <Link to="/courses" className="group rounded-xl border border-[#dfe6e2] p-4 text-[#29443a] no-underline transition hover:border-[#bcd1c7] hover:bg-[#f4f8f6]"><Search className="size-5 text-primary" /><span className="mt-3 block font-black">Course catalog</span><span className="mt-1 block text-xs font-medium text-[#718078]">Browse live and self-paced study.</span></Link>
+          <Link to="/courses" className="group rounded-xl border border-[#dfe6e2] p-4 text-[#29443a] no-underline transition hover:border-[#bcd1c7] hover:bg-[#f4f8f6]"><Search className="size-5 text-primary" /><span className="mt-3 block font-black">Course catalog</span><span className="mt-1 block text-xs font-medium text-[#718078]">Explore structured video courses.</span></Link>
           <Link to="/contact" className="group rounded-xl border border-[#dfe6e2] p-4 text-[#29443a] no-underline transition hover:border-[#bcd1c7] hover:bg-[#f4f8f6]"><ArrowRight className="size-5 text-primary" /><span className="mt-3 block font-black">Contact support</span><span className="mt-1 block text-xs font-medium text-[#718078]">Ask for help finding a page.</span></Link>
         </div>
       </div>
