@@ -1,4 +1,4 @@
-import Logo from "/images/Logo-2.svg";
+import Logo from "/images/Logo-3.svg";
 import { useEffect, useState, useRef } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -379,7 +379,8 @@ const Navbar = () => {
     }
   };
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-surface/90 font-body backdrop-blur-xl">
+    <>
+      <header className="sticky top-0 z-50 border-b border-border bg-surface/90 font-body backdrop-blur-xl">
       <nav className="mx-auto flex min-h-18 w-full max-w-360 items-center gap-4 px-6 max-xl:justify-between max-xl:px-4 max-sm:min-h-16">
         {/* Logo Section */}
         <Link
@@ -734,19 +735,22 @@ const Navbar = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      </header>
+
+      {/* Mobile Menu: kept outside the filtered sticky header so its fixed
+          viewport sizing and stacking are not constrained by the header. */}
       <div
         className={cn(
-          "fixed inset-0 transition-[visibility] duration-300 xl:hidden",
+          "fixed inset-0 z-[210] max-w-[100vw] overflow-hidden overscroll-none transition-[visibility] duration-300 xl:hidden",
           isMobileMenuOpen
-            ? "visible pointer-events-auto z-70"
-            : "invisible pointer-events-none delay-300 z-70",
+            ? "visible pointer-events-auto"
+            : "invisible pointer-events-none delay-300",
         )}
         aria-hidden={!isMobileMenuOpen}
       >
         <button
           className={cn(
-            "absolute inset-0 border-0 bg-black/45 transition-opacity duration-300 motion-reduce:transition-none",
+            "absolute inset-0 z-0 border-0 bg-black/55 transition-opacity duration-300 motion-reduce:transition-none",
             isMobileMenuOpen ? "opacity-100" : "opacity-0",
           )}
           type="button"
@@ -757,7 +761,7 @@ const Navbar = () => {
         <nav
           id="mobile-navigation-drawer"
           className={cn(
-            "absolute right-0 top-0 flex h-dvh max-h-dvh w-[min(88vw,24rem)] max-w-full translate-x-full transform-gpu touch-pan-y flex-col border-l border-border bg-surface shadow-raised transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none",
+            "absolute right-0 top-0 z-10 flex h-dvh max-h-dvh w-[88vw] max-w-96 translate-x-full transform-gpu touch-pan-y flex-col overflow-x-hidden border-l border-border bg-surface shadow-raised transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none",
             isMobileMenuOpen && "translate-x-0",
           )}
           ref={mobileMenuRef}
@@ -1044,7 +1048,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 };
 

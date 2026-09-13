@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import video from "../../assets/videos/13029950-hd_1920_1080_24fps.mp4";
+import "@vidstack/react/player/styles/base.css";
+import "@vidstack/react/player/styles/default/theme.css";
+import "@vidstack/react/player/styles/default/layouts/video.css";
+import { MediaPlayer, MediaProvider, Controls } from "@vidstack/react";
+import {
+  DefaultAudioLayout,
+  defaultLayoutIcons,
+  DefaultVideoLayout,
+} from "@vidstack/react/player/layouts/default";
+import PlayerPlayButton from "@/components/video-player/controls/PlayerPlayButton";
 import {
   ArrowRight,
   CalendarCheck,
@@ -26,6 +37,7 @@ import RecordedCourseCard from "@/features/recorded-courses/components/RecordedC
 import { getFeaturedRecordedCourses } from "@/features/recorded-courses/services/recordedCoursesRepository.js";
 import { liveClasses } from "@/data/lmsData.js";
 import { LiveClassCard } from "@/pages/live-classes/LiveClasses.jsx";
+import VideoPlayer from "@/components/video-player/VideoPlayer";
 
 const homeRecordedCourses = getFeaturedRecordedCourses(3);
 
@@ -77,7 +89,7 @@ const Home = () => {
           aria-hidden="true"
         >
           <img
-            className="absolute bottom-0 right-[-7rem] h-[88%] max-h-[43rem] w-auto max-w-none object-contain object-bottom opacity-30 sm:right-[-4rem] sm:opacity-40 lg:right-[max(-1.5rem,calc((100vw-80rem)/2))] lg:h-[94%] lg:opacity-95"
+            className="absolute bottom-0 -right-28 h-[88%] max-h-172 w-auto max-w-none object-contain object-bottom opacity-30 sm:right-[-4rem] sm:opacity-40 lg:right-[max(-1.5rem,calc((100vw-80rem)/2))] lg:h-[94%] lg:opacity-95"
             src={heroWomanTransparent}
             alt=""
           />
@@ -125,8 +137,8 @@ const Home = () => {
               className="mt-6 max-w-172 text-pretty text-[clamp(1.05rem,1.45vw,1.24rem)] font-medium leading-[1.75] text-white/[.74]"
             >
               Learn Quran, Tajweed, Hadith, Fiqh, and family-focused Islamic
-              studies through live scholar-led classes and high-quality self-paced
-              courses designed for flexible, structured learning.
+              studies through live scholar-led classes and high-quality
+              self-paced courses designed for flexible, structured learning.
             </motion.p>
 
             <motion.div
@@ -264,7 +276,9 @@ const Home = () => {
                 <Icon className="size-5" />
               </span>
               <div>
-                <h2 className="text-sm font-black text-[#20332c]">{title}</h2>
+                <h2 className="text-sm md:text-md font-black text-[#20332c]">
+                  {title}
+                </h2>
                 <p className="mt-1.5 text-sm font-medium leading-relaxed text-[#6a7671]">
                   {text}
                 </p>
@@ -314,13 +328,39 @@ const Home = () => {
         </motion.div>
       </section>
 
+      {/* Live Classes */}
       <section className="border-t border-[#e3e9e5] bg-white px-6 py-24 max-sm:px-4 max-sm:py-18">
-        <motion.div className="mx-auto max-w-7xl" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }} variants={reveal}>
+        <motion.div
+          className="mx-auto max-w-7xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={reveal}
+        >
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-2xl"><SectionLabel>Instructor-led programs</SectionLabel><h2 className="text-balance font-display text-[clamp(2.2rem,4vw,3.65rem)] font-black leading-[1.04] tracking-[-0.045em]">Learn live. Grow with guidance.</h2><p className="mt-5 max-w-xl text-base font-medium leading-relaxed text-[#66736e]">Follow a schedule, ask questions and build lasting study habits with an instructor and learning community.</p></div>
-            <Link to="/live-classes" className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline">Explore live classes<ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></Link>
+            <div className="max-w-2xl">
+              <SectionLabel>Instructor-led programs</SectionLabel>
+              <h2 className="text-balance font-display text-[clamp(2.2rem,4vw,3.65rem)] font-black leading-[1.04] tracking-[-0.045em]">
+                Learn live. Grow with guidance.
+              </h2>
+              <p className="mt-5 max-w-xl text-base font-medium leading-relaxed text-[#66736e]">
+                Follow a schedule, ask questions and build lasting study habits
+                with an instructor and learning community.
+              </p>
+            </div>
+            <Link
+              to="/live-classes"
+              className="group inline-flex items-center gap-2 text-sm font-black text-primary no-underline"
+            >
+              Explore live classes
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">{liveClasses.map((item) => <LiveClassCard key={item.id} item={item} />)}</div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {liveClasses.map((item) => (
+              <LiveClassCard key={item.id} item={item} />
+            ))}
+          </div>
         </motion.div>
       </section>
 
@@ -385,35 +425,9 @@ const Home = () => {
                 </span>
               </div>
 
-              <div className="relative aspect-video bg-[#dcebe6]">
-                <div
-                  className="absolute inset-0 opacity-40"
-                  aria-hidden="true"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 35% 40%, #f5ddab, transparent 28%), radial-gradient(circle at 70% 60%, #83c8b7, transparent 32%)",
-                  }}
-                />
-                <div className="absolute inset-0 grid place-items-center">
-                  <Link
-                    to="/courses/tajweed-foundations-recite-with-confidence"
-                    aria-label="Play course preview"
-                    className="grid size-17 place-items-center rounded-full border-4 border-white/40 bg-white text-primary shadow-xl transition hover:scale-105"
-                  >
-                    <Play className="ml-1 size-6 fill-current" />
-                  </Link>
-                </div>
-                <div className="absolute inset-x-5 bottom-4 flex items-center gap-3">
-                  <span className="text-[0.65rem] font-bold text-[#1b453c]">
-                    08:24
-                  </span>
-                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#143d35]/20">
-                    <div className="h-full w-[42%] rounded-full bg-primary" />
-                  </div>
-                  <span className="rounded-md bg-[#173e36] px-2 py-1 text-[0.6rem] font-black text-white">
-                    HD
-                  </span>
-                </div>
+              <div className="aspect-video">
+                {/* Video Player */}
+                <VideoPlayer src={video} />
               </div>
 
               <div className="grid gap-5 p-5 sm:grid-cols-[1fr_auto] sm:items-center">

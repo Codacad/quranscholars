@@ -53,7 +53,10 @@ const createSections = (courseSlug, topics) =>
       order: lessonIndex + 1,
       previewable: sectionIndex === 0 && lessonIndex === 0,
       videoUrl: null,
-      resources: lessonIndex === 2 ? [{ title: "Lesson reflection guide", type: "PDF" }] : [],
+      resources:
+        lessonIndex === 2
+          ? [{ title: "Lesson reflection guide", type: "PDF" }]
+          : [],
     })),
   }));
 
@@ -62,7 +65,8 @@ const courseDefinitions = [
     id: "rc-001",
     title: "Tajweed Foundations: Recite with Confidence",
     slug: "tajweed-foundations-recite-with-confidence",
-    shortDescription: "Master the essential rules and sounds that make Quran recitation clear, accurate, and confident.",
+    shortDescription:
+      "Master the essential rules and sounds that make Quran recitation clear, accurate, and confident.",
     category: "Quran",
     instructor: instructors.mariam,
     thumbnail: "/courses/quran-with-tajweed.svg",
@@ -77,13 +81,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: true,
     updatedAt: "2026-07-18",
-    topics: ["The articulation points", "Noon sakinah and tanween", "Rules of meem", "Madd and measured recitation"],
+    topics: [
+      "The articulation points",
+      "Noon sakinah and tanween",
+      "Rules of meem",
+      "Madd and measured recitation",
+    ],
   },
   {
     id: "rc-002",
     title: "Read Quran from the Beginning: Madani Qaida",
     slug: "read-quran-from-the-beginning-madani-qaida",
-    shortDescription: "A patient, step-by-step path from Arabic letters to reading connected Quranic words.",
+    shortDescription:
+      "A patient, step-by-step path from Arabic letters to reading connected Quranic words.",
     category: "Quran",
     instructor: instructors.mariam,
     thumbnail: "/courses/madani-qaida.svg",
@@ -98,13 +108,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: false,
     updatedAt: "2026-06-09",
-    topics: ["Arabic letters and sounds", "Joining letters", "Vowels and signs", "Reading complete ayat"],
+    topics: [
+      "Arabic letters and sounds",
+      "Joining letters",
+      "Vowels and signs",
+      "Reading complete ayat",
+    ],
   },
   {
     id: "rc-003",
     title: "Understanding Hadith: A Practical Introduction",
     slug: "understanding-hadith-practical-introduction",
-    shortDescription: "Understand how hadith were preserved, studied, and applied without being overwhelmed by terminology.",
+    shortDescription:
+      "Understand how hadith were preserved, studied, and applied without being overwhelmed by terminology.",
     category: "Hadith",
     instructor: instructors.yusuf,
     thumbnail: "/courses/hadith.svg",
@@ -119,13 +135,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: true,
     updatedAt: "2026-08-02",
-    topics: ["The place of hadith", "Preservation and transmission", "Core hadith terminology", "Reading hadith responsibly"],
+    topics: [
+      "The place of hadith",
+      "Preservation and transmission",
+      "Core hadith terminology",
+      "Reading hadith responsibly",
+    ],
   },
   {
     id: "rc-004",
     title: "Quranic Arabic Essentials",
     slug: "quranic-arabic-essentials",
-    shortDescription: "Build a working vocabulary and grammar foundation to recognise recurring Quranic expressions.",
+    shortDescription:
+      "Build a working vocabulary and grammar foundation to recognise recurring Quranic expressions.",
     category: "Arabic",
     instructor: instructors.aisha,
     thumbnail: "/courses/sarf-nahw.svg",
@@ -140,13 +162,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: false,
     updatedAt: "2026-07-27",
-    topics: ["Quranic word patterns", "Nouns and pronouns", "Essential verb forms", "Understanding short passages"],
+    topics: [
+      "Quranic word patterns",
+      "Nouns and pronouns",
+      "Essential verb forms",
+      "Understanding short passages",
+    ],
   },
   {
     id: "rc-005",
     title: "Seerah: The Life and Leadership of the Prophet ﷺ",
     slug: "seerah-life-and-leadership",
-    shortDescription: "Study the Prophetic life as a connected journey of faith, character, courage, and leadership.",
+    shortDescription:
+      "Study the Prophetic life as a connected journey of faith, character, courage, and leadership.",
     category: "Seerah",
     instructor: instructors.hamza,
     thumbnail: "/courses/prophets-stories.svg",
@@ -161,13 +189,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: true,
     updatedAt: "2026-05-16",
-    topics: ["Makkah before revelation", "The early call", "Migration and community", "Leadership and lasting lessons"],
+    topics: [
+      "Makkah before revelation",
+      "The early call",
+      "Migration and community",
+      "Leadership and lasting lessons",
+    ],
   },
   {
     id: "rc-006",
     title: "Everyday Fiqh: Worship with Clarity",
     slug: "everyday-fiqh-worship-with-clarity",
-    shortDescription: "Learn the practical rulings that help you approach purification, prayer, and fasting with confidence.",
+    shortDescription:
+      "Learn the practical rulings that help you approach purification, prayer, and fasting with confidence.",
     category: "Fiqh",
     instructor: instructors.ibrahim,
     thumbnail: "/courses/farz-uloom.svg",
@@ -182,13 +216,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-08-10",
-    topics: ["Purification with certainty", "Prayer essentials", "Fasting with understanding", "Everyday questions"],
+    topics: [
+      "Purification with certainty",
+      "Prayer essentials",
+      "Fasting with understanding",
+      "Everyday questions",
+    ],
   },
   {
     id: "rc-007",
     title: "Tafseer of Surah Al-Fatihah and the Last Ten Surahs",
     slug: "tafseer-fatihah-last-ten-surahs",
-    shortDescription: "Move beyond memorisation and discover the meaning, themes, and daily guidance of familiar surahs.",
+    shortDescription:
+      "Move beyond memorisation and discover the meaning, themes, and daily guidance of familiar surahs.",
     category: "Tafseer",
     instructor: instructors.yusuf,
     thumbnail: "/courses/tafseer.svg",
@@ -203,13 +243,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: false,
     updatedAt: "2026-08-21",
-    topics: ["A framework for tafseer", "Surah Al-Fatihah", "Protection and sincerity", "Faith through the final surahs"],
+    topics: [
+      "A framework for tafseer",
+      "Surah Al-Fatihah",
+      "Protection and sincerity",
+      "Faith through the final surahs",
+    ],
   },
   {
     id: "rc-008",
     title: "Essential Duas for Daily Life",
     slug: "essential-duas-for-daily-life",
-    shortDescription: "Memorise meaningful Prophetic duas with pronunciation, translation, context, and a sustainable routine.",
+    shortDescription:
+      "Memorise meaningful Prophetic duas with pronunciation, translation, context, and a sustainable routine.",
     category: "Spirituality",
     instructor: instructors.mariam,
     thumbnail: "/courses/masnoor-duayen.svg",
@@ -224,13 +270,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: true,
     updatedAt: "2026-04-12",
-    topics: ["A daily dua habit", "Morning and evening", "Home and family", "Travel and protection"],
+    topics: [
+      "A daily dua habit",
+      "Morning and evening",
+      "Home and family",
+      "Travel and protection",
+    ],
   },
   {
     id: "rc-009",
     title: "Advanced Tajweed: Precision and Fluency",
     slug: "advanced-tajweed-precision-and-fluency",
-    shortDescription: "Refine subtle articulation, timing, stops, and recitation flow through detailed demonstrations.",
+    shortDescription:
+      "Refine subtle articulation, timing, stops, and recitation flow through detailed demonstrations.",
     category: "Quran",
     instructor: instructors.mariam,
     thumbnail: "/courses/quran-with-tajweed.svg",
@@ -245,13 +297,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-07-02",
-    topics: ["Precision in articulation", "Advanced madd", "Stops and starts", "Fluent connected recitation"],
+    topics: [
+      "Precision in articulation",
+      "Advanced madd",
+      "Stops and starts",
+      "Fluent connected recitation",
+    ],
   },
   {
     id: "rc-010",
     title: "Islamic Parenting: Raising Grounded Children",
     slug: "islamic-parenting-raising-grounded-children",
-    shortDescription: "Create a faith-centred home through age-aware communication, routines, boundaries, and example.",
+    shortDescription:
+      "Create a faith-centred home through age-aware communication, routines, boundaries, and example.",
     category: "Family",
     instructor: instructors.hamza,
     thumbnail: "/courses/woman-in-qayeda.svg",
@@ -266,13 +324,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-08-25",
-    topics: ["A vision for the home", "Connection before correction", "Faith-building routines", "Digital life and resilience"],
+    topics: [
+      "A vision for the home",
+      "Connection before correction",
+      "Faith-building routines",
+      "Digital life and resilience",
+    ],
   },
   {
     id: "rc-011",
     title: "The Forty Hadith of Imam an-Nawawi",
     slug: "forty-hadith-imam-nawawi",
-    shortDescription: "A guided study of foundational hadith that gather the central principles of faith and character.",
+    shortDescription:
+      "A guided study of foundational hadith that gather the central principles of faith and character.",
     category: "Hadith",
     instructor: instructors.yusuf,
     thumbnail: "/courses/hadith.svg",
@@ -287,13 +351,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-03-29",
-    topics: ["Intentions and sincerity", "Faith and practice", "Character and community", "Living the Prophetic guidance"],
+    topics: [
+      "Intentions and sincerity",
+      "Faith and practice",
+      "Character and community",
+      "Living the Prophetic guidance",
+    ],
   },
   {
     id: "rc-012",
     title: "Arabic Morphology Made Clear",
     slug: "arabic-morphology-made-clear",
-    shortDescription: "Recognise word roots and verb patterns so unfamiliar Quranic vocabulary becomes easier to understand.",
+    shortDescription:
+      "Recognise word roots and verb patterns so unfamiliar Quranic vocabulary becomes easier to understand.",
     category: "Arabic",
     instructor: instructors.aisha,
     thumbnail: "/courses/sarf-nahw.svg",
@@ -308,13 +378,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-08-17",
-    topics: ["Roots and patterns", "The past and present verb", "Derived verb forms", "Quranic word analysis"],
+    topics: [
+      "Roots and patterns",
+      "The past and present verb",
+      "Derived verb forms",
+      "Quranic word analysis",
+    ],
   },
   {
     id: "rc-013",
     title: "Stories of the Prophets for Families",
     slug: "stories-of-the-prophets-for-families",
-    shortDescription: "Explore authentic stories together through engaging narration, reflection prompts, and family activities.",
+    shortDescription:
+      "Explore authentic stories together through engaging narration, reflection prompts, and family activities.",
     category: "Family",
     instructor: instructors.hamza,
     thumbnail: "/courses/prophets-stories.svg",
@@ -329,13 +405,19 @@ const courseDefinitions = [
     featured: true,
     bestseller: true,
     updatedAt: "2026-08-29",
-    topics: ["Adam and the human story", "Nuh and perseverance", "Ibrahim and trust", "Musa and courageous faith"],
+    topics: [
+      "Adam and the human story",
+      "Nuh and perseverance",
+      "Ibrahim and trust",
+      "Musa and courageous faith",
+    ],
   },
   {
     id: "rc-014",
     title: "Purification of the Heart",
     slug: "purification-of-the-heart",
-    shortDescription: "Recognise common spiritual diseases and build practical habits of sincerity, gratitude, and reliance.",
+    shortDescription:
+      "Recognise common spiritual diseases and build practical habits of sincerity, gratitude, and reliance.",
     category: "Spirituality",
     instructor: instructors.ibrahim,
     thumbnail: "/courses/farz-uloom.svg",
@@ -350,13 +432,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: true,
     updatedAt: "2026-06-30",
-    topics: ["Knowing the heart", "Sincerity and intention", "Gratitude and patience", "A sustainable spiritual practice"],
+    topics: [
+      "Knowing the heart",
+      "Sincerity and intention",
+      "Gratitude and patience",
+      "A sustainable spiritual practice",
+    ],
   },
   {
     id: "rc-015",
     title: "Urdu for Understanding Islamic Lessons",
     slug: "urdu-for-understanding-islamic-lessons",
-    shortDescription: "Build useful Urdu vocabulary and listening confidence for Islamic lectures, books, and conversation.",
+    shortDescription:
+      "Build useful Urdu vocabulary and listening confidence for Islamic lectures, books, and conversation.",
     category: "Languages",
     instructor: instructors.aisha,
     thumbnail: "/courses/urdu.svg",
@@ -371,13 +459,19 @@ const courseDefinitions = [
     featured: false,
     bestseller: false,
     updatedAt: "2026-08-06",
-    topics: ["Useful sounds and phrases", "Everyday vocabulary", "Islamic study vocabulary", "Listening to short lessons"],
+    topics: [
+      "Useful sounds and phrases",
+      "Everyday vocabulary",
+      "Islamic study vocabulary",
+      "Listening to short lessons",
+    ],
   },
   {
     id: "rc-016",
     title: "How to Study Islam: A Roadmap for New Learners",
     slug: "how-to-study-islam-roadmap-for-new-learners",
-    shortDescription: "Build a balanced study plan, choose reliable resources, and progress without confusion or burnout.",
+    shortDescription:
+      "Build a balanced study plan, choose reliable resources, and progress without confusion or burnout.",
     category: "Foundations",
     instructor: instructors.ibrahim,
     thumbnail: "/courses/course-vector.svg",
@@ -392,13 +486,21 @@ const courseDefinitions = [
     featured: true,
     bestseller: false,
     updatedAt: "2026-08-31",
-    topics: ["Learning with intention", "A balanced subject map", "Teachers and reliable resources", "Your first ninety-day plan"],
+    topics: [
+      "Learning with intention",
+      "A balanced subject map",
+      "Teachers and reliable resources",
+      "Your first ninety-day plan",
+    ],
   },
 ];
 
 const mockRecordedCourses = courseDefinitions.map((course) => {
   const sections = createSections(course.slug, course.topics);
-  const totalLessons = sections.reduce((count, section) => count + section.lessons.length, 0);
+  const totalLessons = sections.reduce(
+    (count, section) => count + section.lessons.length,
+    0,
+  );
 
   return {
     _id: course.id,

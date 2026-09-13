@@ -32,13 +32,16 @@ const adaptRecordedCourse = (record = {}) => {
     },
   );
   const lessons = sections.flatMap((section) => section.lessons);
-  const originalPrice = Number(record?.price?.original ?? record?.originalPrice ?? 0);
+  const originalPrice = Number(
+    record?.price?.original ?? record?.originalPrice ?? 0,
+  );
   const saleValue = record?.price?.sale ?? record?.salePrice;
-  const salePrice = saleValue === null || saleValue === undefined ? null : Number(saleValue);
+  const salePrice =
+    saleValue === null || saleValue === undefined ? null : Number(saleValue);
   const currentPrice = salePrice === null ? originalPrice : salePrice;
 
   return {
-    id: record?._id || record?.id || record?.slug,
+    id: record?._id || record?.id || null,
     learningType: "recorded",
     title: record?.title || "Untitled course",
     slug: record?.slug || "",
@@ -74,7 +77,9 @@ const adaptRecordedCourse = (record = {}) => {
     bestseller: Boolean(record?.bestseller),
     updatedAt: record?.updatedAt || null,
     outcomes: Array.isArray(record?.outcomes) ? record.outcomes : [],
-    requirements: Array.isArray(record?.requirements) ? record.requirements : [],
+    requirements: Array.isArray(record?.requirements)
+      ? record.requirements
+      : [],
     audience: Array.isArray(record?.audience) ? record.audience : [],
     sections,
     lessons,

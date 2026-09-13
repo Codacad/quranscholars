@@ -29,7 +29,7 @@ export default function DevelopmentWelcome() {
       ref={dialogRef}
       aria-labelledby="development-welcome-title"
       aria-describedby="development-welcome-description"
-      className="fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-3xl border border-[#dfe6e2] bg-[#fbfcfa] p-0 text-[#172b24] shadow-2xl backdrop:bg-[#041e1a]/70 backdrop:backdrop-blur-sm"
+      className="fixed inset-0 m-auto max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] max-w-lg overflow-x-hidden overflow-y-auto rounded-3xl border border-[#dfe6e2] bg-[#fbfcfa] p-0 text-[#172b24] shadow-2xl backdrop:bg-[#041e1a]/70 backdrop:backdrop-blur-sm"
     >
       <div className="relative bg-[#082f2b] px-6 pb-8 pt-10 text-white sm:px-9">
         <button

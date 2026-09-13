@@ -34,20 +34,50 @@ const RecordedCoursePlayer = lazy(
 );
 const MyLearning = lazy(() => import("@/pages/account/MyLearning.jsx"));
 const LiveClasses = lazy(() => import("@/pages/live-classes/LiveClasses.jsx"));
-const LiveClassDetails = lazy(() => import("@/pages/live-classes/LiveClassDetails.jsx"));
+const LiveClassDetails = lazy(
+  () => import("@/pages/live-classes/LiveClassDetails.jsx"),
+);
 const Classroom = lazy(() => import("@/pages/live-classes/Classroom.jsx"));
 const Instructors = lazy(() => import("@/pages/instructors/Instructors.jsx"));
-const InstructorProfile = lazy(() => import("@/pages/instructors/InstructorProfile.jsx"));
+const InstructorProfile = lazy(
+  () => import("@/pages/instructors/InstructorProfile.jsx"),
+);
 const GetStarted = lazy(() => import("@/pages/onboarding/GetStarted.jsx"));
-const StudentStart = lazy(() => import("@/pages/onboarding/GetStarted.jsx").then((m) => ({ default: m.StudentStart })));
-const InstructorStart = lazy(() => import("@/pages/onboarding/GetStarted.jsx").then((m) => ({ default: m.InstructorStart })));
+const StudentStart = lazy(() =>
+  import("@/pages/onboarding/GetStarted.jsx").then((m) => ({
+    default: m.StudentStart,
+  })),
+);
+const InstructorStart = lazy(() =>
+  import("@/pages/onboarding/GetStarted.jsx").then((m) => ({
+    default: m.InstructorStart,
+  })),
+);
 const WorkspaceLayout = lazy(() => import("@/layouts/WorkspaceLayout.jsx"));
-const StudentDashboard = lazy(() => import("@/pages/dashboard/StudentDashboard.jsx"));
-const StudentSectionPage = lazy(() => import("@/pages/dashboard/StudentSectionPage.jsx"));
-const InstructorDashboard = lazy(() => import("@/pages/instructor/InstructorPages.jsx").then((m) => ({ default: m.InstructorDashboard })));
-const InstructorSectionPage = lazy(() => import("@/pages/instructor/InstructorPages.jsx").then((m) => ({ default: m.InstructorSectionPage })));
-const CreationWizard = lazy(() => import("@/pages/instructor/InstructorPages.jsx").then((m) => ({ default: m.CreationWizard })));
-const InstructorApplication = lazy(() => import("@/pages/instructor/InstructorApplication.jsx"));
+const StudentDashboard = lazy(
+  () => import("@/pages/dashboard/StudentDashboard.jsx"),
+);
+const StudentSectionPage = lazy(
+  () => import("@/pages/dashboard/StudentSectionPage.jsx"),
+);
+const InstructorDashboard = lazy(() =>
+  import("@/pages/instructor/InstructorPages.jsx").then((m) => ({
+    default: m.InstructorDashboard,
+  })),
+);
+const InstructorSectionPage = lazy(() =>
+  import("@/pages/instructor/InstructorPages.jsx").then((m) => ({
+    default: m.InstructorSectionPage,
+  })),
+);
+const CreationWizard = lazy(() =>
+  import("@/pages/instructor/InstructorPages.jsx").then((m) => ({
+    default: m.CreationWizard,
+  })),
+);
+const InstructorApplication = lazy(
+  () => import("@/pages/instructor/InstructorApplication.jsx"),
+);
 const PrivacyPolicy = lazy(() => import("@/pages/legal/PrivacyPolicy.jsx"));
 const Profile = lazy(() => import("@/pages/account/Profile.jsx"));
 const TestPage = lazy(() => import("@/pages/dev/TestPage.jsx"));
@@ -125,9 +155,7 @@ const router = createBrowserRouter([
       },
       {
         path: "recorded-courses/:slug",
-        element: (
-          <CourseRouteRedirect basePath="/courses" includeSlug />
-        ),
+        element: <CourseRouteRedirect basePath="/courses" includeSlug />,
       },
       { path: "courses/:slug", element: <RecordedCourseDetails /> },
       { path: "live-classes", element: <LiveClasses /> },
@@ -139,7 +167,11 @@ const router = createBrowserRouter([
       { path: "get-started/instructor", element: <InstructorStart /> },
       {
         path: "my-learning",
-        element: <ProtectedRoute><CourseRouteRedirect basePath="/dashboard/learning" /></ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <CourseRouteRedirect basePath="/dashboard/learning" />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "learn/:courseSlug/:lessonId",
@@ -195,7 +227,9 @@ const router = createBrowserRouter([
           },
           {
             path: "courses/:slug",
-            element: <CourseRouteRedirect basePath="/live-classes" includeSlug />,
+            element: (
+              <CourseRouteRedirect basePath="/live-classes" includeSlug />
+            ),
           },
           {
             path: "interactive-lessons",

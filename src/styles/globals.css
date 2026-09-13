@@ -15,13 +15,22 @@
 
   html {
     scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: clip;
   }
   .font-body {
     font-family: var(--font-body);
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-body;
+    @apply min-w-0 bg-background text-foreground antialiased font-body;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  #root {
+    min-width: 0;
+    max-width: 100%;
   }
 
   button,
