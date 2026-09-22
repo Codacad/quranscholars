@@ -1,4 +1,4 @@
-import Logo from "/images/Logo-3.svg";
+import Logo from "/images/Logo-4.svg";
 import { useEffect, useState, useRef } from "react";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";

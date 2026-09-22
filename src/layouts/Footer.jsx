@@ -1,4 +1,4 @@
-import Logo from "/images/Logo-3.svg";
+import Logo from "/images/Logo-4.svg";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
